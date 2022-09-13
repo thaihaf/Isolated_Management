@@ -3,7 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/PassWord/Change.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/controller/ChangePassword.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/dal/DBContext.java</file>
         </group>
     </open-files>
 </project-private>

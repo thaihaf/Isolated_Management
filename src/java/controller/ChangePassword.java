@@ -33,13 +33,16 @@ public class ChangePassword extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String oldpass = request.getParameter("old");
+        String newpass = request.getParameter("new");
+        String cfnewpass = request.getParameter("cfnew");
+        
     }
 
     @Override

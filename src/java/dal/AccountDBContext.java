@@ -17,28 +17,28 @@ import model.Account;
  * @author Admin
  */
 public class AccountDBContext extends DBContext<Account> {
-    public Account getLoginAccount(String UserName, String Password, String AccountType) {
-            try {
-                String sql = "select [UserName], [Password] from Account\n"
-                        + "where [UserName] = ? and [Password] = ?\n"
-                        + "and AccountType = ?";
-                PreparedStatement stm = connection.prepareStatement(sql);
-                stm.setString(1, UserName);
-                stm.setString(2, Password);
-                stm.setString(3, AccountType);
-                ResultSet rs = stm.executeQuery();
-                if(rs.next()){
-                    Account account = new Account();
-                    account.setAccountID(rs.getInt("AccountID"));
-                    account.setUserName(rs.getString("UserName"));
-                    account.setPassword(rs.getString("Password"));
-                    account.setEmail(rs.getString("Email"));
-                    account.setAccountType(rs.getString("AccountType"));
-                    return account;
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+    public Account getAccount(String UserName, String Password, String AccountType) {
+        try {
+            String sql = "select * from Account\n"
+                    + "where UserName = ? and Password = ?\n"
+                    + "and AccountType = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, UserName);
+            stm.setString(2, Password);
+            stm.setString(3, AccountType);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next()){
+                Account account = new Account();
+                account.setAccountID(rs.getString("AccountID"));
+                account.setUserName(rs.getString("UserName"));
+                account.setPassword(rs.getString("Password"));
+                account.setEmail(rs.getString("Email"));
+                account.setAccountType(rs.getString("AccountType"));
+                return account;
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
 
@@ -66,5 +66,4 @@ public class AccountDBContext extends DBContext<Account> {
     public void delete(Account model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
 }

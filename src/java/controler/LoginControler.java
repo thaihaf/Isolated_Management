@@ -56,7 +56,6 @@ public class LoginControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-//        processRequest(request, response);
         request.getRequestDispatcher("view/login.jsp").forward(request, response);
     } 
 
@@ -70,14 +69,13 @@ public class LoginControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-//        processRequest(request, response);
         String UserName = request.getParameter("UserName");
         String Password = request.getParameter("Password");
         String AccountType = request.getParameter("AccountType");
         AccountDBContext adb = new AccountDBContext();
-        Account account = adb.getLoginAccount(UserName, Password, AccountType);
-        request.setAttribute("account", account);
+        Account account = adb.getAccount(UserName, Password, AccountType);
         if(account == null){
+            request.setAttribute("mess", "Wrong username or password");
             request.getRequestDispatcher("view/login.jsp").forward(request, response);
         }
         if(account != null){

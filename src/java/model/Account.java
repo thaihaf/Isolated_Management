@@ -9,7 +9,7 @@ package model;
  * @author Admin
  */
 public class Account {
-    private int AccountID;
+    private String AccountID;
     private String UserName;
     private String Password;
     private String Email;   
@@ -18,7 +18,7 @@ public class Account {
     public Account() {
     }
 
-    public Account(int AccountID, String UserName, String Password, String Email, String AccountType) {
+    public Account(String AccountID, String UserName, String Password, String Email, String AccountType) {
         this.AccountID = AccountID;
         this.UserName = UserName;
         this.Password = Password;
@@ -26,11 +26,11 @@ public class Account {
         this.AccountType = AccountType;
     }
 
-    public int getAccountID() {
+    public String getAccountID() {
         return AccountID;
     }
 
-    public void setAccountID(int AccountID) {
+    public void setAccountID(String AccountID) {
         this.AccountID = AccountID;
     }
 

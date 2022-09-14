@@ -10,18 +10,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Login</title>
     </head>
     <body>
         <form action="login" method="post">
-            <h1>Đăng nhập</h1>
+            <h1>LOGIN</h1>
+            <p class="text-danger">${mess}</p>
             Username <input type ="text" name="UserName"><br>
             Password <input type="password" name="Password"><br>
             <select name="AccountType">
-                <c:forEach items="${account}" var="account">
-                    <option value="${account.AccountType}">${account.AccountType}</option>
-                </c:forEach>
+                <option value="Doctor">Doctor</option>
+                <option value="Patient">Patient</option>
+                <option value="Nurse">Nurse</option>
+                <option value="Admin">Admin</option>
             </select><br>
+            
             <input type="submit" value="Login">
         </form>
     </body>

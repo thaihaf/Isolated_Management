@@ -1,6 +1,6 @@
 <%-- 
-    Document   : doctorHomeScreen
-    Created on : Sep 13, 2022, 2:40:55 PM
+    Document   : register
+    Created on : Sep 14, 2022, 5:07:42 PM
     Author     : Admin
 --%>
 
@@ -12,6 +12,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Doctor</h1>
+        <form action="register" method="post">
+            <h1>REGISTER</h1>
+            Old password <input type="password" name ="password"
+        </form>
+
     </body>
 </html>

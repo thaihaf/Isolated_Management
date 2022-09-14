@@ -17,6 +17,7 @@ import entity.Account;
  * @author Admin
  */
 public class AccountDBContext extends DBContext<Account> {
+
     public Account getAccount(String UserName, String Password, String AccountType) {
         try {
             String sql = "select * from Account\n"
@@ -27,7 +28,7 @@ public class AccountDBContext extends DBContext<Account> {
             stm.setString(2, Password);
             stm.setString(3, AccountType);
             ResultSet rs = stm.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 Account account = new Account();
                 account.setAccountID(rs.getString("AccountID"));
                 account.setUserName(rs.getString("UserName"));
@@ -40,6 +41,47 @@ public class AccountDBContext extends DBContext<Account> {
             Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public Account get(String user) {
+        try {
+            String sql = "SELECT [AccountID]\n"
+                    + "      ,[UserName]\n"
+                    + "      ,[Password]\n"
+                    + "      ,[Email]\n"
+                    + "      ,[AccountType]\n"
+                    + "  FROM [Account]\n"
+                    + "  WHERE [Account].[Email] = ?";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setNString(1, user);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Account a = new Account();
+                a.setAccountID(rs.getNString("AccountID"));
+                a.setUserName(rs.getNString("UserName"));
+                a.setPassword(rs.getNString("Password"));
+                a.setEmail(rs.getNString("Email"));
+                a.setAccountType(rs.getNString("AccountType"));
+                return a;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public void updatePass(Account acc) {
+        try {
+            String sql = "UPDATE [Account]\n"
+                    + "   SET [Password] = ?\n"
+                    + " WHERE [Account].[Email] = ?";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setNString(1, acc.getPassword());
+            stm.setNString(2, acc.getEmail());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

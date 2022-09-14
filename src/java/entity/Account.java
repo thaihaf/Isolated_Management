@@ -15,17 +15,6 @@ public class Account {
     private String Email;   
     private String AccountType;
 
-    public Account() {
-    }
-
-    public Account(String AccountID, String UserName, String Password, String Email, String AccountType) {
-        this.AccountID = AccountID;
-        this.UserName = UserName;
-        this.Password = Password;
-        this.Email = Email;
-        this.AccountType = AccountType;
-    }
-
     public String getAccountID() {
         return AccountID;
     }

@@ -6,10 +6,10 @@ package entity;
 
 public class Account {
     private String AccountID;
-    private String username;
-    private String password;
-    private String email;
-    private String type;
+    private String UserName;
+    private String Password;
+    private String Email;   
+    private String AccountType;
 
     public String getAccountID() {
         return AccountID;
@@ -19,36 +19,38 @@ public class Account {
         this.AccountID = AccountID;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return UserName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String UserName) {
+        this.UserName = UserName;
     }
 
     public String getPassword() {
-        return password;
+        return Password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String Password) {
+        this.Password = Password;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
 
-    public String getType() {
-        return type;
+    public String getAccountType() {
+        return AccountType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setAccountType(String AccountType) {
+        this.AccountType = AccountType;
     }
+
+   
     
 }

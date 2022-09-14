@@ -17,6 +17,7 @@ import entity.Account;
  * @author Admin
  */
 public class AccountDBContext extends DBContext<Account> {
+
     public Account getAccount(String UserName, String Password, String AccountType) {
         try {
             String sql = "select * from Account\n"
@@ -27,7 +28,7 @@ public class AccountDBContext extends DBContext<Account> {
             stm.setString(2, Password);
             stm.setString(3, AccountType);
             ResultSet rs = stm.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 Account account = new Account();
                 account.setAccountID(rs.getString("AccountID"));
                 account.setUserName(rs.getString("UserName"));
@@ -59,7 +60,17 @@ public class AccountDBContext extends DBContext<Account> {
 
     @Override
     public void update(Account model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "UPDATE Account\n"
+                    + "   SET [Password] = '?'\n"
+                    + " WHERE UserName = '?'";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, model.getPassword());
+            stm.setString(2, model.getUserName());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

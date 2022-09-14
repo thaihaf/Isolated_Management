@@ -14,7 +14,9 @@
     <body>
         <form action="register" method="post">
             <h1>REGISTER</h1>
-            Old password <input type="password" name ="password"
+            Old password <input type="password" name ="password"><br>
+            New password <input type="password" name="new password"><br>
+            Confirm password <
         </form>
 
     </body>

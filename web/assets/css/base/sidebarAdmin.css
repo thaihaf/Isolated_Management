@@ -1,0 +1,53 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Sep 14, 2022, 12:06:29 PM
+    Author     : hapro
+*/
+
+.sidebarAdmin{
+    background-color: var(--bg-color);
+    
+    position: fixed;
+    left: 0;
+    z-index: 11;
+    
+    width: var(--sidebar-admin-width);
+    height: 100%;
+    
+    padding : 3rem 3.5rem;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar_btnMenu, .sidebar_btnLogout{
+    cursor: pointer;
+}
+
+.sidebar_list{
+    font-size: 2rem;
+    color : var(--white-color);
+}
+.sidebar_list a{
+    text-decoration: none;
+    color : var(--white-color);
+}
+dt{
+    font-weight: bold;
+    margin-top: 3.5rem;
+
+}
+dt a.selected{
+    font-style: italic;
+}
+dd{
+    margin-top: 2rem;
+}
+
+.sidebar_btnLogout{
+    margin-top: auto;
+}

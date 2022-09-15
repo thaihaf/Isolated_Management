@@ -10,8 +10,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="../assets/css/homeScreenAdmin.css"/>
     </head>
     <body>
-        <h1>Admin</h1>
+        <jsp:include page="../base/sidebar.jsp" />
+
+        <jsp:include page="../base/header.jsp" />
+
+        <div class="wrapper">
+            <div class="container">
+                Code vào đây là oke
+            </div>
+            <jsp:include page="../base/footer.jsp" />   
+        </div>
+
+
     </body>
 </html>
+

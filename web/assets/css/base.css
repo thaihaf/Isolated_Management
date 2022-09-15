@@ -1,0 +1,73 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Sep 14, 2022, 10:56:09 AM
+    Author     : hapro
+*/
+
+:root {
+    --white-color: #fff;
+    --black-color: #000;
+    --text-color:#333;
+    --bg-color : #22506C;
+    --header-height: 8rem;
+    --sidebar-admin-width: 20rem;
+}
+
+* {
+    box-sizing: inherit;
+
+}
+body {
+    margin: 0;
+}
+@font-face {
+    font-family: Roboto;
+    src:url(../fonts/Roboto/Roboto-Regular.ttf);
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    overflow-x:hidden;
+}
+
+
+.grid {
+    width: 1200px;
+    max-width: 100%;
+    margin : 0 auto;
+}
+
+.grid__full-width {
+    width: 100%;
+}
+
+.grid__row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@keyframes growthElement {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.container {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+input {
+    outline: none;
+}

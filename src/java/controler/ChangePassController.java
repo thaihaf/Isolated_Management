@@ -36,6 +36,11 @@ public class ChangePassController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("account");
+        if (acc == null) {
+            request.getRequestDispatcher("view/checkSession.jsp").forward(request, response);
+        }
         request.getRequestDispatcher("view/changepass.jsp").forward(request, response);
     }
 
@@ -49,12 +54,12 @@ public class ChangePassController extends HttpServlet {
         String cfpass = request.getParameter("cfnew");
         HttpSession session = request.getSession();
         Account acc = (Account) session.getAttribute("account");
-        acc1.setUserName(acc.getUserName());
-        acc1.setPassword(cfpass);
+        acc.setPassword(cfpass);
         if (acc == null) {
             request.getRequestDispatcher("view/checkSession.jsp").forward(request, response);
-        } else {
-            db.update(acc1);
+        } else if (!oldpass.equals(newpass) && newpass.equals(cfpass)) {
+            db.update(acc);
+            request.getRequestDispatcher("view/confirm.jsp").forward(request, response);
         }
     }
 

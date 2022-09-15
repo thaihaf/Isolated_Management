@@ -7,7 +7,6 @@ package entity;
 public class Doctor {
 
     private String DoctorID;
-
     private String DoctorName;
     private boolean gender;
     private String Phone;
@@ -73,7 +72,5 @@ public class Doctor {
     public void setAccount(Account account) {
         this.account = account;
     }
-    
-    
 
 }

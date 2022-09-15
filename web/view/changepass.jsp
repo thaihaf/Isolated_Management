@@ -13,9 +13,11 @@
     </head>
     <body>
         <form action="changepass" method="POST">
-            Current Password: <input type="text" placeholder="Enter Current Password" name="old" required><br><br>
-            New Password: <input type="text" placeholder="Enter New Password" name="new" required><br><br>
-            Confirm New Password: <input type="text" placeholder="Renter new password" name="cfnew" required><br><br>
+            <h1>CHANGE PASSWORD</h1>
+            <p class="text-danger">${mess}</p>
+            Current Password: <input type="password" placeholder="Enter Current Password" name="old" required><br><br>
+            New Password: <input type="password" placeholder="Enter New Password" name="new" required><br><br>
+            Confirm New Password: <input type="password" placeholder="Renter new password" name="cfnew" required><br><br>
             <input type="submit" value="Save"/>
         </form>
     </body>

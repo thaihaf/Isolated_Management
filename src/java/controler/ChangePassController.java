@@ -54,12 +54,22 @@ public class ChangePassController extends HttpServlet {
         String cfpass = request.getParameter("cfnew");
         HttpSession session = request.getSession();
         Account acc = (Account) session.getAttribute("account");
-        acc.setPassword(cfpass);
+        acc1.setUserName(acc.getUserName());
+        acc1.setPassword(cfpass);
         if (acc == null) {
             request.getRequestDispatcher("view/checkSession.jsp").forward(request, response);
-        } else if (!oldpass.equals(newpass) && newpass.equals(cfpass)) {
-            db.update(acc);
+        } else if (!oldpass.equals(newpass) && newpass.equals(cfpass) && oldpass.equals(acc.getPassword())) {
+            db.update(acc1);
             request.getRequestDispatcher("view/confirm.jsp").forward(request, response);
+        } else if (!oldpass.equals(acc.getPassword())) {
+            request.setAttribute("mess", "password is wrong");
+            request.getRequestDispatcher("view/changepass.jsp").forward(request, response);
+        } else if (oldpass.equals(newpass)) {
+            request.setAttribute("mess", "new pass can not be same as old pass");
+            request.getRequestDispatcher("view/changepass.jsp").forward(request, response);
+        } else if (!newpass.equals(cfpass)) {
+            request.setAttribute("mess", "confirm new pass is wrong");
+            request.getRequestDispatcher("view/changepass.jsp").forward(request, response);
         }
     }
 

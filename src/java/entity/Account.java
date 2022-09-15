@@ -10,17 +10,16 @@ package entity;
  */
 public class Account {
 
-    private String accountID;
+    private int accountID;
     private String userName;
     private String password;
-    private String email;
-    private String accountType;
+    private Role role;
 
-    public String getAccountID() {
+    public int getAccountID() {
         return accountID;
     }
 
-    public void setAccountID(String accountID) {
+    public void setAccountID(int accountID) {
         this.accountID = accountID;
     }
 
@@ -40,20 +39,12 @@ public class Account {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public Role getRole() {
+        return role;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
 }

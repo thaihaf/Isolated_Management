@@ -42,17 +42,19 @@ public class ChangePassController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Account acc1 = new Account();
         AccountDBContext db = new AccountDBContext();
         String oldpass = request.getParameter("old");
         String newpass = request.getParameter("new");
         String cfpass = request.getParameter("cfnew");
         HttpSession session = request.getSession();
         Account acc = (Account) session.getAttribute("account");
+        acc1.setUserName(acc.getUserName());
+        acc1.setPassword(cfpass);
         if (acc == null) {
             request.getRequestDispatcher("view/checkSession.jsp").forward(request, response);
-        } else {           
-                db.update(acc);
-            
+        } else {
+            db.update(acc1);
         }
     }
 

@@ -61,9 +61,7 @@ public class AccountDBContext extends DBContext<Account> {
     @Override
     public void update(Account model) {
         try {
-            String sql = "UPDATE Account\n"
-                    + "   SET [Password] = '?'\n"
-                    + " WHERE UserName = '?'";
+            String sql = "Update Account set Password = ? where UserName = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, model.getPassword());
             stm.setString(2, model.getUserName());

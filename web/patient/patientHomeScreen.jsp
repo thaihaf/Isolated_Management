@@ -13,5 +13,6 @@
     </head>
     <body>
         <h1>Patient</h1>
+        <a href="changepass">Change Password</a>
     </body>
 </html>

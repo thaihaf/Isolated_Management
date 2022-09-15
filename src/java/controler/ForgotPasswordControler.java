@@ -9,7 +9,6 @@ import entity.Account;
 import entity.AccountDetail;
 import jakarta.mail.MessagingException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -75,7 +74,7 @@ public class ForgotPasswordControler extends HttpServlet {
             accDB.UpdatePass(acc);
             try {
                 Mail sendMail = new Mail();
-                sendMail.SendMail(user, pass);
+                sendMail.SendMail(acc.getEmail(), pass);
                 request.setAttribute("message", "New password has sent to your email.");
                 request.getRequestDispatcher("view/forgotpass.jsp").forward(request, response);
             } catch (MessagingException ex) {

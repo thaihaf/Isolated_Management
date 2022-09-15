@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="../assets/css/base/home.css"/>
     </head>
     <body>
-        <jsp:include page="./sidebarAdmin.jsp" />
+        <jsp:include page="./sidebar.jsp" />
 
         <jsp:include page="./header.jsp" />
 

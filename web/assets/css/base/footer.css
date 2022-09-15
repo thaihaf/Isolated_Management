@@ -9,23 +9,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .footer{
     background-color: var(--bg-color);
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding : 2rem 10rem;
-
+    padding: 1.4rem 10rem;
     width: 100%;
     margin-top: auto;
+    padding-bottom: 0;
 }
 
 .sponsor_text{
     font-size: 1.3rem;
     color : var(--white-color);
-    font-weight: 300; 
+    font-weight: 300;
 }
 .sponsor_img{
-    width: 5rem;
+    width: 15rem;
 }
 
 .list{
@@ -35,12 +34,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 .item{
     color : var(--white-color);
-    font-size : 1.6rem;
+    font-size : 1.3rem;
     text-decoration: none;
-    
+
 }
 .item_language{
     background-color: transparent;
     outline: none;
-    
+
 }

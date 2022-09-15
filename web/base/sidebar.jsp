@@ -11,14 +11,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="../assets/css/base.css"/>
-        <link rel="stylesheet" href="../assets/css/base/sidebarAdmin.css"/>
+        <link rel="stylesheet" href="../assets/css/base/sidebar.css"/>
     <body>
-        <div class="sidebarAdmin">
+        <div class="sidebar">
             <div class="sidebar_btnMenu">
-                <img src="../assets/icons/menu.png" alt="alt"/>
+                <img class="sidebar_btnMenu_img" src="../assets/icons/menu.png" alt="alt"/>
             </div>
 
-            <div class="sidebar_list">
+            <div class="sidebar_list" id="style-1">
                 <dl>
                     <dt>Home</dt>
 
@@ -40,7 +40,7 @@
             </div>
             
             <div class="sidebar_btnLogout">
-                <img src="../assets/icons/logout.png" alt="alt"/>
+                <img class="sidebar_btnLogout_img" src="../assets/icons/logout.png" alt="alt"/>
             </div>
         </div>
     </body>

@@ -17,8 +17,8 @@
         <div class="footer">
             <div class="sponsor">
                 <div class="sponsor_text">Development sponsor</div>
-                <div class="sponsor_img">
-                    <img src="../assets/img/Logo.png" alt="alt"/>
+                <div>
+                    <img class="sponsor_img" src="../assets/img/Logo.png" alt="alt"/>
                 </div>
             </div>
 

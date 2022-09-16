@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!--todo-->
-<c:set var="role" value="doctor"/>
+<c:set var="role" value="admin"/>
 
 <!DOCTYPE html>
 <html>
@@ -55,18 +55,18 @@
 
                       <c:otherwise>
                           <a class="sidebar_item" href="url">
-                              <img src="../assets/icons/homeIcon.png" alt="alt"/>
+                              <img class="sidebar_item_img" src="../assets/icons/homeIcon.png" alt="alt"/>
                               <div>Home</div>
                           </a>
 
                           <!--// doctor-->
                           <c:if test="${role=='doctor'}">
                               <a class="sidebar_item" href="url">
-                                  <img src="../assets/icons/homeIcon.png" alt="alt"/>
+                                  <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
                                   <div>Patient</div>
                               </a>
                               <a class="sidebar_item" href="url">
-                                  <img src="../assets/icons/homeIcon.png" alt="alt"/>
+                                  <img class="sidebar_item_img" src="../assets/icons/donthuoc.png" alt="alt"/>
                                   <div>Prescription</div>
                               </a>
                           </c:if>
@@ -74,11 +74,11 @@
                           <!--// nurse-->
                           <c:if test="${role=='nurse'}">
                               <a class="sidebar_item" href="url">
-                                  <img src="../assets/icons/homeIcon.png" alt="alt"/>
+                                  <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
                                   <div>Patient</div>
                               </a>
                               <a class="sidebar_item" href="url">
-                                  <img src="../assets/icons/homeIcon.png" alt="alt"/>
+                                  <img class="sidebar_item_img" src="../assets/icons/reportIcon.png" alt="alt"/>
                                   <div>Report</div>
                               </a>
                           </c:if>
@@ -86,17 +86,17 @@
                           <!--//patient-->
                           <c:if test="${role=='patient'}">
                               <a class="sidebar_item" href="url">
-                                  <img src="../assets/icons/homeIcon.png" alt="alt"/>
+                                  <img class="sidebar_item_img" src="../assets/icons/testIcon.png" alt="alt"/>
                                   <div>Test result</div>
                               </a>
                               <a class="sidebar_item" href="url">
-                                  <img src="../assets/icons/homeIcon.png" alt="alt"/>
+                                  <img class="sidebar_item_img" src="../assets/icons/donthuoc.png" alt="alt"/>
                                   <div>Prescription</div>
                               </a>
                           </c:if>
 
                           <a class="sidebar_item" href="url">
-                              <img src="../assets/icons/homeIcon.png" alt="alt"/>
+                              <img class="sidebar_item_img img_profile" src="../assets/icons/profileIcon.png" alt="alt"/>
                               <div>Profile</div>
                           </a>
                           <br />

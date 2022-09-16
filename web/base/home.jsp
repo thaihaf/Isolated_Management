@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!--todo-->
-<c:set var="role" value="doctor"/>
+<c:set var="role" value="admin"/>
 
 <!DOCTYPE html>
 <html>

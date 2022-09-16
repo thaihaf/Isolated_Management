@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!--todo-->
-<c:set var="role" value="doctor"/>
+<c:set var="role" value="admin"/>
 
 <!DOCTYPE html>
 <html>
@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="../assets/css/base/menu.css"/>
     </head>
     <body>
-        <div class="menu">
+        <div class="menu hidden">
             <a class="menu_item" href="/">Home</a>
             <a class="menu_item" href="/">User Profile</a>
             <a class="menu_item" href="/">Change Password</a>

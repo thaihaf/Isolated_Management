@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!--todo-->
-<c:set var="role" value="doctor"/>
+<c:set var="role" value="admin"/>
 
 <!DOCTYPE html>
 <html>
@@ -43,5 +43,8 @@
 
              <jsp:include page="./menu.jsp" />
         </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <<script src="../assets/js/base/header.js"></script>
     </body>
 </html>

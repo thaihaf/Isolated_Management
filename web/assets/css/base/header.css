@@ -44,6 +44,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 .noti{
     position: relative;
     margin-right: 8rem;
+    cursor: pointer;
 }
 img.noti_img{
     width: 2.7rem;
@@ -85,6 +86,7 @@ img.noti_img{
     gap: 0.6rem;
     justify-content: center;
     align-items: flex-start;
+    cursor: pointer;
 }
 .user_name{
     color: var(--white-color);

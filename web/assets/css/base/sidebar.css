@@ -67,6 +67,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     text-decoration: none;
     color : var(--white-color);
 }
+.sidebar_item_img{
+    width: 4rem
+}
+.img_profile{
+    padding: 0.3rem;
+}
 dl{
     margin: 0;
 }

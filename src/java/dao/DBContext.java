@@ -27,14 +27,15 @@ public abstract class DBContext<T>{
 
     protected Connection connection;
     
-    public DBContext(){
+     public DBContext() {
         try {
             String user = "sa";
             String pass = "kieuanhson02";
             String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP_Project";
+
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
-        } catch (ClassNotFoundException | SQLException ex){
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

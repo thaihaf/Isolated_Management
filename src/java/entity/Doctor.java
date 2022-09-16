@@ -4,33 +4,41 @@
  */
 package entity;
 
-/**
- *
- * @author Mountain
- */
 public class Doctor {
 
-    private String doctorID;
-    private String doctorName;
+    private String DoctorID;
+    private String DoctorName;
     private boolean gender;
-    private String phone;
-    private String address;
+    private String Phone;
+    private String Adress;
     private Account account;
 
-    public String getDoctorID() {
-        return doctorID;
+    public Doctor() {
     }
 
-    public void setDoctorID(String doctorID) {
-        this.doctorID = doctorID;
+    public Doctor(String DoctorID, String DoctorName, boolean gender, String Phone, String Adress, Account account) {
+        this.DoctorID = DoctorID;
+        this.DoctorName = DoctorName;
+        this.gender = gender;
+        this.Phone = Phone;
+        this.Adress = Adress;
+        this.account = account;
+    }
+
+    public String getDoctorID() {
+        return DoctorID;
+    }
+
+    public void setDoctorID(String DoctorID) {
+        this.DoctorID = DoctorID;
     }
 
     public String getDoctorName() {
-        return doctorName;
+        return DoctorName;
     }
 
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
+    public void setDoctorName(String DoctorName) {
+        this.DoctorName = DoctorName;
     }
 
     public boolean isGender() {
@@ -42,19 +50,19 @@ public class Doctor {
     }
 
     public String getPhone() {
-        return phone;
+        return Phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone(String Phone) {
+        this.Phone = Phone;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAdress() {
+        return Adress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAdress(String Adress) {
+        this.Adress = Adress;
     }
 
     public Account getAccount() {

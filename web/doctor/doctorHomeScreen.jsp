@@ -4,14 +4,37 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<!--todo-->
+<c:set var="role" value="doctor"/>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="../assets/css/base.css"/>
+        <link rel="stylesheet" href="../assets/css/homeScreenDoctor.css"/>
     </head>
     <body>
-        <h1>Doctor</h1>
+        <jsp:include page="../base/sidebar.jsp" />
+
+        <jsp:include page="../base/header.jsp" />
+
+        <div class=<c:if test="${role eq 'admin'}">"wrapper wrapperAdmin"</c:if>
+             <c:if test="${role ne 'admin'}">"wrapper wrapperUser"</c:if>
+                 >
+                 <div class="container">
+                 <!--Code vào đây là oke-->
+                     
+                     <h1>Doctor</h1>
+        <a href="changepass">Change Password</a></br>
+        </br>
+        <a href="doctorprofile"> Profile </a>
+                 </div>
+             <jsp:include page="../base/footer.jsp" />   
+        </div>
     </body>
 </html>

@@ -14,6 +14,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     --bg-color : #22506C;
     --header-height: 8rem;
     --sidebar-admin-width: 20rem;
+    --sidebar-user-width: 11rem;
 }
 
 * {
@@ -70,4 +71,24 @@ html {
 
 input {
     outline: none;
+}
+a {
+    text-decoration: none;
+    color : var(--white-color);
+}
+html, body{
+    height: 100%;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    height: max-content;
+    padding-top: var(--header-height);
+}
+.wrapperAdmin{
+    padding-left: var(--sidebar-admin-width);
+}
+.wrapperUser{
+    padding-left: var(--sidebar-user-width);
 }

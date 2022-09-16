@@ -6,16 +6,5 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Created on : Sep 14, 2022, 11:47:52 PM
     Author     : hapro
 */
-html, body{
-    height: 100%;
-}
-.wrapper{
-    padding-top: var(--header-height);
-    padding-left: var(--sidebar-admin-width);
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-    height: max-content;
-}
 .container{
 }

@@ -17,7 +17,7 @@ import entity.Account;
  * @author Admin
  */
 public class AccountDBContext extends DBContext<Account> {
-    public Account getAccount(String UserName, String Password, String AccountType) {
+    public Account LoginAccount(String UserName, String Password, String AccountType) {
         try {
             String sql = "select * from Account\n"
                     + "where UserName = ? and Password = ?\n"
@@ -41,7 +41,11 @@ public class AccountDBContext extends DBContext<Account> {
         }
         return null;
     }
-
+    
+    public void RegisterAccount(String Name, String UserName, String){
+        
+    }
+    
     @Override
     public ArrayList<Account> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

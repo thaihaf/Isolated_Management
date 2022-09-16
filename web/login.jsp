@@ -12,18 +12,19 @@
         <title>Login</title>
     </head>
     <body>
-        <form action="login" method="post">
+        <form action="login" method="post"  >
             <h1>LOGIN</h1>
             <p class="text-danger">${mess}</p>
-            Username <input type ="text" name="UserName"><br>
-            Password <input type="password" name="Password"><br>
+            Tên Đăng Nhập <input type ="text" name="UserName"><br>
+            Mật Khẩu <input type="password" name="Password"><br>
             <select name="AccountType">
                 <option value="Doctor">Doctor</option>
                 <option value="Patient">Patient</option>
                 <option value="Nurse">Nurse</option>
                 <option value="Admin">Admin</option>
             </select><br>
-            
+            <a href="register.jsp">Đăng kí</a>
+            <a href="">Quên mật khẩu</a><br>
             <input type="submit" value="Login">
         </form>
     </body>

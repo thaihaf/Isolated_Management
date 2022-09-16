@@ -3,23 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controler;
+package patient.controler;
 
-import dao.AccountDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import entity.Account;
 
 /**
  *
  * @author Admin
  */
-public class LoginControler extends HttpServlet {
+public class RegisterControler extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -36,10 +33,10 @@ public class LoginControler extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginControler</title>");  
+            out.println("<title>Servlet RegisterControler</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginControler at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet RegisterControler at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +53,8 @@ public class LoginControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+//        processRequest(request, response);
+        request.getRequestDispatcher("register.jsp").forward(request, response);
     } 
 
     /** 
@@ -69,30 +67,19 @@ public class LoginControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        String Name = request.getParameter("Name");
         String UserName = request.getParameter("UserName");
         String Password = request.getParameter("Password");
-        String AccountType = request.getParameter("AccountType");
-        AccountDBContext adb = new AccountDBContext();
-        Account account = adb.LoginAccount(UserName, Password, AccountType);
-        if(account == null){
-            request.setAttribute("mess", "Wrong username or password");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
-        if(account != null){
-            HttpSession session = request.getSession();
-            session.setAttribute("account", account);
-            if(account.getAccountType().equals("Doctor")){
-                request.getRequestDispatcher("doctor/doctorHomeScreen.jsp").forward(request, response);
-            }
-            if(account.getAccountType().equals("Admin")){
-                request.getRequestDispatcher("admin/adminHomeScreen.jsp").forward(request, response);
-            }
-            if(account.getAccountType().equals("Nurse")){
-                request.getRequestDispatcher("nurse/nurseHomeScreen.jsp").forward(request, response);
-            }
-            if(account.getAccountType().equals("Patient")){
-                request.getRequestDispatcher("patient/patientHomeScreen.jsp").forward(request, response);
-            }
+        String gender = request.getParameter("gender");
+        String age = request.getParameter("age");
+        String Nation = request.getParameter("Nation");
+        String address = request.getParameter("address");
+        String Email = request.getParameter("Email");
+        String Password_confirm = request.getParameter("Password_confirm");
+        if(Password == Password_confirm){
+            
+        }else{
+            request.setAttribute("mess", "Mật khẩu xác nhận phải giống mật khẩu vừa nhập");
         }
     }
 

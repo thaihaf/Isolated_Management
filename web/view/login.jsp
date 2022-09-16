@@ -11,21 +11,57 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
+        <link rel="stylesheet" href="./assets/css/base.css"/>
+        <link rel="stylesheet" href="./assets/css/view/login.css"/>
     </head>
     <body>
-        <form action="login" method="post">
-            <h1>LOGIN</h1>
-            <p class="text-danger">${mess}</p>
-            Username <input type ="text" name="UserName"><br>
-            Password <input type="password" name="Password"><br>
-            <select name="AccountType">
-                <option value="Doctor">Doctor</option>
-                <option value="Patient">Patient</option>
-                <option value="Nurse">Nurse</option>
-                <option value="Admin">Admin</option>
-            </select><br>
-            
-            <input type="submit" value="Login">
-        </form>
+        <div class="login" style="background-image: url(../assets/img/Logo.png)">
+            <div class="login_link">
+                <div class="item item_language">
+                    <select name="language" class="switch_option">
+                        <option value="vn">Vietnamese</option>
+                        <option value="en">English</option>
+                        <option value="jp">Japanese</option>
+                    </select>
+                </div>
+                <a class="item">FAQ</a>
+                <a class="item">Guilde</a>
+                <a class="item">Contact us</a>
+            </div>
+
+            <div class="login_inputTab">
+                <div class="intro">
+                    <div class="intro_title">welcome!</div>
+                    <div class="intro_small">
+                        Don't have account,
+                        <a href="url">Register</a>
+                    </div>
+                </div>
+
+                <form action="login" method="post" class="login_form">
+                    <div class="item item_username">
+                        <div class="item_title">Username</div>
+
+                        <input class="item_input" type ="text" name="UserName" placeholder="thaihaf">
+                    </div>
+
+                    <div class="item item_password">
+                        <div class="item_title">Password</div>
+
+                        <input class="item_input" type="password" name="Password">
+                    </div>
+
+                    <p class="text-danger">${mess}</p>
+
+                    <a href="url" class="switch_link">Forget password?</a>
+
+
+                    <input class="btn_submit" type="submit" value="Sign in">
+                </form>
+            </div>
+
+
+        </div>
+
     </body>
 </html>

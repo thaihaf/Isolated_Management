@@ -8,29 +8,30 @@ package entity;
  *
  * @author Mountain
  */
-public class Doctor {
+public class AccountDetail {
 
-    private String doctorID;
-    private String doctorName;
+    private Account account;
+    private String fullName;
     private boolean gender;
     private String phone;
     private String address;
-    private Account account;
+    private String email;
+    private String nation;
 
-    public String getDoctorID() {
-        return doctorID;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setDoctorID(String doctorID) {
-        this.doctorID = doctorID;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
-    public String getDoctorName() {
-        return doctorName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public boolean isGender() {
@@ -57,12 +58,20 @@ public class Doctor {
         this.address = address;
     }
 
-    public Account getAccount() {
-        return account;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNation() {
+        return nation;
+    }
+
+    public void setNation(String nation) {
+        this.nation = nation;
     }
 
 }

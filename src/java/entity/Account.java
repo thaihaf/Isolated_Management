@@ -9,49 +9,42 @@ package entity;
  * @author Admin
  */
 public class Account {
-    private String AccountID;
-    private String UserName;
-    private String Password;
-    private String Email;   
-    private String AccountType;
 
-    public String getAccountID() {
-        return AccountID;
+    private int accountID;
+    private String userName;
+    private String password;
+    private Role role;
+
+    public int getAccountID() {
+        return accountID;
     }
 
-    public void setAccountID(String AccountID) {
-        this.AccountID = AccountID;
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
     }
 
     public String getUserName() {
-        return UserName;
+        return userName;
     }
 
-    public void setUserName(String UserName) {
-        this.UserName = UserName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
-    public void setPassword(String Password) {
-        this.Password = Password;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getEmail() {
-        return Email;
+    public Role getRole() {
+        return role;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
-    public String getAccountType() {
-        return AccountType;
-    }
-
-    public void setAccountType(String AccountType) {
-        this.AccountType = AccountType;
-    }
 }

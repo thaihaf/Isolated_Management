@@ -4,11 +4,11 @@
  */
 package controler;
 
-import dao.AccountDBContext;
+import dao.AccountDetailDBContext;
 import entity.Account;
+import entity.AccountDetail;
 import jakarta.mail.MessagingException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -63,16 +63,18 @@ public class ForgotPasswordControler extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         String user = request.getParameter("user");
-        AccountDBContext accDB = new AccountDBContext();
-        Account acc = accDB.get(user);
+        AccountDetailDBContext accDB = new AccountDetailDBContext();
+        AccountDetail acc = accDB.getEmail(user);
         if (acc != null) {
             RandomPassword ran = new RandomPassword();
             String pass = ran.RandomPassword();
-            acc.setPassword(pass);
-            accDB.updatePass(acc);
+            Account a = new Account();
+            a.setPassword(pass);
+            acc.setAccount(a);
+            accDB.UpdatePass(acc);
             try {
                 Mail sendMail = new Mail();
-                sendMail.SendMail(user, pass);
+                sendMail.SendMail(acc.getEmail(), pass);
                 request.setAttribute("message", "New password has sent to your email.");
                 request.getRequestDispatcher("view/forgotpass.jsp").forward(request, response);
             } catch (MessagingException ex) {

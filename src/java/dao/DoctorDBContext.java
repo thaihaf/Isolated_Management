@@ -5,6 +5,7 @@
 package dao;
 
 import entity.Account;
+import entity.AccountDetail;
 import entity.Doctor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,31 +19,55 @@ import java.util.logging.Logger;
  * @author Admin
  */
 public class DoctorDBContext extends DBContext<Doctor> {
-    
+
     @Override
     public ArrayList<Doctor> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
+    @Override
+    public void insert(Doctor model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void update(Doctor model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void delete(Doctor model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     @Override
     public Doctor get(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Doctor getInfo(String username) {
         try {
-            String sql = "select a.AccountID, d.DoctorID, d.DoctorName, d.Gender,d.Phone,d.Address, d.[Level of education], d.Hospital \n"
-                    + "from Doctor d join Account a \n"
-                    + "on d.Account_ID = a.AccountID where a.AccountID = ?";
+            String sql = "select ad.ID, ad.Fullname,ad.Email,ad.Gender,ad.Address,ad.Phone,ad.Nation,ms.Level_of_education,ms.Hospital\n"
+                    + "from Medical_Staff ms join Account a on ms.ID = a.Username \n"
+                    + "join Account_Details ad on a.Username = ad.ID where ms.ID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, id);
+            stm.setString(1, username);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                Doctor doc = new Doctor();
-                doc.setDoctorID(rs.getString("DoctorID"));
-                doc.setDoctorName(rs.getString("DoctorName"));
-                doc.setGender(rs.getBoolean("Gender"));
-                doc.setPhone(rs.getString("Phone"));
-                doc.setAdress(rs.getString("Address"));
                 Account acc = new Account();
-                acc.setAccountID(rs.getString("AccountID"));
+                acc.setUserName(rs.getString("ID"));
+                AccountDetail ad = new AccountDetail();
+                ad.setFullName(rs.getString("Fullname"));
+                ad.setGender(rs.getBoolean("Gender"));
+                ad.setPhone(rs.getString("Phone"));
+                ad.setAddress(rs.getString("Address"));
+                ad.setEmail(rs.getString("Email"));
+                ad.setNation(rs.getString("Nation"));
+                Doctor doc = new Doctor();
+                doc.setEducation(rs.getString("Level_of_education"));
+                doc.setHospital(rs.getString("Hospital"));
                 doc.setAccount(acc);
+                doc.setAccDetail(ad);
                 return doc;
             }
         } catch (SQLException ex) {
@@ -50,20 +75,5 @@ public class DoctorDBContext extends DBContext<Doctor> {
         }
         return null;
     }
-    
-    @Override
-    public void insert(Doctor model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    @Override
-    public void update(Doctor model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    @Override
-    public void delete(Doctor model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
+
 }

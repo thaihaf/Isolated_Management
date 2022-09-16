@@ -23,8 +23,7 @@
                 <option value="Patient">Patient</option>
                 <option value="Nurse">Nurse</option>
                 <option value="Admin">Admin</option>
-            </select><br>
-            
+            </select><br>         
             <input type="submit" value="Login">
         </form>
     </body>

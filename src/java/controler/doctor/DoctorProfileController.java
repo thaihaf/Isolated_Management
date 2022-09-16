@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 public class DoctorProfileController extends HttpServlet {
 
@@ -37,18 +38,24 @@ public class DoctorProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("doctor/doctorprofile.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("account");
+        if (acc == null) {
+            request.getRequestDispatcher("view/checkSession.jsp").forward(request, response);
+        } else {
+            DoctorDBContext docdb = new DoctorDBContext();
+            Doctor doctor = docdb.getInfo(acc.getUserName());
+            ArrayList<Doctor> doctors = new ArrayList<>();
+            doctors.add(doctor);
+            request.setAttribute("doctors", doctors);
+            request.getRequestDispatcher("doctor/doctorprofile.jsp").forward(request, response);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Account acc = (Account) session.getAttribute("account");
-        DoctorDBContext docdb = new DoctorDBContext();
-        Doctor doctor = docdb.get(Integer.parseInt(acc.getAccountID()));
-        request.setAttribute("doctor", doctor);
-        request.getRequestDispatcher("doctor/doctorprofile.jsp").forward(request, response);
+
     }
 
     @Override

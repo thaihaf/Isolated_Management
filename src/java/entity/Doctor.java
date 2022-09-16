@@ -6,63 +6,25 @@ package entity;
 
 public class Doctor {
 
-    private String DoctorID;
-    private String DoctorName;
-    private boolean gender;
-    private String Phone;
-    private String Adress;
+    private String education;
+    private String hospital;
     private Account account;
+    private AccountDetail accDetail;
 
-    public Doctor() {
+    public String getEducation() {
+        return education;
     }
 
-    public Doctor(String DoctorID, String DoctorName, boolean gender, String Phone, String Adress, Account account) {
-        this.DoctorID = DoctorID;
-        this.DoctorName = DoctorName;
-        this.gender = gender;
-        this.Phone = Phone;
-        this.Adress = Adress;
-        this.account = account;
+    public void setEducation(String education) {
+        this.education = education;
     }
 
-    public String getDoctorID() {
-        return DoctorID;
+    public String getHospital() {
+        return hospital;
     }
 
-    public void setDoctorID(String DoctorID) {
-        this.DoctorID = DoctorID;
-    }
-
-    public String getDoctorName() {
-        return DoctorName;
-    }
-
-    public void setDoctorName(String DoctorName) {
-        this.DoctorName = DoctorName;
-    }
-
-    public boolean isGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
-    }
-
-    public String getPhone() {
-        return Phone;
-    }
-
-    public void setPhone(String Phone) {
-        this.Phone = Phone;
-    }
-
-    public String getAdress() {
-        return Adress;
-    }
-
-    public void setAdress(String Adress) {
-        this.Adress = Adress;
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
     }
 
     public Account getAccount() {
@@ -71,6 +33,14 @@ public class Doctor {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public AccountDetail getAccDetail() {
+        return accDetail;
+    }
+
+    public void setAccDetail(AccountDetail accDetail) {
+        this.accDetail = accDetail;
     }
 
 }

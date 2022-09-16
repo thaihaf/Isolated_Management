@@ -21,10 +21,10 @@
     <body>
         <div class="menu">
             <a class="menu_item" href="/">Home</a>
-            <a class="menu_item" href="/">User Profile</a>
-            <a class="menu_item" href="/">Change Password</a>
+            <a class="menu_item" href="doctorprofile">User Profile</a>
+            <a class="menu_item" href="changepass">Change Password</a>
             <a class="menu_item" href="/">Logout</a>
         </div>
-        
+
     </body>
 </html>

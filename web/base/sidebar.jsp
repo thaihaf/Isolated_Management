@@ -61,7 +61,7 @@
 
                           <!--// doctor-->
                           <c:if test="${role=='doctor'}">
-                              <a class="sidebar_item" href="url">
+                              <a class="sidebar_item" href="./">
                                   <img src="../assets/icons/homeIcon.png" alt="alt"/>
                                   <div>Patient</div>
                               </a>
@@ -95,7 +95,7 @@
                               </a>
                           </c:if>
 
-                          <a class="sidebar_item" href="url">
+                          <a class="sidebar_item" href="doctorprofile">
                               <img src="../assets/icons/homeIcon.png" alt="alt"/>
                               <div>Profile</div>
                           </a>

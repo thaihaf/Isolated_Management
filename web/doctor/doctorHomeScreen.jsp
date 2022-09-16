@@ -27,12 +27,8 @@
              <c:if test="${role ne 'admin'}">"wrapper wrapperUser"</c:if>
                  >
                  <div class="container">
-                 <!--Code vào đây là oke-->
-                     
-                     <h1>Doctor</h1>
-        <a href="changepass">Change Password</a></br>
-        </br>
-        <a href="doctorprofile"> Profile </a>
+                     <!--Code vào đây là oke-->
+
                  </div>
              <jsp:include page="../base/footer.jsp" />   
         </div>

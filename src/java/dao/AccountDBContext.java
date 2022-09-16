@@ -4,41 +4,46 @@
  */
 package dao;
 
+import entity.Account;
+import entity.Role;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import entity.Account;
 
 /**
  *
- * @author Admin
+ * @author Mountain
  */
 public class AccountDBContext extends DBContext<Account> {
 
     public Account getAccount(String UserName, String Password, String AccountType) {
         try {
-            String sql = "select * from Account\n"
-                    + "where UserName = ? and Password = ?\n"
-                    + "and AccountType = ?";
+            String sql = "SELECT [Username]\n"
+                    + "      ,[Password]\n"
+                    + "      ,[Role_ID]\n"
+                    + "	  ,[Role].[Role]\n"
+                    + "  FROM [Account]\n"
+                    + "  INNER JOIN [Role] ON [Account].[Role_ID] = [Role].[ID]\n"
+                    + "  WHERE [Account].[Username] = ? AND [Account].[Password] = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, UserName);
             stm.setString(2, Password);
-            stm.setString(3, AccountType);
             ResultSet rs = stm.executeQuery();
             if (rs.next()) {
                 Account account = new Account();
-                account.setAccountID(rs.getString("AccountID"));
-                account.setUserName(rs.getString("UserName"));
+                account.setUserName(rs.getString("Username"));
                 account.setPassword(rs.getString("Password"));
-                account.setEmail(rs.getString("Email"));
-                account.setAccountType(rs.getString("AccountType"));
+                Role role = new Role();
+                role.setId(rs.getInt("Role_ID"));
+                role.setRole(rs.getNString("Role"));
+                account.setRole(role);
                 return account;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -75,4 +80,5 @@ public class AccountDBContext extends DBContext<Account> {
     public void delete(Account model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 }

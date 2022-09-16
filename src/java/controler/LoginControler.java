@@ -84,17 +84,17 @@ public class LoginControler extends HttpServlet {
         if (account != null) {
             HttpSession session = request.getSession();
             session.setAttribute("account", account);
-
-            if (account.getAccountType().equals("Doctor")) {
+            
+            if (account.getRole().getRole().equals("Doctor")) {
                 request.getRequestDispatcher("doctor/doctorHomeScreen.jsp").forward(request, response);
             }
-            if (account.getAccountType().equals("Admin")) {
+            if (account.getRole().getRole().equals("Admin")) {
                 request.getRequestDispatcher("admin/adminHomeScreen.jsp").forward(request, response);
             }
-            if (account.getAccountType().equals("Nurse")) {
+            if (account.getRole().getRole().equals("Nurse")) {
                 request.getRequestDispatcher("nurse/nurseHomeScreen.jsp").forward(request, response);
             }
-            if (account.getAccountType().equals("Patient")) {
+            if (account.getRole().getRole().equals("Patient")) {
                 request.getRequestDispatcher("patient/patientHomeScreen.jsp").forward(request, response);
             }
         }

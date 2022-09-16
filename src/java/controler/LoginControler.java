@@ -61,6 +61,7 @@ public class LoginControler extends HttpServlet {
         request.getRequestDispatcher("view/login.jsp").forward(request, response);
     }
 
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *

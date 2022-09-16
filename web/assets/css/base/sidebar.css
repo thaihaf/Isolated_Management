@@ -14,24 +14,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     left: 0;
     z-index: 11;
 
-    width: var(--sidebar-admin-width);
     height: 100%;
 
-    padding : 3rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    padding : 3rem 0;
+}
+
+.sidebarAdmin{
+    width: var(--sidebar-admin-width);
+}
+
+.sidebarUser{
+    width: var(--sidebar-user-width);
+
 }
 
 .sidebar_btnMenu, .sidebar_btnLogout{
     cursor: pointer;
-    
+
 }
 .sidebar_btnMenu_img{
     width: 2rem;
 }
 .sidebar_btnLogout_img{
-    width: 5rem; 
+    width: 5rem;
 }
 
 .sidebar_list{
@@ -40,9 +49,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     overflow-y: auto;
     width: 100%;
     height : 100%;
-    padding-left : 3rem;
     margin : 3rem 0;
 }
+.sidebar_list_Admin{
+    padding-left : 3rem;
+
+}
+.sidebar_list_User, .sidebar_list_User .sidebar_item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    margin-top: 2rem;
+}
+
 .sidebar_list a{
     text-decoration: none;
     color : var(--white-color);

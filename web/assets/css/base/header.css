@@ -24,6 +24,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     padding-left: var(--sidebar-admin-width);
     height: var(--header-height);
 }
+.headerAdmin{
+    padding-left: calc(var(--sidebar-admin-width) + 5rem);
+}
+.headerUser{
+    padding-left: calc(var(--sidebar-user-width) + 5rem);
+}
 
 .header_logo{
     width: 14rem;

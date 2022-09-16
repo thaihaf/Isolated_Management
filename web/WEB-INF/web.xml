@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+
+    <servlet>
+        <servlet-name>DoctorProfile</servlet-name>
+        <servlet-class>controler.doctor.DoctorProfileController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangePassController</servlet-name>
+        <url-pattern>/changepass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoctorProfile</servlet-name>
+        <url-pattern>/doctorprofile</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ForgotPasswordControler</servlet-name>
         <url-pattern>/forgot</url-pattern>
@@ -14,6 +27,10 @@
         <servlet-class>controler.LoginControler</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ChangePassController</servlet-name>
+        <servlet-class>controler.ChangePassController</servlet-class>
+    </servlet>
+     <servlet>
         <servlet-name>ForgotPasswordControler</servlet-name>
         <servlet-class>controler.ForgotPasswordControler</servlet-class>
     </servlet>

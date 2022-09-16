@@ -10,15 +10,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="../assets/css/base.css"/>
-        <link rel="stylesheet" href="../assets/css/base/footer.css"/>
+        <link rel="stylesheet" href="./assets/css/base.css"/>
+        <link rel="stylesheet" href="./assets/css/base/footer.css"/>
     </head>
     <body>
         <div class="footer">
             <div class="sponsor">
                 <div class="sponsor_text">Development sponsor</div>
                 <div>
-                    <img class="sponsor_img" src="../assets/img/Logo.png" alt="alt"/>
+                    <img class="sponsor_img" src="./assets/img/Logo.png" alt="alt"/>
                 </div>
             </div>
 

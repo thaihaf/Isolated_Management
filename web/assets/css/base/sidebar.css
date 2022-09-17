@@ -13,32 +13,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     position: fixed;
     left: 0;
     z-index: 11;
+    top : var(--header-height);
 
-    height: 100%;
+    height: calc(100% - var(--header-height));
 
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    padding : 3rem 0;
+    padding-bottom : 3rem;
+    transition: 0.3s ease-in ;
 }
-
 .sidebarAdmin{
     width: var(--sidebar-admin-width);
 }
-
 .sidebarUser{
     width: var(--sidebar-user-width);
 
 }
-
-.sidebar_btnMenu, .sidebar_btnLogout{
-    cursor: pointer;
-
+body.hideSidebar .sidebar{
+    transform: translateX(-100%);
 }
-.sidebar_btnMenu_img{
-    width: 2rem;
-}
+
+
 .sidebar_btnLogout_img{
     width: 5rem;
 }
@@ -49,7 +46,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     overflow-y: auto;
     width: 100%;
     height : 100%;
-    margin : 3rem 0;
+    margin : 2rem 0;
 }
 .sidebar_list_Admin{
     padding-left : 3rem;
@@ -59,7 +56,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     margin-top: 2rem;
 }
 
@@ -92,6 +89,7 @@ dd{
 
 .sidebar_btnLogout{
     margin-top: auto;
+    cursor: pointer;
 }
 
 /* custom scrollbar */

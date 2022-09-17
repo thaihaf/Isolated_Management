@@ -15,18 +15,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="./assets/css/base.css"/>
-        <link rel="stylesheet" href="./assets/css/base/header.css"/>
+        <link rel="stylesheet" href="../assets/css/base.css"/>
+        <link rel="stylesheet" href="../assets/css/base/header.css"/>
     </head>
     <body>
         <div class=<c:if test="${role eq 'admin'}">"header headerAdmin"</c:if>
              <c:if test="${role ne 'admin'}">"header headerUser"</c:if>
                  >
-                 <img src="./assets/img/Logo.png" alt="alt" class="header_logo"/>
+                 <div class="header_btnMenu" id="header_btnMenu">
+                     <img class="header_btnMenu_img" src="../assets/icons/menu.png" alt="alt"/>
+                 </div>
+
+                 <img src="../assets/img/Logo.png" alt="alt" class="header_logo"/>
 
                  <div class="header_user">
                      <div class="noti">
-                         <img class="noti_img" src="./assets/icons/noti.png" alt="alt"/>
+                         <img class="noti_img" src="../assets/icons/noti.png" alt="alt"/>
                          <div class="noti_count">8</div>
                      </div>
 
@@ -43,8 +47,8 @@
 
              <jsp:include page="./menu.jsp" />
         </div>
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <<script src="./assets/js/base/header.js"></script>
+        <<script src="../assets/js/base/header.js"></script>
     </body>
 </html>

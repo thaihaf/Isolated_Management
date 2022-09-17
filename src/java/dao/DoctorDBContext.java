@@ -15,55 +15,64 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Admin
+ * @author Mountain
  */
 public class DoctorDBContext extends DBContext<Doctor> {
-    
+
     @Override
     public ArrayList<Doctor> list() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    @Override
-    public Doctor get(int id) {
+        ArrayList<Doctor> doctors = new ArrayList<>();
         try {
-            String sql = "select a.AccountID, d.DoctorID, d.DoctorName, d.Gender,d.Phone,d.Address, d.[Level of education], d.Hospital \n"
-                    + "from Doctor d join Account a \n"
-                    + "on d.Account_ID = a.AccountID where a.AccountID = ?";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, id);
+            String sql = "SELECT [DoctorID]\n"
+                    + "      ,[DoctorName]\n"
+                    + "      ,[Gender]\n"
+                    + "      ,[Phone]\n"
+                    + "      ,[Address]\n"
+                    + "      ,[Account_ID]\n"
+                    + "	  ,[Email]\n"
+                    + "	  ,[AccountType]\n"
+                    + "  FROM [Doctor]\n"
+                    + "  INNER JOIN [Account] on [Doctor].[Account_ID] = [Account].[AccountID]";
+            PreparedStatement stm = connection.prepareCall(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                Doctor doc = new Doctor();
-                doc.setDoctorID(rs.getString("DoctorID"));
-                doc.setDoctorName(rs.getString("DoctorName"));
-                doc.setGender(rs.getBoolean("Gender"));
-                doc.setPhone(rs.getString("Phone"));
-                doc.setAdress(rs.getString("Address"));
-                Account acc = new Account();
-                acc.setAccountID(rs.getString("AccountID"));
-                doc.setAccount(acc);
-                return doc;
+                Doctor d = new Doctor();
+                d.setDoctorID(rs.getNString("DoctorID"));
+                d.setDoctorName(rs.getNString("DoctorName"));
+                d.setGender(rs.getBoolean("Gender"));
+                d.setPhone(rs.getNString("Phone"));
+                d.setAddress(rs.getNString("Address"));
+                Account a = new Account();
+                a.setAccountID(rs.getNString("Account_ID"));
+                a.setEmail(rs.getNString("Email"));
+                a.setAccountType(rs.getNString("AccountType"));
+                d.setAccount(a);
+                doctors.add(d);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DoctorDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return doctors;
     }
-    
+
+    @Override
+    public Doctor get(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     @Override
     public void insert(Doctor model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     @Override
     public void update(Doctor model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     @Override
     public void delete(Doctor model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

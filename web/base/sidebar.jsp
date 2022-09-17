@@ -69,6 +69,10 @@
                                   <img src="../assets/icons/homeIcon.png" alt="alt"/>
                                   <div>Prescription</div>
                               </a>
+                              <a class="sidebar_item" href="doctorprofile">
+                                  <img src="../assets/icons/homeIcon.png" alt="alt"/>
+                                  <div>Profile</div>
+                              </a>
                           </c:if>
 
                           <!--// nurse-->
@@ -95,7 +99,7 @@
                               </a>
                           </c:if>
 
-                          <a class="sidebar_item" href="doctorprofile">
+                          <a class="sidebar_item" href="url">
                               <img src="../assets/icons/homeIcon.png" alt="alt"/>
                               <div>Profile</div>
                           </a>

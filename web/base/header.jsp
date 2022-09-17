@@ -53,7 +53,7 @@
                  </div>
 
                  <div class="user">
-                     <img class="user_avt" src="src" width="width" height="height" alt="alt"/>
+                     <img class="user_avt" src="../assets/img/avt.jpg" width="width" height="height" alt="alt"/>
 
                      <div class="user_info">
                          <div class="user_name">${name}</div>

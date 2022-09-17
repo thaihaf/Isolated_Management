@@ -42,9 +42,9 @@ public class AccountDBContext extends DBContext<Account> {
         return null;
     }
     
-    public void RegisterAccount(String Name, String UserName, String){
-        
-    }
+//    public void RegisterAccount(String Name, String UserName, String){
+//        
+//    }
     
     @Override
     public ArrayList<Account> list() {

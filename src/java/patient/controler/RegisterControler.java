@@ -76,11 +76,7 @@ public class RegisterControler extends HttpServlet {
         String address = request.getParameter("address");
         String Email = request.getParameter("Email");
         String Password_confirm = request.getParameter("Password_confirm");
-        if(Password == Password_confirm){
-            
-        }else{
-            request.setAttribute("mess", "Mật khẩu xác nhận phải giống mật khẩu vừa nhập");
-        }
+        
     }
 
     /** 

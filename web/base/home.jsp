@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!--todo-->
-<c:set var="role" value="admin"/>
+<c:set var="role" value="nurse"/>
 
 <!DOCTYPE html>
 <html>
@@ -30,7 +30,5 @@
                  </div>
              <jsp:include page="./footer.jsp" />   
         </div>
-
-
     </body>
 </html>

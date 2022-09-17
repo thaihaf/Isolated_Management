@@ -15,17 +15,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="./assets/css/base.css"/>
-        <link rel="stylesheet" href="./assets/css/base/sidebar.css"/>
+        <link rel="stylesheet" href="../assets/css/base.css"/>
+        <link rel="stylesheet" href="../assets/css/base/sidebar.css"/>
     </head>
     <body>
 
         <div class=<c:if test="${role eq 'admin'}">"sidebar sidebarAdmin"</c:if>
              <c:if test="${role ne 'admin'}">"sidebar sidebarUser"</c:if>
                  >
-                 <div class="sidebar_btnMenu">
-                     <img class="sidebar_btnMenu_img" src="./assets/icons/menu.png" alt="alt"/>
-                 </div>
+                 
 
                  <div id="style-1" class=<c:if test="${role eq 'admin'}">"sidebar_list sidebar_list_Admin"</c:if>
                   <c:if test="${role ne 'admin'}">"sidebar_list sidebar_list_User"</c:if>
@@ -55,30 +53,26 @@
 
                       <c:otherwise>
                           <a class="sidebar_item" href="url">
-                              <img class="sidebar_item_img" src="./assets/icons/homeIcon.png" alt="alt"/>
+                              <img class="sidebar_item_img" src="../assets/icons/homeIcon.png" alt="alt"/>
                               <div>Home</div>
                           </a>
 
                           <!--// doctor-->
                           <c:if test="${role=='doctor'}">
                               <a class="sidebar_item" href="url">
-                                  <img class="sidebar_item_img" src="./assets/icons/patientIcon.png" alt="alt"/>
+                                  <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
                                   <div>Patient</div>
-                              </a>
-                              <a class="sidebar_item" href="url">
-                                  <img class="sidebar_item_img" src="./assets/icons/donthuoc.png" alt="alt"/>
-                                  <div>Prescription</div>
                               </a>
                           </c:if>
 
                           <!--// nurse-->
                           <c:if test="${role=='nurse'}">
                               <a class="sidebar_item" href="url">
-                                  <img class="sidebar_item_img" src="./assets/icons/patientIcon.png" alt="alt"/>
+                                  <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
                                   <div>Patient</div>
                               </a>
                               <a class="sidebar_item" href="url">
-                                  <img class="sidebar_item_img" src="./assets/icons/reportIcon.png" alt="alt"/>
+                                  <img class="sidebar_item_img" src="../assets/icons/reportIcon.png" alt="alt"/>
                                   <div>Report</div>
                               </a>
                           </c:if>
@@ -86,17 +80,17 @@
                           <!--//patient-->
                           <c:if test="${role=='patient'}">
                               <a class="sidebar_item" href="url">
-                                  <img class="sidebar_item_img" src="./assets/icons/testIcon.png" alt="alt"/>
+                                  <img class="sidebar_item_img" src="../assets/icons/testIcon.png" alt="alt"/>
                                   <div>Test result</div>
                               </a>
                               <a class="sidebar_item" href="url">
-                                  <img class="sidebar_item_img" src="./assets/icons/donthuoc.png" alt="alt"/>
+                                  <img class="sidebar_item_img" src="../assets/icons/donthuoc.png" alt="alt"/>
                                   <div>Prescription</div>
                               </a>
                           </c:if>
 
                           <a class="sidebar_item" href="url">
-                              <img class="sidebar_item_img img_profile" src="./assets/icons/profileIcon.png" alt="alt"/>
+                              <img class="sidebar_item_img img_profile" src="../assets/icons/profileIcon.png" alt="alt"/>
                               <div>Profile</div>
                           </a>
                           <br />
@@ -107,8 +101,11 @@
              </div>
 
              <div class="sidebar_btnLogout">
-                 <img class="sidebar_btnLogout_img" src="./assets/icons/logout.png" alt="alt"/>
+                 <img class="sidebar_btnLogout_img" src="../assets/icons/logout.png" alt="alt"/>
              </div>
         </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <<script src="../assets/js/base/sidebar.js"></script>
     </body>
 </html>

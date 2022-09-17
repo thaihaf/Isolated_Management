@@ -11,24 +11,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     background-color: var(--bg-color);
 
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
     position: fixed;
     top: 0;
-    left: 0;
     right: 0;
     z-index: 10;
-    
+
     padding : 1rem 5rem;
-    padding-left: var(--sidebar-admin-width);
+    left: 0;
     height: var(--header-height);
+    transition: 0.3s ease-in ;
 }
-.headerAdmin{
-    padding-left: calc(var(--sidebar-admin-width) + 5rem);
+
+.header_btnMenu{
+    cursor: pointer;
+    margin-right: 5rem;
 }
-.headerUser{
-    padding-left: calc(var(--sidebar-user-width) + 5rem);
+.header_btnMenu_img{
+    width: 2rem;
 }
 
 .header_logo{
@@ -38,7 +39,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 .header_user{
     display: flex;
     align-items: center;
-
+    margin-left: auto;
 }
 
 .noti{

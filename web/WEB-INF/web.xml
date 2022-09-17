@@ -4,6 +4,10 @@
         <servlet-name>DoctorProfile</servlet-name>
         <servlet-class>controler.doctor.DoctorProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterControler</servlet-name>
+        <servlet-class>controler.patient.RegisterControler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/changepass</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>ForgotPasswordControler</servlet-name>
         <url-pattern>/forgot</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterControler</servlet-name>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

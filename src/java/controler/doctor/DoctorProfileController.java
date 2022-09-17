@@ -46,7 +46,7 @@ public class DoctorProfileController extends HttpServlet {
         HttpSession session = request.getSession();
         Account acc = (Account) session.getAttribute("account");
         DoctorDBContext docdb = new DoctorDBContext();
-        Doctor doctor = docdb.get(Integer.parseInt(acc.getAccountID()));
+        Doctor doctor = docdb.get((acc.getAccountID()));
         request.setAttribute("doctor", doctor);
         request.getRequestDispatcher("doctor/doctorprofile.jsp").forward(request, response);
     }

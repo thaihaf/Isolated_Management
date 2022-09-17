@@ -41,7 +41,7 @@ public class DoctorDBContext extends DBContext<Doctor> {
                 doc.setPhone(rs.getString("Phone"));
                 doc.setAdress(rs.getString("Address"));
                 Account acc = new Account();
-                acc.setAccountID(rs.getString("AccountID"));
+                acc.setAccountID(rs.getInt("AccountID"));
                 doc.setAccount(acc);
                 return doc;
             }

@@ -8,7 +8,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!--todo-->
-<c:set var="role" value="admin"/>
+<c:set var="name" value="thaihaf"/>
+<c:set var="role" value="nurse"/>
 
 <!DOCTYPE html>
 <html>
@@ -26,24 +27,41 @@
                      <img class="header_btnMenu_img" src="../assets/icons/menu.png" alt="alt"/>
                  </div>
 
-                 <img src="../assets/img/Logo.png" alt="alt" class="header_logo"/>
+             <c:choose>
+                 <c:when test="${role=='admin'}">
+                     <a href="adminHome"><img src="../assets/img/Logo.png" alt="alt" class="header_logo"/>
+                     </a>
+                 </c:when>
+                 <c:when test="${role=='doctor'}">
+                     <a href="doctorHome"><img src="../assets/img/Logo.png" alt="alt" class="header_logo"/>
+                     </a>
+                 </c:when>
+                 <c:when test="${role=='nurse'}">
+                     <a href="nurseHome"><img src="../assets/img/Logo.png" alt="alt" class="header_logo"/>
+                     </a>
+                 </c:when>
+                 <c:when test="${role=='patient'}">
+                     <a href="patientHome"><img src="../assets/img/Logo.png" alt="alt" class="header_logo"/>
+                     </a>
+                 </c:when>
+             </c:choose>
 
-                 <div class="header_user">
-                     <div class="noti">
-                         <img class="noti_img" src="../assets/icons/noti.png" alt="alt"/>
-                         <div class="noti_count">8</div>
-                     </div>
-
-                     <div class="user">
-                         <img class="user_avt" src="src" width="width" height="height" alt="alt"/>
-
-                         <div class="user_info">
-                             <div class="user_name">thaihaf</div>
-                             <div class="user_role">Admin</div>
-                         </div>
-                     </div>
-
+             <div class="header_user">
+                 <div class="noti">
+                     <img class="noti_img" src="../assets/icons/noti.png" alt="alt"/>
+                     <div class="noti_count">8</div>
                  </div>
+
+                 <div class="user">
+                     <img class="user_avt" src="src" width="width" height="height" alt="alt"/>
+
+                     <div class="user_info">
+                         <div class="user_name">${name}</div>
+                         <div class="user_role">${role}</div>
+                     </div>
+                 </div>
+
+             </div>
 
              <jsp:include page="./menu.jsp" />
         </div>

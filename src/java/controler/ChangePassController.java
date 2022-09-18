@@ -39,9 +39,9 @@ public class ChangePassController extends HttpServlet {
         HttpSession session = request.getSession();
         Account acc = (Account) session.getAttribute("account");
         if (acc == null) {
-            request.getRequestDispatcher("view/checkSession.jsp").forward(request, response);
+            request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
         }
-        request.getRequestDispatcher("view/changepass.jsp").forward(request, response);
+        request.getRequestDispatcher("../view/changepass.jsp").forward(request, response);
     }
 
     @Override

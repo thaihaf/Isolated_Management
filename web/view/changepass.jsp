@@ -11,8 +11,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
-        <link rel="stylesheet" href="./assets/css/base.css"/>
-        <link rel="stylesheet" href="./assets/css/view/changePass.css"/>
+        <link rel="stylesheet" href="../assets/css/base.css"/>
+        <link rel="stylesheet" href="../assets/css/view/changePass.css"/>
     </head>
     <body>
         <div class="changePass" style="background-image: url(../assets/img/bg_login.png)">
@@ -54,7 +54,7 @@
                     <div class="item item_confirmPass">
                         <div class="item_title">Confirm Password</div>
 
-                        <input class="item_input" type="password" placeholder="Renter new password" name="cfnew" required>
+                        <input class="item_input" type="password" placeholder="Re-enter new password" name="cfnew" required>
                     </div>
 
                     <p class="text-danger">${mess}</p>

@@ -8,6 +8,10 @@
         <servlet-name>TestResultListControler</servlet-name>
         <servlet-class>controler.TestResultListControler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TestResultDetailControler</servlet-name>
+        <servlet-class>controler.TestResultDetailControler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ForgotPasswordControler</servlet-name>
         <url-pattern>/forgot</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>TestResultListControler</servlet-name>
         <url-pattern>/admin/results</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestResultDetailControler</servlet-name>
+        <url-pattern>/admin/detail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

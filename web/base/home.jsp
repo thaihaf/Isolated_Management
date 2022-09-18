@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!--todo-->
-<c:set var="role" value="nurse"/>
+
 
 <!DOCTYPE html>
 <html>
@@ -18,15 +18,16 @@
         <link rel="stylesheet" href="../assets/css/base/home.css"/>
     </head>
     <body>
+        <c:set var="role" value="${sessionScope.account.role}"/>
         <jsp:include page="./sidebar.jsp" />
 
         <jsp:include page="./header.jsp" />
 
-        <div class=<c:if test="${role eq 'admin'}">"wrapper wrapperAdmin"</c:if>
-             <c:if test="${role ne 'admin'}">"wrapper wrapperUser"</c:if>
+        <div class=<c:if test="${role.id eq 1}">"wrapper wrapperAdmin"</c:if>
+             <c:if test="${role.id ne 1}">"wrapper wrapperUser"</c:if>
                  >
                  <div class="container">
-                     Code vào đây là oke
+                     <!--                     Code vào đây là oke-->
                  </div>
              <jsp:include page="./footer.jsp" />   
         </div>

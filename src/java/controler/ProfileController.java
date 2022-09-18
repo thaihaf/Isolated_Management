@@ -60,14 +60,14 @@ public class ProfileController extends HttpServlet {
                 MedicalStaffDBContext msdb = new MedicalStaffDBContext();
                 MedicalStaff ms = msdb.getInfo(acc.getUserName());
                 request.setAttribute("staff", ms);
-                request.getRequestDispatcher("view/profile.jsp").forward(request, response);
+                //request.getRequestDispatcher("view/profile.jsp").forward(request, response);
             } else if (role.equalsIgnoreCase("Patient")) {
                 PatientDBContext pdb = new PatientDBContext();
                 Patient patient = pdb.getInfo(acc.getUserName());
                 request.setAttribute("patient", patient);
-                request.getRequestDispatcher("view/profile.jsp").forward(request, response);
+                //request.getRequestDispatcher("view/profile.jsp").forward(request, response);
             }
-            request.getRequestDispatcher("view/profile.jsp").forward(request, response);
+            request.getRequestDispatcher("../view/profile.jsp").forward(request, response);
         }
     }
 

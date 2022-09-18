@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>ProfileControler</servlet-name>
+        <servlet-name>AdminProfileControler</servlet-name>
         <servlet-class>controler.AdminProfileControler</servlet-class>
     </servlet>
     <servlet>
@@ -12,8 +12,10 @@
         <servlet-name>RegisterControler</servlet-name>
         <servlet-class>controler.patient.RegisterControler</servlet-class>
     </servlet>
-    <servlet-name>ProfileController</servlet-name>
-    <servlet-class>controler.ProfileController</servlet-class>
+    <servlet>
+        <servlet-name>ProfileController</servlet-name>
+        <servlet-class>controler.ProfileController</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>TestResultDetailControler</servlet-name>
         <servlet-class>controler.TestResultDetailControler</servlet-class>
@@ -35,7 +37,11 @@
         <url-pattern>/admin/users</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ProfileControler</servlet-name>
+        <servlet-name>ProfileController</servlet-name>
+        <url-pattern>/base/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminProfileControler</servlet-name>
         <url-pattern>/admin/profile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>

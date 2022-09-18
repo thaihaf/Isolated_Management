@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!--todo-->
-<c:set var="role" value="nurse"/>
+
 
 <!DOCTYPE html>
 <html>
@@ -19,20 +19,19 @@
         <link rel="stylesheet" href="../assets/css/base/sidebar.css"/>
     </head>
     <body>
-
-        <div class=<c:if test="${role eq 'admin'}">"sidebar sidebarAdmin"</c:if>
-             <c:if test="${role ne 'admin'}">"sidebar sidebarUser"</c:if>
+        <c:set var="role" value="${sessionScope.account.role}"/>
+        <div class=<c:if test="${role.id eq 1}">"sidebar sidebarAdmin"</c:if>
+             <c:if test="${role.id ne 1}">"sidebar sidebarUser"</c:if>
                  >
-                 <div id="style-1" class=<c:if test="${role eq 'admin'}">"sidebar_list sidebar_list_Admin"</c:if>
-                  <c:if test="${role ne 'admin'}">"sidebar_list sidebar_list_User"</c:if>
+                 <div id="style-1" class=<c:if test="${role.id eq 1}">"sidebar_list sidebar_list_Admin"</c:if>
+                  <c:if test="${role.id ne 1}">"sidebar_list sidebar_list_User"</c:if>
                       >
                   <c:choose>
-                      <c:when test="${role=='admin'}">
+                      <c:when test="${role.id eq 1}">
                           <dl>
-                              <dt>Home</dt>
-
                               <dt>System Admin</dt>
-                              <dd><a href="url" class="selected">Account List</a></dd>
+                              <dd><a href="../admin/users" class="selected">Account List</a></dd>
+                              <dd><a href="../admin/results" class="selected">Test Result List</a></dd>
                               <dd><a href="/abc">Add Patient</a></dd>
                               <dd><a href="url">Add Doctor</a></dd>
                               <dd><a href="url">Add Nurse</a></dd>
@@ -50,12 +49,13 @@
                       </c:when>   
 
                       <c:otherwise>
+                          <a class="sidebar_item" href="home.jsp">
+                              <img class="sidebar_item_img" src="../assets/icons/homeIcon.png" alt="alt"/>
+                              <div>Home</div>
+                          </a>
                           <!--// doctor-->
-                          <c:if test="${role=='doctor'}">
-                              <a class="sidebar_item" href="doctorHome">
-                                  <img class="sidebar_item_img" src="../assets/icons/homeIcon.png" alt="alt"/>
-                                  <div>Home</div>
-                              </a>
+                          <c:if test="${role.id eq 2}">
+
                               <a class="sidebar_item" href="doctorManagerPatient">
                                   <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
                                   <div>Patient</div>
@@ -63,11 +63,7 @@
                           </c:if>
 
                           <!--// nurse-->
-                          <c:if test="${role=='nurse'}">
-                              <a class="sidebar_item" href="nurseHome">
-                                  <img class="sidebar_item_img" src="../assets/icons/homeIcon.png" alt="alt"/>
-                                  <div>Home</div>
-                              </a>
+                          <c:if test="${role.id eq 3}">
                               <a class="sidebar_item" href="nurseManagerPatient">
                                   <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
                                   <div>Patient</div>
@@ -79,11 +75,7 @@
                           </c:if>
 
                           <!--//patient-->
-                          <c:if test="${role=='patient'}">
-                              <a class="sidebar_item" href="patientHome">
-                                  <img class="sidebar_item_img" src="../assets/icons/homeIcon.png" alt="alt"/>
-                                  <div>Home</div>
-                              </a>
+                          <c:if test="${role.id eq 4}">
                               <a class="sidebar_item" href="patientTestResult">
                                   <img class="sidebar_item_img" src="../assets/icons/testIcon.png" alt="alt"/>
                                   <div>Test result</div>

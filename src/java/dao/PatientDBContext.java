@@ -6,6 +6,7 @@ package dao;
 
 import entity.Account;
 import entity.AccountDetail;
+import entity.Patient;
 import entity.Area;
 import entity.Patient;
 import entity.Room;
@@ -26,7 +27,6 @@ public class PatientDBContext extends DBContext<Patient> {
     public ArrayList<Patient> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
     @Override
     public Patient get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -98,5 +98,24 @@ public class PatientDBContext extends DBContext<Patient> {
     public void delete(Patient model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
+    public Patient getInfo(String username) {
+        try {
+            String sql = "select p.Note,p.BackgroundDisease,p.Blood_Type from Patient p join Account a on p.ID = a.Username\n"
+                    + "where a.Username = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Patient patient = new Patient();
+                patient.setBackgroudDisea(rs.getBoolean("BackgroundDisease"));
+                patient.setBloodType(rs.getString("Blood_Type"));
+                patient.setNote(rs.getString("Note"));
+                return patient;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DoctorDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

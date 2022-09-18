@@ -10,7 +10,6 @@ package dao;
 //import java.util.ArrayList;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,11 +18,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author Admin
  */
-public abstract class DBContext<T>{
+public abstract class DBContext<T> {
 
     protected Connection connection;
     
@@ -38,7 +38,7 @@ public abstract class DBContext<T>{
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public abstract ArrayList<T> list();
 
     public abstract T get(int id);

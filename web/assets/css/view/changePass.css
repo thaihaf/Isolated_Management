@@ -3,16 +3,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
 */
 /* 
-    Created on : Sep 16, 2022, 12:55:05 PM
+    Created on : Sep 17, 2022, 9:20:50 AM
     Author     : hapro
 */
+
 
 body {
     background-color: var(--bg-color);
     padding-right : 5rem;
 
 }
-.login{
+.changePass{
     background-color: var(--bg-color);
     background-repeat: no-repeat;
     background-size: 50%;
@@ -23,7 +24,7 @@ body {
     padding-left: 10rem;
 }
 
-.login_link{
+.changePass_link{
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -35,11 +36,11 @@ body {
     top : 4rem;
 }
 
-.login_link .item{
+.changePass_link .item{
     font-size: 1.2rem;
 }
 
-.login_inputTab{
+.changePass_inputTab{
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -61,12 +62,12 @@ body {
     font-size: 1.3rem;
     color : var(--white-color);
 }
-.intro_small a{
+.intro_small span{
     font-size: 1.3rem;
     color : #8699DA;
 }
 
-.login_form{
+.changePass_form{
     margin-top: 2rem;
     color : var(--white-color);
     width :35%;
@@ -107,6 +108,7 @@ body {
     height: 5rem;
     font-size: 1.5rem;
     cursor: pointer;
+    margin-top: 2rem;
 }
 
 .text-danger{

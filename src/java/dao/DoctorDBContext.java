@@ -5,7 +5,8 @@
 package dao;
 
 import entity.Account;
-import entity.Doctor;
+import entity.AccountDetail;
+import entity.MedicalStaff;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -66,12 +67,12 @@ public class DoctorDBContext extends DBContext<Doctor> {
     }
 
     @Override
-    public void update(Doctor model) {
+    public void update(MedicalStaff model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void delete(Doctor model) {
+    public void delete(MedicalStaff model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

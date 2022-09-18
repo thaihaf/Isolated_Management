@@ -23,9 +23,9 @@
             Nationality <select name="Nation">
                 <option value="Viet Nam">Viet Nam</option>
             </select><br>
-            Phone <input required type="text" name="Phone"><br>
+            Phone <input required type="text" name="Phone" pattern="[0-9]{10}"><br>
             Address <input required type="text" name="Address"><br>
-            Email <input required type="text" name="Email" id="email" value=""><br>
+            <label for="email">Email</label><input required type="email" name="Email" id="email"><span id="result"></span><br>
             Username <input required type="text" name ="Username"><span style="color: red;">${sign_exist_username}</span><br>
             Password <input required type="password" name="Password" id = "pswd" value = ""><span id = "message" style="color:red"></span><br>
             Confirm password <input required type="password" name="confirm_password"><span style="color: red;">${mess}</span><br>
@@ -33,6 +33,7 @@
         </form>
 
         <script>
+            
 //            function phonenumber(inputtxt)
 //            {
 //                var phoneno = /^\d{10}$/;
@@ -78,6 +79,31 @@
 //                    alert("Password is correct");
                 }
             }
+
+
+            const validateEmail = (email) => {
+                return email.match(
+                        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                        );
+            };
+
+            const validate = () => {
+                const $result = $('#result');
+                const email = $('#email').val();
+                $result.text('');
+
+                if (validateEmail(email)) {
+                    $result.text(email + ' is valid :)');
+                    $result.css('color', 'green');
+                } else {
+                    $result.text(email + ' is not valid :(');
+                    $result.css('color', 'red');
+                }
+                return false;
+            }
+
+            $('#email').on('input', validate);
         </script>  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     </body>
 </html>

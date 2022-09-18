@@ -9,6 +9,10 @@
         <servlet-class>controler.TestResultListControler</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ProfileController</servlet-name>
+        <servlet-class>controler.ProfileController</servlet-class>
+     </servlet>
+     <servlet>
         <servlet-name>TestResultDetailControler</servlet-name>
         <servlet-class>controler.TestResultDetailControler</servlet-class>
     </servlet>

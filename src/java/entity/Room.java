@@ -9,35 +9,35 @@ package entity;
  * @author Admin
  */
 public class Room {
-    private int ID;
-    private String Name;
-    private int NumOfBed;
+    private int id;
+    private String name;
+    private int numOfBed;
     private Area area;
-    private String DoctorManage;
-    private String NurseManage;
+    private AccountDetail doctorManage;
+    private AccountDetail nurseManage;
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getNumOfBed() {
-        return NumOfBed;
+        return numOfBed;
     }
 
-    public void setNumOfBed(int NumOfBed) {
-        this.NumOfBed = NumOfBed;
+    public void setNumOfBed(int numOfBed) {
+        this.numOfBed = numOfBed;
     }
 
     public Area getArea() {
@@ -48,19 +48,19 @@ public class Room {
         this.area = area;
     }
 
-    public String getDoctorManage() {
-        return DoctorManage;
+    public AccountDetail getDoctorManage() {
+        return doctorManage;
     }
 
-    public void setDoctorManage(String DoctorManage) {
-        this.DoctorManage = DoctorManage;
+    public void setDoctorManage(AccountDetail doctorManage) {
+        this.doctorManage = doctorManage;
     }
 
-    public String getNurseManage() {
-        return NurseManage;
+    public AccountDetail getNurseManage() {
+        return nurseManage;
     }
 
-    public void setNurseManage(String NurseManage) {
-        this.NurseManage = NurseManage;
+    public void setNurseManage(AccountDetail nurseManage) {
+        this.nurseManage = nurseManage;
     }
 }

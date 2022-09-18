@@ -60,7 +60,7 @@ public class AccountListControler extends HttpServlet {
         AccountDetailDBContext accDB = new AccountDetailDBContext();
         ArrayList<AccountDetail> accounts = accDB.list();
         RoleDBContext roleDB = new RoleDBContext();
-        ArrayList<Role> roles = roleDB.listAllRole();
+        ArrayList<Role> roles = roleDB.list();
         request.setAttribute("roles", roles);
         request.setAttribute("accounts", accounts);
         request.getRequestDispatcher("userlist.jsp").forward(request, response);
@@ -78,6 +78,15 @@ public class AccountListControler extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        int raw_role = Integer.parseInt(request.getParameter("role"));
+        String raw_criteria = request.getParameter("searchfield");
+        Integer role = raw_role > 0 ? new Integer(raw_role) : null;
+        String criteria = (raw_criteria != null && raw_criteria.trim().length() > 0) ? new String(raw_criteria) : null;
+        AccountDetailDBContext accDB = new AccountDetailDBContext();
+        RoleDBContext roleDB = new RoleDBContext();
+        request.setAttribute("roles", roleDB.list());
+        request.setAttribute("accounts", accDB.listByCriteria(role, criteria));
+        request.getRequestDispatcher("userlist.jsp").forward(request, response);
     }
 
     /**

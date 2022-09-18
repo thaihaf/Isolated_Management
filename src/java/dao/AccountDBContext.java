@@ -58,13 +58,14 @@ public class AccountDBContext extends DBContext<Account> {
             if(rs.next()){
 //                Role role = new Role();
 //                account = new Account(rs.getString(1), rs.getString(2), role);
-                return "exist";
+                return "This username is existed";
             }
         } catch (SQLException ex) {
             Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "doesn't exist";
+        return "Regist successfully";
     }
+    
     public Boolean Register(String ID, String fullName, Boolean gender, String phone, String address,
     String email, String nation, String password) {
         String sql = "insert into Account_Details values\n"

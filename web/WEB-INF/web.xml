@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>DoctorProfile</servlet-name>
-        <servlet-class>controler.doctor.DoctorProfileController</servlet-class>
+        <servlet-name>ProfileControler</servlet-name>
+        <servlet-class>controler.AdminProfileControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TestResultListControler</servlet-name>
+        <servlet-class>controler.TestResultListControler</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RegisterControler</servlet-name>
@@ -13,16 +17,24 @@
         <url-pattern>/changepass</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DoctorProfile</servlet-name>
-        <url-pattern>/doctorprofile</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ForgotPasswordControler</servlet-name>
         <url-pattern>/forgot</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegisterControler</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountListControler</servlet-name>
+        <url-pattern>/admin/users</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileControler</servlet-name>
+        <url-pattern>/admin/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestResultListControler</servlet-name>
+        <url-pattern>/admin/results</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -40,6 +52,10 @@
     <servlet>
         <servlet-name>ForgotPasswordControler</servlet-name>
         <servlet-class>controler.ForgotPasswordControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AccountListControler</servlet-name>
+        <servlet-class>controler.AccountListControler</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginControler</servlet-name>

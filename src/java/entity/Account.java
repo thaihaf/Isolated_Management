@@ -9,7 +9,6 @@ package entity;
  * @author Admin
  */
 public class Account {
-
     private String userName;
     private String password;
     private Role role;

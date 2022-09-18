@@ -6,12 +6,11 @@ package entity;
 
 /**
  *
- * @author Admin
+ * @author Mountain
  */
-public class Area {
+public class TestType {
     private int id;
-    private String name;
-    private String address;
+    private String typeName;
 
     public int getId() {
         return id;
@@ -21,19 +20,12 @@ public class Area {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 }

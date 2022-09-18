@@ -9,18 +9,18 @@ package entity;
  * @author Admin
  */
 public class Patient {
-    private String ID;
+    private Account account;
     private Room room;
-    private String Note;
-    private Boolean BackgroundDisease;
-    private String Blood_Type;
+    private String note;
+    private boolean backgroundDisease;
+    private String bloodType;
 
-    public String getID() {
-        return ID;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public Room getRoom() {
@@ -32,26 +32,26 @@ public class Patient {
     }
 
     public String getNote() {
-        return Note;
+        return note;
     }
 
-    public void setNote(String Note) {
-        this.Note = Note;
+    public void setNote(String note) {
+        this.note = note;
     }
 
-    public Boolean getBackgroundDisease() {
-        return BackgroundDisease;
+    public boolean isBackgroundDisease() {
+        return backgroundDisease;
     }
 
-    public void setBackgroundDisease(Boolean BackgroundDisease) {
-        this.BackgroundDisease = BackgroundDisease;
+    public void setBackgroundDisease(boolean backgroundDisease) {
+        this.backgroundDisease = backgroundDisease;
     }
 
-    public String getBlood_Type() {
-        return Blood_Type;
+    public String getBloodType() {
+        return bloodType;
     }
 
-    public void setBlood_Type(String Blood_Type) {
-        this.Blood_Type = Blood_Type;
+    public void setBloodType(String bloodType) {
+        this.bloodType = bloodType;
     }
 }

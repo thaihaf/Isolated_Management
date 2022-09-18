@@ -5,8 +5,12 @@
 package controler;
 
 import dao.AccountDetailDBContext;
+import dao.MedicalStaffDBContext;
+import dao.PatientDBContext;
 import dao.RoleDBContext;
 import entity.AccountDetail;
+import entity.MedicalStaff;
+import entity.Patient;
 import entity.Role;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -62,8 +66,24 @@ public class AdminProfileControler extends HttpServlet {
         AccountDetail acc = accDB.get(accID);
         RoleDBContext roleDB = new RoleDBContext();
         ArrayList<Role> roles = roleDB.list();
-        request.setAttribute("roles", roles);
         request.setAttribute("account", acc);
+        switch (acc.getAccount().getRole().getId()) {
+            case 2:
+            case 3: {
+                MedicalStaffDBContext medDB = new MedicalStaffDBContext();
+                MedicalStaff med = medDB.getByAccountDetail(acc);
+                request.setAttribute("account", acc);
+                request.setAttribute("medical", med);
+                break;
+            }
+            case 4: {
+                PatientDBContext patientDB = new PatientDBContext();
+                Patient p = patientDB.get(acc);
+                request.setAttribute("account", acc);
+                request.setAttribute("patient", p);
+            }
+        }
+        request.setAttribute("roles", roles);
         request.getRequestDispatcher("profile.jsp").forward(request, response);
     }
 

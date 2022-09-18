@@ -11,7 +11,6 @@ import java.sql.Timestamp;
  * @author Mountain
  */
 public class TestResult {
-
     private int id;
     private AccountDetail patientAccount;
     private boolean result;

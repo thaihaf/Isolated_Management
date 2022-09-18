@@ -6,10 +6,9 @@ package entity;
 
 /**
  *
- * @author Mountain
+ * @author Admin
  */
 public class Area {
-
     private int id;
     private String name;
     private String address;
@@ -37,5 +36,4 @@ public class Area {
     public void setAddress(String address) {
         this.address = address;
     }
-
 }

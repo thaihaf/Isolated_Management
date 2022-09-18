@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/doctor/doctorprofile.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/entity/AccountDetail.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/controler/doctor/DoctorProfileController.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/entity/Doctor.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/entity/Account.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/controler/ProfileController.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/view/profile.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/entity/Patient.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/entity/MedicalStaff.java</file>
         </group>
     </open-files>
 </project-private>

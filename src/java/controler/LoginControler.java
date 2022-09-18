@@ -84,7 +84,7 @@ public class LoginControler extends HttpServlet {
         if (account != null) {
             HttpSession session = request.getSession();
             session.setAttribute("account", account);
-            
+
             if (account.getRole().getRole().equals("Doctor")) {
                 request.getRequestDispatcher("doctor/doctorHomeScreen.jsp").forward(request, response);
             }
@@ -100,11 +100,6 @@ public class LoginControler extends HttpServlet {
         }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

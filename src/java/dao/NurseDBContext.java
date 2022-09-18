@@ -18,10 +18,15 @@ import java.util.logging.Logger;
  *
  * @author Admin
  */
-public class DoctorDBContext extends DBContext<MedicalStaff> {
+public class NurseDBContext extends DBContext<MedicalStaff> {
 
     @Override
     public ArrayList<MedicalStaff> list() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public MedicalStaff get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -37,11 +42,6 @@ public class DoctorDBContext extends DBContext<MedicalStaff> {
 
     @Override
     public void delete(MedicalStaff model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public MedicalStaff get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

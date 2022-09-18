@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!--todo-->
-<c:set var="role" value="doctor"/>
+<c:set var="role" value="nurse"/>
 
 <!DOCTYPE html>
 <html>
@@ -19,11 +19,25 @@
         <link rel="stylesheet" href="../assets/css/base/menu.css"/>
     </head>
     <body>
-        <div class="menu">
-            <a class="menu_item" href="/">Home</a>
-            <a class="menu_item" href="doctorprofile">User Profile</a>
+        <div class="menu hidden">
+            <c:choose>
+                <c:when test="${role=='admin'}">
+                    <a class="menu_item" href="adminHome">Home</a>
+                </c:when>
+                <c:when test="${role=='doctor'}">
+                    <a class="menu_item" href="doctorHome">Home</a>
+                </c:when>
+                <c:when test="${role=='nurse'}">
+                    <a class="menu_item" href="nurseHome">Home</a>
+                </c:when>
+                <c:when test="${role=='patient'}">
+                    <a class="menu_item" href="patientHome">Home</a>
+                </c:when>
+            </c:choose>
+
+            <a class="menu_item" href="profile">User Profile</a>
             <a class="menu_item" href="changepass">Change Password</a>
-            <a class="menu_item" href="/">Logout</a>
+            <a class="menu_item" href="logout">Logout</a>
         </div>
 
     </body>

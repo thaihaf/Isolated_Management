@@ -4,7 +4,7 @@
  */
 package entity;
 
-public class Doctor {
+public class MedicalStaff {
 
     private String education;
     private String hospital;

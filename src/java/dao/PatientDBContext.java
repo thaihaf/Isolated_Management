@@ -85,7 +85,6 @@ public class PatientDBContext extends DBContext<Patient> {
         return null;
     }
 
-
     @Override
     public void insert(Patient model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -103,15 +102,21 @@ public class PatientDBContext extends DBContext<Patient> {
 
     public Patient getInfo(String username) {
         try {
-            String sql = "select p.Note,p.BackgroundDisease,p.Blood_Type from Patient p join Account a on p.ID = a.Username\n"
-                    + "where a.Username = ?";
+            String sql = "SELECT [ID]\n"
+                    + "      ,[Room_ID]\n"
+                    + "      ,[Note]\n"
+                    + "      ,[BackgroundDisease]\n"
+                    + "      ,[Blood Type]\n"
+                    + "  FROM [Patient]\n"
+                    + "  INNER JOIN [Account] ON [Patient].[ID] = [Account].[Username]\n"
+                    + "  WHERE [ID] = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, username);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Patient patient = new Patient();
                 patient.setBackgroundDisease(rs.getBoolean("BackgroundDisease"));
-                patient.setBloodType(rs.getString("Blood_Type"));
+                patient.setBloodType(rs.getString("BloodType"));
                 patient.setNote(rs.getString("Note"));
                 return patient;
             }

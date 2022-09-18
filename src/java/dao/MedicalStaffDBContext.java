@@ -4,6 +4,7 @@
  */
 package dao;
 
+import entity.AccountDetail;
 import entity.MedicalStaff;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,34 +15,35 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Admin
+ *
+ * @author Mountain
  */
 public class MedicalStaffDBContext extends DBContext<MedicalStaff> {
 
-    @Override
-    public ArrayList<MedicalStaff> list() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  @Override
+  public ArrayList<MedicalStaff> list() {
+    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+  }
 
-    @Override
-    public MedicalStaff get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  @Override
+  public MedicalStaff get(int id) {
+    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+  }
 
-    @Override
-    public void insert(MedicalStaff model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  @Override
+  public void insert(MedicalStaff model) {
+    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+  }
 
-    @Override
-    public void update(MedicalStaff model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  @Override
+  public void update(MedicalStaff model) {
+    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+  }
 
-    @Override
-    public void delete(MedicalStaff model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  @Override
+  public void delete(MedicalStaff model) {
+    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+  }
 
     public MedicalStaff getInfo(String username) {
         try {
@@ -62,4 +64,33 @@ public class MedicalStaffDBContext extends DBContext<MedicalStaff> {
         }
         return null;
     }
+    return null;
+  }
+
+  public MedicalStaff getByAccountDetail(AccountDetail acc) {
+    try {
+      String sql =
+        "SELECT [Medical_Staff].[ID]\n" +
+        "      ,[Level of education]\n" +
+        "      ,[Hospital]\n" +
+        "  FROM [Medical_Staff]\n" +
+        "  INNER JOIN [Account_Details] ON [Medical_Staff].[ID] = [Account_Details].[ID]\n" +
+        "  WHERE [Account_Details].[ID] = ?";
+      PreparedStatement stm = connection.prepareCall(sql);
+      stm.setString(1, acc.getAccount().getUserName());
+      ResultSet rs = stm.executeQuery();
+      while (rs.next()) {
+        MedicalStaff med = new MedicalStaff();
+        med.setAccount(acc);
+        med.setLevelOfEducation(rs.getNString("Level of education"));
+        med.setHospital(rs.getNString("Hospital"));
+        return med;
+      }
+    } catch (SQLException ex) {
+      Logger
+        .getLogger(AccountDetailDBContext.class.getName())
+        .log(Level.SEVERE, null, ex);
+    }
+    return null;
+  }
 }

@@ -4,10 +4,14 @@
  */
 package entity;
 
+/**
+ *
+ * @author Mountain
+ */
 public class Patient {
 
     private Account account;
-//    private Room room;
+    private Room room;
     private String note;
     private boolean backgroundDisease;
     private String bloodType;
@@ -20,13 +24,13 @@ public class Patient {
         this.account = account;
     }
 
-//    public Room getRoom() {
-//        return room;
-//    }
-//
-//    public void setRoom(Room room) {
-//        this.room = room;
-//    }
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 
     public String getNote() {
         return note;

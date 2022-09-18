@@ -4,10 +4,6 @@
  */
 package entity;
 
-/**
- *
- * @author Mountain
- */
 public class Role {
 
     private int id;

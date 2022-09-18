@@ -21,9 +21,13 @@
             }
             setInterval(redirect, 1000);
         </script>
+        <link rel="stylesheet" href="../assets/css/base.css"/>
+        <link rel="stylesheet" href="../assets/css/view/checkSession.css"/>
     </head>
     <body>
-        <h1>Acess Denied! You must login first </h1>
-        <h2 style="text-align: center"> Go back to Login page after <span id="timer">5</span> seconds </h2>
+        <div class="container">
+            <h1>Acess Denied! You must login first </h1>
+            <h3 style="text-align: center"> Go back to Login page after <span id="timer">5</span> seconds </h3>
+        </div>
     </body>
 </html>

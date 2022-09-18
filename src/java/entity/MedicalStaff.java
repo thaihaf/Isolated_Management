@@ -4,6 +4,10 @@
  */
 package entity;
 
+/**
+ *
+ * @author Mountain
+ */
 public class MedicalStaff {
 
     private AccountDetail account;

@@ -85,10 +85,18 @@ html, body{
     min-height: 100%;
     height: max-content;
     padding-top: var(--header-height);
+    transition: 0.3s ease-in ;
+
 }
 .wrapperAdmin{
     padding-left: var(--sidebar-admin-width);
 }
 .wrapperUser{
     padding-left: var(--sidebar-user-width);
+}
+body.hideSidebar .wrapper{
+    padding-left: 0;
+}
+.container{
+    padding: 2rem 3rem;
 }

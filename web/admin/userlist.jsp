@@ -10,13 +10,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>User account - IMS</title>
+        <link rel="stylesheet" href="../assets/css/base.css"/>
         <link rel="stylesheet" href="../assets/css/base/home.css"/>
     </head>
     <body>
         <jsp:include page="/base/sidebar.jsp" />
         <jsp:include page="/base/header.jsp" />
-        <div class="wrapper">
+        <div class="wrapper wrapperAdmin">
             <div class="container">
                 <h1>User List</h1>
                 <form action="users" method="POST">
@@ -37,12 +38,12 @@
                 <c:if test="${requestScope.accounts ne null}">
                     <table>
                         <tr>
-                            <td>Name</td>
-                            <td>Gender</td>
-                            <td>Phone</td>
-                            <td>Address</td>
-                            <td>Role</td>
-                            <td>Action</td>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Role</th>
+                            <th>Action</th>
                         </tr>
                         <c:forEach items="${requestScope.accounts}" var="a">
                             <tr>

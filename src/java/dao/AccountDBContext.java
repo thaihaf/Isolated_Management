@@ -47,6 +47,47 @@ public class AccountDBContext extends DBContext<Account> {
         }
         return null;
     }
+    //
+    public String checkUser(String userName){
+//        Account account = new Account();
+        String sql = "  select * from Account where Username = ?";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, userName);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next()){
+//                Role role = new Role();
+//                account = new Account(rs.getString(1), rs.getString(2), role);
+                return "exist";
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "doesn't exist";
+    }
+    public Boolean Register(String ID, String fullName, Boolean gender, String phone, String address,
+    String email, String nation, String password) {
+        String sql = "insert into Account_Details values\n"
+                + "(?, ?, ?, ?, ?, ?, ?)\n"
+                + "insert into Account values (?, ?, 4)";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, ID);
+            stm.setString(2, fullName);
+            stm.setBoolean(3, gender);
+            stm.setString(4, phone);
+            stm.setString(5, address);
+            stm.setString(6, email);
+            stm.setString(7, nation);
+            stm.setString(8, ID);
+            stm.setString(9, password);
+            stm.executeQuery();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 
     @Override
     public ArrayList<Account> list() {

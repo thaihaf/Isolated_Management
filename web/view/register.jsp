@@ -14,18 +14,20 @@
     <body>
         <form action="register" method="post">
             <h1>REGISTER</h1>
-            Full name <input type="text" name="Fullname"><br>
+            Full name <input required type="text" name="Fullname"><br>
             Gender <select name="Gender">
-                <option></option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
             </select>
-            Nationality <select name="nation">
-                <option></option>
+            Nationality <select name="Nation">
+                <option value="Viet Nam">Viet Nam</option>
             </select><br>
-            Phone <input type="text" name="Phone"><br>
-            Email <input type="text" name="Email"><br>
-            Username <input type="text" name ="Username"><br>
-            Password <input type="password" name="Password"><br>
-            Confirm password <input type="password" name="confirm_password"><br>
+            Phone <input required type="text" name="Phone"><br>
+            Address <input required type="text" name="Address"><br>
+            Email <input required type="text" name="Email"><br>
+            Username <input required type="text" name ="Username"><br>
+            Password <input required type="password" name="Password"><br>
+            Confirm password <input required type="password" name="confirm_password"><p>${mess}</p><br>
             <input type="submit" value="Register">
         </form>
     </body>

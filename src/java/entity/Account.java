@@ -10,17 +10,17 @@ package entity;
  */
 public class Account {
 
-    private int accountID;
     private String userName;
     private String password;
     private Role role;
 
-    public int getAccountID() {
-        return accountID;
+    public Account() {
     }
 
-    public void setAccountID(int accountID) {
-        this.accountID = accountID;
+    public Account(String userName, String password, Role role) {
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
     }
 
     public String getUserName() {

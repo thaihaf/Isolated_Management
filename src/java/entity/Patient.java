@@ -13,6 +13,7 @@ public class Patient {
     private Room room;
     private String Note;
     private Boolean BackgroundDisease;
+    private String Blood_Type;
 
     public String getID() {
         return ID;
@@ -44,5 +45,13 @@ public class Patient {
 
     public void setBackgroundDisease(Boolean BackgroundDisease) {
         this.BackgroundDisease = BackgroundDisease;
+    }
+
+    public String getBlood_Type() {
+        return Blood_Type;
+    }
+
+    public void setBlood_Type(String Blood_Type) {
+        this.Blood_Type = Blood_Type;
     }
 }

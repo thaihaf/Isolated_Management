@@ -51,6 +51,7 @@ public class TestResultDBContext extends DBContext<TestResult> {
                 patientAcc.setUserName(rs.getString("Patient_ID"));
                 patient.setAccount(patientAcc);
                 patient.setFullName(rs.getNString("PatientFullname"));
+                tr.setPatientAccount(patient);
                 tr.setResult(rs.getBoolean("Result"));
                 TestType tt = new TestType();
                 tt.setId(rs.getInt("TestType_ID"));

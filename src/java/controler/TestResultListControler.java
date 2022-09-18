@@ -60,7 +60,7 @@ public class TestResultListControler extends HttpServlet {
         //processRequest(request, response);
         TestResultDBContext testDB = new TestResultDBContext();
         request.setAttribute("tests", testDB.list());
-        request.getRequestDispatcher("").forward(request, response);
+        request.getRequestDispatcher("testresult.jsp").forward(request, response);
     }
 
     /**

@@ -6,17 +6,24 @@ package entity;
 
 public class MedicalStaff {
 
-    private String education;
+    private AccountDetail account;
+    private String levelOfEducation;
     private String hospital;
-    private Account account;
-    private AccountDetail accDetail;
 
-    public String getEducation() {
-        return education;
+    public AccountDetail getAccount() {
+        return account;
     }
 
-    public void setEducation(String education) {
-        this.education = education;
+    public void setAccount(AccountDetail account) {
+        this.account = account;
+    }
+
+    public String getLevelOfEducation() {
+        return levelOfEducation;
+    }
+
+    public void setLevelOfEducation(String levelOfEducation) {
+        this.levelOfEducation = levelOfEducation;
     }
 
     public String getHospital() {
@@ -25,22 +32,6 @@ public class MedicalStaff {
 
     public void setHospital(String hospital) {
         this.hospital = hospital;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public AccountDetail getAccDetail() {
-        return accDetail;
-    }
-
-    public void setAccDetail(AccountDetail accDetail) {
-        this.accDetail = accDetail;
     }
 
 }

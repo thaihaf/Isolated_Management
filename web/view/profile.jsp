@@ -40,17 +40,20 @@
                      Nation:${info.nation}</br></br>
                      Role:${role}</br></br>
                      <c:if test="${role=='Doctor'}">
-                         Level of education:${staff.education}</br></br>
+                         Level of education:${staff.levelOfEducation}</br></br>
                          Hospital:${staff.hospital}</br></br>
                      </c:if>
                      <c:if test="${role=='Nurse'}">
-                         Level of education:${s.education}</br></br>
-                         Hospital:${s.hospital}</br></br>
+                         Level of education:${staff.levelOfEducation}</br></br>
+                         Hospital:${staff.hospital}</br></br>
                      </c:if>
                      <c:if test="${role=='Patient'}">
                          Blood Type:${patient.bloodType}</br></br>
                          Note:${patient.note}</br></br>
-                         Backgroud Diseases:${patient.backgroudDisea}</br></br>
+                         Backgroud Diseases: <c:if test="${patient.backgroundDisease}">
+                             Yes
+                         </c:if></br></br>
+
                      </c:if>
                  </form>
              </div>

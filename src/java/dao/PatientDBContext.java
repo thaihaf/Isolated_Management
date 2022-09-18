@@ -54,7 +54,7 @@ public class PatientDBContext extends DBContext<Patient> {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Patient patient = new Patient();
-                patient.setBackgroudDisea(rs.getBoolean("BackgroundDisease"));
+                patient.setBackgroundDisease(rs.getBoolean("BackgroundDisease"));
                 patient.setBloodType(rs.getString("Blood_Type"));
                 patient.setNote(rs.getString("Note"));
                 return patient;

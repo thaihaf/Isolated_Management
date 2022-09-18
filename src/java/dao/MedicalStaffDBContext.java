@@ -53,7 +53,7 @@ public class MedicalStaffDBContext extends DBContext<MedicalStaff> {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 MedicalStaff ms = new MedicalStaff();
-                ms.setEducation(rs.getString("Level_of_education"));
+                ms.setLevelOfEducation(rs.getString("Level_of_education"));
                 ms.setHospital(rs.getString("Hospital"));
                 return ms;
             }

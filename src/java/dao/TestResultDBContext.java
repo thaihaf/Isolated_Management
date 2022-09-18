@@ -73,7 +73,47 @@ public class TestResultDBContext extends DBContext<TestResult> {
 
     @Override
     public TestResult get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "SELECT [Test_Result].[ID]\n"
+                    + "      ,[Patient_ID]\n"
+                    + "	  ,ad1.Fullname AS PatientFullname\n"
+                    + "      ,[Result]\n"
+                    + "      ,[TestType_ID]\n"
+                    + "      ,[TestTime]\n"
+                    + "      ,[Person_Test]\n"
+                    + "      ,[Status]\n"
+                    + "  FROM [Test_Result]\n"
+                    + "  INNER JOIN [Account_Details] ad1 ON [Test_Result].[Patient_ID] = ad1.[ID]\n"
+                    + "  WHERE [Test_Result].[ID] = ?";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                TestResult tr = new TestResult();
+                AccountDetail patient = new AccountDetail();
+                TestType tt = new TestType();
+                AccountDetail personTest = new AccountDetail();
+                Account p = new Account();
+                p.setUserName(rs.getString("Patient_ID"));
+                patient.setAccount(p);
+                patient.setFullName(rs.getNString("PatientFullname"));
+                tr.setId(rs.getInt("ID"));
+                tr.setPatientAccount(patient);
+                tr.setResult(rs.getBoolean("Result"));
+                tt.setId(rs.getInt("TestType_ID"));
+                tr.setTestType(tt);
+                tr.setTestTime(rs.getTimestamp("TestTime"));
+                Account d = new Account();
+                d.setUserName(rs.getString("Person_Test"));
+                personTest.setAccount(d);
+                tr.setPersonTest(personTest);
+                tr.setStatus(rs.getBoolean("Status"));
+                return tr;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override

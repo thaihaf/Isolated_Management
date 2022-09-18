@@ -38,7 +38,7 @@
                             <td>${t.testTime}</td>
                             <td>${t.personTest.fullName}</td>
                             <td><c:if test="${t.status eq true}">Active</c:if><c:if test="${t.status eq false}">Inactive</c:if></td>
-                                <td></td>
+                            <td><a href="detail?id=${t.id}">Edit</a></td>
                             </tr>
                     </c:forEach>
                 </table>

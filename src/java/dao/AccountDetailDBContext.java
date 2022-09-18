@@ -13,6 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import entity.AccountDetail;
 import entity.Role;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -75,7 +77,7 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
                 acc.setNation(rs.getNString("Nation"));
                 return acc;
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return null;
     }
@@ -145,6 +147,62 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
             Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return accounts;
+    }
+
+    public ArrayList<AccountDetail> listByCriteria(Integer role, String criteria) {
+        ArrayList<AccountDetail> accounts = new ArrayList<>();
+        try {
+            String sql = "SELECT [Username]\n"
+                    + "	  ,[Role].[ID]\n"
+                    + "      ,[Fullname]\n"
+                    + "      ,[Gender]\n"
+                    + "      ,[Phone]\n"
+                    + "      ,[Address]\n"
+                    + "	  ,[Role]\n"
+                    + "  FROM [Account_Details]\n"
+                    + "  INNER JOIN [Account] ON [Account_Details].[ID] = [Account].[Username]\n"
+                    + "  INNER JOIN [Role] ON [Account].[Role_ID] = [Role].[ID]\n"
+                    + "  WHERE (1 = 1)";
+            int count = 0;
+            HashMap<Integer, Object> set = new HashMap<>();
+            if (role != null) {
+                count++;
+                sql += "\nAND [Account].[Role_ID] = ?";
+                set.put(count, role);
+            }
+            if (criteria != null) {
+                sql += "\nAND ([Account_Details].Fullname LIKE '%' + ? + '%' OR [Account_Details].[Phone] LIKE '%' + ? + '%' OR [Account_Details].[Email] LIKE '%' + ? + '%')";
+                for (int i = 0; i < 3; i++) {
+                    count++;
+                    set.put(count, criteria);
+                }
+            }
+            PreparedStatement stm = connection.prepareCall(sql);
+            for (Map.Entry<Integer, Object> entry : set.entrySet()) {
+                Integer key = entry.getKey();
+                Object value = entry.getValue();
+                stm.setObject(key, value);
+            }
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                AccountDetail acc = new AccountDetail();
+                Account a = new Account();
+                Role r = new Role();
+                r.setId(rs.getInt("ID"));
+                r.setRole(rs.getNString("Role"));
+                a.setRole(r);
+                a.setUserName(rs.getString("Username"));
+                acc.setAccount(a);
+                acc.setFullName(rs.getNString("Fullname"));
+                acc.setGender(rs.getBoolean("Gender"));
+                acc.setPhone(rs.getNString("Phone"));
+                acc.setAddress(rs.getNString("Address"));
+                accounts.add(acc);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return accounts.size() > 0 ? accounts : null;
     }
 
     @Override

@@ -4,54 +4,54 @@
  */
 package dao;
 
-import entity.Role;
+import entity.Area;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class RoleDBContext extends DBContext<Role> {
+/**
+ *
+ * @author Mountain
+ */
+public class AreaDBContext extends DBContext<Area> {
 
     @Override
-    public ArrayList<Role> list() {
-        ArrayList<Role> roles = new ArrayList<>();
+    public ArrayList<Area> list() {
+        ArrayList<Area> areas = new ArrayList<>();
         try {
             String sql = "SELECT [ID]\n"
-                    + "      ,[Role]\n"
-                    + "  FROM [Role]";
+                    + "      ,[Name]\n"
+                    + "  FROM [Area]";
             PreparedStatement stm = connection.prepareCall(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                Role r = new Role();
-                r.setId(rs.getInt("ID"));
-                r.setRole(rs.getNString("Role"));
-                roles.add(r);
+                Area a = new Area();
+                a.setId(rs.getInt("ID"));
+                a.setName(rs.getNString("Name"));
+                areas.add(a);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
         }
-        return roles;
+        return areas;
     }
 
     @Override
-    public Role get(int id) {
+    public Area get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void insert(Role model) {
+    public void insert(Area model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void update(Role model) {
+    public void update(Area model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void delete(Role model) {
+    public void delete(Area model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

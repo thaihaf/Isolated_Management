@@ -1,3 +1,8 @@
+<%-- 
+    Document   : doctorlist
+    Created on : Sep 15, 2022, 12:41:50 AM
+    Author     : Mountain
+--%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -6,34 +11,53 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="../assets/css/base/home.css"/>
     </head>
     <body>
-        <form action="users" method="POST">
-            <select name="role">
-                <c:forEach items="${requestScope.roles}" var="r">
-                    <option value="${r.id}">${r.role}</option>
-                </c:forEach>
-            </select>
-        </form>
-        <table>
-            <tr>
-                <td>Name</td>
-                <td>Gender</td>
-                <td>Phone</td>
-                <td>Address</td>
-                <td>Role</td>
-                <td>Action</td>
-            </tr>
-            <c:forEach items="${requestScope.accounts}" var="a">
-                <tr>
-                    <td>${a.fullName}</td>
-                    <td><c:if test="${a.gender eq true}">Male</c:if><c:if test="${a.gender eq false}">Female</c:if></td>
-                    <td>${a.phone}</td>
-                    <td>${a.address}</td>
-                    <td>${a.account.role.role}</td>
-                    <td><a href="profile?user=${a.account.userName}">Edit</a></td>
-                </tr>
-            </c:forEach>
-        </table>
+        <jsp:include page="/base/sidebar.jsp" />
+        <jsp:include page="/base/header.jsp" />
+        <div class="wrapper">
+            <div class="container">
+                <h1>User List</h1>
+                <form action="users" method="POST">
+                    <select name="role">
+                        <option value="-1">All Roles</option>
+                        <c:forEach items="${requestScope.roles}" var="r">
+                            <option
+                                <c:if test="${param.role eq r.id}">
+                                    selected="selected"
+                                </c:if>
+                                value="${r.id}">${r.role}</option>
+                        </c:forEach>
+                    </select>
+                    <input type="text" value="${param.searchfield}" name="searchfield"/>
+                    <input type="submit" value="Search"/>
+                </form>
+                <c:if test="${requestScope.accounts eq null}">There is no account that you searched.</c:if>
+                <c:if test="${requestScope.accounts ne null}">
+                    <table>
+                        <tr>
+                            <td>Name</td>
+                            <td>Gender</td>
+                            <td>Phone</td>
+                            <td>Address</td>
+                            <td>Role</td>
+                            <td>Action</td>
+                        </tr>
+                        <c:forEach items="${requestScope.accounts}" var="a">
+                            <tr>
+                                <td>${a.fullName}</td>
+                                <td><c:if test="${a.gender eq true}">Male</c:if><c:if test="${a.gender eq false}">Female</c:if></td>
+                                <td>${a.phone}</td>
+                                <td>${a.address}</td>
+                                <td>${a.account.role.role}</td>
+                                <td><a href="profile?user=${a.account.userName}">Edit</a></td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </c:if>
+            </div>
+            <jsp:include page="/base/footer.jsp" />   
+        </div>
     </body>
 </html>

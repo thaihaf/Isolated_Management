@@ -25,7 +25,7 @@
             </select><br>
             Phone <input required type="text" name="Phone" pattern="[0-9]{10}"><br>
             Address <input required type="text" name="Address"><br>
-            <label for="email">Email</label><input required type="email" name="Email" id="email"><span id="result"></span><br>
+            Email <input required type="email" name="Email" id="email"><br>
             Username <input required type="text" name ="Username"><span style="color: red;">${sign_exist_username}</span><br>
             Password <input required type="password" name="Password" id = "pswd" value = ""><span id = "message" style="color:red"></span><br>
             Confirm password <input required type="password" name="confirm_password"><span style="color: red;">${mess}</span><br>

@@ -11,11 +11,10 @@
     <servlet>
         <servlet-name>RegisterControler</servlet-name>
         <servlet-class>controler.patient.RegisterControler</servlet-class>
-</servlet>
-        <servlet-name>ProfileController</servlet-name>
-        <servlet-class>controler.ProfileController</servlet-class>
-     </servlet>
-     <servlet>
+    </servlet>
+    <servlet-name>ProfileController</servlet-name>
+    <servlet-class>controler.ProfileController</servlet-class>
+    <servlet>
         <servlet-name>TestResultDetailControler</servlet-name>
         <servlet-class>controler.TestResultDetailControler</servlet-class>
     </servlet>

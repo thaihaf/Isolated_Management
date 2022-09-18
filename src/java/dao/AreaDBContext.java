@@ -26,7 +26,7 @@ public class AreaDBContext extends DBContext<Area> {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Area a = new Area();
-                a.setID(rs.getInt("ID"));
+                a.setId(rs.getInt("ID"));
                 a.setName(rs.getNString("Name"));
                 areas.add(a);
             }

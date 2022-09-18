@@ -74,9 +74,8 @@ public class LoginControler extends HttpServlet {
             throws ServletException, IOException {
         String UserName = request.getParameter("UserName");
         String Password = request.getParameter("Password");
-        String AccountType = request.getParameter("AccountType");
         AccountDBContext adb = new AccountDBContext();
-        Account account = adb.getAccount(UserName, Password, AccountType);
+        Account account = adb.getAccount(UserName, Password);
         if (account == null) {
             request.setAttribute("mess", "Wrong username or password");
             request.getRequestDispatcher("view/login.jsp").forward(request, response);
@@ -84,19 +83,7 @@ public class LoginControler extends HttpServlet {
         if (account != null) {
             HttpSession session = request.getSession();
             session.setAttribute("account", account);
-
-            if (account.getRole().getRole().equals("Doctor")) {
-                request.getRequestDispatcher("doctor/doctorHomeScreen.jsp").forward(request, response);
-            }
-            if (account.getRole().getRole().equals("Admin")) {
-                request.getRequestDispatcher("admin/adminHomeScreen.jsp").forward(request, response);
-            }
-            if (account.getRole().getRole().equals("Nurse")) {
-                request.getRequestDispatcher("nurse/nurseHomeScreen.jsp").forward(request, response);
-            }
-            if (account.getRole().getRole().equals("Patient")) {
-                request.getRequestDispatcher("patient/patientHomeScreen.jsp").forward(request, response);
-            }
+            response.sendRedirect("base/home.jsp");
         }
     }
 

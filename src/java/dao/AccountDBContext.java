@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class AccountDBContext extends DBContext<Account> {
 
-    public Account getAccount(String UserName, String Password, String AccountType) {
+    public Account getAccount(String UserName, String Password) {
         try {
             String sql = "SELECT [Username]\n"
                     + "      ,[Password]\n"
@@ -47,15 +47,16 @@ public class AccountDBContext extends DBContext<Account> {
         }
         return null;
     }
+
     //
-    public String checkUser(String userName){
+    public String checkUser(String userName) {
 //        Account account = new Account();
         String sql = "  select * from Account where Username = ?";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, userName);
             ResultSet rs = stm.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
 //                Role role = new Role();
 //                account = new Account(rs.getString(1), rs.getString(2), role);
                 return "This username is existed";
@@ -65,9 +66,9 @@ public class AccountDBContext extends DBContext<Account> {
         }
         return "Regist successfully";
     }
-    
+
     public Boolean Register(String ID, String fullName, Boolean gender, String phone, String address,
-    String email, String nation, String password) {
+            String email, String nation, String password) {
         String sql = "insert into Account_Details values\n"
                 + "(?, ?, ?, ?, ?, ?, ?)\n"
                 + "insert into Account values (?, ?, 4)";

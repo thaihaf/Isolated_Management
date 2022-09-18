@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!--todo-->
-<c:set var="role" value="nurse"/>
+
 
 <!DOCTYPE html>
 <html>
@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="../assets/css/base/menu.css"/>
     </head>
     <body>
+        <c:set var="role" value="${sessionScope.account.role}"/>
         <div class="menu hidden">
             <c:choose>
                 <c:when test="${role=='admin'}">

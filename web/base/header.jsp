@@ -8,8 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!--todo-->
-<c:set var="name" value="thaihaf"/>
-<c:set var="role" value="nurse"/>
+
 
 <!DOCTYPE html>
 <html>
@@ -20,44 +19,32 @@
         <link rel="stylesheet" href="../assets/css/base/header.css"/>
     </head>
     <body>
-        <div class=<c:if test="${role eq 'admin'}">"header headerAdmin"</c:if>
-             <c:if test="${role ne 'admin'}">"header headerUser"</c:if>
+        <c:set var="name" value="${sessionScope.account.userName}"/>
+        <c:set var="role" value="${sessionScope.account.role}"/>
+        <div class=<c:if test="${role.id eq 1}">"header headerAdmin"</c:if>
+             <c:if test="${role.id ne 1}">"header headerUser"</c:if>
                  >
                  <div class="header_btnMenu" id="header_btnMenu">
                      <img class="header_btnMenu_img" src="../assets/icons/menu.png" alt="alt"/>
                  </div>
 
-             <c:choose>
-                 <c:when test="${role=='admin'}">
-                     <a href="adminHome"><img src="../assets/img/Logo.png" alt="alt" class="header_logo"/>
-                     </a>
-                 </c:when>
-                 <c:when test="${role=='doctor'}">
-                     <a href="doctorHome"><img src="../assets/img/Logo.png" alt="alt" class="header_logo"/>
-                     </a>
-                 </c:when>
-                 <c:when test="${role=='nurse'}">
-                     <a href="nurseHome"><img src="../assets/img/Logo.png" alt="alt" class="header_logo"/>
-                     </a>
-                 </c:when>
-                 <c:when test="${role=='patient'}">
-                     <a href="patientHome"><img src="../assets/img/Logo.png" alt="alt" class="header_logo"/>
-                     </a>
-                 </c:when>
-             </c:choose>
 
-             <div class="header_user">
-                 <div class="noti">
-                     <img class="noti_img" src="../assets/icons/noti.png" alt="alt"/>
-                     <div class="noti_count">8</div>
-                 </div>
+                 <a href="../base/home.jsp"><img src="../assets/img/Logo.png" alt="alt" class="header_logo"/>
+                 </a>
 
-                 <div class="user">
-                     <img class="user_avt" src="../assets/img/avt.jpg" width="width" height="height" alt="alt"/>
 
-                     <div class="user_info">
-                         <div class="user_name">${name}</div>
-                         <div class="user_role">${role}</div>
+                 <div class="header_user">
+                     <div class="noti">
+                         <img class="noti_img" src="../assets/icons/noti.png" alt="alt"/>
+                         <div class="noti_count">8</div>
+                     </div>
+
+                     <div class="user">
+                         <img class="user_avt" src="../assets/img/avt.jpg" width="width" height="height" alt="alt"/>
+
+                         <div class="user_info">
+                             <div class="user_name">${name}</div>
+                         <div class="user_role">${role.role}</div>
                      </div>
                  </div>
 

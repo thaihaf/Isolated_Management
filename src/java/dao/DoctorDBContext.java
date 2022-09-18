@@ -49,16 +49,6 @@ public class DoctorDBContext extends DBContext<Doctor> {
                 a.setAccountType(rs.getNString("AccountType"));
                 d.setAccount(a);
                 doctors.add(d);
-                Doctor doc = new Doctor();
-                doc.setDoctorID(rs.getString("DoctorID"));
-                doc.setDoctorName(rs.getString("DoctorName"));
-                doc.setGender(rs.getBoolean("Gender"));
-                doc.setPhone(rs.getString("Phone"));
-                doc.setAdress(rs.getString("Address"));
-                Account acc = new Account();
-                acc.setAccountID(rs.getInt("AccountID"));
-                doc.setAccount(acc);
-                return doc;
             }
         } catch (SQLException ex) {
             Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);

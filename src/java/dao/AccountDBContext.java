@@ -65,7 +65,15 @@ public class AccountDBContext extends DBContext<Account> {
 
     @Override
     public void update(Account model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "Update Account set Password = ? where UserName = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, model.getPassword());
+            stm.setString(2, model.getUserName());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

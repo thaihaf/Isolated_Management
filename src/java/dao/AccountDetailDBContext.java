@@ -206,6 +206,7 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
         return accounts.size() > 0 ? accounts : null;
     }
 
+
     public ArrayList<AccountDetail> listDoctorAndNurse() {
         ArrayList<AccountDetail> accounts = new ArrayList<>();
         try {

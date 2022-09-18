@@ -9,7 +9,6 @@ package entity;
  * @author Mountain
  */
 public class AccountDetail {
-
     private Account account;
     private String fullName;
     private boolean gender;

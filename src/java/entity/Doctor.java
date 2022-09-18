@@ -9,7 +9,6 @@ package entity;
  * @author Mountain
  */
 public class Doctor {
-
     private String doctorID;
     private String doctorName;
     private boolean gender;

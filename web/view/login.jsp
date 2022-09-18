@@ -34,7 +34,7 @@
                     <div class="intro_title">welcome!</div>
                     <div class="intro_small">
                         Don't have account,
-                        <a href="url">Register</a>
+                        <a href="view/register.jsp">Register</a>
                     </div>
                 </div>
 

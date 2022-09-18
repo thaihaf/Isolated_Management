@@ -6,10 +6,9 @@ package entity;
 
 /**
  *
- * @author Mountain
+ * @author Admin
  */
 public class Room {
-
     private int id;
     private String name;
     private int numOfBed;
@@ -64,5 +63,4 @@ public class Room {
     public void setNurseManage(AccountDetail nurseManage) {
         this.nurseManage = nurseManage;
     }
-
 }

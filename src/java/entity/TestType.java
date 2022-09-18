@@ -9,7 +9,6 @@ package entity;
  * @author Mountain
  */
 public class TestType {
-
     private int id;
     private String typeName;
 

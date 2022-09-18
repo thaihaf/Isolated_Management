@@ -9,7 +9,6 @@ package entity;
  * @author Mountain
  */
 public class MedicalStaff {
-
     private AccountDetail account;
     private String levelOfEducation;
     private String hospital;

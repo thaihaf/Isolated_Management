@@ -6,10 +6,9 @@ package entity;
 
 /**
  *
- * @author Mountain
+ * @author Admin
  */
 public class Patient {
-
     private Account account;
     private Room room;
     private String note;

@@ -10,11 +10,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
-        <link rel="stylesheet" href="./assets/css/base.css"/>
-        <link rel="stylesheet" href="./assets/css/view/register.css"/>
+        <link rel="stylesheet" href="../assets/css/base.css"/>
+        <link rel="stylesheet" href="../assets/css/view/register.css"/>
     </head>
     <body>
-        <div class="login" style="background-image: url(./assets/img/bg_login.png)">
+        <div class="login" style="background-image: url(../assets/img/bg_login.png)">
             <div class="login_link">
                 <div class="item item_language">
                     <select name="language" class="switch_option">
@@ -32,8 +32,8 @@
                 <div class="intro">
                     <div class="intro_title">welcome!</div>
                     <div class="intro_small">
-                        Don't have account,
-                        <a href="view/register.jsp">Register</a>
+                        Have account,
+                        <a href="./login.jsp">Login</a>
                     </div>
                 </div>
 
@@ -42,18 +42,52 @@
 
                     <div class="group">
                         <div class="item">
+                            <div class="item_title">Email</div>
+
+                            <input required class="item_input" type="email" name="Email" id="email" placeholder="abc@gmail.com">
+                        </div>
+                        <div class="item">
+                            <div class="item_title">Username</div>
+
+                            <input required class="item_input" placeholder="thaihaf" type="text" name ="Username"><span style="color: red;">${sign_exist_username}</span><br>
+                        </div>
+                    </div>
+
+                    <div class="group">
+                        <div class="item">
+                            <div class="item_title">Password</div>
+
+                            <input required class="item_input" type="password" name="Password" id = "pswd" value = ""><span id = "message" style="color:red"></span><br>
+                        </div>
+                        <div class="item">
+                            <div class="item_title">Confirm password</div>
+
+                            <input required class="item_input" type="password" name="confirm_password"><span style="color: red;">${mess}</span><br>
+                        </div>
+                    </div>
+
+                    <div class="group">
+                        <div class="item">
                             <div class="item_title">Full name </div>
 
-                            <input required class="item_input" type ="text" name="Fullname" placeholder="thaihaf">
+                            <input required class="item_input" type ="text" name="Fullname" placeholder="Nguyen thai ha">
                         </div>
 
                         <div class="item">
                             <div class="item_title">Phone</div>
 
-                            <input required class="item_input" type="text" name="Phone" pattern="[0-9]{10}" placeholder="thaihaf">
+                            <input required class="item_input" type="text" name="Phone" pattern="[0-9]{10}" placeholder="+84 819889962">
                         </div>
                     </div>
 
+                    <div class="group">
+                        <div class="item">
+                            <div class="item_title">Address</div>
+
+                            <input required class="item_input" type ="text" name="Address">
+                        </div>
+                    </div>
+                        
                     <div class="group">
                         <div class="item">
                             <div class="item_title">Gender</div>
@@ -71,48 +105,7 @@
                                 <option value="Viet Nam">Viet Nam</option>
                             </select><br>
                         </div>
-
-
-
-
                     </div>
-
-                    <div class="group">
-                        <div class="item">
-                            <div class="item_title">Address</div>
-
-                            <input required class="item_input" type ="text" name="Address">
-                        </div>
-
-                        <div class="item">
-                            <div class="item_title">Email</div>
-
-                            <input required class="item_input" type="email" name="Email" id="email">
-                        </div>
-                    </div>
-
-                    <div class="group">
-                        <div class="item">
-                            <div class="item_title">Username</div>
-
-                            <input required class="item_input" type="text" name ="Username"><span style="color: red;">${sign_exist_username}</span><br>
-                        </div>
-
-                        <div class="item">
-                            <div class="item_title">Password</div>
-
-                            <input required class="item_input" type="password" name="Password" id = "pswd" value = ""><span id = "message" style="color:red"></span><br>
-                        </div>
-                    </div>
-
-                    <div class="group">
-                        <div class="item">
-                            <div class="item_title">Confirm password</div>
-
-                            <input required class="item_input" type="password" name="confirm_password"><span style="color: red;">${mess}</span><br>
-                        </div>
-                    </div>
-
 
                     <input type="submit" value="Register" class="btn_submit">
                 </form>

@@ -6,6 +6,7 @@ package controler;
 
 import dao.AccountDetailDBContext;
 import dao.MedicalStaffDBContext;
+import dao.NurseDBContext;
 import dao.PatientDBContext;
 import entity.Account;
 import entity.AccountDetail;
@@ -18,6 +19,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  *
@@ -58,14 +60,14 @@ public class ProfileController extends HttpServlet {
                 MedicalStaffDBContext msdb = new MedicalStaffDBContext();
                 MedicalStaff ms = msdb.getInfo(acc.getUserName());
                 request.setAttribute("staff", ms);
-                request.getRequestDispatcher("view/profile.jsp").forward(request, response);
+                //request.getRequestDispatcher("view/profile.jsp").forward(request, response);
             } else if (role.equalsIgnoreCase("Patient")) {
                 PatientDBContext pdb = new PatientDBContext();
                 Patient patient = pdb.getInfo(acc.getUserName());
                 request.setAttribute("patient", patient);
-                request.getRequestDispatcher("view/profile.jsp").forward(request, response);
+                //request.getRequestDispatcher("view/profile.jsp").forward(request, response);
             }
-            request.getRequestDispatcher("view/profile.jsp").forward(request, response);
+            request.getRequestDispatcher("../view/profile.jsp").forward(request, response);
         }
     }
 

@@ -1,0 +1,128 @@
+
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Sep 16, 2022, 12:55:05 PM
+    Author     : hapro
+*/
+
+body {
+    background-color: var(--bg-color);
+    padding-right : 5rem;
+
+}
+.login{
+    background-color: var(--bg-color);
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center right;
+    width: 100%;
+    height: 100%;
+    padding: 3.7rem 7rem;
+    padding-left: 10rem;
+}
+
+.login_link{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4rem;
+
+    width: 100%;
+    position: absolute;
+    right : 8rem;
+    top : 4rem;
+}
+
+.login_link .item{
+    font-size: 1.2rem;
+}
+
+.login_inputTab{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.intro_title{
+    font-size: 4rem;
+    text-transform: uppercase;
+    color: var(--white-color);
+    font-weight: bold;
+    letter-spacing: 0.4rem;
+    margin-bottom: 3rem;
+}
+.intro_small{
+    font-size: 1.3rem;
+    color : var(--white-color);
+}
+.intro_small a{
+    font-size: 1.3rem;
+    color : #8699DA;
+}
+
+.login_form{
+    margin-top: 2rem;
+    color : var(--white-color);
+    width :35%;
+}
+.item{
+    margin-bottom: 3rem;
+}
+.item_title{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+.item_input{
+    outline: none;
+    border: none;
+    border: solid 1px #ccc;
+    border-radius: 2rem;
+    /* height: 5rem; */
+    /* width: 100%; */
+    padding: 0.8rem 1.6rem;
+    font-size: 1.3rem;
+}
+
+.switch_link{
+    color: #8699DA;
+    width: 100%;
+    text-align: right;
+    display: block;
+    padding-right: 1rem;
+    margin: 1.6rem 0 ;
+    font-size: 1.2rem;
+}
+
+.btn_submit{
+    background-color: #4461F2;
+    width: 100%;
+    border-radius: 2rem;
+    color: var(--white-color);
+    border: none;
+    height: 5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-bottom: 5rem;
+
+}
+
+.text-danger{
+    color: red;
+    padding-left: 1rem;
+    font-size: 1.1rem;
+}
+
+.group{
+    display: flex;
+}
+.item{
+    margin-right: 2rem;
+
+}

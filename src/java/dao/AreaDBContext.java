@@ -7,7 +7,10 @@ package dao;
 import entity.Area;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,7 +33,8 @@ public class AreaDBContext extends DBContext<Area> {
                 a.setName(rs.getNString("Name"));
                 areas.add(a);
             }
-        } catch (Exception e) {
+        } catch (SQLException ex) {
+            Logger.getLogger(AreaDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return areas;
     }

@@ -43,7 +43,7 @@ public class AccountDBContext extends DBContext<Account> {
                 return account;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

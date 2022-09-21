@@ -4,7 +4,6 @@
  */
 package controler;
 
-import dao.PatientDBContext;
 import dao.TestResultDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;

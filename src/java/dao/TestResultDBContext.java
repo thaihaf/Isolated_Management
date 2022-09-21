@@ -66,7 +66,7 @@ public class TestResultDBContext extends DBContext<TestResult> {
                 testResult.add(tr);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return testResult;
     }
@@ -111,7 +111,7 @@ public class TestResultDBContext extends DBContext<TestResult> {
                 return tr;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

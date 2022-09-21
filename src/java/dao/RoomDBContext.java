@@ -40,7 +40,7 @@ public class RoomDBContext extends DBContext<Room> {
                 rooms.add(r);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(RoomDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return rooms;
     }

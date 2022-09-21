@@ -22,7 +22,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
-        <url-pattern>/changepass</url-pattern>
+        <url-pattern>/base/changepass</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ForgotPasswordControler</servlet-name>

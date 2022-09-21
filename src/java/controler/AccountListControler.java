@@ -80,8 +80,8 @@ public class AccountListControler extends HttpServlet {
         //processRequest(request, response);
         int raw_role = Integer.parseInt(request.getParameter("role"));
         String raw_criteria = request.getParameter("searchfield");
-        Integer role = raw_role > 0 ? raw_role : null;
-        String criteria = (raw_criteria != null && raw_criteria.trim().length() > 0) ? raw_criteria : null;
+        Integer role = raw_role > 0 ? new Integer(raw_role) : null;
+        String criteria = (raw_criteria != null && raw_criteria.trim().length() > 0) ? new String(raw_criteria) : null;
         AccountDetailDBContext accDB = new AccountDetailDBContext();
         RoleDBContext roleDB = new RoleDBContext();
         request.setAttribute("roles", roleDB.list());

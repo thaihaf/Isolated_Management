@@ -4,19 +4,22 @@
  */
 package controler.patient;
 
-import dao.AccountDBContext;
+import dao.PatientDBContext;
+import entity.ListPatient;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Admin
  */
-public class RegisterControler extends HttpServlet {
+public class ListPatientControler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +38,10 @@ public class RegisterControler extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RegisterControler</title>");
+            out.println("<title>Servlet DoctorListControler</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RegisterControler at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DoctorListControler at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,8 +59,13 @@ public class RegisterControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        request.getRequestDispatcher("view/register.jsp").forward(request, response);
+        String searchPatient = request.getParameter("searchPatient");
+        PatientDBContext pdb = new PatientDBContext();
+        List<ListPatient> listpatients = pdb.searchByNamePatient(searchPatient);
+        request.setAttribute("lps", listpatients);
+        ArrayList<ListPatient> lps = pdb.patientlist();
+        request.setAttribute("lps", lps);
+        request.getRequestDispatcher("patient/listpatient.jsp").forward(request, response);
     }
 
     /**
@@ -71,35 +79,7 @@ public class RegisterControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        String Fullname = request.getParameter("Fullname");
-        Boolean Gender = Boolean.parseBoolean(request.getParameter("Gender"));
-        String Nation = request.getParameter("Nation");
-        String Phone = request.getParameter("Phone");
-        String Email = request.getParameter("Email");
-        String Username = request.getParameter("Username");
-        String Password = request.getParameter("Password");
-        String confirm_password = request.getParameter("confirm_password");
-        String Address = request.getParameter("Address");
-        AccountDBContext adb = new AccountDBContext();
-        String v = adb.checkUser(Username);
-        if (Password.equals(confirm_password)) {
-//            for(int i = 3; i <= 100; i++){
-//                request.setAttribute("age", i);
-//                request.getRequestDispatcher("view/login.jsp").forward(request, response);
-//            }
-            if (v == "exist") {
-                request.setAttribute("sign_exist_username", v);
-                request.getRequestDispatcher("view/register.jsp").forward(request, response);
-            } else {
-                adb.Register(Username, Fullname, Gender, Phone, Address, Email, Nation, Password);
-                request.setAttribute("register_success", v);
-                request.getRequestDispatcher("view/register.jsp").forward(request, response);
-            }
-        }else{
-            request.setAttribute("mess", "confirm password is not same password");
-            request.getRequestDispatcher("view/register.jsp").forward(request, response);
-        }
+        request.getRequestDispatcher("patient/listpatient.jsp").forward(request, response);
     }
 
     /**

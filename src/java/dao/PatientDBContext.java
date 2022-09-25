@@ -8,12 +8,14 @@ import entity.Account;
 import entity.AccountDetail;
 import entity.Patient;
 import entity.Area;
+import entity.ListPatient;
 import entity.Patient;
 import entity.Room;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,9 +25,56 @@ import java.util.logging.Logger;
  */
 public class PatientDBContext extends DBContext<Patient> {
 
-    @Override
-    public ArrayList<Patient> list() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<ListPatient> searchByNamePatient(String searchPatient) {
+        List<ListPatient> listpatients = new ArrayList<>();
+        try {
+            String sql = "select a.Username, ad.Fullname, ad.Gender, ad.Phone,\n"
+                    + "ad.Address, ad.Email, ad.Nation from Account_Details ad\n"
+                    + "inner join Account a on ad.ID = a.Username where a.Role_ID = 4 and\n"
+                    + "a.Username like ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, "%" + searchPatient + "%");
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                ListPatient lp = new ListPatient();
+                lp.setUsername(rs.getString("Username"));
+                lp.setFullname(rs.getString("Fullname"));
+                lp.setGender(rs.getBoolean("Gender"));
+                lp.setPhone(rs.getString("Phone"));
+                lp.setAddress(rs.getString("Address"));
+                lp.setEmail(rs.getString("Email"));
+                lp.setNation(rs.getString("Nation"));
+                listpatients.add(lp);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PatientDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listpatients;
+    }
+
+    public ArrayList<ListPatient> patientlist() {
+        ArrayList<ListPatient> lps = new ArrayList<>();
+        try {
+            String sql = "select a.Username, ad.Fullname, ad.Gender, ad.Phone, \n"
+                    + "ad.Address, ad.Email, ad.Nation from Account_Details ad\n"
+                    + "inner join Account a on ad.ID = a.Username where a.Role_ID = 4";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                ListPatient lp = new ListPatient();
+                lp.setUsername(rs.getString("Username"));
+                lp.setFullname(rs.getString("Fullname"));
+                lp.setGender(rs.getBoolean("Gender"));
+                lp.setPhone(rs.getString("Phone"));
+                lp.setAddress(rs.getString("Address"));
+                lp.setEmail(rs.getString("Email"));
+                lp.setNation(rs.getString("Nation"));
+                lps.add(lp);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PatientDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lps;
     }
 
     @Override
@@ -78,9 +127,11 @@ public class PatientDBContext extends DBContext<Patient> {
                 p.setBloodType(rs.getNString("Blood Type"));
                 p.setBackgroundDisease(rs.getBoolean("BackgroundDisease"));
                 return p;
+
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PatientDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PatientDBContext.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -124,5 +175,10 @@ public class PatientDBContext extends DBContext<Patient> {
 //            Logger.getLogger(DoctorDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    @Override
+    public ArrayList<Patient> list() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

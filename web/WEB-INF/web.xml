@@ -20,6 +20,10 @@
         <servlet-name>TestResultDetailControler</servlet-name>
         <servlet-class>controler.TestResultDetailControler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListPatientControler</servlet-name>
+        <servlet-class>controler.patient.ListPatientControler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -51,6 +55,10 @@
     <servlet-mapping>
         <servlet-name>TestResultDetailControler</servlet-name>
         <url-pattern>/admin/detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListPatientControler</servlet-name>
+        <url-pattern>/listpatient</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

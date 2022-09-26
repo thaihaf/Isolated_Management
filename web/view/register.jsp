@@ -4,17 +4,18 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
-        <link rel="stylesheet" href="../assets/css/base.css"/>
-        <link rel="stylesheet" href="../assets/css/view/register.css"/>
+        <link rel="stylesheet" href="./assets/css/base.css"/>
+        <link rel="stylesheet" href="./assets/css/view/register.css"/>
     </head>
     <body>
-        <div class="login" style="background-image: url(../assets/img/bg_login.png)">
+        <div class="login" style="background-image: url(./assets/img/bg_login.png)">
             <div class="login_link">
                 <div class="item item_language">
                     <select name="language" class="switch_option">
@@ -33,7 +34,7 @@
                     <div class="intro_title">welcome!</div>
                     <div class="intro_small">
                         Have account,
-                        <a href="./login.jsp">Login</a>
+                        <a href="../login">Login</a>
                     </div>
                 </div>
 
@@ -87,22 +88,52 @@
                             <input required class="item_input" type ="text" name="Address">
                         </div>
                     </div>
-                        
+
                     <div class="group">
                         <div class="item">
                             <div class="item_title">Gender</div>
 
                             <select name="Gender">
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                                <option value="True">Male</option>
+                                <option value="False">Female</option>
                             </select>
                         </div>
+
+                        <!--                        <div class="group">
+                                                    <div class="item">
+                                                        <div class="item_title">Age</div>
+                                                        <select name="Age">
+                        <c:forEach var="i" begin="1" end="100">
+                            <option value="${i}">${i}</option>
+                        </c:forEach>
+                    </select>
+                    <div class="item_title">Date of Birth</div>
+                    <input type="date" value="" name="DateOfBirth">
+                </div>      -->
 
                         <div class="item">
                             <div class="item_title">Nationality</div>
 
                             <select name="Nation">
-                                <option value="Viet Nam">Viet Nam</option>
+                                <option value="Viet Nam">Việt Nam</option>
+                                <option value="Thailand">Thái Lan</option>
+                                <option value="Laos">Lào</option>
+                                <option value="Campuchia">Campuchia</option>
+                                <option value="Myanmar">Myanmar</option>
+                                <option value="China">Trung Quốc</option>
+                                <option value="Indonesia">Indonesia</option>
+                                <option value="Malaysia">Malaysia</option>
+                                <option value="Brunei">Brunei</option>
+                                <option value="Timor Leste">Đông Timo</option>
+                                <option value="Phillipine">Phillipine</option>
+                                <option value="Singapore">Singapore</option>
+                                <option value="Korea">Hàn Quốc</option>
+                                <option value="Japan">Nhật Bản</option>
+                                <option value="Germani">Đức</option>
+                                <option value="England">Anh</option>
+                                <option value="Russia">Nga</option>
+                                <option value="France">Pháp</option>
+                                <option value="USA">Mỹ</option>
                             </select><br>
                         </div>
                     </div>
@@ -117,28 +148,28 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script>
 
-//            function phonenumber(inputtxt)
-//            {
-//                var phoneno = /^\d{10}$/;
-//                if ((inputtxt.value.match(phoneno))
-//                {
-//                    return true;
-//                } else
-//                {
-//                    alert("message");
-//                    return false;
-//                }
-//            }
-//
-//            function ValidateEmail(mail)
-//            {
-//                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))
-//                {
-//                    return (true)
-//                }
-//                alert("You have entered an invalid email address!")
-//                return (false)
-//            }
+                    //            function phonenumber(inputtxt)
+                    //            {
+                    //                var phoneno = /^\d{10}$/;
+                    //                if ((inputtxt.value.match(phoneno))
+                    //                {
+                    //                    return true;
+                    //                } else
+                    //                {
+                    //                    alert("message");
+                    //                    return false;
+                    //                }
+                    //            }
+                    //
+                    //            function ValidateEmail(mail)
+                    //            {
+                    //                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))
+                    //                {
+                    //                    return (true)
+                    //                }
+                    //                alert("You have entered an invalid email address!")
+                    //                return (false)
+                    //            }
 
                     function verifyPassword() {
                         var pw = document.getElementById("pswd").value;
@@ -154,12 +185,12 @@
                             return false;
                         }
 
-//maximum length of password validation  
+                        //maximum length of password validation  
                         if (pw.length > 15) {
                             document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";
                             return false;
                         } else {
-//                    alert("Password is correct");
+                            //                    alert("Password is correct");
                         }
                     }
 

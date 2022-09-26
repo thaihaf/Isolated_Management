@@ -24,6 +24,7 @@ import java.util.logging.Logger;
  */
 public class PatientDBContext extends DBContext<Patient> {
 
+
     public ArrayList<Patient> patientlist(String username) {
         ArrayList<Patient> lps = new ArrayList<>();
         try {
@@ -56,6 +57,7 @@ public class PatientDBContext extends DBContext<Patient> {
         }
         return lps;
     }
+
 
     @Override
     public Patient get(int id) {

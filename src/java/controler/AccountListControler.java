@@ -8,7 +8,6 @@ import dao.AccountDetailDBContext;
 import dao.PatientDBContext;
 import dao.RoleDBContext;
 import entity.AccountDetail;
-import entity.ListPatient;
 import entity.Role;
 import java.io.IOException;
 import java.io.PrintWriter;

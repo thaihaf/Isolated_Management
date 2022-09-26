@@ -11,11 +11,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
-        <link rel="stylesheet" href="../assets/css/base.css"/>
-        <link rel="stylesheet" href="../assets/css/view/register.css"/>
+        <link rel="stylesheet" href="./assets/css/base.css"/>
+        <link rel="stylesheet" href="./assets/css/view/register.css"/>
     </head>
     <body>
-        <div class="login" style="background-image: url(../assets/img/bg_login.png)">
+        <div class="login" style="background-image: url(./assets/img/bg_login.png)">
             <div class="login_link">
                 <div class="item item_language">
                     <select name="language" class="switch_option">

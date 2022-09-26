@@ -122,7 +122,7 @@
                                  <input type="text" class="item_input" value="${patient.note}">
                              </div>
                          </div>
-                         Background Diseases:${patient.backgroundDisease}</br></br>
+
                      </c:if>
 
                      <c:if test="${role.id eq 4}">

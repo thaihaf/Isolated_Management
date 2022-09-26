@@ -50,7 +50,7 @@ public class ProfileController extends HttpServlet {
         HttpSession session = request.getSession();
         Account acc = (Account) session.getAttribute("account");
         if (acc == null) {
-            request.getRequestDispatcher("view/checkSession.jsp").forward(request, response);
+            request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
         } else {
             AccountDetailDBContext db = new AccountDetailDBContext();
             AccountDetail info = db.get(acc.getUserName());

@@ -5,13 +5,15 @@
 package controler.patient;
 
 import dao.PatientDBContext;
-import entity.ListPatient;
+import entity.Account;
+import entity.Patient;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,13 +61,18 @@ public class ListPatientControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String searchPatient = request.getParameter("searchPatient");
-        PatientDBContext pdb = new PatientDBContext();
-        List<ListPatient> listpatients = pdb.searchByNamePatient(searchPatient);
-        request.setAttribute("lps", listpatients);
-        ArrayList<ListPatient> lps = pdb.patientlist();
-        request.setAttribute("lps", lps);
-        request.getRequestDispatcher("patient/listpatient.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("account");
+        if (acc == null) {
+            request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
+        } else {
+            ArrayList<Patient> patients = new ArrayList<>();
+            String username = acc.getUserName();
+            PatientDBContext pdb = new PatientDBContext();
+            patients = pdb.patientlist(username);
+            request.setAttribute("patients", patients);
+            request.getRequestDispatcher("../patient/listpatient.jsp").forward(request, response);
+        }
     }
 
     /**

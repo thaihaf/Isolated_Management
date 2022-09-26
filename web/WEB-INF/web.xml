@@ -58,7 +58,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ListPatientControler</servlet-name>
-        <url-pattern>/listpatient</url-pattern>
+        <url-pattern>/base/listpatient</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

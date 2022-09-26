@@ -8,7 +8,6 @@ import entity.Account;
 import entity.AccountDetail;
 import entity.Patient;
 import entity.Area;
-import entity.ListPatient;
 import entity.Patient;
 import entity.Room;
 import java.sql.PreparedStatement;
@@ -25,51 +24,32 @@ import java.util.logging.Logger;
  */
 public class PatientDBContext extends DBContext<Patient> {
 
-    public List<ListPatient> searchByNamePatient(String searchPatient) {
-        List<ListPatient> listpatients = new ArrayList<>();
+    public ArrayList<Patient> patientlist(String username) {
+        ArrayList<Patient> lps = new ArrayList<>();
         try {
-            String sql = "select a.Username, ad.Fullname, ad.Gender, ad.Phone,\n"
-                    + "ad.Address, ad.Email, ad.Nation from Account_Details ad\n"
-                    + "inner join Account a on ad.ID = a.Username where a.Role_ID = 4 and\n"
-                    + "a.Username like ?";
+            String sql = "select ad.*, p.BackgroundDisease,p.[Blood Type] from Patient p join Room r on \n"
+                    + "p.Room_ID = r.ID join Account a on a.Username = p.ID\n"
+                    + "join Account_Details ad on ad.ID = a.Username where r.NurseManage = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, "%" + searchPatient + "%");
+            stm.setString(1, username);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                ListPatient lp = new ListPatient();
-                lp.setUsername(rs.getString("Username"));
-                lp.setFullname(rs.getString("Fullname"));
-                lp.setGender(rs.getBoolean("Gender"));
-                lp.setPhone(rs.getString("Phone"));
-                lp.setAddress(rs.getString("Address"));
-                lp.setEmail(rs.getString("Email"));
-                lp.setNation(rs.getString("Nation"));
-                listpatients.add(lp);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(PatientDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return listpatients;
-    }
-
-    public ArrayList<ListPatient> patientlist() {
-        ArrayList<ListPatient> lps = new ArrayList<>();
-        try {
-            String sql = "select a.Username, ad.Fullname, ad.Gender, ad.Phone, \n"
-                    + "ad.Address, ad.Email, ad.Nation from Account_Details ad\n"
-                    + "inner join Account a on ad.ID = a.Username where a.Role_ID = 4";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                ListPatient lp = new ListPatient();
-                lp.setUsername(rs.getString("Username"));
-                lp.setFullname(rs.getString("Fullname"));
-                lp.setGender(rs.getBoolean("Gender"));
-                lp.setPhone(rs.getString("Phone"));
-                lp.setAddress(rs.getString("Address"));
-                lp.setEmail(rs.getString("Email"));
-                lp.setNation(rs.getString("Nation"));
-                lps.add(lp);
+                Account a = new Account();
+                a.setUserName(rs.getString("ID"));
+                AccountDetail ad = new AccountDetail();
+                ad.setFullName(rs.getString("Fullname"));
+                ad.setGender(rs.getBoolean("Gender"));
+                ad.setPhone(rs.getString("Phone"));
+                ad.setAddress(rs.getString("Address"));
+                ad.setEmail(rs.getString("Email"));
+                ad.setNation(rs.getString("Nation"));
+                ad.setDob(rs.getDate("DateOfBirth"));
+                ad.setAccount(a);
+                Patient p = new Patient();
+                p.setAccDetail(ad);
+                p.setBackgroundDisease(rs.getBoolean("BackgroundDisease"));
+                p.setBloodType(rs.getString("Blood Type"));
+                lps.add(p);
             }
         } catch (SQLException ex) {
             Logger.getLogger(PatientDBContext.class.getName()).log(Level.SEVERE, null, ex);

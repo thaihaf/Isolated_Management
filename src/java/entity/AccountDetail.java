@@ -11,6 +11,7 @@ import java.sql.Date;
  * @author Mountain
  */
 public class AccountDetail {
+
     private Account account;
     private String fullName;
     private boolean gender;
@@ -19,7 +20,7 @@ public class AccountDetail {
     private String email;
     private String nation;
     private Date dateofbirth;
-    
+
     public Account getAccount() {
         return account;
     }
@@ -82,6 +83,7 @@ public class AccountDetail {
 
     public void setDateofbirth(Date dateofbirth) {
         this.dateofbirth = dateofbirth;
+
     }
 
 }

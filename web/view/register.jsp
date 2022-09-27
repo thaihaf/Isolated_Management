@@ -34,7 +34,7 @@
                     <div class="intro_title">welcome!</div>
                     <div class="intro_small">
                         Have account,
-                        <a href="../login">Login</a>
+                        <a href="login">Login</a>
                     </div>
                 </div>
 
@@ -99,54 +99,54 @@
                             </select>
                         </div>
 
-                        <!--                        <div class="group">
-                                                    <div class="item">
-                                                        <div class="item_title">Age</div>
-                                                        <select name="Age">
-                        <c:forEach var="i" begin="1" end="100">
-                            <option value="${i}">${i}</option>
-                        </c:forEach>
-                    </select>
-                    <div class="item_title">Date of Birth</div>
-                    <input type="date" value="" name="DateOfBirth">
-                </div>      -->
+                        <div class="group">
+                            <div class="item">
+<!--                                <div class="item_title">Age</div>
+                                <select name="Age">
+                                    <c:forEach var="i" begin="1" end="100">
+                                        <option value="${i}">${i}</option>
+                                    </c:forEach>
+                                </select>-->
+                                <div class="item_title">Date of Birth</div>
+                                <input required type="date" value="" name="DateOfBirth">
+                            </div>      
 
-                        <div class="item">
-                            <div class="item_title">Nationality</div>
+                            <div class="item">
+                                <div class="item_title">Nationality</div>
 
-                            <select name="Nation">
-                                <option value="Viet Nam">Việt Nam</option>
-                                <option value="Thailand">Thái Lan</option>
-                                <option value="Laos">Lào</option>
-                                <option value="Campuchia">Campuchia</option>
-                                <option value="Myanmar">Myanmar</option>
-                                <option value="China">Trung Quốc</option>
-                                <option value="Indonesia">Indonesia</option>
-                                <option value="Malaysia">Malaysia</option>
-                                <option value="Brunei">Brunei</option>
-                                <option value="Timor Leste">Đông Timo</option>
-                                <option value="Phillipine">Phillipine</option>
-                                <option value="Singapore">Singapore</option>
-                                <option value="Korea">Hàn Quốc</option>
-                                <option value="Japan">Nhật Bản</option>
-                                <option value="Germani">Đức</option>
-                                <option value="England">Anh</option>
-                                <option value="Russia">Nga</option>
-                                <option value="France">Pháp</option>
-                                <option value="USA">Mỹ</option>
-                            </select><br>
+                                <select name="Nation">
+                                    <option value="Viet Nam">Việt Nam</option>
+                                    <option value="Thailand">Thái Lan</option>
+                                    <option value="Laos">Lào</option>
+                                    <option value="Campuchia">Campuchia</option>
+                                    <option value="Myanmar">Myanmar</option>
+                                    <option value="China">Trung Quốc</option>
+                                    <option value="Indonesia">Indonesia</option>
+                                    <option value="Malaysia">Malaysia</option>
+                                    <option value="Brunei">Brunei</option>
+                                    <option value="Timor Leste">Đông Timo</option>
+                                    <option value="Phillipine">Phillipine</option>
+                                    <option value="Singapore">Singapore</option>
+                                    <option value="Korea">Hàn Quốc</option>
+                                    <option value="Japan">Nhật Bản</option>
+                                    <option value="Germani">Đức</option>
+                                    <option value="England">Anh</option>
+                                    <option value="Russia">Nga</option>
+                                    <option value="France">Pháp</option>
+                                    <option value="USA">Mỹ</option>
+                                </select><br>
+                            </div>
                         </div>
+
+                        <input type="submit" value="Register" class="btn_submit">
+                        </form>
                     </div>
 
-                    <input type="submit" value="Register" class="btn_submit">
-                </form>
+
             </div>
 
-
-        </div>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script>
 
                     //            function phonenumber(inputtxt)
                     //            {
@@ -217,7 +217,7 @@
                     }
 
                     $('#email').on('input', validate);
-        </script>  
+            </script>  
 
     </body>
 </html>

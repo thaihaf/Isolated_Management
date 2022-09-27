@@ -63,4 +63,8 @@ public class Room {
     public void setNurseManage(AccountDetail nurseManage) {
         this.nurseManage = nurseManage;
     }
+    @Override
+    public String toString() {
+        return "Room{" + "id=" + id + ", name=" + name + ", numOfBed=" + numOfBed + ", area=" + area + ", doctorManage=" + doctorManage + ", nurseManage=" + nurseManage + ", toString=" +  '}';
+    }
 }

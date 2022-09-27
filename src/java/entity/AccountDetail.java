@@ -19,7 +19,7 @@ public class AccountDetail {
     private String address;
     private String email;
     private String nation;
-    private Date dob;
+    private Date dateofbirth;
 
     public Account getAccount() {
         return account;
@@ -77,12 +77,13 @@ public class AccountDetail {
         this.nation = nation;
     }
 
-    public Date getDob() {
-        return dob;
+    public Date getDateofbirth() {
+        return dateofbirth;
     }
 
-    public void setDob(Date dob) {
-        this.dob = dob;
+    public void setDateofbirth(Date dateofbirth) {
+        this.dateofbirth = dateofbirth;
+
     }
 
 }

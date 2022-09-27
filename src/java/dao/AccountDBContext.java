@@ -6,6 +6,7 @@ package dao;
 
 import entity.Account;
 import entity.Role;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -68,10 +69,10 @@ public class AccountDBContext extends DBContext<Account> {
     }
 
     public Boolean Register(String ID, String fullName, Boolean gender, String phone, String address,
-            String email, String nation, String password) {
+            String email, String nation, String password, Date dateofbirth) {
         String sql ="insert into Account values (?, ?, 4)\n" 
                 +"insert into Account_Details values\n"
-                + "(?, ?, ?, ?, ?, ?, ?)";
+                + "(?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, ID);
@@ -83,6 +84,7 @@ public class AccountDBContext extends DBContext<Account> {
             stm.setString(7, address);
             stm.setString(8, email);
             stm.setString(9, nation);
+            stm.setDate(10, dateofbirth);
 //            stm.setString(1, ID);
 //            stm.setString(2, fullName);
 //            stm.setBoolean(3, gender);

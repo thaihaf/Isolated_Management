@@ -26,17 +26,17 @@ public class MedicalStaffDBContext extends DBContext<MedicalStaff> {
     }
 
     @Override
-    public void insert(MedicalStaff model) {
+    public boolean insert(MedicalStaff model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void update(MedicalStaff model) {
+    public boolean update(MedicalStaff model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void delete(MedicalStaff model) {
+    public boolean delete(MedicalStaff model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

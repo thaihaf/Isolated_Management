@@ -117,17 +117,17 @@ public class TestResultDBContext extends DBContext<TestResult> {
     }
 
     @Override
-    public void insert(TestResult model) {
+    public boolean insert(TestResult model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void update(TestResult model) {
+    public boolean update(TestResult model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void delete(TestResult model) {
+    public boolean delete(TestResult model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

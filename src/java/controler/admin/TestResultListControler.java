@@ -2,11 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controler;
+package controler.admin;
 
-import dao.AccountDetailDBContext;
 import dao.TestResultDBContext;
-import dao.TestTypeDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -18,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author Mountain
  */
-public class TestResultDetailControler extends HttpServlet {
+public class TestResultListControler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +35,10 @@ public class TestResultDetailControler extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet TestResultDetailControler</title>");
+            out.println("<title>Servlet PatientListControler</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet TestResultDetailControler at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PatientListControler at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,14 +57,9 @@ public class TestResultDetailControler extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        String id = request.getParameter("id");
         TestResultDBContext testDB = new TestResultDBContext();
-        TestTypeDBContext ttDB = new TestTypeDBContext();
-        AccountDetailDBContext accDB = new AccountDetailDBContext();
-        request.setAttribute("doctor", accDB.listDoctorAndNurse());
-        request.setAttribute("types", ttDB.list());
-        request.setAttribute("result", testDB.get(Integer.parseInt(id)));
-        request.getRequestDispatcher("testdetail.jsp").forward(request, response);
+        request.setAttribute("tests", testDB.list());
+        request.getRequestDispatcher("testresult.jsp").forward(request, response);
     }
 
     /**

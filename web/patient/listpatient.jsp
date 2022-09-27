@@ -24,48 +24,75 @@
              >
              <div class="container">
                  <!--Code vào đây là oke-->
-                 <form action="listpatient" method="get">
-                     Search Patient <input type="text" name="searchPatient">
-                     <input type="submit" value="Search"><br><br>
-                     <table class="table">
-                         <tr style="color: red;">
-                             <td>Username</td>
-                             <td>Full name</td>
-                             <td>Gender</td>
-                             <td>Date Of Birth</td>
-                             <td>Address</td>
-                             <td>National</td>
-                             <td>Phone</td>
-                             <td>Email</td>
-                             <td>Background Disease</td>
-                             <td>Blood Type</td>
-                         </tr>
-                     <c:forEach items="${requestScope.patients}" var="p">
-                         <tr>
-                             <td>${p.accDetail.account.userName}</td>
-                             <td>${p.accDetail.fullName}</td>
-                             <c:if test="${p.accDetail.gender eq 'True'}">
-                                 <td>Male</td>
-                             </c:if>
-                             <c:if test="${p.accDetail.gender eq 'False'}">
-                                 <td>Female</td>
-                             </c:if>
-                             <td>${p.accDetail.dob}</td>
-                             <td>${p.accDetail.address}</td>
-                             <td>${p.accDetail.nation}</td>
-                             <td>${p.accDetail.phone}</td>
-                             <td>${p.accDetail.email}</td>
-                             <c:if test="${p.backgroundDisease eq 'True'}">
-                                 <td>Yes</td>
-                             </c:if>
-                             <c:if test="${p.backgroundDisease eq 'False'}">
-                                 <td>No</td>
-                             </c:if>
-                             <td>${p.bloodType}</td>
-                         </tr>
-                     </c:forEach>
-                 </table>
+                 <form action="listpatient" method="POST">
+                     Username: <input type="text" name="id" value="${param.username}"/><br/><br>
+                 Full Name: <input type="text" name="name" value="${param.name}"/><br/><br>
+                 Gender: 
+                 <input 
+                     <c:if test="${param.gender eq 'male'}">
+                         checked="checked"
+                     </c:if>
+                     type="radio" name="gender" value="male" /> Male
+                 <input type="radio"
+                        <c:if test="${param.gender eq 'female'}">
+                            checked="checked"
+                        </c:if>
+                        name="gender" value="female"/> Female
+                 <input type="radio"
+                        <c:if test="${param.gender eq null or param.gender eq 'both'}">
+                            checked="checked"
+                        </c:if>
+                        name="gender" value="both"/> Both
+                 <br/><br>
+
+                 Date of birth:<br> From <input type="date" name="from" value="${param.from}"/>
+                 To <input type="date" name="to" value="${param.to}"/>
+                 <br/><br>
+                 <input type="submit" value="Search"/>
              </form>
+             <table class="table">
+                 <tr style="color: red;">
+                     <td>Username</td>
+                     <td>Full name</td>
+                     <td>Gender</td>
+                     <td>Date Of Birth</td>
+                     <td>Address</td>
+                     <td>National</td>
+                     <td>Phone</td>
+                     <td>Email</td>
+                     <td>Background Disease</td>
+                     <td>Blood Type</td>
+                     <td></td>
+                     <td></td>
+                 </tr>
+                 <c:forEach items="${requestScope.patients}" var="p">
+                     <tr>
+                         <td>${p.accDetail.account.userName}</td>
+                         <td>${p.accDetail.fullName}</td>
+                         <c:if test="${p.accDetail.gender eq 'True'}">
+                             <td>Male</td>
+                         </c:if>
+                         <c:if test="${p.accDetail.gender eq 'False'}">
+                             <td>Female</td>
+                         </c:if>
+                         <td>${p.accDetail.dateofbirth}</td>
+                         <td>${p.accDetail.address}</td>
+                         <td>${p.accDetail.nation}</td>
+                         <td>${p.accDetail.phone}</td>
+                         <td>${p.accDetail.email}</td>
+                         <c:if test="${p.backgroundDisease eq 'True'}">
+                             <td>Yes</td>
+                         </c:if>
+                         <c:if test="${p.backgroundDisease eq 'False'}">
+                             <td>No</td>
+                         </c:if>
+                         <td>${p.bloodType}</td>                  
+                         <td><a href="update?id=${p.accDetail.account.userName}" style="color: black">Create Test</a></td>    
+                         <td><a href="update?id=${p.accDetail.account.userName}" style="color: black">View Test</a></td>  
+                     </tr>
+                 </c:forEach>
+             </table>
+
          </div>
          <jsp:include page="../base/footer.jsp" />   
     </div>

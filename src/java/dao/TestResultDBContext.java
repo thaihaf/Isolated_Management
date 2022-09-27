@@ -138,8 +138,7 @@ public class TestResultDBContext extends DBContext<TestResult> {
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }      
     }
 
     @Override

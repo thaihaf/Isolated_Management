@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,11 +67,6 @@ public class ListPatientControler extends HttpServlet {
         if (acc == null) {
             request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
         } else {
-            ArrayList<Patient> patients = new ArrayList<>();
-            String username = acc.getUserName();
-            PatientDBContext pdb = new PatientDBContext();
-            patients = pdb.patientlist(username);
-            request.setAttribute("patients", patients);
             request.getRequestDispatcher("../patient/listpatient.jsp").forward(request, response);
         }
     }
@@ -86,7 +82,26 @@ public class ListPatientControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("patient/listpatient.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("account");
+        if (acc == null) {
+            request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
+        } else {
+            String raw_id = request.getParameter("id");
+            String raw_name = request.getParameter("name");
+            String raw_gender = request.getParameter("gender");
+            String raw_from = request.getParameter("from");
+            String raw_to = request.getParameter("to");
+            String id = (raw_id != null && raw_id.length() > 0) ? raw_id : null;
+            String name = (raw_name != null && raw_name.length() > 0) ? raw_name : null;
+            Boolean gender = (raw_gender != null && raw_gender.length() > 0 && !raw_gender.equals("both"))
+                    ? raw_gender.equals("male") : null;
+            Date from = (raw_from != null && raw_from.length() > 0) ? Date.valueOf(raw_from) : null;
+            Date to = (raw_to != null && raw_to.length() > 0) ? Date.valueOf(raw_to) : null;
+            PatientDBContext pdb = new PatientDBContext();
+            request.setAttribute("patients", pdb.filter(id, name, gender, from, to, acc.getUserName()));
+            request.getRequestDispatcher("../patient/listpatient.jsp").forward(request, response);
+        }
     }
 
     /**

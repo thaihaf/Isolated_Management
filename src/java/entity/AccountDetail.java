@@ -4,6 +4,8 @@
  */
 package entity;
 
+import java.sql.Date;
+
 /**
  *
  * @author Mountain
@@ -16,7 +18,8 @@ public class AccountDetail {
     private String address;
     private String email;
     private String nation;
-
+    private Date dateofbirth;
+    
     public Account getAccount() {
         return account;
     }
@@ -71,6 +74,14 @@ public class AccountDetail {
 
     public void setNation(String nation) {
         this.nation = nation;
+    }
+
+    public Date getDateofbirth() {
+        return dateofbirth;
+    }
+
+    public void setDateofbirth(Date dateofbirth) {
+        this.dateofbirth = dateofbirth;
     }
 
 }

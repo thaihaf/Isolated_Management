@@ -99,7 +99,7 @@ public class ListPatientControler extends HttpServlet {
             Date from = (raw_from != null && raw_from.length() > 0) ? Date.valueOf(raw_from) : null;
             Date to = (raw_to != null && raw_to.length() > 0) ? Date.valueOf(raw_to) : null;
             PatientDBContext pdb = new PatientDBContext();
-            request.setAttribute("patients", pdb.filter(id, name, gender, from, to, acc.getUserName()));
+            request.setAttribute("patients", pdb.filter(id, name, gender, from, to, acc.getUserName(), acc.getRole().getId()));
             request.getRequestDispatcher("../patient/listpatient.jsp").forward(request, response);
         }
     }

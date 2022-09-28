@@ -3,7 +3,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
 */
 /* 
-    Created on : Sep 25, 2022, 10:15:29 PM
+    Created on : Sep 27, 2022, 2:09:16 PM
     Author     : hapro
 */
 
@@ -69,13 +69,4 @@ ol.breadcrumb{
 }
 .info_icon{
     color: orange;
-}
-.table{
-    font-size: 1.3rem;
-}
-.guide_group{
-    margin-bottom: 1rem;
-}
-.form-control{
-    padding: 0.675rem 0.75rem !important;
 }

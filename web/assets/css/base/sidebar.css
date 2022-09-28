@@ -65,7 +65,7 @@ body.hideSidebar .sidebar{
     color : var(--white-color);
 }
 .sidebar_item_img{
-    width: 4rem
+    width: 3.5rem
 }
 .img_profile{
     padding: 0.3rem;

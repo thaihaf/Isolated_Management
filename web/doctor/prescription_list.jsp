@@ -19,8 +19,9 @@
     <body>
         <c:set var="role" value="${sessionScope.account.role}"/>
         <jsp:include page="../base/sidebar.jsp" />
-
         <jsp:include page="../base/header.jsp" />
+        <jsp:include page="../doctor/create_prescription.jsp" />
+
 
         <div class=<c:if test="${role.id eq 1}">"wrapper wrapperAdmin"</c:if>
              <c:if test="${role.id ne 1}">"wrapper wrapperUser"</c:if>
@@ -37,11 +38,11 @@
                          <div class="search">
                              <input 
                                  type="text" 
-                                 class="form-control" 
+                                 class="form-control input-group-lg" 
                                  placeholder="Search title ..." 
                                  aria-label="Search title..." 
                                  aria-describedby="basic-addon2">
-                             <button type="button" class="btn btn-info">Search</button>
+                             <button type="button" class="btn btn-info btn-lg">Search</button>
                          </div>
                      </div>
 
@@ -63,7 +64,13 @@
                                      <a class="dropdown-item" href="#">Amount</a>
                                  </div>
                              </div>
-                             <button type="button" class="btn btn-primary btn-add">Add new +</button>
+                             <button 
+                                 type="button" 
+                                 class="btn btn-primary btn-add" 
+                                 data-toggle="modal" 
+                                 data-target=".bd-example-modal-lg">
+                                 Add new +
+                             </button>
                          </div>
                      </div>
 
@@ -240,6 +247,20 @@
                                  </tr>
                              </tbody>
                          </table>
+
+                         <nav aria-label="Page navigation example">
+                             <ul class="pagination justify-content-center pagination-lg">
+                                 <li class="page-item disabled">
+                                     <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                 </li>
+                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                 <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                 <li class="page-item">
+                                     <a class="page-link" href="#">Next</a>
+                                 </li>
+                             </ul>
+                         </nav>
                      </div>
                  </div>
              <jsp:include page="../base/footer.jsp" />   

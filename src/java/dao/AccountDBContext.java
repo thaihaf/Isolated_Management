@@ -39,7 +39,7 @@ public class AccountDBContext extends DBContext<Account> {
                 account.setPassword(rs.getString("Password"));
                 Role role = new Role();
                 role.setId(rs.getInt("Role_ID"));
-                role.setRole(rs.getNString("Role"));
+                role.setRole(rs.getString("Role"));
                 account.setRole(role);
                 return account;
             }

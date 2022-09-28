@@ -4,7 +4,12 @@
  */
 package controler.nurse;
 
+import dao.AccountDetailDBContext;
+import dao.PatientDBContext;
 import dao.TestTypeDBContext;
+import entity.Account;
+import entity.AccountDetail;
+import entity.Patient;
 import entity.TestType;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +17,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 /**
@@ -46,23 +52,27 @@ public class CreateTestController extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<TestType> types = new ArrayList<>();
-        TestTypeDBContext tdb = new TestTypeDBContext();
-        types = tdb.list();
-        request.setAttribute("types", types);
-        request.getRequestDispatcher("createTest.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("account");
+        if (acc == null) {
+            request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
+        } else {
+            String username = request.getParameter("username");
+            ArrayList<TestType> types = new ArrayList<>();
+            TestTypeDBContext tdb = new TestTypeDBContext();
+            types = tdb.list();
+            request.setAttribute("types", types);
+            AccountDetailDBContext db = new AccountDetailDBContext();
+            AccountDetail info = db.get(username);
+            request.setAttribute("info", info);
+            PatientDBContext pdb = new PatientDBContext();
+            Patient patient = pdb.getInfo(username);
+            request.setAttribute("patient", patient);
+            request.getRequestDispatcher("../nurse/createTest.jsp").forward(request, response);
+        }
     }
 
     @Override

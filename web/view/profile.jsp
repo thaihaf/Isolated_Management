@@ -76,7 +76,7 @@
                          </div>
                          <div class="updateInfo_item right">
                              <div class="item_title">Date of birth</div>
-                             <input type="text" class="item_input" value="${info.dob}">
+                             <input type="text" class="item_input" value="${info.dateofbirth}">
                          </div>
                      </div>
 

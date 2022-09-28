@@ -75,8 +75,8 @@
                              <input type="text" class="item_input" value="${info.email}">
                          </div>
                          <div class="updateInfo_item right">
-                             <div class="item_title">age</div>
-                             <input type="text" class="item_input">
+                             <div class="item_title">Date of birth</div>
+                             <input type="text" class="item_input" value="${info.dob}">
                          </div>
                      </div>
 
@@ -122,7 +122,7 @@
                                  <input type="text" class="item_input" value="${patient.note}">
                              </div>
                          </div>
-                         Background Diseases:${patient.backgroundDisease}</br></br>
+
                      </c:if>
 
                      <c:if test="${role.id eq 4}">

@@ -2,13 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controler;
+package controler.nurse;
 
-import dao.AccountDetailDBContext;
-import dao.PatientDBContext;
-import dao.RoleDBContext;
-import entity.AccountDetail;
-import entity.Role;
+import dao.TestTypeDBContext;
+import entity.TestType;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,7 +14,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
-public class AccountListControler extends HttpServlet {
+/**
+ *
+ * @author Admin
+ */
+public class CreateTestController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +37,10 @@ public class AccountListControler extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DoctorListControler</title>");
+            out.println("<title>Servlet CreateTestController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DoctorListControler at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CreateTestController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,44 +58,19 @@ public class AccountListControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        AccountDetailDBContext accDB = new AccountDetailDBContext();
-        ArrayList<AccountDetail> accounts = accDB.list();
-        RoleDBContext roleDB = new RoleDBContext();
-        ArrayList<Role> roles = roleDB.list();
-        request.setAttribute("roles", roles);
-        request.setAttribute("accounts", accounts);
-        request.getRequestDispatcher("userlist.jsp").forward(request, response);
+        ArrayList<TestType> types = new ArrayList<>();
+        TestTypeDBContext tdb = new TestTypeDBContext();
+        types = tdb.list();
+        request.setAttribute("types", types);
+        request.getRequestDispatcher("createTest.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        int raw_role = Integer.parseInt(request.getParameter("role"));
-        String raw_criteria = request.getParameter("searchfield");
-        Integer role = raw_role > 0 ? raw_role : null;
-        String criteria = (raw_criteria != null && raw_criteria.trim().length() > 0) ? raw_criteria : null;
-        AccountDetailDBContext accDB = new AccountDetailDBContext();
-        RoleDBContext roleDB = new RoleDBContext();
-        request.setAttribute("roles", roleDB.list());
-        request.setAttribute("accounts", accDB.listByCriteria(role, criteria));
-        request.getRequestDispatcher("userlist.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

@@ -11,6 +11,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -81,19 +83,20 @@ public class RegisterControler extends HttpServlet {
         String Password = request.getParameter("Password");
         String confirm_password = request.getParameter("confirm_password");
         String Address = request.getParameter("Address");
+        Date DateOfBirth = Date.valueOf(request.getParameter("DateOfBirth"));
         AccountDBContext adb = new AccountDBContext();
-        String v = adb.checkUser(Username);
+        String checkUsername = adb.checkUser(Username);
         if (Password.equals(confirm_password)) {
 //            for(int i = 3; i <= 100; i++){
 //                request.setAttribute("age", i);
 //                request.getRequestDispatcher("view/login.jsp").forward(request, response);
 //            }
-            if (v == "exist") {
-                request.setAttribute("sign_exist_username", v);
+            if (checkUsername == "This username is existed") {
+                request.setAttribute("sign_exist_username", checkUsername);
                 request.getRequestDispatcher("view/register.jsp").forward(request, response);
             } else {
-                adb.Register(Username, Fullname, Gender, Phone, Address, Email, Nation, Password);
-                request.setAttribute("register_success", v);
+                adb.Register(Username, Fullname, Gender, Phone, Address, Email, Nation, Password, DateOfBirth);
+                request.setAttribute("register_success", checkUsername);
                 request.getRequestDispatcher("view/register.jsp").forward(request, response);
             }
         }else{

@@ -6,7 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<c:set var = "pId" scope = "session" value = ""/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,7 +31,7 @@
                          <nav aria-label="breadcrumb">
                              <ol class="breadcrumb">
                                  <li class="breadcrumb-item"><a href="/patient">Patient List</a></li>
-                                 <li class="breadcrumb-item active" aria-current="page">Patient Pressciption</li>
+                                 <li class="breadcrumb-item active" aria-current="page">Pressciption List</li>
                              </ol>
                          </nav>
 
@@ -83,168 +83,10 @@
                                      <th scope="col">Title</th>
                                      <th scope="col">Medicine</th>
                                      <th scope="col">Guide</th>
-                                     <th scope="col">Amount</th>
                                      <th scope="col">Status</th>
-                                     <th scope="col">Action</th>
                                  </tr>
                              </thead>
-                             <tbody>
-                                 <tr>
-                                     <th scope="row">1</th>
-                                     <td>9/9/2022</td>
-                                     <td>Abc</td>
-                                     <td>
-                                         <div class="info_group">
-                                             <button 
-                                                 type="button" 
-                                                 class="info_btn" 
-                                                 data-toggle="popover" 
-                                                 data-placement="top"  
-                                                 title="Popover title" 
-                                                 data-content="And here's some amazing content. It's very engaging. Right?">
-                                                 <ion-icon 
-                                                     name="information-circle" 
-                                                     class="info_icon"></ion-icon>
-                                             </button> 
-                                             Thuốc A - 10 viên
-                                         </div>
-                                         <div class="info_group">
-                                             <button 
-                                                 type="button" 
-                                                 class="info_btn" 
-                                                 data-toggle="popover" 
-                                                 data-placement="top"  
-                                                 title="Popover title" 
-                                                 data-content="And here's some amazing content. It's very engaging. Right?">
-                                                 <ion-icon 
-                                                     name="information-circle" 
-                                                     class="info_icon"></ion-icon>
-                                             </button> 
-                                             Thuốc A - 10 viên
-                                         </div>
-                                         <div class="info_group">
-                                             <button 
-                                                 type="button" 
-                                                 class="info_btn" 
-                                                 data-toggle="popover" 
-                                                 data-placement="top"  
-                                                 title="Popover title" 
-                                                 data-content="And here's some amazing content. It's very engaging. Right?">
-                                                 <ion-icon 
-                                                     name="information-circle" 
-                                                     class="info_icon"></ion-icon>
-                                             </button> 
-                                             Thuốc A - 10 viên
-                                         </div>
-                                         <div class="info_group">
-                                             <button 
-                                                 type="button" 
-                                                 class="info_btn" 
-                                                 data-toggle="popover" 
-                                                 data-placement="top"  
-                                                 title="Popover title" 
-                                                 data-content="And here's some amazing content. It's very engaging. Right?">
-                                                 <ion-icon 
-                                                     name="information-circle" 
-                                                     class="info_icon"></ion-icon>
-                                             </button> 
-                                             Thuốc A - 10 viên
-                                         </div>
-                                     </td>
-                                     <td>
-                                         <div class="guide_group">Thuốc 1 uống sau bữa ăn, mỗi lần 2 viên</div>
-                                         <div class="guide_group">Thuốc 2 uống sau bữa ăn, mỗi lần 2 viên</div>
-                                         <div class="guide_group">Thuốc 3 uống sau bữa ăn, mỗi lần 2 viên</div>
-                                         <div class="guide_group">Thuốc 4 uống sau bữa ăn, mỗi lần 2 viên</div>
-                                     </td>
-                                     <td>210 vnđ</td>
-                                     <td>pending</td>
-                                     <td>Delete</td>
-                                 </tr>
-                                 <tr>
-                                     <th scope="row">2</th>
-                                     <td>5/9/2022</td>
-                                     <td>Abc</td>
-                                     <td>
-                                         <div class="info_group">
-                                             <button 
-                                                 type="button" 
-                                                 class="info_btn" 
-                                                 data-toggle="popover" 
-                                                 data-placement="top"  
-                                                 title="Popover title" 
-                                                 data-content="And here's some amazing content. It's very engaging. Right?">
-                                                 <ion-icon 
-                                                     name="information-circle" 
-                                                     class="info_icon"></ion-icon>
-                                             </button> 
-                                             Thuốc A - 10 viên
-                                         </div> 
-                                         <div class="info_group">
-                                             <button 
-                                                 type="button" 
-                                                 class="info_btn" 
-                                                 data-toggle="popover" 
-                                                 data-placement="top"  
-                                                 title="Popover title" 
-                                                 data-content="And here's some amazing content. It's very engaging. Right?">
-                                                 <ion-icon 
-                                                     name="information-circle" 
-                                                     class="info_icon"></ion-icon>
-                                             </button> 
-                                             Thuốc A - 10 viên
-                                         </div>
-                                     </td>
-                                     <td>
-                                         <div class="guide_group">Thuốc 1 uống sau bữa ăn, mỗi lần 2 viên</div>
-                                         <div class="guide_group">Thuốc 2 uống sau bữa ăn, mỗi lần 2 viên</div>
-                                     </td>
-                                     <td>100 vnđ</td>
-                                     <td>done</td>
-                                     <td>Delete</td>
-                                 </tr>
-                                 <tr>
-                                     <th scope="row">3</th>
-                                     <td>1/9/2022</td>
-                                     <td>Abc</td>
-                                     <td>
-                                         <div class="info_group">
-                                             <button 
-                                                 type="button" 
-                                                 class="info_btn" 
-                                                 data-toggle="popover" 
-                                                 data-placement="top"  
-                                                 title="Popover title" 
-                                                 data-content="And here's some amazing content. It's very engaging. Right?">
-                                                 <ion-icon 
-                                                     name="information-circle" 
-                                                     class="info_icon"></ion-icon>
-                                             </button> 
-                                             Thuốc A - 10 viên
-                                         </div>
-                                         <div class="info_group">
-                                             <button 
-                                                 type="button" 
-                                                 class="info_btn" 
-                                                 data-toggle="popover" 
-                                                 data-placement="top"  
-                                                 title="Popover title" 
-                                                 data-content="And here's some amazing content. It's very engaging. Right?">
-                                                 <ion-icon 
-                                                     name="information-circle" 
-                                                     class="info_icon"></ion-icon>
-                                             </button> 
-                                             Thuốc A - 10 viên
-                                         </div>
-                                     </td>
-                                     <td>
-                                         <div class="guide_group">Thuốc 1 uống sau bữa ăn, mỗi lần 2 viên</div>
-                                         <div class="guide_group">Thuốc 2 uống sau bữa ăn, mỗi lần 2 viên</div>
-                                     </td>
-                                     <td>100 vnđ</td>
-                                     <td>done</td>
-                                     <td>Delete</td>
-                                 </tr>
+                             <tbody id="bodyTable">
                              </tbody>
                          </table>
 
@@ -272,12 +114,32 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script>
             $(function () {
                 $('[data-toggle="popover"]').popover({
                     trigger: 'focus'
                 });
             });
+
+            function getListPerscription() {
+                $.ajax({
+                    url: "/base/prescription-list",
+                    type: "get", //send it through get method
+//                    data: {
+//                        ajaxid: 4,
+//                        UserID: UserID,
+//                        EmailAddress: EmailAddress
+//                    },
+                    success: function (data) {
+                        $("#bodyTable").add(data);
+                    },
+                    error: function (xhr) {
+                        //Do Something to handle error
+                    }
+                });
+            }
+
         </script>
     </body>
 </html>

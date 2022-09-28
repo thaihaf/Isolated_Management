@@ -64,7 +64,7 @@
 
                           <!--// nurse-->
                           <c:if test="${role.id eq 3}">
-                              <a class="sidebar_item" href="nurseManagerPatient">
+                              <a class="sidebar_item" href="listpatient">
                                   <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
                                   <div>Patient</div>
                               </a>

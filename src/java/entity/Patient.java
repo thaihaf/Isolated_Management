@@ -9,11 +9,13 @@ package entity;
  * @author Admin
  */
 public class Patient {
+
     private Account account;
     private Room room;
     private String note;
     private boolean backgroundDisease;
     private String bloodType;
+    private AccountDetail accDetail;
 
     public Account getAccount() {
         return account;
@@ -54,4 +56,13 @@ public class Patient {
     public void setBloodType(String bloodType) {
         this.bloodType = bloodType;
     }
+
+    public AccountDetail getAccDetail() {
+        return accDetail;
+    }
+
+    public void setAccDetail(AccountDetail accDetail) {
+        this.accDetail = accDetail;
+    }
+
 }

@@ -34,7 +34,7 @@ public class TestTypeDBContext extends DBContext<TestType> {
                 testTypes.add(tt);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(TestTypeDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return testTypes;
     }

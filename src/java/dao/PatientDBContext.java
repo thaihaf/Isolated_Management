@@ -206,14 +206,9 @@ public class PatientDBContext extends DBContext<Patient> {
                 return patient;
             }
         } catch (SQLException ex) {
-//            Logger.getLogger(DoctorDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PatientDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-    }
-
-    @Override
-    public ArrayList<Patient> list() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

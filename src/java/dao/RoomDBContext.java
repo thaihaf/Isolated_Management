@@ -106,7 +106,7 @@ public class RoomDBContext extends DBContext<Room> {
     }
 
     @Override
-    public boolean insert(Room model) {
+    public void insert(Room model) {
         try {
             String sql = "INSERT INTO [Room]\n"
                     + "           ([Name]\n"
@@ -130,15 +130,13 @@ public class RoomDBContext extends DBContext<Room> {
             stm.setString(5, model.getNurseManage().getAccount().getUserName());
             stm.setBoolean(6, model.isAvailable());
             stm.executeUpdate();
-            return true;
         } catch (SQLException ex) {
             Logger.getLogger(RoomDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
     }
 
     @Override
-    public boolean update(Room model) {
+    public void update(Room model) {
         try {
             String sql = "UPDATE [Room]\n"
                     + "   SET [Name] = ?\n"
@@ -157,15 +155,13 @@ public class RoomDBContext extends DBContext<Room> {
             stm.setBoolean(6, model.isAvailable());
             stm.setInt(7, model.getId());
             stm.executeUpdate();
-            return true;
         } catch (SQLException ex) {
             Logger.getLogger(RoomDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
     }
 
     @Override
-    public boolean delete(Room model) {
+    public void delete(Room model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

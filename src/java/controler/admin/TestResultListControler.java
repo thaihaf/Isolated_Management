@@ -2,22 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controler;
+package controler.admin;
 
-import dao.AccountDetailDBContext;
-import dao.PatientDBContext;
-import dao.RoleDBContext;
-import entity.AccountDetail;
-import entity.Role;
+import dao.TestResultDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
-public class AccountListControler extends HttpServlet {
+/**
+ *
+ * @author Mountain
+ */
+public class TestResultListControler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +35,10 @@ public class AccountListControler extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DoctorListControler</title>");
+            out.println("<title>Servlet PatientListControler</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DoctorListControler at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PatientListControler at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,13 +57,9 @@ public class AccountListControler extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        AccountDetailDBContext accDB = new AccountDetailDBContext();
-        ArrayList<AccountDetail> accounts = accDB.list();
-        RoleDBContext roleDB = new RoleDBContext();
-        ArrayList<Role> roles = roleDB.list();
-        request.setAttribute("roles", roles);
-        request.setAttribute("accounts", accounts);
-        request.getRequestDispatcher("userlist.jsp").forward(request, response);
+        TestResultDBContext testDB = new TestResultDBContext();
+        request.setAttribute("tests", testDB.list());
+        request.getRequestDispatcher("testresult.jsp").forward(request, response);
     }
 
     /**
@@ -78,16 +73,7 @@ public class AccountListControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        int raw_role = Integer.parseInt(request.getParameter("role"));
-        String raw_criteria = request.getParameter("searchfield");
-        Integer role = raw_role > 0 ? new Integer(raw_role) : null;
-        String criteria = (raw_criteria != null && raw_criteria.trim().length() > 0) ? new String(raw_criteria) : null;
-        AccountDetailDBContext accDB = new AccountDetailDBContext();
-        RoleDBContext roleDB = new RoleDBContext();
-        request.setAttribute("roles", roleDB.list());
-        request.setAttribute("accounts", accDB.listByCriteria(role, criteria));
-        request.getRequestDispatcher("userlist.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

@@ -4,21 +4,25 @@
  */
 package controler.patient;
 
-import dao.AccountDBContext;
+import dao.PatientDBContext;
+import entity.Account;
+import entity.Patient;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.Date;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Admin
  */
-public class RegisterControler extends HttpServlet {
+public class ListPatientControler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +41,10 @@ public class RegisterControler extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RegisterControler</title>");
+            out.println("<title>Servlet DoctorListControler</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RegisterControler at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DoctorListControler at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,8 +62,13 @@ public class RegisterControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        request.getRequestDispatcher("view/register.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("account");
+        if (acc == null) {
+            request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("../patient/listpatient.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -73,35 +82,25 @@ public class RegisterControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        String Fullname = request.getParameter("Fullname");
-        Boolean Gender = Boolean.parseBoolean(request.getParameter("Gender"));
-        String Nation = request.getParameter("Nation");
-        String Phone = request.getParameter("Phone");
-        String Email = request.getParameter("Email");
-        String Username = request.getParameter("Username");
-        String Password = request.getParameter("Password");
-        String confirm_password = request.getParameter("confirm_password");
-        String Address = request.getParameter("Address");
-        Date DateOfBirth = Date.valueOf(request.getParameter("DateOfBirth"));
-        AccountDBContext adb = new AccountDBContext();
-        String checkUsername = adb.checkUser(Username);
-        if (Password.equals(confirm_password)) {
-//            for(int i = 3; i <= 100; i++){
-//                request.setAttribute("age", i);
-//                request.getRequestDispatcher("view/login.jsp").forward(request, response);
-//            }
-            if (checkUsername == "This username is existed") {
-                request.setAttribute("sign_exist_username", checkUsername);
-                request.getRequestDispatcher("view/register.jsp").forward(request, response);
-            } else {
-                adb.Register(Username, Fullname, Gender, Phone, Address, Email, Nation, Password, DateOfBirth);
-                request.setAttribute("register_success", checkUsername);
-                request.getRequestDispatcher("view/register.jsp").forward(request, response);
-            }
-        }else{
-            request.setAttribute("mess", "confirm password is not same password");
-            request.getRequestDispatcher("view/register.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("account");
+        if (acc == null) {
+            request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
+        } else {
+            String raw_id = request.getParameter("id");
+            String raw_name = request.getParameter("name");
+            String raw_gender = request.getParameter("gender");
+            String raw_from = request.getParameter("from");
+            String raw_to = request.getParameter("to");
+            String id = (raw_id != null && raw_id.length() > 0) ? raw_id : null;
+            String name = (raw_name != null && raw_name.length() > 0) ? raw_name : null;
+            Boolean gender = (raw_gender != null && raw_gender.length() > 0 && !raw_gender.equals("both"))
+                    ? raw_gender.equals("male") : null;
+            Date from = (raw_from != null && raw_from.length() > 0) ? Date.valueOf(raw_from) : null;
+            Date to = (raw_to != null && raw_to.length() > 0) ? Date.valueOf(raw_to) : null;
+            PatientDBContext pdb = new PatientDBContext();
+            request.setAttribute("patients", pdb.filter(id, name, gender, from, to, acc.getUserName(), acc.getRole().getId()));
+            request.getRequestDispatcher("../patient/listpatient.jsp").forward(request, response);
         }
     }
 

@@ -27,6 +27,7 @@ public abstract class DBContext<T> {
     
      public DBContext() {
         try {
+
             String user = "sa";
             String pass = "kieuanhson02";
             String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=SWP391";

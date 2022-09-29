@@ -6,6 +6,7 @@ package dao;
 
 import entity.Account;
 import entity.Role;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,7 +39,7 @@ public class AccountDBContext extends DBContext<Account> {
                 account.setPassword(rs.getString("Password"));
                 Role role = new Role();
                 role.setId(rs.getInt("Role_ID"));
-                role.setRole(rs.getNString("Role"));
+                role.setRole(rs.getString("Role"));
                 account.setRole(role);
                 return account;
             }
@@ -68,21 +69,31 @@ public class AccountDBContext extends DBContext<Account> {
     }
 
     public Boolean Register(String ID, String fullName, Boolean gender, String phone, String address,
-            String email, String nation, String password) {
-        String sql = "insert into Account_Details values\n"
-                + "(?, ?, ?, ?, ?, ?, ?)\n"
-                + "insert into Account values (?, ?, 4)";
+            String email, String nation, String password, Date dateofbirth) {
+        String sql ="insert into Account values (?, ?, 4)\n" 
+                +"insert into Account_Details values\n"
+                + "(?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, ID);
-            stm.setString(2, fullName);
-            stm.setBoolean(3, gender);
-            stm.setString(4, phone);
-            stm.setString(5, address);
-            stm.setString(6, email);
-            stm.setString(7, nation);
-            stm.setString(8, ID);
-            stm.setString(9, password);
+            stm.setString(2, password);
+            stm.setString(3, ID);
+            stm.setString(4, fullName);
+            stm.setBoolean(5, gender);
+            stm.setString(6, phone);
+            stm.setString(7, address);
+            stm.setString(8, email);
+            stm.setString(9, nation);
+            stm.setDate(10, dateofbirth);
+//            stm.setString(1, ID);
+//            stm.setString(2, fullName);
+//            stm.setBoolean(3, gender);
+//            stm.setString(4, phone);
+//            stm.setString(5, address);
+//            stm.setString(6, email);
+//            stm.setString(7, nation);
+//            stm.setString(8, ID);
+//            stm.setString(9, password);
             stm.executeQuery();
             return true;
         } catch (SQLException ex) {

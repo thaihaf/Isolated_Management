@@ -44,19 +44,18 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
     
     public AccountDetail get(String user) {
         try {
-            String sql = "SELECT [Username]\n"
-                    + "      ,[Role].[ID]\n"
-                    + "      ,[Role].[Role]\n"
-                    + "	  ,[Fullname]\n"
-                    + "	  ,[Gender]\n"
-                    + "	  ,[Phone]\n"
-                    + "	  ,[Address]\n"
-                    + "	  ,[Email]\n"
-                    + "	  ,[Nation]\n"
-                    + "  FROM [Account]\n"
-                    + "  INNER JOIN [Role] ON [Account].[Role_ID] = [Role].[ID]\n"
-                    + "  INNER JOIN [Account_Details] ON [Account].[Username] = [Account_Details].[ID]\n"
-                    + "  WHERE [Account].[Username] = ?";
+            String sql = "SELECT [Username]      ,[Role].[ID]\n"
+                    + "                          ,[Role].[Role]\n"
+                    + "                    	  ,[Fullname]\n"
+                    + "                    	  ,[Gender]\n"
+                    + "                   	  ,[Phone]\n"
+                    + "                    	  ,[Address]\n"
+                    + "                    	  ,[Email]\n"
+                    + "                    	  ,[Nation],DateOfBirth\n"
+                    + "                      FROM [Account]\n"
+                    + "                      INNER JOIN [Role] ON [Account].[Role_ID] = [Role].[ID]\n"
+                    + "                     INNER JOIN [Account_Details] ON [Account].[Username] = [Account_Details].[ID]\n"
+                    + "                      WHERE [Account].[Username] = ?";
             PreparedStatement stm = connection.prepareCall(sql);
             stm.setString(1, user);
             ResultSet rs = stm.executeQuery();
@@ -75,10 +74,10 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
                 acc.setAddress(rs.getNString("Address"));
                 acc.setEmail(rs.getNString("Email"));
                 acc.setNation(rs.getNString("Nation"));
+                acc.setDateofbirth(rs.getDate("DateOfBirth"));
                 return acc;
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
         }
         return null;
     }

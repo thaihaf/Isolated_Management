@@ -33,7 +33,7 @@ public class RoomDBContext extends DBContext<Room> {
                     + "      ,ad1.[Fullname] AS DoctorFullName\n"
                     + "      ,ad2.[Fullname] AS NurseFullName\n"
                     + "      ,[Available]\n"
-                    + "  FROM [dbo].[Room]\n"
+                    + "  FROM [Room]\n"
                     + "  INNER JOIN [Area] ON [Area].[ID] = [Room].[Area_ID]\n"
                     + "  INNER JOIN [Account_Details] ad1 ON ad1.[ID] = [Room].[DoctorManage]\n"
                     + "  INNER JOIN [Account_Details] ad2 ON ad2.[ID] = [Room].[NurseManage]";
@@ -73,7 +73,7 @@ public class RoomDBContext extends DBContext<Room> {
                     + "      ,[DoctorManage]\n"
                     + "      ,[NurseManage]\n"
                     + "      ,[Available]\n"
-                    + "  FROM [dbo].[Room]\n"
+                    + "  FROM [Room]\n"
                     + "  WHERE [ID] = ?";
             PreparedStatement stm = connection.prepareCall(sql);
             stm.setInt(1, id);
@@ -107,7 +107,34 @@ public class RoomDBContext extends DBContext<Room> {
 
     @Override
     public boolean insert(Room model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "INSERT INTO [Room]\n"
+                    + "           ([Name]\n"
+                    + "           ,[NumOfBed]\n"
+                    + "           ,[Area_ID]\n"
+                    + "           ,[DoctorManage]\n"
+                    + "           ,[NurseManage]\n"
+                    + "           ,[Available])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?)";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setString(1, model.getName());
+            stm.setInt(2, model.getNumOfBed());
+            stm.setInt(3, model.getArea().getId());
+            stm.setString(4, model.getDoctorManage().getAccount().getUserName());
+            stm.setString(5, model.getNurseManage().getAccount().getUserName());
+            stm.setBoolean(6, model.isAvailable());
+            stm.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override
@@ -144,7 +171,7 @@ public class RoomDBContext extends DBContext<Room> {
 
     public boolean switchStatus(int id, boolean status) {
         try {
-            String sql = "UPDATE [dbo].[Room]\n"
+            String sql = "UPDATE [Room]\n"
                     + "   SET [Available] = ?\n"
                     + " WHERE [Room].[ID] = ?";
             PreparedStatement stm = connection.prepareCall(sql);

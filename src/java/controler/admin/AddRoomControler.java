@@ -2,23 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controler.patient;
+package controler.admin;
 
-import dao.AccountDBContext;
+import dao.AccountDetailDBContext;
+import dao.AreaDBContext;
+import dao.RoomDBContext;
+import entity.Account;
+import entity.AccountDetail;
+import entity.Area;
+import entity.Room;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Date;
-import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
- * @author Admin
+ * @author Mountain
  */
-public class RegisterControler extends HttpServlet {
+public class AddRoomControler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +42,10 @@ public class RegisterControler extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RegisterControler</title>");
+            out.println("<title>Servlet AddRoomControler</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RegisterControler at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddRoomControler at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,8 +63,14 @@ public class RegisterControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        request.getRequestDispatcher("view/register.jsp").forward(request, response);
+        //processRequest(request, response);
+        AreaDBContext areaDB = new AreaDBContext();
+        ArrayList<Area> areas = areaDB.list();
+        AccountDetailDBContext accDB = new AccountDetailDBContext();
+        ArrayList<AccountDetail> docAndNurseList = accDB.listDoctorAndNurse();
+        request.setAttribute("areas", areas);
+        request.setAttribute("medical", docAndNurseList);
+        request.getRequestDispatcher("newroom.jsp").forward(request, response);
     }
 
     /**
@@ -73,36 +84,37 @@ public class RegisterControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        String Fullname = request.getParameter("Fullname");
-        Boolean Gender = Boolean.parseBoolean(request.getParameter("Gender"));
-        String Nation = request.getParameter("Nation");
-        String Phone = request.getParameter("Phone");
-        String Email = request.getParameter("Email");
-        String Username = request.getParameter("Username");
-        String Password = request.getParameter("Password");
-        String confirm_password = request.getParameter("confirm_password");
-        String Address = request.getParameter("Address");
-        Date DateOfBirth = Date.valueOf(request.getParameter("DateOfBirth"));
-        AccountDBContext adb = new AccountDBContext();
-        String checkUsername = adb.checkUser(Username);
-        if (Password.equals(confirm_password)) {
-//            for(int i = 3; i <= 100; i++){
-//                request.setAttribute("age", i);
-//                request.getRequestDispatcher("view/login.jsp").forward(request, response);
-//            }
-            if (checkUsername == "This username is existed") {
-                request.setAttribute("sign_exist_username", checkUsername);
-                request.getRequestDispatcher("view/register.jsp").forward(request, response);
-            } else {
-                adb.Register(Username, Fullname, Gender, Phone, Address, Email, Nation, Password, DateOfBirth);
-                request.setAttribute("register_success", checkUsername);
-                request.getRequestDispatcher("view/register.jsp").forward(request, response);
-            }
-        }else{
-            request.setAttribute("mess", "confirm password is not same password");
-            request.getRequestDispatcher("view/register.jsp").forward(request, response);
+        //processRequest(request, response);
+        String name = request.getParameter("name");
+        int numOfBed = Integer.parseInt(request.getParameter("numOfBed"));
+        int aid = Integer.parseInt(request.getParameter("area"));
+        String doc = request.getParameter("doctor");
+        String nur = request.getParameter("nurse");
+        boolean status = Boolean.parseBoolean(request.getParameter("status"));
+        Room r = new Room();
+        r.setName(name);
+        r.setNumOfBed(numOfBed);
+        Area a = new Area();
+        a.setId(aid);
+        r.setArea(a);
+        AccountDetail docDetail = new AccountDetail();
+        Account docAcc = new Account();
+        docAcc.setUserName(doc);
+        docDetail.setAccount(docAcc);
+        r.setDoctorManage(docDetail);
+        AccountDetail nurDetail = new AccountDetail();
+        Account nurAcc = new Account();
+        nurAcc.setUserName(nur);
+        nurDetail.setAccount(nurAcc);
+        r.setNurseManage(nurDetail);
+        r.setAvailable(status);
+        RoomDBContext roomDB = new RoomDBContext();
+        if (roomDB.insert(r)) {
+            request.setAttribute("mess", "Insert room successfully.");
+        } else {
+            request.setAttribute("mess", "Insert room failed.");
         }
+        request.getRequestDispatcher("room_response.jsp").forward(request, response);
     }
 
     /**

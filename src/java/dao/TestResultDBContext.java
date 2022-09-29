@@ -117,8 +117,28 @@ public class TestResultDBContext extends DBContext<TestResult> {
     }
 
     @Override
-    public boolean insert(TestResult model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void insert(TestResult model) {
+        try {
+            String sql = "INSERT INTO [dbo].[Test_Result]\n"
+                    + "           ([Patient_ID]\n"
+                    + "           ,[Result]\n"
+                    + "           ,[TestType_ID]\n"
+                    + "           ,[TestTime]\n"
+                    + "           ,[Person_Test]\n"
+                    + "           ,[Status])\n"
+                    + "     VALUES\n"
+                    + "           (?,?,?,?,?,?)";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, model.getPatientAccount().getAccount().getUserName());
+            stm.setBoolean(2, model.isResult());
+            stm.setInt(3, model.getTestType().getId());
+            stm.setTimestamp(4, model.getTestTime());
+            stm.setString(5, model.getPersonTest().getAccount().getUserName());
+            stm.setBoolean(6, true);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

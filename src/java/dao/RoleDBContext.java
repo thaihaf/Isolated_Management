@@ -30,7 +30,7 @@ public class RoleDBContext extends DBContext<Role> {
                 roles.add(r);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(RoleDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return roles;
     }

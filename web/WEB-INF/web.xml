@@ -28,6 +28,10 @@
         <servlet-name>CreateTestController</servlet-name>
         <servlet-class>controler.nurse.CreateTestController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PrescriptionList</servlet-name>
+        <servlet-class>controller.doctor.PrescriptionListController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -67,6 +71,10 @@
     <servlet-mapping>
         <servlet-name>CreateTestController</servlet-name>
         <url-pattern>/base/createTest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PrescriptionList</servlet-name>
+        <url-pattern>/base/prescription-list</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

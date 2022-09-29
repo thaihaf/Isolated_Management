@@ -5,26 +5,29 @@
 package entity;
 
 import java.sql.Date;
+import java.util.List;
 
 /**
  *
  * @author hapro
  */
 public class Prescription {
+
     private int id;
     private String patientID;
     private String doctorID;
-    private Date prescriptionDate;
+    private String prescriptionDate;
     private String title;
     private String guide;
     private int status;
-    private Medicine medicine;
-    private PrescriptionMedicine prescriptionMedicine;
+    private List<Medicine> medicines;
+    private List<PrescriptionMedicine> prescriptionMedicines;
+    private List<MedicineType> medicineTypes;
 
     public Prescription() {
     }
 
-    public Prescription(int id, String patientID, String doctorID, Date prescriptionDate, String title, String guide, int status, Medicine medicine, PrescriptionMedicine prescriptionMedicine) {
+    public Prescription(int id, String patientID, String doctorID, String prescriptionDate, String title, String guide, int status, List<Medicine> medicines, List<PrescriptionMedicine> prescriptionMedicines, List<MedicineType> medicineTypes) {
         this.id = id;
         this.patientID = patientID;
         this.doctorID = doctorID;
@@ -32,8 +35,9 @@ public class Prescription {
         this.title = title;
         this.guide = guide;
         this.status = status;
-        this.medicine = medicine;
-        this.prescriptionMedicine = prescriptionMedicine;
+        this.medicines = medicines;
+        this.prescriptionMedicines = prescriptionMedicines;
+        this.medicineTypes = medicineTypes;
     }
 
     public int getId() {
@@ -60,11 +64,11 @@ public class Prescription {
         this.doctorID = doctorID;
     }
 
-    public Date getPrescriptionDate() {
+    public String getPrescriptionDate() {
         return prescriptionDate;
     }
 
-    public void setPrescriptionDate(Date prescriptionDate) {
+    public void setPrescriptionDate(String prescriptionDate) {
         this.prescriptionDate = prescriptionDate;
     }
 
@@ -92,26 +96,29 @@ public class Prescription {
         this.status = status;
     }
 
-    public Medicine getMedicine() {
-        return medicine;
+    public List<Medicine> getMedicines() {
+        return medicines;
     }
 
-    public void setMedicine(Medicine medicine) {
-        this.medicine = medicine;
+    public void setMedicines(List<Medicine> medicines) {
+        this.medicines = medicines;
     }
 
-    public PrescriptionMedicine getPrescriptionMedicine() {
-        return prescriptionMedicine;
+    public List<PrescriptionMedicine> getPrescriptionMedicines() {
+        return prescriptionMedicines;
     }
 
-    public void setPrescriptionMedicine(PrescriptionMedicine prescriptionMedicine) {
-        this.prescriptionMedicine = prescriptionMedicine;
+    public void setPrescriptionMedicines(List<PrescriptionMedicine> prescriptionMedicines) {
+        this.prescriptionMedicines = prescriptionMedicines;
     }
 
-    @Override
-    public String toString() {
-        return "Prescription{" + "id=" + id + ", patientID=" + patientID + ", doctorID=" + doctorID + ", prescriptionDate=" + prescriptionDate + ", title=" + title + ", guide=" + guide + ", status=" + status + ", medicine=" + medicine + ", prescriptionMedicine=" + prescriptionMedicine + '}';
+    public List<MedicineType> getMedicineTypes() {
+        return medicineTypes;
     }
-    
+
+    public void setMedicineTypes(List<MedicineType> medicineTypes) {
+        this.medicineTypes = medicineTypes;
+    }
+
     
 }

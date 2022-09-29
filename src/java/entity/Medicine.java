@@ -11,18 +11,19 @@ import java.sql.Date;
  * @author hapro
  */
 public class Medicine {
+
     private int shipmentID;
     private String name;
     private int quantity;
     private String description;
-    private Date dateOfManufacture;
-    private Date expirationDate;
+    private String dateOfManufacture;
+    private String expirationDate;
     private int medicineTypeID;
 
     public Medicine() {
     }
 
-    public Medicine(int shipmentID, String name, int quantity, String description, Date dateOfManufacture, Date expirationDate, int medicineTypeID) {
+    public Medicine(int shipmentID, String name, int quantity, String description, String dateOfManufacture, String expirationDate, int medicineTypeID) {
         this.shipmentID = shipmentID;
         this.name = name;
         this.quantity = quantity;
@@ -64,19 +65,19 @@ public class Medicine {
         this.description = description;
     }
 
-    public Date getDateOfManufacture() {
+    public String getDateOfManufacture() {
         return dateOfManufacture;
     }
 
-    public void setDateOfManufacture(Date dateOfManufacture) {
+    public void setDateOfManufacture(String dateOfManufacture) {
         this.dateOfManufacture = dateOfManufacture;
     }
 
-    public Date getExpirationDate() {
+    public String getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }
 
@@ -88,10 +89,4 @@ public class Medicine {
         this.medicineTypeID = medicineTypeID;
     }
 
-    @Override
-    public String toString() {
-        return "Medicine{" + "shipmentID=" + shipmentID + ", name=" + name + ", quantity=" + quantity + ", description=" + description + ", dateOfManufacture=" + dateOfManufacture + ", expirationDate=" + expirationDate + ", medicineTypeID=" + medicineTypeID + '}';
-    }
-    
-    
 }

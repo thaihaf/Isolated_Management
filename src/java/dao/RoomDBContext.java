@@ -54,7 +54,7 @@ public class RoomDBContext extends DBContext<Room> {
                 r.setDoctorManage(doc);
                 nur.setFullName(rs.getNString("NurseFullName"));
                 r.setNurseManage(nur);
-                r.setAvailable(rs.getBoolean("Available"));
+//                r.setAvailable(rs.getBoolean("Available"));
                 rooms.add(r);
             }
         } catch (SQLException ex) {

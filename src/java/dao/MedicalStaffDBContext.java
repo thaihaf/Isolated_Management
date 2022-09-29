@@ -67,7 +67,7 @@ public class MedicalStaffDBContext extends DBContext<MedicalStaff> {
         }
         return null;
     }
-    
+
     public MedicalStaff getInfo(String username) {
         try {
             String sql

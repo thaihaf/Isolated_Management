@@ -60,6 +60,7 @@ public class ChangePassController extends HttpServlet {
             request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
         } else if (!oldpass.equals(newpass) && newpass.equals(cfpass) && oldpass.equals(acc.getPassword())) {
             db.update(acc1);
+            request.setAttribute("action", "Change password");
             request.getRequestDispatcher("../view/confirm.jsp").forward(request, response);
         } else if (!oldpass.equals(acc.getPassword())) {
             request.setAttribute("mess", "password is wrong");

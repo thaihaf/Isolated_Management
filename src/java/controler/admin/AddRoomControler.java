@@ -109,11 +109,11 @@ public class AddRoomControler extends HttpServlet {
         r.setNurseManage(nurDetail);
         r.setAvailable(status);
         RoomDBContext roomDB = new RoomDBContext();
-        if (roomDB.insert(r)) {
-            request.setAttribute("mess", "Insert room successfully.");
-        } else {
-            request.setAttribute("mess", "Insert room failed.");
-        }
+        roomDB.insert(r);
+        request.setAttribute("mess", "Insert room successfully.");
+//        } else {
+//            request.setAttribute("mess", "Insert room failed.");
+//        }
         request.getRequestDispatcher("room_response.jsp").forward(request, response);
     }
 

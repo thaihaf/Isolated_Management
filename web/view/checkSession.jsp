@@ -17,7 +17,7 @@
                 count--;
                 document.getElementById('timer').innerHTML = count;
                 if (count <= 0)
-                    window.location.href = 'login';
+                    window.location.href = '../login';
             }
             setInterval(redirect, 1000);
         </script>

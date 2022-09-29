@@ -2,16 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controler;
+package controler.nurse;
 
 import dao.AccountDetailDBContext;
-import dao.MedicalStaffDBContext;
-import dao.NurseDBContext;
 import dao.PatientDBContext;
+import dao.TestTypeDBContext;
 import entity.Account;
 import entity.AccountDetail;
-import entity.MedicalStaff;
 import entity.Patient;
+import entity.TestType;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -25,8 +24,17 @@ import java.util.ArrayList;
  *
  * @author Admin
  */
-public class ProfileController extends HttpServlet {
+public class CreateTestController extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -35,10 +43,10 @@ public class ProfileController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProfileController</title>");
+            out.println("<title>Servlet CreateTestController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProfileController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CreateTestController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -52,36 +60,27 @@ public class ProfileController extends HttpServlet {
         if (acc == null) {
             request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
         } else {
+            String username = request.getParameter("username");
+            ArrayList<TestType> types = new ArrayList<>();
+            TestTypeDBContext tdb = new TestTypeDBContext();
+            types = tdb.list();
+            request.setAttribute("types", types);
             AccountDetailDBContext db = new AccountDetailDBContext();
-            AccountDetail info = db.get(acc.getUserName());
+            AccountDetail info = db.get(username);
             request.setAttribute("info", info);
-            String role = acc.getRole().getRole();
-            if (role.equalsIgnoreCase("Doctor") || role.equalsIgnoreCase("Nurse")) {
-                MedicalStaffDBContext msdb = new MedicalStaffDBContext();
-                MedicalStaff ms = msdb.getInfo(acc.getUserName());
-                request.setAttribute("staff", ms);
-                //request.getRequestDispatcher("view/profile.jsp").forward(request, response);
-            } else if (role.equalsIgnoreCase("Patient")) {
-                PatientDBContext pdb = new PatientDBContext();
-                Patient patient = pdb.getInfo(acc.getUserName());
-                request.setAttribute("patient", patient);
-                //request.getRequestDispatcher("view/profile.jsp").forward(request, response);
-            }
-            request.getRequestDispatcher("../view/profile.jsp").forward(request, response);
+            PatientDBContext pdb = new PatientDBContext();
+            Patient patient = pdb.getInfo(username);
+            request.setAttribute("patient", patient);
+            request.getRequestDispatcher("../nurse/createTest.jsp").forward(request, response);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

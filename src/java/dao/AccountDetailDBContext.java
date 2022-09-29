@@ -44,19 +44,18 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
 
     public AccountDetail get(String user) {
         try {
-            String sql = "SELECT [Username]\n"
-                    + "      ,[Role].[ID]\n"
-                    + "      ,[Role].[Role]\n"
-                    + "	  ,[Fullname]\n"
-                    + "	  ,[Gender]\n"
-                    + "	  ,[Phone]\n"
-                    + "	  ,[Address]\n"
-                    + "	  ,[Email]\n"
-                    + "	  ,[Nation]\n"
-                    + "  FROM [Account]\n"
-                    + "  INNER JOIN [Role] ON [Account].[Role_ID] = [Role].[ID]\n"
-                    + "  INNER JOIN [Account_Details] ON [Account].[Username] = [Account_Details].[ID]\n"
-                    + "  WHERE [Account].[Username] = ?";
+            String sql = "SELECT [Username]      ,[Role].[ID]\n"
+                    + "                          ,[Role].[Role]\n"
+                    + "                    	  ,[Fullname]\n"
+                    + "                    	  ,[Gender]\n"
+                    + "                   	  ,[Phone]\n"
+                    + "                    	  ,[Address]\n"
+                    + "                    	  ,[Email]\n"
+                    + "                    	  ,[Nation],DateOfBirth\n"
+                    + "                      FROM [Account]\n"
+                    + "                      INNER JOIN [Role] ON [Account].[Role_ID] = [Role].[ID]\n"
+                    + "                     INNER JOIN [Account_Details] ON [Account].[Username] = [Account_Details].[ID]\n"
+                    + "                      WHERE [Account].[Username] = ?";
             PreparedStatement stm = connection.prepareCall(sql);
             stm.setString(1, user);
             ResultSet rs = stm.executeQuery();
@@ -75,6 +74,7 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
                 acc.setAddress(rs.getNString("Address"));
                 acc.setEmail(rs.getNString("Email"));
                 acc.setNation(rs.getNString("Nation"));
+                acc.setDateofbirth(rs.getDate("DateOfBirth"));
                 return acc;
             }
         } catch (SQLException e) {
@@ -203,6 +203,32 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
             Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return accounts.size() > 0 ? accounts : null;
+    }
+
+
+    public ArrayList<AccountDetail> listDoctorAndNurse() {
+        ArrayList<AccountDetail> accounts = new ArrayList<>();
+        try {
+            String sql = "SELECT [Username]\n"
+                    + "      ,[Fullname]\n"
+                    + "  FROM [Account_Details]\n"
+                    + "  INNER JOIN [Account] ON [Account_Details].[ID] = [Account].[Username]\n"
+                    + "  INNER JOIN [Role] ON [Account].[Role_ID] = [Role].[ID]\n"
+                    + "  WHERE [Role].[ID] = 2 OR [Role].[ID] = 3";
+            PreparedStatement stm = connection.prepareCall(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                AccountDetail a = new AccountDetail();
+                Account acc = new Account();
+                acc.setUserName(rs.getString("Username"));
+                a.setAccount(acc);
+                a.setFullName(rs.getNString("Fullname"));
+                accounts.add(a);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return accounts;
     }
 
     @Override

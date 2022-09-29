@@ -1,0 +1,81 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Sep 25, 2022, 10:15:29 PM
+    Author     : hapro
+*/
+
+.container {
+    padding: 2rem 3rem;
+    padding-top: 0;
+}
+
+.top1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e9ecef;
+    padding: 0.3rem 2rem;
+    border-radius: 0.5rem;
+}
+ol.breadcrumb{
+    margin: 0;
+    padding: 0.75rem 0;
+    font-size: 1.3rem;
+}
+.search{
+    display: flex;
+    align-items: center;
+    gap:1rem;
+}
+
+.top2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e9ecef;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.75rem;
+}
+.info{
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+.filter{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.btn-add{
+    border-radius: 2rem;
+    padding: 0.45rem 1.5rem;
+    text-transform: uppercase;
+}
+.info_group{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.info_btn{
+    border: none;
+    outline: none;
+    background: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.info_icon{
+    color: orange;
+}
+.table{
+    font-size: 1.3rem;
+}
+.guide_group{
+    margin-bottom: 1rem;
+}
+.form-control{
+    padding: 0.675rem 0.75rem !important;
+}

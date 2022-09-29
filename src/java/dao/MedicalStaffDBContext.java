@@ -67,4 +67,27 @@ public class MedicalStaffDBContext extends DBContext<MedicalStaff> {
         }
         return null;
     }
+
+    public MedicalStaff getInfo(String username) {
+        try {
+            String sql
+                    = "select ms.[Level of education], ms.Hospital from Medical_Staff ms join Account a \n"
+                    + "                    on ms.ID = a.Username\n"
+                    + "                    where a.Username = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                MedicalStaff ms = new MedicalStaff();
+                ms.setLevelOfEducation(rs.getString("Level of education"));
+                ms.setHospital(rs.getString("Hospital"));
+                return ms;
+            }
+        } catch (SQLException ex) {
+//            Logger
+//                    .getLogger(DoctorDBContext.class.getName())
+//                    .log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

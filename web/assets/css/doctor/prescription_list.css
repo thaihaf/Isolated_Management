@@ -55,9 +55,8 @@ ol.breadcrumb{
     text-transform: uppercase;
 }
 .info_group{
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
+    align-items: flex-start !important;
+    margin-bottom: 1.5rem !important;
 }
 .info_btn{
     border: none;
@@ -69,13 +68,48 @@ ol.breadcrumb{
 }
 .info_icon{
     color: orange;
+    font-size: 1.7rem;
 }
 .table{
     font-size: 1.3rem;
 }
+
 .guide_group{
     margin-bottom: 1rem;
 }
 .form-control{
-    padding: 0.675rem 0.75rem !important;
+    padding: 0.275rem 1.75rem !important;
+    height: 3rem;
+    width: 20rem !important;
+    border-radius: 2rem !important;
+}
+
+.medicine_caption{
+    font-weight: 500;
+    color: darkslategray;
+
+}
+
+.info_main{
+    position: relative;
+    padding: 0.5rem 0.7rem
+}
+.info_main:hover .info_description{
+    visibility: visible;
+}
+.info_description{
+    position: absolute;
+    bottom: 131%;
+    left: 0;
+    width: max-content;
+    background-color: white;
+    padding: 0.3rem 1rem;
+    width: 25rem;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    visibility: hidden;
+}
+
+.thMedicine{
+    padding-left: 1.5rem !important;
 }

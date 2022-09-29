@@ -93,8 +93,8 @@
                                  <td><a href="update?id=${p.accDetail.account.userName}" style="color: black">View Test</a></td>  
                              </c:if>
                              <c:if test="${role.id eq 2}">
-                                 <td><a href="url" style="color: black">Create Prescription</a></td>    
-                                 <td><a href="url" style="color: black">View Prescription</a></td>  
+                                 <td><a href="" style="color: black">Create Prescription</a></td>    
+                                 <td><a href="prescription-list?username=${p.accDetail.account.userName}" style="color: black">View Prescription</a></td>  
                              </c:if>
                          </tr>
                      </c:forEach>

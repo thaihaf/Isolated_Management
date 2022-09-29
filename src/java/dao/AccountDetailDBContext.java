@@ -98,17 +98,17 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
     }
     
     @Override
-    public boolean insert(AccountDetail model) {
+    public void insert(AccountDetail model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     @Override
-    public boolean update(AccountDetail model) {
+    public void update(AccountDetail model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     @Override
-    public boolean delete(AccountDetail model) {
+    public void delete(AccountDetail model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

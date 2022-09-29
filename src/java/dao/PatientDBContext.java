@@ -4,6 +4,7 @@
  */
 package dao;
 
+import entity.Account;
 import entity.AccountDetail;
 import entity.Area;
 import entity.Patient;
@@ -169,17 +170,17 @@ public class PatientDBContext extends DBContext<Patient> {
 
 
     @Override
-    public boolean insert(Patient model) {
+    public void insert(Patient model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     @Override
-    public boolean update(Patient model) {
+    public void update(Patient model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     @Override
-    public boolean delete(Patient model) {
+    public void delete(Patient model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -208,11 +209,6 @@ public class PatientDBContext extends DBContext<Patient> {
             Logger.getLogger(PatientDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-    }
-
-    @Override
-    public ArrayList<Patient> list() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

@@ -113,27 +113,25 @@ public class AccountDBContext extends DBContext<Account> {
     }
 
     @Override
-    public boolean insert(Account model) {
+    public void insert(Account model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean update(Account model) {
+    public void update(Account model) {
         try {
             String sql = "Update Account set Password = ? where UserName = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, model.getPassword());
             stm.setString(2, model.getUserName());
             stm.executeUpdate();
-            return true;
         } catch (SQLException ex) {
             Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
     }
 
     @Override
-    public boolean delete(Account model) {
+    public void delete(Account model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

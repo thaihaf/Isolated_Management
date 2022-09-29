@@ -86,7 +86,7 @@ public class PatientDBContext extends DBContext<Patient> {
         return null;
     }
 
-    public ArrayList<Patient> filter(String id, String name, Boolean gender, Date from, Date to, String username) {
+    public ArrayList<Patient> filter(String id, String name, Boolean gender, Date from, Date to, String username, int role) {
         ArrayList<Patient> patients = new ArrayList<>();
         try {
             String sql = "select ad.ID,ad.Fullname,ad.Gender,ad.Phone,ad.Address,ad.Email,ad.Nation,ad.DateOfBirth, \n"
@@ -121,11 +121,18 @@ public class PatientDBContext extends DBContext<Patient> {
                 sql += "AND ad.DateOfBirth <= ?\n";
                 params.put(count, to);
             }
-            if (username != null) {
+            if (role == 3) {
+                if (username != null) {
+                    count++;
+                    sql += "AND r.NurseManage = ?\n";
+                    params.put(count, username);
+                }
+            } else if (role == 2) {
                 count++;
-                sql += "AND r.NurseManage = ?\n";
+                sql += "AND r.DoctorManage = ?\n";
                 params.put(count, username);
             }
+
             PreparedStatement stm = connection.prepareCall(sql);
             for (Map.Entry<Integer, Object> entry : params.entrySet()) {
                 Integer key = entry.getKey();

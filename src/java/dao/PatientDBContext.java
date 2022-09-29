@@ -6,7 +6,6 @@ package dao;
 
 import entity.Account;
 import entity.AccountDetail;
-import entity.Patient;
 import entity.Area;
 import entity.Patient;
 import entity.Room;
@@ -26,12 +25,17 @@ import java.util.logging.Logger;
  * @author Mountain
  */
 public class PatientDBContext extends DBContext<Patient> {
-
+    
+    @Override
+    public ArrayList<Patient> list() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
     @Override
     public Patient get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     public Patient get(AccountDetail acc) {
         try {
             String sql = "SELECT [Patient].[ID]\n"
@@ -77,14 +81,13 @@ public class PatientDBContext extends DBContext<Patient> {
                 p.setBloodType(rs.getNString("Blood Type"));
                 p.setBackgroundDisease(rs.getBoolean("BackgroundDisease"));
                 return p;
-
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PatientDBContext.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
+
 
     public ArrayList<Patient> filter(String id, String name, Boolean gender, Date from, Date to, String username, int role) {
         ArrayList<Patient> patients = new ArrayList<>();
@@ -165,20 +168,22 @@ public class PatientDBContext extends DBContext<Patient> {
         return patients;
     }
 
+
     @Override
     public void insert(Patient model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public void update(Patient model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public void delete(Patient model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 
     public Patient getInfo(String username) {
         try {
@@ -210,4 +215,5 @@ public class PatientDBContext extends DBContext<Patient> {
     public ArrayList<Patient> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 }

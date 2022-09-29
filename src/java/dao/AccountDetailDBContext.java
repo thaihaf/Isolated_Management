@@ -77,8 +77,7 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
                 acc.setDateofbirth(rs.getDate("DateOfBirth"));
                 return acc;
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
         }
         return null;
     }
@@ -205,6 +204,7 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
         }
         return accounts.size() > 0 ? accounts : null;
     }
+
 
     public ArrayList<AccountDetail> listDoctorAndNurse() {
         ArrayList<AccountDetail> accounts = new ArrayList<>();

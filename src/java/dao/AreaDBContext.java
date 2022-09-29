@@ -5,6 +5,8 @@
 package dao;
 
 import entity.Area;
+import entity.AreaType;
+import entity.Room;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,6 +33,58 @@ public class AreaDBContext extends DBContext<Area> {
                 Area a = new Area();
                 a.setId(rs.getInt("ID"));
                 a.setName(rs.getNString("Name"));
+                areas.add(a);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AreaDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return areas;
+    }
+
+    public ArrayList<Area> listWithRoom() {
+        ArrayList<Area> areas = new ArrayList<>();
+        try {
+            String sql = "SELECT [Area].[ID]\n"
+                    + "      ,[Area].[Name]\n"
+                    + "      ,[Address]\n"
+                    + "	  ,[Area].[Available]\n"
+                    + "      ,[AreaType].[ID] AS AreaTypeID\n"
+                    + "	  ,[AreaType].[AreaType]\n"
+                    + "	  ,[Room].[ID] AS RoomID\n"
+                    + "	  ,[Room].[Name] AS RoomName\n"
+                    + "  FROM [Area]\n"
+                    + "  INNER JOIN [Room] ON [Area].[ID] = [Room].[Area_ID]\n"
+                    + "  INNER JOIN [AreaType] ON [AreaType].[ID] = [Area].[AreaType]";
+            PreparedStatement stm = connection.prepareCall(sql);
+            ResultSet rs = stm.executeQuery();
+            Area a = new Area();
+            AreaType at = new AreaType();
+            ArrayList<Room> rooms = new ArrayList<>();
+            while (rs.next()) {
+                int tmp = rs.getInt("ID");
+                if (a.getId() != tmp) {
+                    if (a.getId() != 0) {
+                        a.setRooms(rooms);
+                        areas.add(a);
+                        rooms.clear();
+                    }
+                    a = new Area();
+                    a.setId(tmp);
+                    a.setName(rs.getNString("Name"));
+                    a.setAddress(rs.getNString("Address"));
+                    at.setId(rs.getInt("AreaTypeID"));
+                    at.setType(rs.getNString("AreaType"));
+                    a.setAreaType(at);
+                    a.setAvailable(rs.getBoolean("Available"));
+                }
+                Room r = new Room();
+                r.setId(rs.getInt("RoomID"));
+                r.setName(rs.getNString("RoomName"));
+                rooms.add(r);
+            }
+            if (rs.isAfterLast()) {
+                a.setRooms(rooms);
                 areas.add(a);
             }
         } catch (SQLException ex) {

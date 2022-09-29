@@ -83,7 +83,6 @@ public class AccountDetail {
 
     public void setDateofbirth(Date dateofbirth) {
         this.dateofbirth = dateofbirth;
-
     }
 
 }

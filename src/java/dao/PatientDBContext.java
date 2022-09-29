@@ -203,7 +203,7 @@ public class PatientDBContext extends DBContext<Patient> {
                 return patient;
             }
         } catch (SQLException ex) {
-//            Logger.getLogger(DoctorDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PatientDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

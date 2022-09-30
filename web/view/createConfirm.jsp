@@ -1,6 +1,6 @@
 <%-- 
-    Document   : insert_confirm
-    Created on : Jul 17, 2022, 9:11:42 PM
+    Document   : createConfirm
+    Created on : Sep 29, 2022, 10:09:28 PM
     Author     : Admin
 --%>
 
@@ -17,7 +17,7 @@
                 count--;
                 document.getElementById('timer').innerHTML = count;
                 if (count <= 0)
-                    window.location.href = '../login';
+                    window.location.href = '../base/listpatient';
             }
             setInterval(redirect, 1000);
         </script>
@@ -27,7 +27,7 @@
     <body>
         <div class="container">
             <h1 style="text-align: center">${requestScope.action} successfully</h1>
-            <h3 style="text-align: center"> Go back to Login page after <span id="timer">3</span> seconds </h2>
+            <h3 style="text-align: center"> Go back to Patient page after <span id="timer">3</span> seconds </h2>
         </div>
 
     </body>

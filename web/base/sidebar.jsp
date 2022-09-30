@@ -55,7 +55,6 @@
                           </a>
                           <!--// doctor-->
                           <c:if test="${role.id eq 2}">
-
                               <a class="sidebar_item" href="listpatient">
                                   <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
                                   <div>Patient</div>
@@ -92,8 +91,6 @@
                           </a>
                       </c:otherwise>
                   </c:choose>
-
-
              </div>
 
              <div class="sidebar_btnLogout">
@@ -102,6 +99,6 @@
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <<script src="../assets/js/base/sidebar.js"></script>
+        <<script type="text/javascript" src="../assets/js/base/sidebar.js"></script>
     </body>
 </html>

@@ -9,12 +9,22 @@ package entity;
  * @author Admin
  */
 public class Room {
+
     private int id;
     private String name;
     private int numOfBed;
     private Area area;
     private AccountDetail doctorManage;
     private AccountDetail nurseManage;
+    private boolean available;
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 
     public int getId() {
         return id;

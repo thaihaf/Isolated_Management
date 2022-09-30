@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author Mountain
+ */
 public class MedicalStaffDBContext extends DBContext<MedicalStaff> {
 
     @Override
@@ -40,6 +44,30 @@ public class MedicalStaffDBContext extends DBContext<MedicalStaff> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public MedicalStaff getByAccountDetail(AccountDetail acc) {
+        try {
+            String sql = "SELECT [Medical_Staff].[ID]\n"
+                    + "      ,[Level of education]\n"
+                    + "      ,[Hospital]\n"
+                    + "  FROM [Medical_Staff]\n"
+                    + "  INNER JOIN [Account_Details] ON [Medical_Staff].[ID] = [Account_Details].[ID]\n"
+                    + "  WHERE [Account_Details].[ID] = ?";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setString(1, acc.getAccount().getUserName());
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                MedicalStaff med = new MedicalStaff();
+                med.setAccount(acc);
+                med.setLevelOfEducation(rs.getNString("Level of education"));
+                med.setHospital(rs.getNString("Hospital"));
+                return med;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
     public MedicalStaff getInfo(String username) {
         try {
             String sql
@@ -63,27 +91,4 @@ public class MedicalStaffDBContext extends DBContext<MedicalStaff> {
         return null;
     }
 
-    public MedicalStaff getByAccountDetail(AccountDetail acc) {
-        try {
-            String sql = "SELECT [Medical_Staff].[ID]\n"
-                    + "      ,[Level of education]\n"
-                    + "      ,[Hospital]\n"
-                    + "  FROM [Medical_Staff]\n"
-                    + "  INNER JOIN [Account_Details] ON [Medical_Staff].[ID] = [Account_Details].[ID]\n"
-                    + "  WHERE [Account_Details].[ID] = ?";
-            PreparedStatement stm = connection.prepareCall(sql);
-            stm.setString(1, acc.getAccount().getUserName());
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                MedicalStaff med = new MedicalStaff();
-                med.setAccount(acc);
-                med.setLevelOfEducation(rs.getNString("Level of education"));
-                med.setHospital(rs.getNString("Hospital"));
-                return med;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(MedicalStaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
 }

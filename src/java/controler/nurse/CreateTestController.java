@@ -6,10 +6,12 @@ package controler.nurse;
 
 import dao.AccountDetailDBContext;
 import dao.PatientDBContext;
+import dao.TestResultDBContext;
 import dao.TestTypeDBContext;
 import entity.Account;
 import entity.AccountDetail;
 import entity.Patient;
+import entity.TestResult;
 import entity.TestType;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,6 +20,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.ArrayList;
 
 /**
@@ -78,7 +82,34 @@ public class CreateTestController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("account");
+        String id = request.getParameter("id");
+        Boolean result = Boolean.getBoolean(request.getParameter("result"));
+        int test = Integer.parseInt(request.getParameter("test"));
+        Date date = new Date();
+        Timestamp timestamp2 = new Timestamp(date.getTime());
+        String personTest = acc.getUserName();
+        Account a = new Account();
+        a.setUserName(id);
+        Account a1 = new Account();
+        a1.setUserName(acc.getUserName());
+        AccountDetail ad = new AccountDetail();
+        ad.setAccount(a);
+        AccountDetail ad1 = new AccountDetail();
+        ad1.setAccount(a1);
+        TestType tt = new TestType();
+        tt.setId(test);
+        TestResult ts = new TestResult();
+        ts.setPatientAccount(ad);
+        ts.setResult(result);
+        ts.setTestType(tt);
+        ts.setTestTime(timestamp2);
+        ts.setPersonTest(ad1);
+        TestResultDBContext db = new TestResultDBContext();
+        db.insert(ts);
+        request.setAttribute("action", "Create Test");
+        request.getRequestDispatcher("../view/createConfirm.jsp").forward(request, response);
     }
 
     @Override

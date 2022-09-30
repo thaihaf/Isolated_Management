@@ -2,23 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controler;
+package controler.admin;
 
 import dao.AccountDetailDBContext;
-import dao.TestResultDBContext;
-import dao.TestTypeDBContext;
+import dao.AreaDBContext;
+import dao.RoomDBContext;
+import entity.Account;
+import entity.AccountDetail;
+import entity.Area;
+import entity.Room;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 /**
  *
  * @author Mountain
  */
-public class TestResultDetailControler extends HttpServlet {
+public class AddRoomControler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +42,10 @@ public class TestResultDetailControler extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet TestResultDetailControler</title>");
+            out.println("<title>Servlet AddRoomControler</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet TestResultDetailControler at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddRoomControler at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,14 +64,13 @@ public class TestResultDetailControler extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        String id = request.getParameter("id");
-        TestResultDBContext testDB = new TestResultDBContext();
-        TestTypeDBContext ttDB = new TestTypeDBContext();
+        AreaDBContext areaDB = new AreaDBContext();
+        ArrayList<Area> areas = areaDB.list();
         AccountDetailDBContext accDB = new AccountDetailDBContext();
-        request.setAttribute("doctor", accDB.listDoctorAndNurse());
-        request.setAttribute("types", ttDB.list());
-        request.setAttribute("result", testDB.get(Integer.parseInt(id)));
-        request.getRequestDispatcher("testdetail.jsp").forward(request, response);
+        ArrayList<AccountDetail> docAndNurseList = accDB.listDoctorAndNurse();
+        request.setAttribute("areas", areas);
+        request.setAttribute("medical", docAndNurseList);
+        request.getRequestDispatcher("newroom.jsp").forward(request, response);
     }
 
     /**
@@ -80,7 +84,37 @@ public class TestResultDetailControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        String name = request.getParameter("name");
+        int numOfBed = Integer.parseInt(request.getParameter("numOfBed"));
+        int aid = Integer.parseInt(request.getParameter("area"));
+        String doc = request.getParameter("doctor");
+        String nur = request.getParameter("nurse");
+        boolean status = Boolean.parseBoolean(request.getParameter("status"));
+        Room r = new Room();
+        r.setName(name);
+        r.setNumOfBed(numOfBed);
+        Area a = new Area();
+        a.setId(aid);
+        r.setArea(a);
+        AccountDetail docDetail = new AccountDetail();
+        Account docAcc = new Account();
+        docAcc.setUserName(doc);
+        docDetail.setAccount(docAcc);
+        r.setDoctorManage(docDetail);
+        AccountDetail nurDetail = new AccountDetail();
+        Account nurAcc = new Account();
+        nurAcc.setUserName(nur);
+        nurDetail.setAccount(nurAcc);
+        r.setNurseManage(nurDetail);
+        r.setAvailable(status);
+        RoomDBContext roomDB = new RoomDBContext();
+        roomDB.insert(r);
+        request.setAttribute("mess", "Insert room successfully.");
+//        } else {
+//            request.setAttribute("mess", "Insert room failed.");
+//        }
+        request.getRequestDispatcher("room_response.jsp").forward(request, response);
     }
 
     /**

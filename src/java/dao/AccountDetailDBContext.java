@@ -21,7 +21,7 @@ import java.util.Map;
  * @author Admin
  */
 public class AccountDetailDBContext extends DBContext<AccountDetail> {
-
+    
     public AccountDetail getEmail(String user) {
         try {
             String sql = "SELECT [Email]\n"
@@ -41,7 +41,7 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
         }
         return null;
     }
-
+    
     public AccountDetail get(String user) {
         try {
             String sql = "SELECT [Username]      ,[Role].[ID]\n"
@@ -77,12 +77,11 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
                 acc.setDateofbirth(rs.getDate("DateOfBirth"));
                 return acc;
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
         }
         return null;
     }
-
+    
     public void UpdatePass(AccountDetail acc) {
         try {
             String sql = "UPDATE [dbo].[Account]\n"
@@ -97,22 +96,22 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
             Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @Override
     public void insert(AccountDetail model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public void update(AccountDetail model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public void delete(AccountDetail model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public ArrayList<AccountDetail> list() {
         ArrayList<AccountDetail> accounts = new ArrayList<>();
@@ -149,7 +148,7 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
         }
         return accounts;
     }
-
+    
     public ArrayList<AccountDetail> listByCriteria(Integer role, String criteria) {
         ArrayList<AccountDetail> accounts = new ArrayList<>();
         try {
@@ -205,22 +204,26 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
         }
         return accounts.size() > 0 ? accounts : null;
     }
-
+    
     public ArrayList<AccountDetail> listDoctorAndNurse() {
         ArrayList<AccountDetail> accounts = new ArrayList<>();
         try {
             String sql = "SELECT [Username]\n"
-                    + "      ,[Fullname]\n"
-                    + "  FROM [Account_Details]\n"
-                    + "  INNER JOIN [Account] ON [Account_Details].[ID] = [Account].[Username]\n"
-                    + "  INNER JOIN [Role] ON [Account].[Role_ID] = [Role].[ID]\n"
-                    + "  WHERE [Role].[ID] = 2 OR [Role].[ID] = 3";
+                    + ",[Fullname]\n"
+                    + ",[Role].[ID] AS [Role]\n"
+                    + "FROM [Account_Details]\n"
+                    + "INNER JOIN [Account] ON [Account_Details].[ID] = [Account].[Username]\n"
+                    + "INNER JOIN [Role] ON [Account].[Role_ID] = [Role].[ID]\n"
+                    + "WHERE [Role].[ID] = 2 OR [Role].[ID] = 3";
             PreparedStatement stm = connection.prepareCall(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 AccountDetail a = new AccountDetail();
                 Account acc = new Account();
                 acc.setUserName(rs.getString("Username"));
+                Role r = new Role();
+                r.setId(rs.getInt("Role"));
+                acc.setRole(r);
                 a.setAccount(acc);
                 a.setFullName(rs.getNString("Fullname"));
                 accounts.add(a);
@@ -230,7 +233,7 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
         }
         return accounts;
     }
-
+    
     @Override
     public AccountDetail get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

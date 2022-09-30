@@ -129,8 +129,7 @@
                          <div class="updateInfo_group">
                              <div class="updateInfo_item full">
                                  <div class="item_title">Background Diseases</div>
-                                 <textarea rows="5" cols="25" placeholder="" class="item_input"
-                                           value="${patient.backgroundDisease}"></textarea>
+                                 <textarea rows="5" cols="25" placeholder="${patient.backgroundDisease}" class="item_input"></textarea>
                              </div>
                          </div>
                      </c:if>

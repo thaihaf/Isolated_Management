@@ -90,7 +90,7 @@
                              <td>${p.bloodType}</td>
                              <c:if test="${role.id eq 3}">
                                  <td><a href="createTest?username=${p.accDetail.account.userName}" style="color: black">Create Test</a></td>    
-                                 <td><a href="update?id=${p.accDetail.account.userName}" style="color: black">View Test</a></td>  
+                                 <td><a href="viewTest?username=${p.accDetail.account.userName}" style="color: black">View Test</a></td>  
                              </c:if>
                              <c:if test="${role.id eq 2}">
                                  <td><a href="" style="color: black">Create Prescription</a></td>    

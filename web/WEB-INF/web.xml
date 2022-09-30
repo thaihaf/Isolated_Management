@@ -48,6 +48,22 @@
         <servlet-name>SwitchAreaStatusControler</servlet-name>
         <servlet-class>controler.admin.SwitchAreaStatusControler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RoomListControler</servlet-name>
+        <servlet-class>controler.admin.RoomListControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddRoomControler</servlet-name>
+        <servlet-class>controler.admin.AddRoomControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RoomDetailControler</servlet-name>
+        <servlet-class>controler.admin.RoomDetailControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SwitchRoomStatusControler</servlet-name>
+        <servlet-class>controler.admin.SwitchRoomStatusControler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -107,6 +123,22 @@
     <servlet-mapping>
         <servlet-name>SwitchAreaStatusControler</servlet-name>
         <url-pattern>/admin/areastatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RoomListControler</servlet-name>
+        <url-pattern>/admin/rooms</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddRoomControler</servlet-name>
+        <url-pattern>/admin/add_room</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RoomDetailControler</servlet-name>
+        <url-pattern>/admin/room</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SwitchRoomStatusControler</servlet-name>
+        <url-pattern>/admin/roomstatus</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -49,7 +49,7 @@
         <jsp:include page="/base/header.jsp" />
         <div class="wrapper wrapperAdmin">
             <div class="container">
-                <form action="update" method="POST">
+                <form action="update" method="get">
                     <input type="hidden" value="${account.account.userName}"/>
                     Full name: <input type="text" name="fullname" value="${account.fullName}"/><br/>
                     Gender: <Input type="radio" name="gender" value="true" <c:if test="${account.gender eq true}">checked="checked"</c:if> /> Male <Input type="radio" name="gender" value="false" <c:if test="${account.gender eq false}">checked="checked"</c:if> /> Female <br/>
@@ -57,24 +57,24 @@
                     Address: <input type="text" name="address" value="${account.address}"/><br/>
                     Email: <input type="text" value="${account.email}" disabled/><br/>
                     Nation: <input type="text" name="nation" value="${account.nation}"/><br/>
-                    Role: <select name="role" id='role' onchange="changeRole()">
+<!--                    Role: <select name="role" id='role' onchange="changeRole()">
                         <c:forEach items="${requestScope.roles}" var="r">
-                            <option value="${r.id}" <c:if test="${account.account.role.id eq r.id}">selected="selected"</c:if>>
-                                ${r.role}
-                            </option>
-                        </c:forEach>
-                    </select><br/>
+                            <option value="${r.id}" selected="selected"><c:if test="${account.account.role.id eq r.id}"></c:if>${r.role}</option>
+                            </c:forEach>
+                    </select><br/>-->
                     <div id="optional">
                         <c:if test="${requestScope.account.account.role.id eq 2 || requestScope.account.account.role.id eq 3}">
                             Level of education: <input type="text" name="lvlofedu" value="${requestScope.medical.levelOfEducation}"/><br/>
                             Hospital: <input type="text" name="hospital" value="${requestScope.medical.hospital}"/><br/>
                         </c:if>
                         <c:if test="${requestScope.account.account.role.id eq 4}">
-                            Room: ${requestScope.patient.room.name}<br/>
-                            Area: ${patient.room.area.name}<br/>
-                            Background disease: <c:if test="${requestScope.patient.backgroundDisease eq true}">Yes</c:if>
-                            <c:if test="${requestScope.patient.backgroundDisease eq false}">No</c:if><br/>
-                            Blood type: <input type="text" name="blood" value="${patient.bloodType}"/><br/>
+                            Room: <input type="text" name="room" value="${requestScope.patient.room.name}"/><br/>
+                            Area: <input type="text" name="area" value="${patient.room.area.name}"/><br/>
+                            Background disease: 
+                            <input type="radio" name="background_disease" value="${requestScope.patient.backgroundDisease}" <c:if test="${requestScope.patient.backgroundDisease eq true}">checked="checked"</c:if> />Yes
+                                <input type="radio" name="background_disease" value="${requestScope.patient.backgroundDisease}" <c:if test="${requestScope.patient.backgroundDisease eq false}">checked=checked</c:if> />No<br/>
+                                Blood type: <input type="text" name="blood" value="${patient.bloodType}"/><br/>
+                            Note <input type="text" name="note" value="${patient.note}"/><br/>
                         </c:if>
                     </div>
                     <input type="submit" value="Save">

@@ -36,6 +36,10 @@
         <servlet-name>ViewTest</servlet-name>
         <servlet-class>controler.ViewTest</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddUserControler</servlet-name>
+        <servlet-class>controler.admin.AddUserControler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -83,6 +87,10 @@
     <servlet-mapping>
         <servlet-name>ViewTest</servlet-name>
         <url-pattern>/base/viewTest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddUserControler</servlet-name>
+        <url-pattern>/adduser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -113,3 +113,10 @@ ol.breadcrumb{
 .thMedicine{
     padding-left: 1.5rem !important;
 }
+
+.dateFilter{
+    display: flex;
+    align-items: center;
+    gap : 1rem;
+}
+    

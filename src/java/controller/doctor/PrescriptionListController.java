@@ -38,16 +38,30 @@ public class PrescriptionListController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         request.setCharacterEncoding("UTF-8");
+
         HttpSession session = request.getSession();
+        PrintWriter out = response.getWriter();
+
         Account acc = (Account) session.getAttribute("account");
+
         if (acc == null) {
             request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
         } else {
-            PrintWriter out = response.getWriter();
             PrescriptionDBContext pDB = new PrescriptionDBContext();
-            ArrayList<Prescription> prescriptions = pDB.getListPrescriptionDetails(acc.getUserName(), request.getParameter("username"), request.getParameter("searchVal"));
+
+            String username = request.getParameter("username");
+            String searchVal = request.getParameter("searchVal");
+            String df = request.getParameter("dateFrom");
+            String dt = request.getParameter("dateTo");
+            String sort = request.getParameter("sort");
+
+            ArrayList<Prescription> prescriptions = pDB.getListPrescriptionDetails(
+                    acc.getUserName(),
+                    username,
+                    searchVal,
+                    df,
+                    dt, sort);
 
             for (Prescription p : prescriptions) {
                 out.println("<tr>\n"
@@ -107,14 +121,13 @@ public class PrescriptionListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         Account acc = (Account) session.getAttribute("account");
         if (acc == null) {
             request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
         } else {
             PrescriptionDBContext pDB = new PrescriptionDBContext();
-            ArrayList<Prescription> p = pDB.getListPrescriptionDetails(acc.getUserName(), request.getParameter("username"), "");
+            ArrayList<Prescription> p = pDB.getListPrescriptionDetails(acc.getUserName(), request.getParameter("username"), "", null, null, "");
 
             request.setAttribute("prescriptions", p);
             request.getRequestDispatcher("../doctor/prescription_list.jsp").forward(request, response);
@@ -132,7 +145,6 @@ public class PrescriptionListController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
         processRequest(request, response);
     }
 

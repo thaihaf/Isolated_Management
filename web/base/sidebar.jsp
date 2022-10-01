@@ -30,8 +30,9 @@
                       <c:when test="${role.id eq 1}">
                           <dl>
                               <dt>System Admin</dt>
-                              <dd><a href="../admin/users" class="selected">Account List</a></dd>
-                              <dd><a href="../admin/results" class="selected">Test Result List</a></dd>
+                              <dd><a href="../admin/users" class="selected">Account Lists</a></dd>
+                              <dd><a href="../admin/rooms" class="selected">Room Lists</a></dd>
+                              <dd><a href="../admin/areas" class="selected">Area Lists</a></dd>
                               <dd><a href="/abc">Add Patient</a></dd>
                               <dd><a href="url">Add Doctor</a></dd>
                               <dd><a href="url">Add Nurse</a></dd>

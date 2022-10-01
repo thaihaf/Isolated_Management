@@ -187,4 +187,19 @@ public class RoomDBContext extends DBContext<Room> {
         return true;
     }
 
+    public boolean updateStatusWithArea(int areaID, boolean status_to_change) {
+        try {
+            String sql = "UPDATE [Room]\n"
+                    + "   SET [Available] = ?\n"
+                    + " WHERE [Room].[Area_ID] = ?";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setBoolean(1, status_to_change);
+            stm.setInt(2, areaID);
+            stm.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            return false;
+        }
+    }
+
 }

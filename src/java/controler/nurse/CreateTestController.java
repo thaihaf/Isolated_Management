@@ -87,13 +87,18 @@ public class CreateTestController extends HttpServlet {
         String id = request.getParameter("id");
         Boolean result = Boolean.getBoolean(request.getParameter("result"));
         int test = Integer.parseInt(request.getParameter("test"));
+        String creator = request.getParameter("creator");
         Date date = new Date();
         Timestamp timestamp2 = new Timestamp(date.getTime());
         String personTest = acc.getUserName();
         Account a = new Account();
         a.setUserName(id);
         Account a1 = new Account();
-        a1.setUserName(acc.getUserName());
+        if (creator == "") {
+            a1.setUserName(acc.getUserName());
+        } else {
+            a1.setUserName(creator);
+        }
         AccountDetail ad = new AccountDetail();
         ad.setAccount(a);
         AccountDetail ad1 = new AccountDetail();

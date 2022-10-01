@@ -75,7 +75,7 @@
 
                           <!--//patient-->
                           <c:if test="${role.id eq 4}">
-                              <a class="sidebar_item" href="patientTestResult">
+                              <a class="sidebar_item" href="viewTest?username=${sessionScope.account.userName}">
                                   <img class="sidebar_item_img" src="../assets/icons/testIcon.png" alt="alt"/>
                                   <div>Test result</div>
                               </a>

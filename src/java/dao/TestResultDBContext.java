@@ -141,6 +141,41 @@ public class TestResultDBContext extends DBContext<TestResult> {
         }
     }
 
+    public ArrayList<TestResult> getTestResultByID(String username) {
+        ArrayList<TestResult> results = new ArrayList<>();
+        try {
+            String sql = "select tr.Patient_ID,tr.Result,tt.Type,tr.Status,tr.Person_Test,tr.TestTime \n"
+                    + "from Test_Result tr join Test_Type tt \n"
+                    + "on tr.TestType_ID = tt.ID where tr.Patient_ID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                TestResult tr = new TestResult();
+                AccountDetail patient = new AccountDetail();
+                Account patientAcc = new Account();
+                AccountDetail nurse = new AccountDetail();
+                Account nurseAcc = new Account();
+                patientAcc.setUserName(rs.getString("Patient_ID"));
+                patient.setAccount(patientAcc);
+                tr.setPatientAccount(patient);
+                tr.setResult(rs.getBoolean("Result"));
+                TestType tt = new TestType();
+                tt.setTypeName(rs.getNString("Type"));
+                tr.setTestType(tt);
+                tr.setTestTime(rs.getTimestamp("TestTime"));
+                nurseAcc.setUserName(rs.getString("Person_Test"));
+                nurse.setAccount(nurseAcc);
+                tr.setPersonTest(nurse);
+                tr.setStatus(rs.getBoolean("Status"));
+                results.add(tr);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return results;
+    }
+
     @Override
     public void update(TestResult model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

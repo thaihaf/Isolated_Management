@@ -38,7 +38,6 @@
                                  <input type="text" class="item_input" value="${patient.note}">
                              </div>
                          </div>
-
                      </c:if>
 
                      <c:if test="${role.id eq 4}">
@@ -74,8 +73,13 @@
                              </div>
                          </div>
                      </div>
-                     <!--                     Test Result: <input checked="checked" type="radio" name="result" value="negative" /> Negative
-                                          <input type="radio" name="result" value="positive"/> Positive<br/>-->
+                     <div class="updateInfo_group">
+                         <div class="updateInfo_item right">
+                             <div class="item_title">Test Creator</div>
+                             <input type="text" class="item_input" name="creator"">
+                         </div>
+                     </div>
+
                  </div>
                  <div class="updateInfo">
                      <div class="updateInfo_actions">

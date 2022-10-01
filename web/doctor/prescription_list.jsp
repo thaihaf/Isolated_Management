@@ -31,7 +31,7 @@
                      <div class="top1">
                          <nav aria-label="breadcrumb">
                              <ol class="breadcrumb">
-                                 <li class="breadcrumb-item"><a href="/patient">Patient List</a></li>
+                                 <li class="breadcrumb-item"><a href="listpatient">Patient List</a></li>
                                  <li class="breadcrumb-item active" aria-current="page">Pressciption List</li>
                              </ol>
                          </nav>
@@ -58,9 +58,8 @@
                                  </a>
 
                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                     <a class="dropdown-item" href="#">Date</a>
-                                     <a class="dropdown-item" href="#">Status</a>
-                                     <a class="dropdown-item" href="#">Amount</a>
+                                     <div class="dropdown-item" id="sortByDate">Date</div>
+                                     <div class="dropdown-item" id="sortByStatus">Status</div>
                                  </div>
                              </div>
 

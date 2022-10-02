@@ -64,16 +64,28 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
                 Account a = new Account();
                 Role r = new Role();
                 r.setId(rs.getInt("ID"));
-                r.setRole(rs.getNString("Role"));
+//                r.setRole(rs.getNString("Role"));
+//                a.setRole(r);
+//                a.setUserName(rs.getString("Username"));
+//                acc.setAccount(a);
+//                acc.setFullName(rs.getNString("Fullname"));
+//                acc.setGender(rs.getBoolean("Gender"));
+//                acc.setPhone(rs.getNString("Phone"));
+//                acc.setAddress(rs.getNString("Address"));
+//                acc.setEmail(rs.getNString("Email"));
+//                acc.setNation(rs.getNString("Nation"));
+//                acc.setDateofbirth(rs.getDate("DateOfBirth"));
+                
+                r.setRole(rs.getString("Role"));
                 a.setRole(r);
                 a.setUserName(rs.getString("Username"));
                 acc.setAccount(a);
-                acc.setFullName(rs.getNString("Fullname"));
+                acc.setFullName(rs.getString("Fullname"));
                 acc.setGender(rs.getBoolean("Gender"));
-                acc.setPhone(rs.getNString("Phone"));
-                acc.setAddress(rs.getNString("Address"));
-                acc.setEmail(rs.getNString("Email"));
-                acc.setNation(rs.getNString("Nation"));
+                acc.setPhone(rs.getString("Phone"));
+                acc.setAddress(rs.getString("Address"));
+                acc.setEmail(rs.getString("Email"));
+                acc.setNation(rs.getString("Nation"));
                 acc.setDateofbirth(rs.getDate("DateOfBirth"));
                 return acc;
             }

@@ -79,7 +79,7 @@ public class AddUserControler extends HttpServlet {
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
         String email = request.getParameter("email");
-        String nation = request.getParameter("nation");
+        String nation = request.getParameter("nation"); 
         Date dateofbirth = Date.valueOf(request.getParameter("dateofbirth"));
         int role = Integer.parseInt(request.getParameter("role"));
         String leveleducation = request.getParameter("leveleducation");

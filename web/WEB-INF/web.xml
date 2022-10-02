@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>AdminProfileControler</servlet-name>
+        <servlet-name>UpdateUserControler</servlet-name>
         <servlet-class>controler.UpdateUserControler</servlet-class>
     </servlet>
     <servlet>
@@ -44,6 +44,10 @@
         <servlet-name>LogoutControler</servlet-name>
         <servlet-class>controler.LogoutControler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteUserControler</servlet-name>
+        <servlet-class>controler.admin.DeleteUserControler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -65,7 +69,7 @@
         <url-pattern>/base/profile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AdminProfileControler</servlet-name>
+        <servlet-name>UpdateUserControler</servlet-name>
         <url-pattern>/admin/updateuser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -99,6 +103,10 @@
     <servlet-mapping>
         <servlet-name>LogoutControler</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteUserControler</servlet-name>
+        <url-pattern>/deleteuser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

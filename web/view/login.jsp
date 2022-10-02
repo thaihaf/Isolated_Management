@@ -53,7 +53,7 @@
 
                     <p class="text-danger">${mess}</p>
 
-                    <a href="url" class="switch_link">Forget password?</a>
+                    <a href="forgot" class="switch_link">Forget password?</a>
 
 
                     <input class="btn_submit" type="submit" value="Sign in">

@@ -4,14 +4,8 @@
  */
 package controler;
 
-import dao.AccountDetailDBContext;
-import dao.MedicalStaffDBContext;
-import dao.PatientDBContext;
-import dao.RoleDBContext;
-import entity.AccountDetail;
-import entity.MedicalStaff;
-import entity.Patient;
-import entity.Role;
+import dao.TestResultDBContext;
+import entity.TestResult;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -20,7 +14,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
-public class AdminProfileControler extends HttpServlet {
+/**
+ *
+ * @author Admin
+ */
+public class ViewTestController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +37,10 @@ public class AdminProfileControler extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProfileControler</title>");
+            out.println("<title>Servlet ViewTest</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProfileControler at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ViewTest at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,31 +58,12 @@ public class AdminProfileControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        String accID = request.getParameter("user");
-        AccountDetailDBContext accDB = new AccountDetailDBContext();
-        AccountDetail acc = accDB.get(accID);
-        RoleDBContext roleDB = new RoleDBContext();
-        ArrayList<Role> roles = roleDB.list();
-        request.setAttribute("account", acc);
-        switch (acc.getAccount().getRole().getId()) {
-            case 2:
-            case 3: {
-                MedicalStaffDBContext medDB = new MedicalStaffDBContext();
-                MedicalStaff med = medDB.getByAccountDetail(acc);
-                request.setAttribute("account", acc);
-                request.setAttribute("medical", med);
-                break;
-            }
-            case 4: {
-                PatientDBContext patientDB = new PatientDBContext();
-                Patient p = patientDB.get(acc);
-                request.setAttribute("account", acc);
-                request.setAttribute("patient", p);
-            }
-        }
-        request.setAttribute("roles", roles);
-        request.getRequestDispatcher("profile.jsp").forward(request, response);
+        String username = request.getParameter("username");
+        TestResultDBContext db = new TestResultDBContext();
+        ArrayList<TestResult> results = db.getTestResultByID(username);
+        request.setAttribute("results", results);
+        request.setAttribute("patient", username);
+        request.getRequestDispatcher("../view/viewTest.jsp").forward(request, response);
     }
 
     /**
@@ -98,7 +77,7 @@ public class AdminProfileControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**

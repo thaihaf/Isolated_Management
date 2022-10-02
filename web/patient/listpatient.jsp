@@ -11,101 +11,157 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="../assets/css/base.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="../assets/css/base/home.css"/>     
+        <link rel="stylesheet" href="../assets/css/patient/listpatient.css"/>
     </head>
 
-    <jsp:include page="../base/sidebar.jsp" />
-
-    <jsp:include page="../base/header.jsp" />
     <body>
+        <jsp:include page="../base/sidebar.jsp" />
+        <jsp:include page="../base/header.jsp" />
+
         <c:set var="role" value="${sessionScope.account.role}" />
         <div class=<c:if test="${role.id eq 1}">"wrapper wrapperAdmin"</c:if>
              <c:if test="${role.id ne 1}">"wrapper wrapperUser"</c:if>
                  >
-                 <div class="container">
-                     <!--Code vào đây là oke-->
-                     <form action="listpatient" method="POST">
-                         Username: <input type="text" name="id" value="${param.username}"/><br/><br>
-                     Full Name: <input type="text" name="name" value="${param.name}"/><br/><br>
-                     Gender: 
-                     <input 
-                         <c:if test="${param.gender eq 'male'}">
-                             checked="checked"
-                         </c:if>
-                         type="radio" name="gender" value="male" /> Male
-                     <input type="radio"
-                            <c:if test="${param.gender eq 'female'}">
-                                checked="checked"
-                            </c:if>
-                            name="gender" value="female"/> Female
-                     <input type="radio"
-                            <c:if test="${param.gender eq null or param.gender eq 'both'}">
-                                checked="checked"
-                            </c:if>
-                            name="gender" value="both"/> Both
-                     <br/><br>
+                 <div class="container-fluid">
+                     <div class="top1">
+                         <nav aria-label="breadcrumb">
+                             <ol class="breadcrumb">
+                                 <li class="breadcrumb-item"><a href="../base/home.jsp">Home</a></li>
+                                 <li class="breadcrumb-item active" aria-current="page">Patient List</li>
+                             </ol>
+                         </nav>
 
-                     Date of birth:<br> From <input type="date" name="from" value="${param.from}"/>
-                     To <input type="date" name="to" value="${param.to}"/>
-                     <br/><br>
-                     <input type="submit" value="Search"/>
+                         <!--                         <div class="info">
+                                                      <div class="info_name">Patient : Nguyễn Thái Hà</div>
+                                                      <div class="info_bed">Area : A301 - Bed : 3</div>
+                                                  </div>-->
+                     </div>
+
+                     <form action="listpatient" method="POST" class="top2">
+                         <div class="filter1">
+                             <div class="filter1_children">Room: <input type="text" name="id" value="${param.username}" class="abc"/></div>
+                         <div class="filter1_children">Full Name: <input type="text" name="name" value="${param.name}" class="abc"/></div>
+                     </div>
+
+                     <div class="filter2">
+                         Gender: 
+                         <div class="gender">
+
+                             <span>
+                                 <input 
+                                     <c:if test="${param.gender eq 'male'}">
+                                         checked="checked"
+                                     </c:if>
+                                     type="radio" name="gender" value="male" /> Male</span>
+                             
+                             <span>
+                                 <input type="radio"
+                                        <c:if test="${param.gender eq null or param.gender eq 'both'}">
+                                            checked="checked"
+                                        </c:if>
+                                        name="gender" value="both"/> Both
+                             </span>
+
+                             <span>
+                                 <input type="radio"
+                                        <c:if test="${param.gender eq 'female'}">
+                                            checked="checked"
+                                        </c:if>
+                                        name="gender" value="female"/> Female
+                             </span>
+
+                         </div>
+
+                     </div>
+
+                     <div class="filter3">
+                         <span>Date of birth:</span>
+                         <div class="dateOfBirth">
+                             <input type="date" name="from" value="${param.from}"/>
+                             <span>to</span>
+                             <input type="date" name="to" value="${param.to}"/>
+                         </div>
+                     </div>
+
+                     <div class="filterBtns">
+                         <input type="submit" value="Search" class="btn btn-info"/>
+                         <input type="reset" value="Reset" class="btn btn-secondary"/>
+                     </div>
                  </form>
-                 <table class="table">
-                     <tr style="color: red;">
-                         <td>Username</td>
-                         <td>Full name</td>
-                         <td>Gender</td>
-                         <td>Date Of Birth</td>
-                         <td>Address</td>
-                         <td>National</td>
-                         <td>Phone</td>
-                         <td>Email</td>
-                         <td>Background Disease</td>
-                         <td>Blood Type</td>
-                         <td></td>
-                         <td></td>
-                     </tr>
-                     <c:forEach items="${requestScope.patients}" var="p">
-                         <tr>
-                             <td>${p.accDetail.account.userName}</td>
-                             <td>${p.accDetail.fullName}</td>
-                             <c:if test="${p.accDetail.gender eq 'True'}">
-                                 <td>Male</td>
-                             </c:if>
-                             <c:if test="${p.accDetail.gender eq 'False'}">
-                                 <td>Female</td>
-                             </c:if>
-                             <td>${p.accDetail.dateofbirth}</td>
-                             <td>${p.accDetail.address}</td>
-                             <td>${p.accDetail.nation}</td>
-                             <td>${p.accDetail.phone}</td>
-                             <td>${p.accDetail.email}</td>
-                             <c:if test="${p.backgroundDisease eq 'True'}">
-                                 <td>Yes</td>
-                             </c:if>
-                             <c:if test="${p.backgroundDisease eq 'False'}">
-                                 <td>No</td>
-                             </c:if>
-                             <td>${p.bloodType}</td>
-                             <c:if test="${role.id eq 3}">
-                                 <td><a href="createTest?username=${p.accDetail.account.userName}" style="color: black">Create Test</a></td>    
-                                 <td><a href="viewTest?username=${p.accDetail.account.userName}" style="color: black">View Test</a></td>  
-                             </c:if>
-                             <c:if test="${role.id eq 2}">
-                                 <td><a href="" style="color: black">Create Prescription</a></td>    
-                                 <td><a href="prescription-list?username=${p.accDetail.account.userName}" style="color: black">View Prescription</a></td>  
-                             </c:if>
-                         </tr>
-                     </c:forEach>
-                 </table>
 
+                 <div>
+                     <table class="table">
+                         <thead class="thead-light">
+                             <tr>
+                                 <th></th>
+                                 <th>Full name</th>
+                                 <th>Gender</th>
+                                 <th>Date Of Birth</th>
+                                 <th>Address</th>
+                                 <th>National</th>
+                                 <th>Phone</th>
+                                 <th>Background Disease</th>
+                                 <th>Blood Type</th>
+                                 <th>Date Comein</th>
+                                 <th>Action</th>
+                             </tr>
+                         </thead>
+
+                         <tbody id="tBody"> 
+                             <c:forEach items="${requestScope.patients}" var="p">
+                                 <tr>
+                                     <td>
+                                         <div>Room : A301</div>
+                                         <div>Bed : 6</div>
+                                     </td>
+                                     <td>${p.accDetail.fullName}</td>
+                                     <c:if test="${p.accDetail.gender eq 'True'}">
+                                         <td>Male</td>
+                                     </c:if>
+                                     <c:if test="${p.accDetail.gender eq 'False'}">
+                                         <td>Female</td>
+                                     </c:if>
+                                     <td>${p.accDetail.dateofbirth}</td>
+                                     <td>${p.accDetail.address}</td>
+                                     <td>${p.accDetail.nation}</td>
+                                     <td>${p.accDetail.phone}</td>
+                                     <c:if test="${p.backgroundDisease eq 'True'}">
+                                         <td>Yes</td>
+                                     </c:if>
+                                     <c:if test="${p.backgroundDisease eq 'False'}">
+                                         <td>No</td>
+                                     </c:if>
+                                     <td>${p.bloodType}</td>
+                                     <c:if test="${role.id eq 3}">
+                                         <td><a href="createTest?username=${p.accDetail.account.userName}" >Create Test</a></td>    
+                                         <td><a href="viewTest?username=${p.accDetail.account.userName}" >View Test</a></td>  
+                                     </c:if>
+                                     <c:if test="${role.id eq 2}">
+                                         <td>1/1/2022</td>    
+                                         <td><a href="prescription-list?username=${p.accDetail.account.userName}" >View Prescription</a></td>  
+                                     </c:if>
+                                 </tr>
+                             </c:forEach>
+                         </tbody>
+                     </table>
+                 </div>
              </div>
              <jsp:include page="../base/footer.jsp" />   
         </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
+
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <<script src="../assets/js/doctor/perscriptionList.js" type="text/javascript"></script>
+        <script>
+            $(function () {
+                $('[data-toggle="popover"]').popover({
+                    trigger: 'focus'
+                });
+            });
+        </script>
+    </body>
 </html>

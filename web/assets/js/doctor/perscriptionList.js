@@ -1,9 +1,9 @@
 $('#inputSearch').on('input', function () {
-    text = $('#inputSearch').val();
-    console.log(text);
+    let text = $('#inputSearch').val();
+    let search = $(location).attr('search');
 
     $.ajax({
-        url: "/Isolated_Management/base/prescription-list?username=thanhnt",
+        url: "/Isolated_Management/base/prescription-list" + search,
         type: "post",
         data: {
             searchVal: text
@@ -17,12 +17,65 @@ $('#inputSearch').on('input', function () {
     });
 });
 
-$('#filterDay').on('click', function () {
-    var df = new Date($('#dateFrom').val());
-    var dt = new Date($('#dateTo').val());
+$('#sortByDate').on('click', function () {
+    let search = $(location).attr('search');
 
     $.ajax({
-        url: "/Isolated_Management/base/prescription-list?username=thanhnt",
+        url: "/Isolated_Management/base/prescription-list" + search,
+        type: "post",
+        data: {
+            sort: "date"
+        },
+        success: function (data) {
+            $("#tBody").html(data);
+        },
+        error: function (xhr) {
+            //Do Something to handle error
+        }
+    });
+});
+$('#sortByStatus').on('click', function () {
+    let search = $(location).attr('search');
+
+    $.ajax({
+        url: "/Isolated_Management/base/prescription-list" + search,
+        type: "post",
+        data: {
+            sort: "status"
+        },
+        success: function (data) {
+            $("#tBody").html(data);
+        },
+        error: function (xhr) {
+            //Do Something to handle error
+        }
+    });
+});
+$('#sortByStatus').on('click', function () {
+    let search = $(location).attr('search');
+
+    $.ajax({
+        url: "/Isolated_Management/base/prescription-list" + search,
+        type: "post",
+        data: {
+            sort: "status"
+        },
+        success: function (data) {
+            $("#tBody").html(data);
+        },
+        error: function (xhr) {
+            //Do Something to handle error
+        }
+    });
+});
+
+$('#filterDay').on('click', function () {
+    let df = $('#dateFrom').val().split("T")[0];
+    let dt = $('#dateTo').val().split("T")[0];
+    let search = $(location).attr('search');
+
+    $.ajax({
+        url: "/Isolated_Management/base/prescription-list" + search,
         type: "post",
         data: {
             dateFrom: df,

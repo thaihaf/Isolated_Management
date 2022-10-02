@@ -35,7 +35,7 @@
                             <td>${r.id}</td>
                             <td>${r.name}</td>
                             <td>${r.numOfBed}</td>
-                            <td>${r.area.name}</td>
+                            <td>${r.area.name} - ${r.area.areaType.type}</td>
                             <td>${r.doctorManage.fullName}</td>
                             <td>${r.nurseManage.fullName}</td>
                             <td><c:if test="${r.available eq true}">Yes</c:if><c:if test="${r.available eq false}">No</c:if></td>

@@ -10,6 +10,7 @@ import entity.Room;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,10 +50,8 @@ public class AreaDBContext extends DBContext<Area> {
                     + "      ,[Area].[Name]\n"
                     + "      ,[Address]\n"
                     + "	  ,[Area].[Available]\n"
-                    + "      ,[AreaType].[ID] AS AreaTypeID\n"
                     + "	  ,[AreaType].[AreaType]\n"
                     + "	  ,[Room].[ID] AS RoomID\n"
-                    + "	  ,[Room].[Name] AS RoomName\n"
                     + "  FROM [Area]\n"
                     + "  INNER JOIN [Room] ON [Area].[ID] = [Room].[Area_ID]\n"
                     + "  INNER JOIN [AreaType] ON [AreaType].[ID] = [Area].[AreaType]";
@@ -73,14 +72,12 @@ public class AreaDBContext extends DBContext<Area> {
                     a.setId(tmp);
                     a.setName(rs.getNString("Name"));
                     a.setAddress(rs.getNString("Address"));
-                    at.setId(rs.getInt("AreaTypeID"));
                     at.setType(rs.getNString("AreaType"));
                     a.setAreaType(at);
                     a.setAvailable(rs.getBoolean("Available"));
                 }
                 Room r = new Room();
                 r.setId(rs.getInt("RoomID"));
-                r.setName(rs.getNString("RoomName"));
                 rooms.add(r);
             }
             if (rs.isAfterLast()) {
@@ -93,6 +90,49 @@ public class AreaDBContext extends DBContext<Area> {
         return areas;
     }
 
+    public Area getWithRoomList(int id) {
+        try {
+            String sql = "SELECT [Area].[ID] AS AreaID\n"
+                    + "      ,[Area].[Name] AS AreaName\n"
+                    + "      ,[Address]\n"
+                    + "      ,[AreaType]\n"
+                    + "      ,[Area].[Available]\n"
+                    + "	  ,[Room].[ID] AS RoomID\n"
+                    + "	  ,[Room].[Name] AS RoomName\n"
+                    + "  FROM [Area]\n"
+                    + "  INNER JOIN [Room] ON [Area].[ID] = [Room].[Area_ID]\n"
+                    + "  WHERE [Area].[ID] = ?";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            Area a = null;
+            ArrayList<Room> rooms = new ArrayList<>();
+            while (rs.next()) {
+                if (a == null) {
+                    a = new Area();
+                    a.setId(rs.getInt("AreaID"));
+                    a.setName(rs.getNString("AreaName"));
+                    a.setAddress(rs.getNString("Address"));
+                    AreaType at = new AreaType();
+                    at.setId(rs.getInt("AreaType"));
+                    a.setAreaType(at);
+                    a.setAvailable(rs.getBoolean("Available"));
+                }
+                Room r = new Room();
+                r.setId(rs.getInt("RoomID"));
+                r.setName(rs.getNString("RoomName"));
+                rooms.add(r);
+            }
+            if (rs.isAfterLast()) {
+                a.setRooms(rooms);
+                return a;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AreaDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
     @Override
     public Area get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -100,12 +140,104 @@ public class AreaDBContext extends DBContext<Area> {
 
     @Override
     public void insert(Area model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            connection.setAutoCommit(false);
+            String sql_insert_area = "INSERT INTO [Area]\n"
+                    + "           ([Name]\n"
+                    + "           ,[Address]\n"
+                    + "           ,[AreaType]\n"
+                    + "           ,[Available])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?)";
+            PreparedStatement stm_insert_area = connection.prepareStatement(sql_insert_area, Statement.RETURN_GENERATED_KEYS);
+            stm_insert_area.setString(1, model.getName());
+            stm_insert_area.setString(2, model.getAddress());
+            stm_insert_area.setInt(3, model.getAreaType().getId());
+            stm_insert_area.setBoolean(4, model.isAvailable());
+            stm_insert_area.executeUpdate();
+            ResultSet rs = stm_insert_area.getGeneratedKeys();
+            if (rs.next()) {
+                model.setId(rs.getInt(1));
+            } else {
+                throw new SQLException("Error in adding to database.");
+            }
+            for (Room room : model.getRooms()) {
+                String sql = "INSERT INTO [Room]\n"
+                        + "           ([Name]\n"
+                        + "           ,[NumOfBed]\n"
+                        + "           ,[Area_ID]\n"
+                        + "           ,[DoctorManage]\n"
+                        + "           ,[NurseManage]\n"
+                        + "           ,[Available])\n"
+                        + "     VALUES\n"
+                        + "           (?\n"
+                        + "           ,?\n"
+                        + "           ,?\n"
+                        + "           ,?\n"
+                        + "           ,?\n"
+                        + "           ,?)";
+                PreparedStatement stm = connection.prepareStatement(sql);
+                stm.setString(1, room.getName());
+                stm.setInt(2, room.getNumOfBed());
+                stm.setInt(3, model.getId());
+                stm.setString(4, room.getDoctorManage().getAccount().getUserName());
+                stm.setString(5, room.getNurseManage().getAccount().getUserName());
+                stm.setBoolean(6, room.isAvailable());
+                stm.executeUpdate();
+            }
+            connection.commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(AreaDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                connection.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(AreaDBContext.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                Logger.getLogger(AreaDBContext.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
     }
 
     @Override
     public void update(Area model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "UPDATE [Area]\n"
+                    + "   SET [Name] = ?\n"
+                    + "      ,[Address] = ?\n"
+                    + "      ,[AreaType] = ?\n"
+                    + "      ,[Available] = ?\n"
+                    + " WHERE [Area].[ID] = ?";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setString(1, model.getName());
+            stm.setString(2, model.getAddress());
+            stm.setInt(3, model.getAreaType().getId());
+            stm.setBoolean(4, model.isAvailable());
+            stm.setInt(5, model.getId());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+        }
+    }
+
+    public boolean switchStatus(int id, boolean status) {
+        try {
+            String sql = "UPDATE [Area]\n"
+                    + "   SET [Available] = ?\n"
+                    + " WHERE [Area].[ID] = ?";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setBoolean(1, status);
+            stm.setInt(2, id);
+            stm.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
     @Override

@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Update user account - IMS</title>
+        <title>Add user</title>
         <link rel="stylesheet" href="../assets/css/base.css"/>
         <link rel="stylesheet" href="../assets/css/base/home.css"/>
     </head>
@@ -29,7 +29,7 @@
                     Phone: <input required type="text" name="phone" value=""/><br/>
                     Address: <input required type="text" name="address" value=""/><br/>
                     Email: <input required type="email" name='email' value=""/><br/>
-                    Nation: <select name="nation">
+                    Nationality: <select name="nation">
                         <option value="Viet Nam">Việt Nam</option>
                         <option value="Thailand">Thái Lan</option>
                         <option value="Laos">Lào</option>
@@ -59,7 +59,8 @@
                         Level of education: <input type="text" name="leveleducation" value=""/><br/>
                         Hospital: <input type="text" name="hospital" value=""/><br/>
                     </div>
-                    <input type="submit" value="Add">
+                    <input type="submit" value="Add"><br>
+                    <a href="admin/users">Return to User List</a>
                 </form>
             </div>
             <jsp:include page="/base/footer.jsp" />

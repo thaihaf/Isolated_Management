@@ -53,7 +53,7 @@
                                 <td>${a.phone}</td>
                                 <td>${a.address}</td>
                                 <td>${a.account.role.role}</td>
-                                <td><a href="profile?user=${a.account.userName}">Edit</a></td>
+                                <td><a href="updateuser?user=${a.account.userName}">Edit</a></td>
                             </tr>
                         </c:forEach>
                     </table>

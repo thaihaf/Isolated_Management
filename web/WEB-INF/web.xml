@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>AdminProfileControler</servlet-name>
-        <servlet-class>controler.AdminProfileControler</servlet-class>
+        <servlet-class>controler.UpdateUserControler</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>TestResultListControler</servlet-name>
@@ -40,6 +40,10 @@
         <servlet-name>AddUserControler</servlet-name>
         <servlet-class>controler.admin.AddUserControler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutControler</servlet-name>
+        <servlet-class>controler.LogoutControler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -62,7 +66,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminProfileControler</servlet-name>
-        <url-pattern>/admin/profile</url-pattern>
+        <url-pattern>/admin/updateuser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TestResultListControler</servlet-name>
@@ -91,6 +95,10 @@
     <servlet-mapping>
         <servlet-name>AddUserControler</servlet-name>
         <url-pattern>/adduser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutControler</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

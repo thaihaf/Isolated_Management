@@ -19,8 +19,9 @@ import java.util.logging.Logger;
  */
 public class UserDBContext extends DBContext<Account> {
 
-    public String updatePatient(String fullname, Boolean gender, String phone, String address,
-            String email, Date dateofbirth, String nation, String username) {
+    public void updatePatient(String fullName, Boolean gender, String phone, String address,
+            String email, Date dateofbirth, String nation, String userName, String note,
+            String bloodType, Boolean backgroundDesease) {
         try {
             String sql = "UPDATE Account_Details\n"
                     + "SET Account_Details.Fullname = ?, \n"
@@ -30,27 +31,71 @@ public class UserDBContext extends DBContext<Account> {
                     + "Account_Details.Email = ?,\n"
                     + "Account_Details.DateOfBirth = ?,\n"
                     + "Account_Details.Nation = ?\n"
-                    + "FROM Account_Details\n"
-                    + "INNER JOIN Account\n"
+                    + "FROM Account_Details INNER JOIN Account\n"
                     + "ON Account.Username = Account_Details.ID\n"
-                    + "where Account.Username = ?";
+                    + "WHERE Account.Username = ? and Account.Role_ID = 4\n"
+                    + "UPDATE Patient SET Patient.Note = ?,\n"
+                    + "Patient.BackgroundDisease = ?,\n"
+                    + "Patient.[Blood Type] = ? FROM Patient INNER JOIN Account\n"
+                    + "ON Patient.ID = Account.Username\n"
+                    + "WHERE Account.Username = ? and Account.Role_ID = 4";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, fullname);
+            stm.setString(1, fullName);
             stm.setBoolean(2, gender);
             stm.setString(3, phone);
             stm.setString(4, address);
             stm.setString(5, email);
             stm.setDate(6, dateofbirth);
             stm.setString(7, nation);
-            stm.setString(8, username);
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-
-            }
+            stm.setString(8, userName);
+            stm.setString(9, note);
+            stm.setBoolean(10, backgroundDesease);
+            stm.setString(11, bloodType);
+            stm.setString(12, userName);
+            stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+    }
+
+    public void updateDoctorAndnurse(String fullName, Boolean gender, String phone, String address,
+            String email, Date dateofbirth, String nation, String userName,
+            int role, String leveleducation, String hospital) {
+        try {
+            String sql = "UPDATE Account_Details\n"
+                    + "SET Account_Details.Fullname = ?, \n"
+                    + "Account_Details.Gender = ?, \n"
+                    + "Account_Details.Phone = ?,\n"
+                    + "Account_Details.Address = ?,\n"
+                    + "Account_Details.Email = ?,\n"
+                    + "Account_Details.DateOfBirth = ?,\n"
+                    + "Account_Details.Nation = ?\n"
+                    + "FROM Account_Details INNER JOIN Account\n"
+                    + "ON Account.Username = Account_Details.ID\n"
+                    + "WHERE Account.Username = ? and Account.Role_ID = ?\n"
+                    + "UPDATE Medical_Staff\n"
+                    + "SET Medical_Staff.[Level of education] = ?,\n"
+                    + "Medical_Staff.Hospital = ? FROM Medical_Staff INNER JOIN Account\n"
+                    + "ON Account.Username = Medical_Staff.ID \n"
+                    + "WHERE Account.Username = ? and Account.Role_ID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, fullName);
+            stm.setBoolean(2, gender);
+            stm.setString(3, phone);
+            stm.setString(4, address);
+            stm.setString(5, email);
+            stm.setDate(6, dateofbirth);
+            stm.setString(7, nation);
+            stm.setString(8, userName);
+            stm.setInt(9, role);
+            stm.setString(10, leveleducation);
+            stm.setString(11, hospital);
+            stm.setString(12, userName);
+            stm.setInt(13, role);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public Boolean addUser(String ID, String fullName, Boolean gender, String phone, String address, int role,
@@ -80,7 +125,7 @@ public class UserDBContext extends DBContext<Account> {
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-       return false; 
+        return false;
     }
 
     @Override

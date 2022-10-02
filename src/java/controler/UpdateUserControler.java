@@ -8,6 +8,7 @@ import dao.AccountDetailDBContext;
 import dao.MedicalStaffDBContext;
 import dao.PatientDBContext;
 import dao.RoleDBContext;
+import dao.UserDBContext;
 import entity.AccountDetail;
 import entity.MedicalStaff;
 import entity.Patient;
@@ -18,9 +19,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
 import java.util.ArrayList;
 
-public class AdminProfileControler extends HttpServlet {
+public class UpdateUserControler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -62,18 +64,38 @@ public class AdminProfileControler extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         String accID = request.getParameter("user");
+        String username = request.getParameter("username");
+        String fullName = request.getParameter("fullName");
+        Boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
+        String email = request.getParameter("email");
+        String nation = request.getParameter("nation");
+        Date dateofbirth = Date.valueOf(request.getParameter("dateofbirth"));
+        int role = Integer.parseInt(request.getParameter("role"));
+//        String dateofbirth = request.getParameter("dateofbirth");
+//        String role = request.getParameter("role");
+        String leveleducation = request.getParameter("leveleducation");
+        String hospital = request.getParameter("hospital");
+        String blood_Type = request.getParameter("blood_Type");
+        Boolean background_disease = Boolean.parseBoolean(request.getParameter("background_disease"));
+        String note = request.getParameter("note");
         AccountDetailDBContext accDB = new AccountDetailDBContext();
         AccountDetail acc = accDB.get(accID);
         RoleDBContext roleDB = new RoleDBContext();
         ArrayList<Role> roles = roleDB.list();
+        UserDBContext udb = new UserDBContext();
         request.setAttribute("account", acc);
+        String mess = "Update successful";
         switch (acc.getAccount().getRole().getId()) {
-            case 2:
+            case 2: 
             case 3: {
                 MedicalStaffDBContext medDB = new MedicalStaffDBContext();
                 MedicalStaff med = medDB.getByAccountDetail(acc);
                 request.setAttribute("account", acc);
                 request.setAttribute("medical", med);
+                udb.updateDoctorAndnurse(fullName, gender, phone, address, email, dateofbirth, nation, username, role, leveleducation, hospital);
+                request.setAttribute(mess, "mess");
                 break;
             }
             case 4: {
@@ -81,10 +103,12 @@ public class AdminProfileControler extends HttpServlet {
                 Patient p = patientDB.get(acc);
                 request.setAttribute("account", acc);
                 request.setAttribute("patient", p);
+                udb.updatePatient(fullName, gender, phone, address, email, dateofbirth, nation, username, note, blood_Type, background_disease);
+                request.setAttribute(mess, "mess");
             }
         }
         request.setAttribute("roles", roles);
-        request.getRequestDispatcher("profile.jsp").forward(request, response);
+        request.getRequestDispatcher("updateuser.jsp").forward(request, response);
     }
 
     /**

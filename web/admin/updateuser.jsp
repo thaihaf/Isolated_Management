@@ -49,22 +49,21 @@
         <jsp:include page="/base/header.jsp" />
         <div class="wrapper wrapperAdmin">
             <div class="container">
-                <form action="update" method="get">
+                <form action="updateuser" method="get">
                     <input type="hidden" value="${account.account.userName}"/>
-                    Full name: <input type="text" name="fullname" value="${account.fullName}"/><br/>
-                    Gender: <Input type="radio" name="gender" value="true" <c:if test="${account.gender eq true}">checked="checked"</c:if> /> Male <Input type="radio" name="gender" value="false" <c:if test="${account.gender eq false}">checked="checked"</c:if> /> Female <br/>
-                    Phone: <input type="text" name="phone" value="${account.phone}"/><br/>
-                    Address: <input type="text" name="address" value="${account.address}"/><br/>
-                    Email: <input type="text" value="${account.email}" disabled/><br/>
-                    Nation: <input type="text" name="nation" value="${account.nation}"/><br/>
-<!--                    Role: <select name="role" id='role' onchange="changeRole()">
-                        <c:forEach items="${requestScope.roles}" var="r">
-                            <option value="${r.id}" selected="selected"><c:if test="${account.account.role.id eq r.id}"></c:if>${r.role}</option>
-                            </c:forEach>
-                    </select><br/>-->
+                    Full name: <input required type="text" name="fullName" value="${account.fullName}"/><br/>
+                    Gender: <input required type="radio" name="gender" value="true" <c:if test="${account.gender eq true}">checked="checked"</c:if> /> Male <Input type="radio" name="gender" value="false" <c:if test="${account.gender eq false}">checked="checked"</c:if> /> Female <br/>
+                    Phone: <input required type="text" name="phone" value="${account.phone}"/><br/>
+                    Address: <input required type="text" name="address" value="${account.address}"/><br/>
+                    Email: <input required type="text" value="${account.email}"/><br/>
+                    <!--Nationality: <input required type="text" name="nation" value="${account.nation}"/><br/>-->
+                    Nationality: <select required name="nation" disabled>
+                        <option value="${account.nation}" >${account.nation}</option>
+                    </select><br>
+                    Date Of Birth: <input type="date" name="dateofbirth" value="${account.dateofbirth}"/><br/>
                     <div id="optional">
                         <c:if test="${requestScope.account.account.role.id eq 2 || requestScope.account.account.role.id eq 3}">
-                            Level of education: <input type="text" name="lvlofedu" value="${requestScope.medical.levelOfEducation}"/><br/>
+                            Level of education: <input type="text" name="leveleducation" value="${requestScope.medical.levelOfEducation}"/><br/>
                             Hospital: <input type="text" name="hospital" value="${requestScope.medical.hospital}"/><br/>
                         </c:if>
                         <c:if test="${requestScope.account.account.role.id eq 4}">
@@ -72,8 +71,8 @@
                             Area: <input type="text" name="area" value="${patient.room.area.name}"/><br/>
                             Background disease: 
                             <input type="radio" name="background_disease" value="${requestScope.patient.backgroundDisease}" <c:if test="${requestScope.patient.backgroundDisease eq true}">checked="checked"</c:if> />Yes
-                                <input type="radio" name="background_disease" value="${requestScope.patient.backgroundDisease}" <c:if test="${requestScope.patient.backgroundDisease eq false}">checked=checked</c:if> />No<br/>
-                                Blood type: <input type="text" name="blood" value="${patient.bloodType}"/><br/>
+                            <input type="radio" name="background_disease" value="${requestScope.patient.backgroundDisease}" <c:if test="${requestScope.patient.backgroundDisease eq false}">checked=checked</c:if> />No<br/>
+                            Blood type: <input type="text" name="blood_Type" value="${patient.bloodType}"/><br/>
                             Note <input type="text" name="note" value="${patient.note}"/><br/>
                         </c:if>
                     </div>

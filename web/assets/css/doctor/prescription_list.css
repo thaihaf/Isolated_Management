@@ -77,11 +77,11 @@ ol.breadcrumb{
 .guide_group{
     margin-bottom: 1rem;
 }
-.form-control{
-    padding: 0.275rem 1.75rem !important;
+.form-control.list{
+    padding: 0.275rem 1.75rem ;
     height: 3rem;
-    width: 20rem !important;
-    border-radius: 2rem !important;
+    width: 20rem;
+    border-radius : 1rem ;
 }
 
 .medicine_caption{

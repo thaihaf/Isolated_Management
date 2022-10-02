@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="./assets/css/view/login.css"/>
     </head>
     <body>
-        <div class="login" style="background-image: url(../assets/img/bg_login.png)">
+        <div class="login" style="background-image: url(./assets/img/bg_login.png)">
             <div class="login_link">
                 <div class="item item_language">
                     <select name="language" class="switch_option">

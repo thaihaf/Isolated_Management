@@ -4,6 +4,7 @@
  */
 package controller.doctor;
 
+import com.google.gson.Gson;
 import dao.PrescriptionDBContext;
 import entity.Account;
 import entity.Medicine;
@@ -59,7 +60,7 @@ public class PrescriptionListController extends HttpServlet {
             request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
         } else {
             PrescriptionDBContext pDB = new PrescriptionDBContext();
-            ArrayList<Prescription> p = pDB.getListPrescriptionDetails(acc.getUserName(), request.getParameter("username"), "", null, null, "");
+            ArrayList<Prescription> p = pDB.getListPrescriptionDetails(acc.getUserName(), request.getParameter("username"), null, null, null, null);
 
             request.setAttribute("prescriptions", p);
             request.getRequestDispatcher("../doctor/prescription_list.jsp").forward(request, response);
@@ -96,6 +97,10 @@ public class PrescriptionListController extends HttpServlet {
             String df = request.getParameter("dateFrom");
             String dt = request.getParameter("dateTo");
             String sort = request.getParameter("sort");
+
+//            Gson gson = new Gson();
+//            Integer[] days = gson.fromJson(request.getParameter("days"), Integer[].class);
+//            Object[] subjects = gson.fromJson(request.getParameter("ids"), Object[].class);
 
             ArrayList<Prescription> prescriptions = pDB.getListPrescriptionDetails(
                     acc.getUserName(),

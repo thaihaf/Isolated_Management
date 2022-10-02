@@ -1,6 +1,6 @@
 <%-- 
-    Document   : createTest
-    Created on : Sep 28, 2022, 2:53:20 AM
+    Document   : createInjection
+    Created on : Sep 30, 2022, 5:52:18 PM
     Author     : Admin
 --%>
 
@@ -25,7 +25,7 @@
         <div class=<c:if test="${role.id eq 1}">"wrapper wrapperAdmin"</c:if>
              <c:if test="${role.id ne 1}">"wrapper wrapperUser"</c:if>
                  >
-                 <form action="createTest" method="POST" class="profilForm container">
+                 <form action="createInjection" method="POST" class="profilForm container">
                      <div class="info">
 
                          <div class="updateInfo_group">
@@ -49,32 +49,18 @@
 
                      <div class="updateInfo_group">
                          <div class="updateInfo_item left">
-                             <div class="item_title">test type</div>
-                             <select name="test">
-                                 <c:forEach items="${requestScope.types}" var="t">
-                                     <option value="${t.id}" style="font-size: 15px">${t.typeName}</option>
+                             <div class="item_title">vaccine type</div>
+                             <select name="vaccine">
+                                 <c:forEach items="${requestScope.vaccine}" var="v">
+                                     <option value="${v.id}" style="font-size: 15px">${v.vaccineName}</option>
                                  </c:forEach>
                              </select> 
                          </div>
                      </div>
-                     <div class="updateInfo_group">
-                         <div class="updateInfo_item right">
-                             <div class="item_title">result</div>
-                             <div class="btns_radio">
-                                 <div class="btn_radioGroup">
-                                     <input type="radio" name="result" value="positive" />
-                                     <div class="btn_radioText">Positive</div>
-                                 </div>
-                                 <div class="btn_radioGroup">
-                                     <input checked="checked" type="radio" name="result" value="negative" />
-                                     <div class="btn_radioText">Negative</div>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
+
                      <div class="updateInfo_group">
                          <div class="updateInfo_item left">
-                             <div class="item_title">Test Creator</div>
+                             <div class="item_title">Injection Creator</div>
                              <input type="text" class="item_input" name="creator">
                          </div>
                      </div>
@@ -156,4 +142,3 @@
 </body>
 
 </html>
-

@@ -61,8 +61,6 @@
                          <td>National</td>
                          <td>Phone</td>
                          <td>Email</td>
-                         <td>Background Disease</td>
-                         <td>Blood Type</td>
                          <td></td>
                          <td></td>
                      </tr>
@@ -81,16 +79,11 @@
                              <td>${p.accDetail.nation}</td>
                              <td>${p.accDetail.phone}</td>
                              <td>${p.accDetail.email}</td>
-                             <c:if test="${p.backgroundDisease eq 'True'}">
-                                 <td>Yes</td>
-                             </c:if>
-                             <c:if test="${p.backgroundDisease eq 'False'}">
-                                 <td>No</td>
-                             </c:if>
-                             <td>${p.bloodType}</td>
                              <c:if test="${role.id eq 3}">
                                  <td><a href="createTest?username=${p.accDetail.account.userName}" style="color: black">Create Test</a></td>    
                                  <td><a href="viewTest?username=${p.accDetail.account.userName}" style="color: black">View Test</a></td>  
+                                 <td><a href="createInjection?username=${p.accDetail.account.userName}" style="color: black">Create Injection</a></td>  
+                                 <td><a href="viewInjection?username=${p.accDetail.account.userName}" style="color: black">View Injection</a></td>  
                              </c:if>
                              <c:if test="${role.id eq 2}">
                                  <td><a href="" style="color: black">Create Prescription</a></td>    

@@ -7,6 +7,7 @@ package dao;
 import entity.Account;
 import entity.AccountDetail;
 import entity.Area;
+import entity.AreaType;
 import entity.Room;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,26 +27,31 @@ public class RoomDBContext extends DBContext<Room> {
         ArrayList<Room> rooms = new ArrayList<>();
         try {
             String sql = "SELECT [Room].[ID]\n"
-                    + "      ,[Room].[Name]\n"
-                    + "      ,[NumOfBed]\n"
-                    + "      ,[Area_ID]\n"
-                    + "	  ,[Area].[Name] AS AreaName\n"
-                    + "      ,ad1.[Fullname] AS DoctorFullName\n"
-                    + "      ,ad2.[Fullname] AS NurseFullName\n"
-                    + "      ,[Available]\n"
-                    + "  FROM [Room]\n"
-                    + "  INNER JOIN [Area] ON [Area].[ID] = [Room].[Area_ID]\n"
-                    + "  INNER JOIN [Account_Details] ad1 ON ad1.[ID] = [Room].[DoctorManage]\n"
-                    + "  INNER JOIN [Account_Details] ad2 ON ad2.[ID] = [Room].[NurseManage]";
+                    + "                    ,[Room].[Name]\n"
+                    + "                    ,[NumOfBed]\n"
+                    + "                    ,[Area_ID]\n"
+                    + "                    ,[Area].[Name] AS AreaName\n"
+                    + "					,[AreaType].[AreaType]\n"
+                    + "                    ,ad1.[Fullname] AS DoctorFullName\n"
+                    + "                    ,ad2.[Fullname] AS NurseFullName\n"
+                    + "                    ,[Room].[Available]\n"
+                    + "                    FROM [Room]\n"
+                    + "                    INNER JOIN [Area] ON [Area].[ID] = [Room].[Area_ID]\n"
+                    + "                    INNER JOIN [Account_Details] ad1 ON ad1.[ID] = [Room].[DoctorManage]\n"
+                    + "                    INNER JOIN [Account_Details] ad2 ON ad2.[ID] = [Room].[NurseManage]\n"
+                    + "					INNER JOIN [AreaType] ON [Area].[AreaType] = [AreaType].[ID]";
             PreparedStatement stm = connection.prepareCall(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Room r = new Room();
                 Area a = new Area();
+                AreaType at = new AreaType();
                 AccountDetail doc = new AccountDetail();
                 AccountDetail nur = new AccountDetail();
                 a.setId(rs.getInt("Area_ID"));
                 a.setName(rs.getNString("AreaName"));
+                at.setType(rs.getNString("AreaType"));
+                a.setAreaType(at);
                 r.setArea(a);
                 r.setId(rs.getInt("ID"));
                 r.setName(rs.getNString("Name"));
@@ -54,7 +60,7 @@ public class RoomDBContext extends DBContext<Room> {
                 r.setDoctorManage(doc);
                 nur.setFullName(rs.getNString("NurseFullName"));
                 r.setNurseManage(nur);
-//                r.setAvailable(rs.getBoolean("Available"));
+                r.setAvailable(rs.getBoolean("Available"));
                 rooms.add(r);
             }
         } catch (SQLException ex) {
@@ -179,6 +185,21 @@ public class RoomDBContext extends DBContext<Room> {
             return false;
         }
         return true;
+    }
+
+    public boolean updateStatusWithArea(int areaID, boolean status_to_change) {
+        try {
+            String sql = "UPDATE [Room]\n"
+                    + "   SET [Available] = ?\n"
+                    + " WHERE [Room].[Area_ID] = ?";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setBoolean(1, status_to_change);
+            stm.setInt(2, areaID);
+            stm.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            return false;
+        }
     }
 
 }

@@ -11,10 +11,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="../assets/css/base.css"/>
-        <link rel="stylesheet" href="../assets/css/view/forgotPass.css"/>
+        <link rel="stylesheet" href="./assets/css/base.css"/>
+        <link rel="stylesheet" href="./assets/css/view/forgotPass.css"/>
     <body>
-        <div class="forgotPass" style="background-image: url(../assets/img/bg_login.png)">
+        <div class="forgotPass" style="background-image: url(./assets/img/bg_login.png)">
             <div class="forgotPass_link">
                 <div class="item item_language">
                     <select name="language" class="switch_option">

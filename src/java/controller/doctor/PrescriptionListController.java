@@ -132,7 +132,7 @@ public class PrescriptionListController extends HttpServlet {
                             + "                                                 </div>\n"
                             + "                                                 <div>\n"
                             + "                                                     <div>\n"
-                            + "                                                         <span class=\"medicine_caption\">Medicine " + loop + "</span> : \n"
+                            + "                                                         <span class=\"medicine_caption name\">Medicine " + loop + "</span> : \n"
                             + "                                                         " + m.getName() + " - \n"
                             + "                                                         " + listP.get(index).getQuantity() + " \n"
                             + "                                                         " + listE.get(index).getDosage() + "\n"

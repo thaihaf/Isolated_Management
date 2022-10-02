@@ -90,30 +90,46 @@ $("#close-medicines").click(() => {
 });
 
 $("#btn_submit").click(() => {
-    let search = $(location).attr('search');
-    let title_text = $("#title-text").val();
-    let guide_text = $("#guide-text").val();
-    
-    let json = JSON.stringify(listPm);
-    let val = JSON.stringify({title: title_text, guide: guide_text});
+    let title_text = $("#title-text").val().toString();
+    let guide_text = $("#guide-text").val().toString();
 
-    console.log(json);
-    $.ajax({
-        url: "/Isolated_Management/base/create-prescription" + search,
-        type: "post",
-        data: {
-            value : val,
-            listPm: json
-        },
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-        success: function (data) {
-            console.log("succ");
+    if (listPm.length === 0) {
+        alert("You must choose Medicine");
+    } else if (title_text === ""){
+        alert("You must input Symptom");
+        
+    } else {
+        let search = $(location).attr('search');
+
+        let json = JSON.stringify(listPm);
+        let val = JSON.stringify({title: title_text, guide: guide_text});
+
+        console.log(json);
+        $.ajax({
+            url: "/Isolated_Management/base/create-prescription" + search,
+            type: "post",
+            data: {
+                value: val,
+                listPm: json
+            },
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            success: function (data) {
+                console.log("succ");
 //            $("#tBody").html(data);
-        },
-        error: function (xhr) {
-            console.log("err");
-            //Do Something to handle error
-        }
-    });
+            },
+            error: function (xhr) {
+                console.log("err");
+                //Do Something to handle error
+            }
+        });
+    }
+
+});
+
+$("#btn_reset").click(() => {
+    $('.search-list').addClass("hidden");
+
+    listPm = [];
+    $("#tBody").html("");
 });
 

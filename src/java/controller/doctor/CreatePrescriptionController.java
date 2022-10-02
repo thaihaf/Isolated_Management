@@ -5,11 +5,13 @@
 package controller.doctor;
 
 import com.google.gson.Gson;
+import dao.AccountDetailDBContext;
 import dao.CreatePrescriptionDBContext;
 import dao.MedicineDBContext;
 import dao.PrescriptionDBContext;
 import dao.PrescriptionMedicineDBContext;
 import entity.Account;
+import entity.AccountDetail;
 import entity.Medicine2;
 import entity.MedicineType;
 import entity.Prescription;
@@ -117,10 +119,10 @@ public class CreatePrescriptionController extends HttpServlet {
         if (acc == null) {
             request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
         } else {
-//            PrescriptionDBContext pDB = new PrescriptionDBContext();
-//            ArrayList<Prescription> p = pDB.getListPrescriptionDetails(acc.getUserName(), request.getParameter("username"), null, null, null, null);
-//
-//            request.setAttribute("prescriptions", p);
+            AccountDetailDBContext detailDBContext = new AccountDetailDBContext();
+            AccountDetail accountDetail = detailDBContext.get(request.getParameter("username"));
+            request.setAttribute("accountDetail", accountDetail);
+            
             request.getRequestDispatcher("../doctor/create_prescription.jsp").forward(request, response);
         }
     }
@@ -190,7 +192,6 @@ public class CreatePrescriptionController extends HttpServlet {
                 
                 for (PrescriptionMedicine2 p : pres) {
                     out.print("<tr>\n"
-                            + "                                     <td>1</td>\n"
                             + "                                     <td>" + p.getMedicine().getName() + "</td>\n"
                             + "                                     <td>" + p.getQuantity() + "</td>\n"
                             + "                                     <td>" + p.getMedicine().getStock() + "</td>\n"

@@ -18,7 +18,7 @@ public class FormatDate {
             = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
     private static final SimpleDateFormat sdfDatetime
             = new SimpleDateFormat("EEEE, dd-MM-yyyy HH:mm:ss");
-    
+
     private static final SimpleDateFormat sdf2
             = new SimpleDateFormat("yyyy-MM-dd");
     private static final SimpleDateFormat sdfDate
@@ -36,7 +36,7 @@ public class FormatDate {
 
         return null;
     }
-    
+
     public String formatDate(String dateString) {
         try {
             Date date = sdf2.parse(dateString);

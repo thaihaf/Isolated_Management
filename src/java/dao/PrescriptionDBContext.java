@@ -4,14 +4,11 @@
  */
 package dao;
 
-import entity.Account;
-import entity.AccountDetail;
 import entity.Medicine;
 import entity.MedicineType;
 import entity.Prescription;
 import entity.PrescriptionMedicine;
-import entity.TestResult;
-import entity.TestType;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,20 +25,51 @@ public class PrescriptionDBContext extends DBContext<Prescription> {
 
     FormatDate fd = new FormatDate();
 
-    public ArrayList<Prescription> getListPrescription(String doctorId, String patientId, String searchVal) {
+    public ArrayList<Prescription> getListPrescription(String doctorId, String patientId, String searchVal, String df, String dt, String sort) {
         ArrayList<Prescription> listPrescription = new ArrayList<>();
 
         try {
             String sql = "SELECT Prescription.*\n"
                     + "FROM Prescription\n"
                     + "where Doctor_ID = ?\n"
-                    + "and Patient_ID = ?\n"
-                    + "and Title like ?";
+                    + "and Patient_ID = ?\n";
+
+            if (searchVal != null) {
+                sql += "and Title like ? \n";
+            }
+
+            if (df != null && dt != null) {
+                sql += "and (PrescriptionDate BETWEEN cast(? as datetime) and cast(? as datetime)) \n";
+            }
+
+            if (sort != null) {
+                switch (sort) {
+                    case "date":
+                        sql += "ORDER BY PrescriptionDate \n";
+                        break;
+                    case "status":
+                        sql += "ORDER BY Status \n";
+                        break;
+                }
+            }
 
             PreparedStatement stm = connection.prepareCall(sql);
             stm.setString(1, doctorId);
             stm.setString(2, patientId);
-            stm.setString(3, "%" + searchVal + "%");
+
+            if (searchVal != null) {
+                stm.setString(3, "%" + searchVal + "%");
+
+                if (df != null && dt != null) {
+                    stm.setDate(4, Date.valueOf(df));
+                    stm.setDate(5, Date.valueOf(dt));
+                }
+            } else {
+                if (df != null && dt != null) {
+                    stm.setDate(3, Date.valueOf(df));
+                    stm.setDate(4, Date.valueOf(dt));
+                }
+            }
 
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -65,7 +93,10 @@ public class PrescriptionDBContext extends DBContext<Prescription> {
         return listPrescription;
     }
 
-    public ArrayList<Prescription> getListPrescriptionDetails(String doctorId, String patientId, String searchVal) {
+    public ArrayList<Prescription> getListPrescriptionDetails(String doctorId, String patientId, String searchVal, String df, String dt, String sort) {
+
+        ArrayList<Prescription> listPrescription = getListPrescription(doctorId, patientId, searchVal, df, dt, sort);
+
         String sql = "SELECT        \n"
                 + "Prescription_Medicine.Prescription_ID, \n"
                 + "Prescription_Medicine.Medicine_ID, \n"
@@ -85,8 +116,6 @@ public class PrescriptionDBContext extends DBContext<Prescription> {
                 + "INNER JOIN\n"
                 + "MedicineType ON Medicine.MedicineTypeID = MedicineType.ID\n"
                 + "where Prescription_ID = ?";
-
-        ArrayList<Prescription> listPrescription = getListPrescription(doctorId, patientId, searchVal);
 
         for (Prescription p : listPrescription) {
             ArrayList<Medicine> medicines = new ArrayList<>();

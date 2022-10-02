@@ -34,7 +34,15 @@
     </servlet>
     <servlet>
         <servlet-name>ViewTest</servlet-name>
-        <servlet-class>controler.ViewTest</servlet-class>
+        <servlet-class>controler.ViewTestController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateInjection</servlet-name>
+        <servlet-class>controler.nurse.CreateInjectionController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewInjection</servlet-name>
+        <servlet-class>controler.ViewInjectionController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddUserControler</servlet-name>
@@ -121,6 +129,14 @@
         <url-pattern>/base/viewTest</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>CreateInjection</servlet-name>
+        <url-pattern>/base/createInjection</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewInjection</servlet-name>
+        <url-pattern>/base/viewInjection</url-pattern>
+         </servlet-mapping>
+        <servlet-mapping>
         <servlet-name>AddUserControler</servlet-name>
         <url-pattern>/adduser</url-pattern>
     </servlet-mapping>
@@ -158,7 +174,7 @@
     </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            120
         </session-timeout>
     </session-config>
     <servlet>

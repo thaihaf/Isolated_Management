@@ -55,6 +55,7 @@ ol.breadcrumb{
     text-transform: uppercase;
 }
 .info_group{
+    display: flex !important;
     align-items: flex-start !important;
     margin-bottom: 1.5rem !important;
 }
@@ -71,7 +72,7 @@ ol.breadcrumb{
     font-size: 1.7rem;
 }
 .table{
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
 
 .guide_group{
@@ -85,8 +86,11 @@ ol.breadcrumb{
 }
 
 .medicine_caption{
-    font-weight: 500;
     color: darkslategray;
+
+}
+.medicine_caption.name{
+    font-weight: 500;
 
 }
 

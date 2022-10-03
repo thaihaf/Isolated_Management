@@ -129,11 +129,11 @@
                                          <c:set var = "type" scope = "session" value = "${p.status}"/>
                                          <c:choose>
                                              <c:when test = "${type == 0}">
-                                                 Processing
+                                                 Đang phát thuốc
                                              </c:when>
 
                                              <c:when test = "${type == 1}">
-                                                 Done
+                                                 Đã phát thuốc
                                              </c:when>
                                          </c:choose>
 

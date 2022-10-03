@@ -40,7 +40,7 @@
                      <form class="top2 form">
                          <div class="form-group">
                              <div class="form-item">
-                                 <label for="recipient-name" class="col-form-label">Title</label>
+                                 <label for="recipient-name" class="col-form-label">Symptom</label>
                                  <input type="text" class="form-control create" id="title-text">
                              </div>
                              <div class="form-item">
@@ -110,8 +110,8 @@
                              </div>
 
                              <div class="info_2">
-                                 <button type="button" class="btn btn-success" id="btn_submit">Submit</button>
-                                 <button type="reset" class="btn btn-secondary"  id="btn_reset">Reset</button>
+                                 <button type="button" class="btn btn-success btn-lg" id="btn_submit">Submit</button>
+                                 <button type="reset" class="btn btn-secondary btn-lg"  id="btn_reset">Reset</button>
                              </div>
                          </div>
                      </form>
@@ -121,7 +121,6 @@
                          <table class="table">
                              <thead class="thead-light">
                                  <tr>
-                                     <th scope="col">STT</th>
                                      <th scope="col">Medicine name</th>
                                      <th scope="col">Quantity</th>
                                      <th scope="col">Stock</th>

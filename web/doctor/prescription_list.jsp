@@ -22,7 +22,6 @@
         <c:set var="role" value="${sessionScope.account.role}"/>
         <jsp:include page="../base/sidebar.jsp" />
         <jsp:include page="../base/header.jsp" />
-        <jsp:include page="../doctor/create_prescription.jsp" />
 
 
         <div class=<c:if test="${role.id eq 1}">"wrapper wrapperAdmin"</c:if>
@@ -46,13 +45,7 @@
 
                      <div class="top2">
                          <div class="filter">
-                             <button 
-                                 type="button" 
-                                 class="btn btn-primary btn-add" 
-                                 data-toggle="modal" 
-                                 data-target=".bd-example-modal-lg">
-                                 Add new +
-                             </button>
+                             <a href="create-prescription?username=${param.username}" class="btn btn-primary btn-add">Add new +</a>
 
                              <div class="dropdown show">
                                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -80,7 +73,7 @@
                      <div class="search">
                          <input 
                              type="text" 
-                             class="form-control input-group-lg" 
+                             class="form-control list input-group-lg" 
                              placeholder="Search title ..." 
                              aria-label="Search title..." 
                              aria-describedby="basic-addon2"
@@ -136,11 +129,11 @@
                                          <c:set var = "type" scope = "session" value = "${p.status}"/>
                                          <c:choose>
                                              <c:when test = "${type == 0}">
-                                                 Processing
+                                                 Đang phát thuốc
                                              </c:when>
 
                                              <c:when test = "${type == 1}">
-                                                 Done
+                                                 Đã phát thuốc
                                              </c:when>
                                          </c:choose>
 
@@ -173,7 +166,7 @@
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <<script src="../assets/js/doctor/perscriptionList.js" type="text/javascript"></script>
+        <script src="../assets/js/doctor/perscriptionList.js" type="text/javascript"></script>
         <script>
             $(function () {
                 $('[data-toggle="popover"]').popover({

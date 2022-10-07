@@ -17,6 +17,36 @@ $('#inputSearch').on('input', function () {
     });
 });
 
+//$('#inputSearch').on('input', function () {
+//    let search = $(location).attr('search');
+//
+//    var array = [
+//        {id: 1, q: 2},
+//        {id: 1, q: 2},
+//        {id: 1, q: 2},
+//        {id: 1, q: 2}
+//    ];
+//
+//    $.ajax({
+//        url: "/Isolated_Management/base/prescription-list" + search,
+//        type: "post",
+//        data: {
+//            action: "load",
+//            subjects: JSON.stringify(["a", "b", "c"]),
+//            days: JSON.stringify([1, 2, 3]),
+//            ids: JSON.stringify(array)
+//        },
+//        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+//        dataType: "json",
+//        success: function (result) {
+//            console.log(result);
+//        },
+//        error: function (xhr) {
+//            //Do Something to handle error
+//        }
+//    });
+//});
+
 $('#sortByDate').on('click', function () {
     let search = $(location).attr('search');
 

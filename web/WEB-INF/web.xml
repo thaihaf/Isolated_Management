@@ -34,7 +34,15 @@
     </servlet>
     <servlet>
         <servlet-name>ViewTest</servlet-name>
-        <servlet-class>controler.ViewTest</servlet-class>
+        <servlet-class>controler.ViewTestController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateInjection</servlet-name>
+        <servlet-class>controler.nurse.CreateInjectionController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewInjection</servlet-name>
+        <servlet-class>controler.ViewInjectionController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddUserControler</servlet-name>
@@ -71,6 +79,10 @@
     <servlet>
         <servlet-name>SwitchRoomStatusControler</servlet-name>
         <servlet-class>controler.admin.SwitchRoomStatusControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreatePrescription</servlet-name>
+        <servlet-class>controller.doctor.CreatePrescriptionController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
@@ -121,6 +133,14 @@
         <url-pattern>/base/viewTest</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>CreateInjection</servlet-name>
+        <url-pattern>/base/createInjection</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewInjection</servlet-name>
+        <url-pattern>/base/viewInjection</url-pattern>
+         </servlet-mapping>
+        <servlet-mapping>
         <servlet-name>AddUserControler</servlet-name>
         <url-pattern>/adduser</url-pattern>
     </servlet-mapping>
@@ -156,9 +176,13 @@
         <servlet-name>SwitchRoomStatusControler</servlet-name>
         <url-pattern>/admin/roomstatus</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreatePrescription</servlet-name>
+        <url-pattern>/base/create-prescription</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            120
         </session-timeout>
     </session-config>
     <servlet>

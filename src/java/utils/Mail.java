@@ -20,7 +20,7 @@ public class Mail {
         try {
             Properties mailServerProperties;
             Message mailMessage;
-            final String emailFrom = "sonkienthuong@gmail.com";
+            final String emailFrom = "sonkienthuong-no.reply@ims.com";
             final String username = "fcf1d8057a8f8e";
             final String password = "53f7eb98b02306";
             mailServerProperties = new Properties();

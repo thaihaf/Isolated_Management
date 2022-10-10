@@ -33,7 +33,6 @@ public class ForgotPasswordControler extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -72,18 +71,16 @@ public class ForgotPasswordControler extends HttpServlet {
             a.setPassword(pass);
             acc.setAccount(a);
             accDB.UpdatePass(acc);
-            try {
-                Mail sendMail = new Mail();
-                sendMail.SendMail(acc.getEmail(), pass);
+            Mail sendMail = new Mail();
+            if (sendMail.SendMail(acc.getEmail(), pass)) {
                 request.setAttribute("message", "New password has sent to your email.");
-                request.getRequestDispatcher("view/forgotpass.jsp").forward(request, response);
-            } catch (MessagingException ex) {
-                Logger.getLogger(ForgotPasswordControler.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }else{
+                request.setAttribute("message", "There is an error in mail server, please try again in later time.");
+            }   
         } else {
             request.setAttribute("message", "Email not found. Please check and try again.");
-            request.getRequestDispatcher("view/forgotpass.jsp").forward(request, response);
         }
+        request.getRequestDispatcher("view/forgotpass.jsp").forward(request, response);
     }
 
     /**

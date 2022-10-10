@@ -38,7 +38,7 @@
                               <dd><a href="url">Add Nurse</a></dd>
 
                               <dt>Manager</dt>
-                              <dd><a href="url">Food List</a></dd>
+                              <dd><a href="../foodlist">Food List</a></dd>
                               <dd><a href="url">Medical List</a></dd>
 
                               <dt>Request Manager</dt>
@@ -90,6 +90,11 @@
                               <img class="sidebar_item_img img_profile" src="../assets/icons/profileIcon.png" alt="alt"/>
                               <div>Profile</div>
                           </a>
+                          <br>
+                          <c:if test="${role.id eq 2}">
+                               <dt>Manager</dt>
+                              <dd><a href="../foodlist">Food List</a></dd>
+                          </c:if>
                       </c:otherwise>
                   </c:choose>
              </div>

@@ -23,13 +23,11 @@
 
         <jsp:include page="./header.jsp" />
 
-        <div class=<c:if test="${role.id eq 1}">"wrapper wrapperAdmin"</c:if>
-             <c:if test="${role.id ne 1}">"wrapper wrapperUser"</c:if>
-                 >
-                 <div class="container">
-                     <!--                     Code vào đây là oke-->
-                 </div>
-             <jsp:include page="./footer.jsp" />   
+        <div class="wrapper wrapperUser">
+            <div class="container">
+                <!--                     Code vào đây là oke-->
+            </div>
+            <jsp:include page="./footer.jsp" />   
         </div>
     </body>
 </html>

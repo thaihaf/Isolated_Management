@@ -84,6 +84,34 @@
         <servlet-name>CreatePrescription</servlet-name>
         <servlet-class>controller.doctor.CreatePrescriptionController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReportListControler</servlet-name>
+        <servlet-class>controler.nurse.ReportListControler</servlet-class>
+    </servlet>
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>filters.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/base/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>AdminHomeControler</servlet-name>
+        <servlet-class>controler.admin.AdminHomeControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeControler</servlet-name>
+        <servlet-class>controler.HomeControler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -139,8 +167,8 @@
     <servlet-mapping>
         <servlet-name>ViewInjection</servlet-name>
         <url-pattern>/base/viewInjection</url-pattern>
-         </servlet-mapping>
-        <servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AddUserControler</servlet-name>
         <url-pattern>/adduser</url-pattern>
     </servlet-mapping>
@@ -179,6 +207,18 @@
     <servlet-mapping>
         <servlet-name>CreatePrescription</servlet-name>
         <url-pattern>/base/create-prescription</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportListControler</servlet-name>
+        <url-pattern>/base/nurseReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminHomeControler</servlet-name>
+        <url-pattern>/admin/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeControler</servlet-name>
+        <url-pattern>/base/home</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

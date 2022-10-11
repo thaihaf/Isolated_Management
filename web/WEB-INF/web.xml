@@ -112,6 +112,14 @@
         <servlet-name>HomeControler</servlet-name>
         <servlet-class>controler.HomeControler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateMedicineController</servlet-name>
+        <servlet-class>controller.doctor.CreateMedicineController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MedicineListController</servlet-name>
+        <servlet-class>controller.doctor.MedicineListController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -219,6 +227,14 @@
     <servlet-mapping>
         <servlet-name>HomeControler</servlet-name>
         <url-pattern>/base/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateMedicineController</servlet-name>
+        <url-pattern>/create-medicine</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MedicineListController</servlet-name>
+        <url-pattern>/base/medicine-list</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

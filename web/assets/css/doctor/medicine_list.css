@@ -1,0 +1,119 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Oct 11, 2022, 4:39:21 PM
+    Author     : hapro
+*/
+
+.container {
+    padding: 2rem 3rem;
+    padding-top: 0;
+}
+
+.top1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e9ecef;
+    padding: 0.3rem 2rem;
+    border-radius: 0.5rem;
+}
+ol.breadcrumb{
+    margin: 0;
+    padding: 0.75rem 0;
+    font-size: 1.3rem;
+}
+.search{
+    display: flex;
+    align-items: center;
+    gap:1rem;
+}
+
+.top2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e9ecef;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.75rem;
+}
+.info{
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+.filter{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.btn-add{
+    border-radius: 2rem;
+    padding: 0.45rem 1.5rem;
+    text-transform: uppercase;
+}
+.info_group{
+    display: flex !important;
+    align-items: flex-start !important;
+    margin-bottom: 1.5rem !important;
+}
+.info_btn{
+    border: none;
+    outline: none;
+    background: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.info_icon{
+    color: orange;
+    font-size: 1.7rem;
+}
+.table{
+    font-size: 1.4rem;
+}
+
+.des_show{
+    position: relative;
+}
+.des_hidden{
+    position: absolute;
+    bottom: 131%;
+    left: 0;
+    width: max-content;
+    background-color: white;
+    padding: 1rem 2rem;
+    width: 25rem;
+    border-radius: 1rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    visibility: hidden;
+}
+.des_show:hover .des_hidden{
+    visibility: visible;
+}
+
+.overview{
+    display: flex;
+    gap : 3rem;
+    align-items: center;
+    justify-content: center;
+    margin : 2rem 0;
+}
+.overview_item{
+    padding : 1rem 3rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.overview_item-title{
+    font-size: 1.3rem;
+    color : gray;
+     width: 100%;
+    text-align: center;
+}
+.overview_item-number{
+    font-size: 2.5rem;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}

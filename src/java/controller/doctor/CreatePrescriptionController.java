@@ -245,7 +245,7 @@ public class CreatePrescriptionController extends HttpServlet {
                     }
                     
                     if(p != 0){
-                        request.getRequestDispatcher("../doctor/prescription_list.jsp").forward(request, response);
+                        response.sendRedirect("/prescription-list");
                     }
                 }
                 

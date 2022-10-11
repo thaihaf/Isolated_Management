@@ -142,6 +142,6 @@
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <script src="../assets/js/doctor/createPrescription.js" type="text/javascript"></script>
+        <script src="../assets/js/doctor/createPres.js" type="text/javascript"></script>
     </body>
 </html>

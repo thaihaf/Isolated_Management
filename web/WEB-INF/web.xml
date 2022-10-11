@@ -84,6 +84,14 @@
         <servlet-name>CreatePrescription</servlet-name>
         <servlet-class>controller.doctor.CreatePrescriptionController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateMedicineController</servlet-name>
+        <servlet-class>controller.doctor.CreateMedicineController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MedicineListController</servlet-name>
+        <servlet-class>controller.doctor.MedicineListController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -139,8 +147,8 @@
     <servlet-mapping>
         <servlet-name>ViewInjection</servlet-name>
         <url-pattern>/base/viewInjection</url-pattern>
-         </servlet-mapping>
-        <servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AddUserControler</servlet-name>
         <url-pattern>/adduser</url-pattern>
     </servlet-mapping>
@@ -179,6 +187,14 @@
     <servlet-mapping>
         <servlet-name>CreatePrescription</servlet-name>
         <url-pattern>/base/create-prescription</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateMedicineController</servlet-name>
+        <url-pattern>/create-medicine</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MedicineListController</servlet-name>
+        <url-pattern>/base/medicine-list</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

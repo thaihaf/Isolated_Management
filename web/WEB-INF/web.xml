@@ -57,6 +57,10 @@
         <servlet-class>controler.admin.AddAreaControler</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ReportListControler</servlet-name>
+        <servlet-class>controler.nurse.ReportListControler</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AreaDetailControler</servlet-name>
         <servlet-class>controler.admin.AreaDetailControler</servlet-class>
     </servlet>
@@ -123,6 +127,10 @@
     <servlet-mapping>
         <servlet-name>TestResultDetailControler</servlet-name>
         <url-pattern>/admin/detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportListControler</servlet-name>
+        <url-pattern>/base/nurseReport</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ListPatientControler</servlet-name>

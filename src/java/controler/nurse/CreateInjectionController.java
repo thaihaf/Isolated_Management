@@ -64,6 +64,8 @@ public class CreateInjectionController extends HttpServlet {
             PatientDBContext pdb = new PatientDBContext();
             Patient patient = pdb.getInfo(username);
             request.setAttribute("patient", patient);
+            session.setAttribute("patient", patient);
+            session.setAttribute("vaccines", vaccines);
             request.getRequestDispatcher("../nurse/createInjection.jsp").forward(request, response);
         }
     }

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>pagesize</param-name>
+        <param-value>5</param-value>
+    </context-param>
     <servlet>
         <servlet-name>AdminProfileControler</servlet-name>
         <servlet-class>controler.UpdateUserControler</servlet-class>
@@ -87,10 +91,6 @@
     <servlet>
         <servlet-name>CreatePrescription</servlet-name>
         <servlet-class>controller.doctor.CreatePrescriptionController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ReportListControler</servlet-name>
-        <servlet-class>controler.nurse.ReportListControler</servlet-class>
     </servlet>
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
@@ -223,10 +223,6 @@
     <servlet-mapping>
         <servlet-name>CreatePrescription</servlet-name>
         <url-pattern>/base/create-prescription</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ReportListControler</servlet-name>
-        <url-pattern>/base/nurseReport</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminHomeControler</servlet-name>

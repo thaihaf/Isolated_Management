@@ -3,7 +3,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
 */
 /* 
-    Created on : Sep 25, 2022, 10:15:29 PM
+    Created on : Oct 11, 2022, 4:39:21 PM
     Author     : hapro
 */
 
@@ -75,52 +75,45 @@ ol.breadcrumb{
     font-size: 1.4rem;
 }
 
-.guide_group{
-    margin-bottom: 1rem;
-}
-.form-control.list{
-    padding: 0.275rem 1.75rem ;
-    height: 3rem;
-    width: 20rem;
-    border-radius : 1rem ;
-}
-
-.medicine_caption{
-    color: darkslategray;
-
-}
-.medicine_caption.name{
-    font-weight: 500;
-
-}
-
-.info_main{
+.des_show{
     position: relative;
-    padding: 0.5rem 0.7rem
 }
-.info_main:hover .info_description{
-    visibility: visible;
-}
-.info_description{
+.des_hidden{
     position: absolute;
     bottom: 131%;
     left: 0;
     width: max-content;
     background-color: white;
-    padding: 0.3rem 1rem;
+    padding: 1rem 2rem;
     width: 25rem;
     border-radius: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     visibility: hidden;
 }
-
-.thMedicine{
-    padding-left: 1.5rem !important;
+.des_show:hover .des_hidden{
+    visibility: visible;
 }
 
-.dateFilter{
+.overview{
     display: flex;
+    gap : 3rem;
     align-items: center;
-    gap : 1rem;
+    justify-content: center;
+    margin : 2rem 0;
 }
-    
+.overview_item{
+    padding : 1rem 3rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.overview_item-title{
+    font-size: 1.3rem;
+    color : gray;
+     width: 100%;
+    text-align: center;
+}
+.overview_item-number{
+    font-size: 2.5rem;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}

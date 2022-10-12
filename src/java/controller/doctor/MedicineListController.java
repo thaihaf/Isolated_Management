@@ -2,25 +2,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controler;
+package controller.doctor;
 
-import dao.AccountDetailDBContext;
-import dao.MedicalStaffDBContext;
-import dao.PatientDBContext;
-import dao.RoleDBContext;
-import entity.AccountDetail;
-import entity.MedicalStaff;
-import entity.Patient;
-import entity.Role;
+import dao.MedicineDBContext;
+import dao.PrescriptionDBContext;
+import entity.Account;
+import entity.Medicine2;
+import entity.Prescription;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
-public class AdminProfileControler extends HttpServlet {
+/**
+ *
+ * @author hapro
+ */
+public class MedicineListController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +43,10 @@ public class AdminProfileControler extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProfileControler</title>");
+            out.println("<title>Servlet MedicineListController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProfileControler at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet MedicineListController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,31 +64,43 @@ public class AdminProfileControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        String accID = request.getParameter("user");
-        AccountDetailDBContext accDB = new AccountDetailDBContext();
-        AccountDetail acc = accDB.get(accID);
-        RoleDBContext roleDB = new RoleDBContext();
-        ArrayList<Role> roles = roleDB.list();
-        request.setAttribute("account", acc);
-        switch (acc.getAccount().getRole().getId()) {
-            case 2:
-            case 3: {
-                MedicalStaffDBContext medDB = new MedicalStaffDBContext();
-                MedicalStaff med = medDB.getByAccountDetail(acc);
-                request.setAttribute("account", acc);
-                request.setAttribute("medical", med);
-                break;
-            }
-            case 4: {
-                PatientDBContext patientDB = new PatientDBContext();
-                Patient p = patientDB.get(acc);
-                request.setAttribute("account", acc);
-                request.setAttribute("patient", p);
-            }
+        HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("account");
+        if (acc == null) {
+            request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
+        } else {
+            MedicineDBContext mDB = new MedicineDBContext();
+            ArrayList<Medicine2> m = mDB.getMedicines(null, null);
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+//            if (m.size() > 0) {
+//                int inStockNum = 0;
+//                int outStockNum = 0;
+//                int ExpirationNum = 0;
+//                int ExpiredNum = 0;
+//
+//                for (Medicine2 medicine : m) {
+//                    if (medicine.getStock() > 0) {
+//                        inStockNum++;
+//                    }
+//
+//                    try {
+//                        Date a = dateFormat.parse(medicine.getExpirationDate());
+//                        Date b = dateFormat.parse(new Date().toJSON().slice(0,10).replace(/-/g,'/'));
+//
+//                        if (a.after(Date.now())  {
+//                            
+//                        }
+//                    } catch (Exception e) {
+//                    }
+//                }
+//            }
+
+            request.setAttribute("medicines", m);
+            request.getRequestDispatcher("../doctor/listMedicine.jsp").forward(request, response);
         }
-        request.setAttribute("roles", roles);
-        request.getRequestDispatcher("profile.jsp").forward(request, response);
+
     }
 
     /**
@@ -98,7 +114,7 @@ public class AdminProfileControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**

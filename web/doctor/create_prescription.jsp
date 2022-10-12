@@ -18,51 +18,130 @@
         <link rel="stylesheet" href="../assets/css/doctor/create_prescription.css"/>
     </head>
     <body>
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Create Prescription</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Title</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Medicine</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label">Guide</label>
-                                <textarea class="form-control" id="message-text"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Apply</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <c:set var="role" value="${sessionScope.account.role}"/>
+        <jsp:include page="../base/sidebar.jsp" />
+        <jsp:include page="../base/header.jsp" />
 
+        <div class=<c:if test="${role.id eq 1}">"wrapper wrapperAdmin"</c:if>
+             <c:if test="${role.id ne 1}">"wrapper wrapperUser"</c:if>
+                 >
+                 <div class="container-fluid">
+                     <div class="top1">
+                         <nav aria-label="breadcrumb">
+                             <ol class="breadcrumb">
+                                 <li class="breadcrumb-item"><a href="../base/home.jsp">Home</a></li>
+                                 <li class="breadcrumb-item"><a href="listpatient">Patient List</a></li>
+                                 <li class="breadcrumb-item"><a href="prescription-list?username=${param.username}">Pressciption List</a></li>
+                                 <li class="breadcrumb-item active" aria-current="page">Create Prescription</li>
+                             </ol>
+                         </nav>
+                     </div>
+
+                     <form class="top2 form">
+                         <div class="form-group">
+                             <div class="form-item">
+                                 <label for="recipient-name" class="col-form-label">Symptom</label>
+                                 <input type="text" class="form-control create" id="title-text">
+                             </div>
+                             <div class="form-item">
+                                 <label for="message-text" class="col-form-label">Guide</label>
+                                 <textarea class="form-control create" id="guide-text" rows="6" cols="25"></textarea>
+                             </div>
+                             <div class="form-item search">
+                                 <div class="form-item">
+                                     <label for="message-text" class="col-form-label">Search by name</label>
+                                     <input
+                                         type="text" 
+                                         class="form-control create list" 
+                                         placeholder="Search by name ..." 
+                                         aria-label="Search by name..." 
+                                         aria-describedby="basic-addon2"
+                                         id="searchByName"
+                                         >
+                                 </div>
+                                 <div class="form-item">
+                                     <label for="message-text" class="col-form-label">Search by type</label>
+                                     <input
+                                         type="text" 
+                                         class="form-control create list" 
+                                         placeholder="Search by type ..." 
+                                         aria-label="SSearch by type..." 
+                                         aria-describedby="basic-addon2"
+                                         id="searchByType"
+                                         >
+                                 </div>
+
+                                 <div class="search-list hidden">
+                                     <div class="title d-flex align-items-center justify-content-between">
+                                         <span>Medicines : </span>
+                                         <span id="close-medicines"><ion-icon name="close-outline"></ion-icon></span>
+                                     </div>
+                                     <ul class="list-group"></ul>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="form-group info">
+                             <div class="info_1">
+                                 <div class="info_avt">
+                                     <img src="../assets/img/avt.jpg" alt="alt" class="img"/>
+                                 </div>
+                                 <table>
+                                     <tr>
+                                         <td>Fullname</td>
+                                         <td>Nguyen thai ha</td>
+                                     </tr>
+                                     <tr>
+                                         <td>Date of birth</td>
+                                         <td>1-1-2000</td>
+                                     </tr>
+                                     <tr>
+                                         <td>Gender</td>
+                                         <td>Male</td>
+                                     </tr>
+                                     <tr>
+                                         <td>Area</td>
+                                         <td>A301 - Bed : 6</td>
+                                     </tr>
+                                     <tr>
+                                         <td>Phone</td>
+                                         <td>0819889962</td>
+                                     </tr>
+                                 </table>
+                             </div>
+
+                             <div class="info_2">
+                                 <button type="button" class="btn btn-success btn-lg" id="btn_submit">Submit</button>
+                                 <button type="reset" class="btn btn-secondary btn-lg"  id="btn_reset">Reset</button>
+                             </div>
+                         </div>
+                     </form>
+
+
+                     <div>
+                         <table class="table">
+                             <thead class="thead-light">
+                                 <tr>
+                                     <th scope="col">Medicine name</th>
+                                     <th scope="col">Quantity</th>
+                                     <th scope="col">Stock</th>
+                                     <th scope="col">Unit</th>
+                                     <th scope="col">Date 1</th>
+                                     <th scope="col">Date 2</th>
+                                     <th scope="col">Type</th>
+                                 </tr>
+                             </thead>
+                             <tbody id="tBody">
+                             </tbody>
+                         </table>
+                     </div>
+                 </div>
+             <jsp:include page="../base/footer.jsp" />   
+        </div>
 
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script>
-            $(function () {
-                $('[data-toggle="popover"]').popover({
-                    trigger: 'focus'
-                });
-            });
-        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="../assets/js/doctor/createPres.js" type="text/javascript"></script>
     </body>
 </html>

@@ -116,6 +116,7 @@ public class PrescriptionDBContext extends DBContext<Prescription> {
                 + "INNER JOIN\n"
                 + "MedicineType ON Medicine.MedicineTypeID = MedicineType.ID\n"
                 + "where Prescription_ID = ?";
+        
 
         for (Prescription p : listPrescription) {
             ArrayList<Medicine> medicines = new ArrayList<>();

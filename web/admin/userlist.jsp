@@ -33,6 +33,7 @@
                     </select>
                     <input type="text" value="${param.searchfield}" name="searchfield"/>
                     <input type="submit" value="Search"/>
+                    <a href="../adduser">Add more user</a>
                 </form>
                 <c:if test="${requestScope.accounts eq null}">There is no account that you searched.</c:if>
                 <c:if test="${requestScope.accounts ne null}">
@@ -52,7 +53,7 @@
                                 <td>${a.phone}</td>
                                 <td>${a.address}</td>
                                 <td>${a.account.role.role}</td>
-                                <td><a href="profile?user=${a.account.userName}">Edit</a></td>
+                                <td><a href="updateuser?user=${a.account.userName}">Edit</a></td>
                             </tr>
                         </c:forEach>
                     </table>

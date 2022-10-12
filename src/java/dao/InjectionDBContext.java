@@ -40,7 +40,7 @@ public class InjectionDBContext extends DBContext<InjectionReport> {
                     + "           ([PatientID]\n"
                     + "           ,[VaccineID]\n"
                     + "           ,[Date]\n"
-                    + "           ,[Person_Inject])\n"
+                    + "           ,[PersonInjected])\n"
                     + "     VALUES\n"
                     + "           (?,?,?,?)";
             PreparedStatement stm = connection.prepareCall(sql);
@@ -67,7 +67,7 @@ public class InjectionDBContext extends DBContext<InjectionReport> {
     public ArrayList<InjectionReport> getInjectionResultByID(String username) {
         ArrayList<InjectionReport> lists = new ArrayList<>();
         try {
-            String sql = "select PatientID,v.VaccineName,Date,Person_Inject from Injection_Report ir join Vaccine v \n"
+            String sql = "select PatientID,v.VaccineName,Date,PersonInjected from Injection_Report ir join Vaccine v \n"
                     + "on ir.VaccineID = v.VaccineID\n"
                     + "where PatientID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -85,9 +85,9 @@ public class InjectionDBContext extends DBContext<InjectionReport> {
                 ir.setVaccine(vaccine);
                 ir.setDate(rs.getDate("Date"));
                 Account acc2 = new Account();
-                acc2.setUserName(rs.getString("Person_Inject"));
+                acc2.setUserName(rs.getString("PersonInjected"));
                 AccountDetail ad1 = new AccountDetail();
-                ad1.setAccount(acc1);
+                ad1.setAccount(acc2);
                 ir.setPersonInject(ad1);
                 lists.add(ir);
             }

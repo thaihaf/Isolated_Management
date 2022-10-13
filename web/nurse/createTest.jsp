@@ -76,6 +76,7 @@
                          <div class="updateInfo_item left">
                              <div class="item_title">Test Creator</div>
                              <input type="text" class="item_input" name="creator">
+                             <p class="text-danger">${mess}</p>
                          </div>
                      </div>
 

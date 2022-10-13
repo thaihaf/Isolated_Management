@@ -9,7 +9,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .container-fluid{
     font-size: 1.3rem;
-    margin-bottom: 25rem;
+    margin-bottom: 3rem;
 }
 .form{
     display: flex;
@@ -109,4 +109,39 @@ ion-icon{
 #close-medicines{
     padding : 0.3rem;
     cursor: pointer;
+}
+
+.top2{
+    background: #E9ECEF;
+    padding-bottom: 16rem;
+    margin: 0;
+    border-radius: 2rem;
+}
+.title-create{
+    font-size: 3rem;
+    font-weight: 500;
+    padding: 2rem 0.4rem;
+    color: darkturquoise;
+}
+.form-control{
+    padding: 0.775rem 1.75rem !important;
+    border-radius: 2rem !important;
+}
+.right {
+    width: 35%;
+}
+.left {
+    width: 30%;
+}
+.lable {
+    font-weight: 600;
+    color: darkgreen !important;
+}
+#validationCustom07{
+    height: calc(2.25rem + 12px);
+}
+.btn{
+    width: 50%;
+    padding: 0.8rem;
+    border-radius: 2rem;
 }

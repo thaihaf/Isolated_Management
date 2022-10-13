@@ -2,25 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.doctor;
+package controler.nurse;
 
-import dao.PrescriptionDBContext;
+import dao.AccountDetailDBContext;
+import dao.ReportDBContext;
+import dao.RoomDBContext;
 import entity.Account;
-import entity.Prescription;
+import entity.AccountDetail;
+import entity.Report;
+import entity.Room;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 /**
  *
- * @author hapro
+ * @author Mountain
  */
-public class CreateMedicineController extends HttpServlet {
+public class ReportListControler extends HttpServlet {
+
+    private String patientToSearch;
+    private Integer roomToSearch;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,19 +39,27 @@ public class CreateMedicineController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CreateMedicineController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CreateMedicineController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        Account account = (Account) request.getSession().getAttribute("account");
+        int pageSize = Integer.parseInt(request.getServletContext().getInitParameter("pagesize"));
+        String page = request.getParameter("page");
+        if (page == null) {
+            page = "1";
         }
+        int pageIndex = Integer.parseInt(page);
+        ReportDBContext reportDB = new ReportDBContext();
+        int count = reportDB.countRecord(account.getUserName(), patientToSearch, roomToSearch);
+        int totalPage = (count % pageSize == 0) ? count / pageSize : (count / pageSize) + 1;
+        ArrayList<Report> reports = reportDB.listByNurseAccountWithSearchAndPaginated(account.getUserName(), patientToSearch, roomToSearch, pageIndex, pageSize);
+        AccountDetailDBContext accDetailDB = new AccountDetailDBContext();
+        ArrayList<AccountDetail> patients = accDetailDB.listPatientByNurseID(account.getUserName());
+        RoomDBContext roomDB = new RoomDBContext();
+        ArrayList<Room> rooms = roomDB.roomListByNurseID(account.getUserName());
+        request.setAttribute("reports", reports);
+        request.setAttribute("patients", patients);
+        request.setAttribute("rooms", rooms);
+        request.setAttribute("totalpage", totalPage);
+        request.setAttribute("pageindex", pageIndex);
+        request.getRequestDispatcher("../nurse/reportlist.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -60,17 +74,7 @@ public class CreateMedicineController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpSession session = request.getSession();
-        Account acc = (Account) session.getAttribute("account");
-        if (acc == null) {
-            request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
-        } else {
-//            PrescriptionDBContext pDB = new PrescriptionDBContext();
-//            ArrayList<Prescription> p = pDB.getListPrescriptionDetails(acc.getUserName(), request.getParameter("username"), null, null, null, null);
-
-//            request.setAttribute("prescriptions", p);
-            request.getRequestDispatcher("../doctor/createMedicine.jsp").forward(request, response);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -84,6 +88,11 @@ public class CreateMedicineController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //processRequest(request, response);
+        String raw_patient = request.getParameter("patient");
+        String raw_room = request.getParameter("room");
+        patientToSearch = (raw_patient != null && raw_patient.length() > 0 && !raw_patient.equals("-1")) ? raw_patient : null;
+        roomToSearch = (raw_room != null && raw_room.length() > 0 && !raw_room.equals("-1")) ? new Integer(raw_room) : null;
         processRequest(request, response);
     }
 

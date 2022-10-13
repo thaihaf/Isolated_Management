@@ -97,10 +97,11 @@
                       </c:otherwise>
                   </c:choose>
              </div>
-
-             <div class="sidebar_btnLogout">
-                 <img class="sidebar_btnLogout_img" src="../assets/icons/logout.png" alt="alt"/>
-             </div>
+             <a class="sidebar_item" href="../logout">
+                 <div class="sidebar_btnLogout">
+                     <img class="sidebar_btnLogout_img" src="../assets/icons/logout.png" alt="alt"/>
+                 </div>
+             </a>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

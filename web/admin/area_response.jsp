@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>IMS - Update to area</title>
+        <title>Update to area - IMS</title>
         <script>
             var count = 3;
             function redirect()

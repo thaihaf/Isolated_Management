@@ -24,7 +24,7 @@
                     </select>
                 </div>
                 <a class="item">FAQ</a>
-                <a class="item">Guilde</a>
+                <a class="item">Guide</a>
                 <a class="item">Contact us</a>
             </div>
 

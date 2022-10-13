@@ -124,6 +124,10 @@
         <servlet-name>MedicineListController</servlet-name>
         <servlet-class>controller.doctor.MedicineListController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateMedicineController</servlet-name>
+        <servlet-class>controller.doctor.UpdateMedicineController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -239,6 +243,10 @@
     <servlet-mapping>
         <servlet-name>MedicineListController</servlet-name>
         <url-pattern>/base/medicine-list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateMedicineController</servlet-name>
+        <url-pattern>/base/update-medicine</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -111,6 +111,7 @@
                              <th scope="col">Expiration Date</th>
                              <th scope="col">Type</th>
                              <th scope="col">Dosage</th>
+                             <th scope="col">Action</th>
 
                          </tr>
                      </thead>
@@ -132,7 +133,9 @@
                                  <td>${m.expirationDate}</td>
                                  <td>${m.medicineType.type}</td>
                                  <td>${m.medicineType.dosage}</td>
-
+                                 <td>
+                                     <a href="/Isolated_Management/base/update-medicine?id=${m.shipmentId}" class="btn btn-success">Update</a>
+                                 </td>
                              </tr>
                          </c:forEach>
 

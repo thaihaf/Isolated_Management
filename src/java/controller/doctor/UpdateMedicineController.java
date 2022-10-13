@@ -4,13 +4,10 @@
  */
 package controller.doctor;
 
-import dao.AccountDBContext;
 import dao.MedicineDBContext;
-import dao.PrescriptionDBContext;
 import entity.Account;
 import entity.Medicine2;
 import entity.MedicineType;
-import entity.Prescription;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -19,13 +16,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
-import utils.FormatDate;
 
 /**
  *
  * @author hapro
  */
-public class CreateMedicineController extends HttpServlet {
+public class UpdateMedicineController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,10 +40,10 @@ public class CreateMedicineController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreateMedicineController</title>");
+            out.println("<title>Servlet UpdateMedicineController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CreateMedicineController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UpdateMedicineController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -75,7 +71,14 @@ public class CreateMedicineController extends HttpServlet {
             ArrayList<MedicineType> medicineTypes = mDB.getMedicineTypes();
 
             request.setAttribute("medicineTypes", medicineTypes);
-            request.getRequestDispatcher("../doctor/createMedicine.jsp").forward(request, response);
+
+            int id = Integer.parseInt(request.getParameter("id"));
+            Medicine2 m = mDB.getMedicine(id);
+
+            request.setAttribute("medicine", m);
+
+            request.getRequestDispatcher("../doctor/updateMedicine.jsp").forward(request, response);
+
         }
     }
 
@@ -114,7 +117,7 @@ public class CreateMedicineController extends HttpServlet {
 
         MedicineDBContext mDB = new MedicineDBContext();
 
-        if (mDB.createMedicine(m)) {
+        if (mDB.updateMedicine(m)) {
             response.sendRedirect("/Isolated_Management/base/medicine-list");
         } else {
             ArrayList<MedicineType> medicineTypes = mDB.getMedicineTypes();

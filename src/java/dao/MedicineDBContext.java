@@ -9,6 +9,7 @@ import entity.MedicineType;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -78,6 +79,72 @@ public class MedicineDBContext extends DBContext<Medicine2> {
             Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return medicines;
+    }
+
+    public ArrayList<MedicineType> getMedicineTypes() {
+        ArrayList<MedicineType> medicineTypes = new ArrayList<>();
+
+        try {
+            String sql = "SELECT [ID]\n"
+                    + "      ,[Type]\n"
+                    + "      ,[Dosage]\n"
+                    + "  FROM [dbo].[MedicineType]\n";
+
+            PreparedStatement stm = connection.prepareCall(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                MedicineType mt = new MedicineType();
+
+                mt.setId(rs.getInt("ID"));
+                mt.setType(rs.getString("Type"));
+                mt.setDosage(rs.getString("Dosage"));
+
+                medicineTypes.add(mt);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return medicineTypes;
+    }
+
+    public boolean createMedicine(Medicine2 m) {
+        try {
+            connection.setAutoCommit(false);
+
+            int primkey = 0;
+            String sql = "INSERT INTO [dbo].[Medicine]\n"
+                    + "           ([ShipmentID]\n"
+                    + "           ,[Name]\n"
+                    + "           ,[Quantity]\n"
+                    + "           ,[Description]\n"
+                    + "           ,[DateOfManufacture]\n"
+                    + "           ,[ExpirationDate]\n"
+                    + "           ,[MedicineTypeID])\n"
+                    + "     VALUES\n"
+                    + "           (?,?,?,?,?,?,?)\n";
+
+            PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            java.sql.Date date1 = fd.formatDateMedicine(m.getDateManafacture());
+            java.sql.Date date2 = fd.formatDateMedicine(m.getExpirationDate());
+
+            stm.setInt(1, m.getShipmentId());
+            stm.setString(2, m.getName());
+            stm.setInt(3, m.getStock());
+            stm.setString(4, m.getDescription());
+            stm.setString(5, date1.toString());
+            stm.setString(6, date2.toString());
+            stm.setInt(7, m.getMedicineType().getId());
+
+            if (stm.executeUpdate() > 0) {
+                connection.commit();
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicineDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
     }
 
     @Override

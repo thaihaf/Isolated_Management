@@ -4,8 +4,12 @@
  */
 package controller.doctor;
 
+import dao.AccountDBContext;
+import dao.MedicineDBContext;
 import dao.PrescriptionDBContext;
 import entity.Account;
+import entity.Medicine2;
+import entity.MedicineType;
 import entity.Prescription;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,12 +19,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
+import utils.FormatDate;
 
 /**
  *
  * @author hapro
  */
 public class CreateMedicineController extends HttpServlet {
+
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,7 +46,7 @@ public class CreateMedicineController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreateMedicineController</title>");            
+            out.println("<title>Servlet CreateMedicineController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet CreateMedicineController at " + request.getContextPath() + "</h1>");
@@ -60,15 +67,16 @@ public class CreateMedicineController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpSession session = request.getSession();
+        request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
         Account acc = (Account) session.getAttribute("account");
         if (acc == null) {
             request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
         } else {
-//            PrescriptionDBContext pDB = new PrescriptionDBContext();
-//            ArrayList<Prescription> p = pDB.getListPrescriptionDetails(acc.getUserName(), request.getParameter("username"), null, null, null, null);
+            MedicineDBContext mDB = new MedicineDBContext();
+            ArrayList<MedicineType> medicineTypes = mDB.getMedicineTypes();
 
-//            request.setAttribute("prescriptions", p);
+            request.setAttribute("medicineTypes", medicineTypes);
             request.getRequestDispatcher("../doctor/createMedicine.jsp").forward(request, response);
         }
     }
@@ -84,7 +92,33 @@ public class CreateMedicineController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setCharacterEncoding("UTF-8");
+
+        int shipmentID = Integer.parseInt(request.getParameter("shipmentID"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        int type = Integer.parseInt(request.getParameter("type"));
+        String nameMedicine = request.getParameter("nameMedicine");
+        String descriptions = request.getParameter("descriptions");
+        String date1 = request.getParameter("date1");
+        String date2 = request.getParameter("date2");
+
+        MedicineType mt = new MedicineType();
+        mt.setId(type);
+
+        Medicine2 m = new Medicine2();
+        m.setShipmentId(shipmentID);
+        m.setName(nameMedicine);
+        m.setDescription(descriptions);
+        m.setStock(quantity);
+        m.setMedicineType(mt);
+        m.setDateManafacture(date1);
+        m.setExpirationDate(date2);
+
+        MedicineDBContext mDB = new MedicineDBContext();
+
+        if (mDB.createMedicine(m)) {
+            response.sendRedirect("/Isolated_Management/base/medicine-list");
+        }
     }
 
     /**

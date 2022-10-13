@@ -29,22 +29,100 @@ public class ReportDBContext extends DBContext<Report> {
 
     @Override
     public Report get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "SELECT [Report].[ID]\n"
+                    + "      ,[Patient_ID]\n"
+                    + "      ,[Note]\n"
+                    + "	  ,[Account_Details].[Fullname]\n"
+                    + "  FROM [Report]\n"
+                    + "  INNER JOIN [Account_Details] ON [Report].[Patient_ID] = [Account_Details].[ID]\n"
+                    + "  WHERE [Report].[ID] = ?";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Report r = new Report();
+                r.setId(rs.getInt("ID"));
+                AccountDetail acc = new AccountDetail();
+                Account a = new Account();
+                a.setUserName(rs.getString("Patient_ID"));
+                acc.setAccount(a);
+                acc.setFullName(rs.getNString("Fullname"));
+                r.setPatient(acc);
+                r.setNote(rs.getNString("Note"));
+                return r;
+            }
+        } catch (SQLException ex) {
+        }
+        return null;
+    }
+
+    public boolean checkReportIDInNurseProperty(int reportID, String nurseID) {
+        try {
+            String sql = "SELECT [Report].[ID]\n"
+                    + "  FROM [Report]\n"
+                    + "  INNER JOIN [Account_Details] ON [Report].[Patient_ID] = [Account_Details].[ID]\n"
+                    + "  INNER JOIN [Patient] ON [Report].[Patient_ID] = [Patient].[ID]\n"
+                    + "  INNER JOIN [Room] ON [Patient].[Room_ID] = [Room].[ID]\n"
+                    + "  WHERE [Report].[ID] = ? AND [Room].[NurseManage] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, reportID);
+            stm.setString(2, nurseID);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+        }
+        return false;
     }
 
     @Override
     public void insert(Report model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "INSERT INTO [Report]\n"
+                    + "           ([Patient_ID]\n"
+                    + "           ,[CreateDate]\n"
+                    + "           ,[Note])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?)";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setString(1, model.getPatient().getAccount().getUserName());
+            stm.setTimestamp(2, model.getCreatedDate());
+            stm.setString(3, model.getNote());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+        }
     }
 
     @Override
     public void update(Report model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "UPDATE [Report]\n"
+                    + "   SET [CreateDate] = ?\n"
+                    + "      ,[Note] = ?\n"
+                    + " WHERE [Report].[ID] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setTimestamp(1, model.getCreatedDate());
+            stm.setString(2, model.getNote());
+            stm.setInt(3, model.getId());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+        }
     }
 
     @Override
     public void delete(Report model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "DELETE FROM [Report]\n"
+                    + "      WHERE [Report].[ID] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, model.getId());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+        }
     }
 
     public ArrayList<Report> listByNurseAccountWithSearchAndPaginated(String nurseID, String patientID, Integer roomID, int pageIndex, int pageSize) {
@@ -100,7 +178,7 @@ public class ReportDBContext extends DBContext<Report> {
                 patientDetail.setAccount(patientAcc);
                 patientDetail.setFullName(rs.getNString("Fullname"));
                 r.setPatient(patientDetail);
-                r.setCreatedDate(rs.getDate("CreateDate"));
+                r.setCreatedDate(rs.getTimestamp("CreateDate"));
                 r.setNote(rs.getNString("Note"));
                 reports.add(r);
             }

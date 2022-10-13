@@ -2,30 +2,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.doctor;
+package controler.nurse;
 
 import dao.AccountDBContext;
-import dao.MedicineDBContext;
-import dao.PrescriptionDBContext;
+import dao.AccountDetailDBContext;
+import dao.ReportDBContext;
 import entity.Account;
-import entity.Medicine2;
-import entity.MedicineType;
-import entity.Prescription;
+import entity.AccountDetail;
+import entity.Report;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import java.util.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import utils.FormatDate;
 
 /**
  *
- * @author hapro
+ * @author Mountain
  */
-public class CreateMedicineController extends HttpServlet {
+public class NewReportControler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,10 +43,10 @@ public class CreateMedicineController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreateMedicineController</title>");
+            out.println("<title>Servlet NewReportControler</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CreateMedicineController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet NewReportControler at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,18 +64,11 @@ public class CreateMedicineController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
-        Account acc = (Account) session.getAttribute("account");
-        if (acc == null) {
-            request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
-        } else {
-            MedicineDBContext mDB = new MedicineDBContext();
-            ArrayList<MedicineType> medicineTypes = mDB.getMedicineTypes();
-
-            request.setAttribute("medicineTypes", medicineTypes);
-            request.getRequestDispatcher("../doctor/createMedicine.jsp").forward(request, response);
-        }
+        Account account = (Account) request.getSession().getAttribute("account");
+        AccountDetailDBContext accDB = new AccountDetailDBContext();
+        ArrayList<AccountDetail> patients = accDB.listPatientByNurseID(account.getUserName());
+        request.setAttribute("patient", patients);
+        request.getRequestDispatcher("../nurse/createReport.jsp").forward(request, response);
     }
 
     /**
@@ -90,38 +82,22 @@ public class CreateMedicineController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-
-        int shipmentID = Integer.parseInt(request.getParameter("shipmentID"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-        int type = Integer.parseInt(request.getParameter("type"));
-        String nameMedicine = request.getParameter("nameMedicine");
-        String descriptions = request.getParameter("descriptions");
-        String date1 = request.getParameter("date1");
-        String date2 = request.getParameter("date2");
-
-        MedicineType mt = new MedicineType();
-        mt.setId(type);
-
-        Medicine2 m = new Medicine2();
-        m.setShipmentId(shipmentID);
-        m.setName(nameMedicine);
-        m.setDescription(descriptions);
-        m.setStock(quantity);
-        m.setMedicineType(mt);
-        m.setDateManafacture(date1);
-        m.setExpirationDate(date2);
-
-        MedicineDBContext mDB = new MedicineDBContext();
-
-        if (mDB.createMedicine(m)) {
-            response.sendRedirect("/Isolated_Management/base/medicine-list");
-        } else {
-            ArrayList<MedicineType> medicineTypes = mDB.getMedicineTypes();
-            request.setAttribute("medicineTypes", medicineTypes);
-            request.setAttribute("medicine", m);
-            request.getRequestDispatcher("../doctor/createMedicine.jsp").forward(request, response);
-        }
+        String patient_id = request.getParameter("patient");
+        String note = request.getParameter("note");
+        Report r = new Report();
+        AccountDetail acc = new AccountDetail();
+        Account a = new Account();
+        a.setUserName(patient_id);
+        acc.setAccount(a);
+        r.setPatient(acc);
+        r.setNote((note != null && note.length() > 0) ? note : null);
+        Date date = new Date();
+        java.sql.Timestamp d = new Timestamp(date.getTime());
+        r.setCreatedDate(d);
+        ReportDBContext reportDB = new ReportDBContext();
+        reportDB.insert(r);
+        request.setAttribute("mess", "Add report successfully.");
+        request.getRequestDispatcher("../nurse/report_status.jsp").forward(request, response);
     }
 
     /**

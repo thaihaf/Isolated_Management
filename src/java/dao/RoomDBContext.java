@@ -202,4 +202,26 @@ public class RoomDBContext extends DBContext<Room> {
         }
     }
 
+    public ArrayList<Room> roomListByNurseID(String nurseID) {
+        ArrayList<Room> rooms = new ArrayList<>();
+        try {
+            String sql = "SELECT [ID]\n"
+                    + "      ,[Name]\n"
+                    + "  FROM [Room]\n"
+                    + "  INNER JOIN [Account] ON [Room].[NurseManage] = [Account].[Username]\n"
+                    + "  WHERE [Room].[NurseManage] = ?";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setString(1, nurseID);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Room r = new Room();
+                r.setId(rs.getInt("ID"));
+                r.setName(rs.getNString("Name"));
+                rooms.add(r);
+            }
+        } catch (SQLException ex) {
+        }
+        return rooms;
+    }
+
 }

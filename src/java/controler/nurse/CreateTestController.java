@@ -5,6 +5,7 @@
 package controler.nurse;
 
 import dao.AccountDetailDBContext;
+import dao.MedicalStaffDBContext;
 import dao.PatientDBContext;
 import dao.TestResultDBContext;
 import dao.TestTypeDBContext;
@@ -75,6 +76,9 @@ public class CreateTestController extends HttpServlet {
             PatientDBContext pdb = new PatientDBContext();
             Patient patient = pdb.getInfo(username);
             request.setAttribute("patient", patient);
+            session.setAttribute("types", types);
+            session.setAttribute("info", info);
+            session.setAttribute("patient", patient);
             request.getRequestDispatcher("../nurse/createTest.jsp").forward(request, response);
         }
     }
@@ -96,25 +100,54 @@ public class CreateTestController extends HttpServlet {
         Account a1 = new Account();
         if (creator == "") {
             a1.setUserName(acc.getUserName());
+            AccountDetail ad = new AccountDetail();
+            ad.setAccount(a);
+            AccountDetail ad1 = new AccountDetail();
+            ad1.setAccount(a1);
+            TestType tt = new TestType();
+            tt.setId(test);
+            TestResult ts = new TestResult();
+            ts.setPatientAccount(ad);
+            ts.setResult(result);
+            ts.setTestType(tt);
+            ts.setTestTime(timestamp2);
+            ts.setPersonTest(ad1);
+            TestResultDBContext db = new TestResultDBContext();
+            db.insert(ts);
+            request.setAttribute("action", "Create Test");
+            request.getRequestDispatcher("../view/createConfirm.jsp").forward(request, response);
         } else {
-            a1.setUserName(creator);
+            MedicalStaffDBContext msdb = new MedicalStaffDBContext();
+            boolean check = msdb.checkMedicalStaff(creator);
+            if (check == true) {
+                a1.setUserName(creator);
+                AccountDetail ad = new AccountDetail();
+                ad.setAccount(a);
+                AccountDetail ad1 = new AccountDetail();
+                ad1.setAccount(a1);
+                TestType tt = new TestType();
+                tt.setId(test);
+                TestResult ts = new TestResult();
+                ts.setPatientAccount(ad);
+                ts.setResult(result);
+                ts.setTestType(tt);
+                ts.setTestTime(timestamp2);
+                ts.setPersonTest(ad1);
+                TestResultDBContext db = new TestResultDBContext();
+                db.insert(ts);
+                request.setAttribute("action", "Create Test");
+                request.getRequestDispatcher("../view/createConfirm.jsp").forward(request, response);
+            } else if (check == false) {
+                Patient patient = (Patient) session.getAttribute("patient");
+                AccountDetail info = (AccountDetail) session.getAttribute("info");
+                ArrayList<TestType> types = (ArrayList<TestType>) session.getAttribute("types");
+                request.setAttribute("patient", patient);
+                request.setAttribute("types", types);
+                request.setAttribute("info", info);
+                request.setAttribute("mess", "Nurse is not exist");
+                request.getRequestDispatcher("../nurse/createTest.jsp").forward(request, response);
+            }
         }
-        AccountDetail ad = new AccountDetail();
-        ad.setAccount(a);
-        AccountDetail ad1 = new AccountDetail();
-        ad1.setAccount(a1);
-        TestType tt = new TestType();
-        tt.setId(test);
-        TestResult ts = new TestResult();
-        ts.setPatientAccount(ad);
-        ts.setResult(result);
-        ts.setTestType(tt);
-        ts.setTestTime(timestamp2);
-        ts.setPersonTest(ad1);
-        TestResultDBContext db = new TestResultDBContext();
-        db.insert(ts);
-        request.setAttribute("action", "Create Test");
-        request.getRequestDispatcher("../view/createConfirm.jsp").forward(request, response);
     }
 
     @Override

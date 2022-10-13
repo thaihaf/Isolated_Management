@@ -24,6 +24,9 @@ public class FormatDate {
     private static final SimpleDateFormat sdfDate
             = new SimpleDateFormat("dd-MM-yyyy");
 
+    private static final SimpleDateFormat sdfDate3
+            = new SimpleDateFormat("MM/dd/yyyy");
+
     public String formatDatetime(String dateString) {
         try {
             Date date = sdf.parse(dateString);
@@ -48,5 +51,20 @@ public class FormatDate {
         }
 
         return "error";
+    }
+
+    public java.sql.Date formatDateMedicine(String dateString) {
+        try {
+//            2022-10-20
+//            11/25/2022
+            Date date = sdf2.parse(dateString);
+            java.sql.Date sql = new java.sql.Date(date.getTime());
+            return sql;
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

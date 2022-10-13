@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <context-param>
         <param-name>pagesize</param-name>
-        <param-value>5</param-value>
+        <param-value>3</param-value>
     </context-param>
     <servlet>
         <servlet-name>AdminProfileControler</servlet-name>
@@ -61,10 +61,6 @@
         <servlet-class>controler.admin.AddAreaControler</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ReportListControler</servlet-name>
-        <servlet-class>controler.nurse.ReportListControler</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AreaDetailControler</servlet-name>
         <servlet-class>controler.admin.AreaDetailControler</servlet-class>
     </servlet>
@@ -91,6 +87,10 @@
     <servlet>
         <servlet-name>CreatePrescription</servlet-name>
         <servlet-class>controller.doctor.CreatePrescriptionController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportListControler</servlet-name>
+        <servlet-class>controler.nurse.ReportListControler</servlet-class>
     </servlet>
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
@@ -127,6 +127,18 @@
     <servlet>
         <servlet-name>UpdateMedicineController</servlet-name>
         <servlet-class>controller.doctor.UpdateMedicineController</servlet-class>
+		</servlet>
+		<servlet>
+        <servlet-name>NewReportControler</servlet-name>
+        <servlet-class>controler.nurse.NewReportControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportDetailControler</servlet-name>
+        <servlet-class>controler.nurse.ReportDetailControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteReportControler</servlet-name>
+        <servlet-class>controler.nurse.DeleteReportControler</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
@@ -159,10 +171,6 @@
     <servlet-mapping>
         <servlet-name>TestResultDetailControler</servlet-name>
         <url-pattern>/admin/detail</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ReportListControler</servlet-name>
-        <url-pattern>/base/nurseReport</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ListPatientControler</servlet-name>
@@ -229,6 +237,10 @@
         <url-pattern>/base/create-prescription</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ReportListControler</servlet-name>
+        <url-pattern>/base/nurseReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AdminHomeControler</servlet-name>
         <url-pattern>/admin/home</url-pattern>
     </servlet-mapping>
@@ -247,6 +259,18 @@
     <servlet-mapping>
         <servlet-name>UpdateMedicineController</servlet-name>
         <url-pattern>/base/update-medicine</url-pattern>
+		</servlet-mapping>
+		 <servlet-mapping>
+        <servlet-name>NewReportControler</servlet-name>
+        <url-pattern>/base/add_report</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportDetailControler</servlet-name>
+        <url-pattern>/base/reportDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteReportControler</servlet-name>
+        <url-pattern>/base/report_delete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

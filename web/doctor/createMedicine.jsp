@@ -39,31 +39,31 @@
                      </div>
 
                      <div class="top2  d-flex justify-content-center align-items-start gap-5">
-                         <form class="needs-validation pt-5 right" novalidate>
+                         <form  action="create-medicine" method="POST" class="needs-validation pt-5 right" novalidate>
                              <div class="form-row title-create">Create new Medicine</div>
 
                              <div class="form-row">
                                  <div class="col-md-12 mb-3">
                                      <label for="validationCustom01" class="lable">Shipment ID</label>
-                                     <input type="text" class="form-control" id="validationCustom01" required>
-                                     <div class="valid-feedback">
-                                         Looks good!
+                                     <input type="text" class="form-control" name="shipmentID" id="validationCustom01" required maxlength="6" >
+                                     <div class="invalid-feedback">
+                                         Please input Shipment ID
                                      </div>
                                  </div>
                                  <div class="col-md-12 mb-3">
                                      <label for="validationCustom02" class="lable">Name Medicine</label>
-                                     <input type="text" class="form-control" id="validationCustom02" required>
-                                     <div class="valid-feedback">
-                                         Looks good!
+                                     <input type="text" class="form-control" name="nameMedicine" id="validationCustom02" required>
+                                     <div class="invalid-feedback">
+                                         Please input Name Medicine
                                      </div>
                                  </div>
                              </div>
                              <div class="form-row">
                                  <div class="col-md-12 mb-3">
-                                     <label for="validationCustom03" class="lable">Description</label>
-                                     <textarea class="form-control" id="validationCustom06" rows="8" required></textarea>
+                                     <label for="validationCustom06" class="lable">Description</label>
+                                     <textarea class="form-control" name="descriptions" id="validationCustom06" rows="8" required></textarea>
                                      <div class="invalid-feedback">
-                                         Please provide a valid city.
+                                         Please input some Description.
                                      </div>
                                  </div>
                              </div>
@@ -73,14 +73,14 @@
                                      <label for="validationCustom04" class="lable">Date Of Manufacture</label>
                                      <input type="date" class="form-control date1" name="date1" id="validationCustom04"  required>
                                      <div class="invalid-feedback">
-                                         Please provide a valid state.
+                                         Please choose Date of Manufacture.
                                      </div>
                                  </div>
                                  <div class="col-md-6 mb-3">
                                      <label for="validationCustom05" class="lable">Expiration Date</label>
                                      <input type="date" class="form-control date2" name="date2" id="validationCustom05" required>
                                      <div class="invalid-feedback">
-                                         Please provide a valid zip.
+                                         Please choose Expiration Date.
                                      </div>
                                  </div>
                              </div>
@@ -88,40 +88,42 @@
                              <div class="form-row">
                                  <div class="col-md-3 mb-3">
                                      <label for="validationCustom05" class="lable">Quanty</label>
-                                     <input type="number" id="validationCustom08"  class="form-control date2" name="quantity" value="1" min="1" max="5" required>
+                                     <input type="number" id="validationCustom08"  class="form-control date2" name="quantity" value="1" min="1" max="100" maxlength="3" required>
                                      <div class="invalid-feedback">
-                                         Please provide a valid zip.
+                                         Please choose quantity number of medicine
                                      </div>
                                  </div>
 
                                  <div class="col-md-9 mb-3">
                                      <label for="validationCustom04" class="lable">Type Medicine</label>
                                      <select class="form-control date1" name="type" id="validationCustom07"  required>
-                                         <option>1</option>
-                                         <option>2</option>
-                                         <option>3</option>
-                                         <option>4</option>
-                                         <option>5</option>
-                                     </select>
-                                     <div class="invalid-feedback">
-                                         Please provide a valid state.
-                                     </div>
+                                     <c:forEach items="${requestScope.medicineTypes}" var="mt">
+                                         <option id="${mt.id}" value="${mt.id}">
+                                         <span>
+                                             ${mt.type} - ${mt.dosage}
+                                         </span>
+                                         </option>
+                                     </c:forEach>
+                                 </select>
+                                 <div class="invalid-feedback">
+                                     Please choose type of medicine
                                  </div>
                              </div>
-
-                             <div class="mt-5 d-flex justify-content-end">
-                                 <button class="btn btn-primary btn-lg mr-3" type="submit">Cancel</button>
-                                 <button class="btn btn-primary btn-lg" type="submit">Submit</button>
-                             </div>
-                         </form>
-
-                         <div class="left ml-5">
-                             <img src="../assets/img/create-medicine-bg.png" alt="alt"/>
                          </div>
 
+                         <div class="mt-5 d-flex justify-content-end">
+                             <button class="btn btn-primary btn-lg mr-3" type="reset">Cancel</button>
+                             <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                         </div>
+                     </form>
+
+                     <div class="left ml-5">
+                         <img src="../assets/img/create-medicine-bg.png" alt="alt"/>
                      </div>
 
                  </div>
+
+             </div>
              <jsp:include page="../base/footer.jsp" />   
         </div>
 
@@ -140,9 +142,8 @@
             (function () {
                 'use strict';
                 window.addEventListener('load', function () {
-                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
                     var forms = document.getElementsByClassName('needs-validation');
-                    // Loop over them and prevent submission
+
                     var validation = Array.prototype.filter.call(forms, function (form) {
                         form.addEventListener('submit', function (event) {
                             if (form.checkValidity() === false) {

@@ -29,7 +29,7 @@
                  </div>
 
 
-                 <a href="../base/home.jsp"><img src="../assets/img/Logo.png" alt="alt" class="header_logo"/>
+                 <a href="home"><img src="../assets/img/Logo.png" alt="alt" class="header_logo"/>
                  </a>
 
 

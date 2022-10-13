@@ -28,6 +28,7 @@
         <jsp:include page="/base/header.jsp" />
         <form action="foodlist" method="get"> 
             <h1>FOOD LISTS</h1>
+            <a href="addfood">Add more food</a>
             <table>
                 <tr>
                     <td>Name</td>

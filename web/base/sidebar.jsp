@@ -30,9 +30,9 @@
                       <c:when test="${role.id eq 1}">
                           <dl>
                               <dt>System Admin</dt>
-                              <dd><a href="../admin/users" class="selected">Account Lists</a></dd>
-                              <dd><a href="../admin/rooms" class="selected">Room Lists</a></dd>
-                              <dd><a href="../admin/areas" class="selected">Area Lists</a></dd>
+                              <dd><a href="admin/users" class="selected">Account Lists</a></dd>
+                              <dd><a href="admin/rooms" class="selected">Room Lists</a></dd>
+                              <dd><a href="admin/areas" class="selected">Area Lists</a></dd>
                               <dd><a href="/abc">Add Patient</a></dd>
                               <dd><a href="url">Add Doctor</a></dd>
                               <dd><a href="url">Add Nurse</a></dd>
@@ -84,6 +84,10 @@
                                   <img class="sidebar_item_img" src="../assets/icons/donthuoc.png" alt="alt"/>
                                   <div>Prescription</div>
                               </a>
+                              <a class="sidebar_item" href="../foodmenu">
+                                  <img class="sidebar_item_img" src="../assets/icons/foodmenu.png" alt="alt"/>
+                                  <div>Food Menu</div>
+                              </a>
                           </c:if>
 
                           <a class="sidebar_item" href="profile">
@@ -92,7 +96,7 @@
                           </a>
                           <br>
                           <c:if test="${role.id eq 2}">
-                               <dt>Manager</dt>
+                              <dt>Manager</dt>
                               <dd><a href="../foodlist">Food List</a></dd>
                           </c:if>
                       </c:otherwise>

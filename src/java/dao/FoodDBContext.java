@@ -5,6 +5,8 @@
 package dao;
 
 import entity.Food;
+import entity.Schedule;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +26,7 @@ public class FoodDBContext extends DBContext<Food> {
             String sql = "Select Food.[Name], Food.[Type], Food.AddedDate From Food";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Food food = new Food();
                 food.setName(rs.getString("name"));
                 food.setType(rs.getString("type"));
@@ -36,6 +38,44 @@ public class FoodDBContext extends DBContext<Food> {
         }
         return foods;
     }
+    
+    public Boolean addFood(String name, String type, Date addedDate) {
+        try {
+            String sql = "Insert into Food values(?, ?, ?)";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, name);
+            stm.setString(2, type);
+            stm.setDate(3, addedDate);
+            stm.executeQuery();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(FoodDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    } 
+
+//    public ArrayList<Schedule> scheduleForPatient(Date day) {
+//        ArrayList<Schedule> schedules = new ArrayList<>();
+//        try {
+//            String sql = "select FoodMenu.day, FoodMenu.dayOfMonth, FoodMenu.meal,\n"
+//                    + "Food.AddedDate, Food.Name, Food.Type,\n"
+//                    + "Week.dayFrom, Week.dayTo from FoodMenu\n"
+//                    + "inner join Food on FoodMenu.foodID = Food.ID\n"
+//                    + "inner join Week on Week.id = FoodMenu.weekID\n"
+//                    + "where FoodMenu.day = ?";
+//            PreparedStatement stm = connection.prepareStatement(sql);
+//            stm.setDate(1, day);
+//            ResultSet rs = stm.executeQuery();
+//            while (rs.next()) {
+//                FoodMenu fm = new FoodMenu();
+//                fm.setDay(rs.getDate("day"));
+//                foodmenus.add(fm);
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(FoodDBContext.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return foodmenus;
+//    }
 
     @Override
     public ArrayList<Food> list() {

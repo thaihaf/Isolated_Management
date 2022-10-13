@@ -88,6 +88,18 @@
         <servlet-name>FoodListControler</servlet-name>
         <servlet-class>controler.admin.FoodListControler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FoodMenuControler</servlet-name>
+        <servlet-class>controler.FoodMenuControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateFoodControler</servlet-name>
+        <servlet-class>controler.UpdateFoodControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddFoodControler</servlet-name>
+        <servlet-class>controler.AddFoodControler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -187,6 +199,18 @@
     <servlet-mapping>
         <servlet-name>FoodListControler</servlet-name>
         <url-pattern>/foodlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FoodMenuControler</servlet-name>
+        <url-pattern>/foodmenu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateFoodControler</servlet-name>
+        <url-pattern>/updatefood</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddFoodControler</servlet-name>
+        <url-pattern>/addfood</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

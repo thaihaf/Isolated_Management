@@ -6,6 +6,7 @@ package controler.nurse;
 
 import dao.AccountDetailDBContext;
 import dao.InjectionDBContext;
+import dao.MedicalStaffDBContext;
 import dao.PatientDBContext;
 import dao.VaccineDBContext;
 import entity.Account;
@@ -64,6 +65,7 @@ public class CreateInjectionController extends HttpServlet {
             PatientDBContext pdb = new PatientDBContext();
             Patient patient = pdb.getInfo(username);
             request.setAttribute("patient", patient);
+            session.setAttribute("info", info);
             session.setAttribute("patient", patient);
             session.setAttribute("vaccines", vaccines);
             request.getRequestDispatcher("../nurse/createInjection.jsp").forward(request, response);
@@ -86,23 +88,50 @@ public class CreateInjectionController extends HttpServlet {
         Account a1 = new Account();
         if (creator == "") {
             a1.setUserName(acc.getUserName());
+            AccountDetail ad1 = new AccountDetail();
+            ad1.setAccount(a1);
+            ir.setPersonInject(ad1);
+            int vac = Integer.parseInt(request.getParameter("vaccine"));
+            Vaccine vaccine = new Vaccine();
+            vaccine.setId(vac);
+            ir.setVaccine(vaccine);
+            java.util.Date utilDate = new java.util.Date();
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+            ir.setDate(sqlDate);
+            InjectionDBContext jdb = new InjectionDBContext();
+            jdb.insert(ir);
+            request.setAttribute("action", "Create Injection");
+            request.getRequestDispatcher("../view/createConfirm.jsp").forward(request, response);
         } else {
-            a1.setUserName(creator);
+            MedicalStaffDBContext msdb = new MedicalStaffDBContext();
+            boolean check = msdb.checkMedicalStaff(creator);
+            if (check == true) {
+                a1.setUserName(creator);
+                AccountDetail ad1 = new AccountDetail();
+                ad1.setAccount(a1);
+                ir.setPersonInject(ad1);
+                int vac = Integer.parseInt(request.getParameter("vaccine"));
+                Vaccine vaccine = new Vaccine();
+                vaccine.setId(vac);
+                ir.setVaccine(vaccine);
+                java.util.Date utilDate = new java.util.Date();
+                java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+                ir.setDate(sqlDate);
+                InjectionDBContext jdb = new InjectionDBContext();
+                jdb.insert(ir);
+                request.setAttribute("action", "Create Injection");
+                request.getRequestDispatcher("../view/createConfirm.jsp").forward(request, response);
+            } else if (check == false) {
+                Patient patient = (Patient) session.getAttribute("patient");
+                AccountDetail info = (AccountDetail) session.getAttribute("info");
+                ArrayList<Vaccine> vaccines = (ArrayList<Vaccine>) session.getAttribute("vaccines");
+                request.setAttribute("patient", patient);
+                request.setAttribute("vaccine", vaccines);
+                request.setAttribute("info", info);
+                request.setAttribute("mess", "Nurse is not exist");
+                request.getRequestDispatcher("../nurse/createInjection.jsp").forward(request, response);
+            }
         }
-        AccountDetail ad1 = new AccountDetail();
-        ad1.setAccount(a1);
-        ir.setPersonInject(ad1);
-        int vac = Integer.parseInt(request.getParameter("vaccine"));
-        Vaccine vaccine = new Vaccine();
-        vaccine.setId(vac);
-        ir.setVaccine(vaccine);
-        java.util.Date utilDate = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-        ir.setDate(sqlDate);
-        InjectionDBContext jdb = new InjectionDBContext();
-        jdb.insert(ir);
-        request.setAttribute("action", "Create Injection");
-        request.getRequestDispatcher("../view/createConfirm.jsp").forward(request, response);
     }
 
     /**

@@ -125,6 +125,10 @@
         <servlet-class>controller.doctor.MedicineListController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>UpdateMedicineController</servlet-name>
+        <servlet-class>controller.doctor.UpdateMedicineController</servlet-class>
+		</servlet>
+		<servlet>
         <servlet-name>NewReportControler</servlet-name>
         <servlet-class>controler.nurse.NewReportControler</servlet-class>
     </servlet>
@@ -253,6 +257,10 @@
         <url-pattern>/base/medicine-list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>UpdateMedicineController</servlet-name>
+        <url-pattern>/base/update-medicine</url-pattern>
+		</servlet-mapping>
+		 <servlet-mapping>
         <servlet-name>NewReportControler</servlet-name>
         <url-pattern>/base/add_report</url-pattern>
     </servlet-mapping>

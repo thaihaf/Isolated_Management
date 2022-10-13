@@ -34,10 +34,10 @@
 
 
                  <div class="header_user">
-                     <div class="noti">
+                     <a class="noti" <c:if test="${sessionScope.account.role.id ne 1}">href="notification"</c:if>>
                          <img class="noti_img" src="../assets/icons/noti.png" alt="alt"/>
                          <div class="noti_count">8</div>
-                     </div>
+                     </a>
 
                      <div class="user">
                          <img class="user_avt" src="../assets/img/avt.jpg" width="width" height="height" alt="alt"/>

@@ -127,8 +127,8 @@
     <servlet>
         <servlet-name>UpdateMedicineController</servlet-name>
         <servlet-class>controller.doctor.UpdateMedicineController</servlet-class>
-		</servlet>
-		<servlet>
+    </servlet>
+    <servlet>
         <servlet-name>NewReportControler</servlet-name>
         <servlet-class>controler.nurse.NewReportControler</servlet-class>
     </servlet>
@@ -143,6 +143,10 @@
     <servlet>
         <servlet-name>EmergencyContactControler</servlet-name>
         <servlet-class>controler.patient.EmergencyContactControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NotificationListControler</servlet-name>
+        <servlet-class>controler.NotificationListControler</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
@@ -263,8 +267,8 @@
     <servlet-mapping>
         <servlet-name>UpdateMedicineController</servlet-name>
         <url-pattern>/base/update-medicine</url-pattern>
-		</servlet-mapping>
-		 <servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>NewReportControler</servlet-name>
         <url-pattern>/base/add_report</url-pattern>
     </servlet-mapping>
@@ -279,6 +283,10 @@
     <servlet-mapping>
         <servlet-name>EmergencyContactControler</servlet-name>
         <url-pattern>/base/emergency</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NotificationListControler</servlet-name>
+        <url-pattern>/base/notification</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

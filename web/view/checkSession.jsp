@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,7 +18,7 @@
                 count--;
                 document.getElementById('timer').innerHTML = count;
                 if (count <= 0)
-                    window.location.href = '../login';
+                    window.location.href = '${pageContext.servletContext.contextPath}';
             }
             setInterval(redirect, 1000);
         </script>
@@ -26,7 +27,7 @@
     </head>
     <body>
         <div class="container">
-            <h1>Acess Denied! You must login first </h1>
+            <h1>Access Denied! You must login first </h1>
             <h3 style="text-align: center"> Go back to Login page after <span id="timer">5</span> seconds </h3>
         </div>
     </body>

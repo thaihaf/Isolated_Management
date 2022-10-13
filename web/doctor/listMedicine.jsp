@@ -63,7 +63,7 @@
 
                      <div class="top2">
                          <div class="filter">
-                             <button type="button" class="btn btn-primary">Add Medicine</button>
+                             <a href="create-medicine" class="btn btn-primary btn-add">Add Medicine</a>
 
                              <div class="dropdown show">
                                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

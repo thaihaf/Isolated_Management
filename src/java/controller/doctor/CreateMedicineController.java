@@ -4,12 +4,17 @@
  */
 package controller.doctor;
 
+import dao.PrescriptionDBContext;
+import entity.Account;
+import entity.Prescription;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  *
@@ -55,7 +60,17 @@ public class CreateMedicineController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+         HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("account");
+        if (acc == null) {
+            request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
+        } else {
+//            PrescriptionDBContext pDB = new PrescriptionDBContext();
+//            ArrayList<Prescription> p = pDB.getListPrescriptionDetails(acc.getUserName(), request.getParameter("username"), null, null, null, null);
+
+//            request.setAttribute("prescriptions", p);
+            request.getRequestDispatcher("../doctor/createMedicine.jsp").forward(request, response);
+        }
     }
 
     /**

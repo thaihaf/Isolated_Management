@@ -234,7 +234,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateMedicineController</servlet-name>
-        <url-pattern>/create-medicine</url-pattern>
+        <url-pattern>/base/create-medicine</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MedicineListController</servlet-name>

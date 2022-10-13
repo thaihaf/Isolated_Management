@@ -224,4 +224,24 @@ public class RoomDBContext extends DBContext<Room> {
         return rooms;
     }
 
+    public Room getPatientRoom(String id) {
+        try {
+            String sql = "SELECT [Room].[ID]\n"
+                    + "	  ,[Room].[Name]\n"
+                    + "  FROM [Room]\n"
+                    + "  INNER JOIN [Patient] ON [Room].[ID] = [Patient].[Room_ID]\n"
+                    + "  WHERE [Patient].[ID] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, id);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Room r = new Room();
+                r.setId(rs.getInt("ID"));
+                r.setName(rs.getNString("Name"));
+                return r;
+            }
+        } catch (SQLException ex) {
+        }
+        return null;
+    }
 }

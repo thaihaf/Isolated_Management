@@ -4,7 +4,7 @@
  */
 package entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -14,7 +14,7 @@ public class Report {
 
     private int id;
     private AccountDetail patient;
-    private Date createdDate;
+    private Timestamp createdDate;
     private String note;
 
     public int getId() {
@@ -33,11 +33,11 @@ public class Report {
         this.patient = patient;
     }
 
-    public Date getCreatedDate() {
+    public Timestamp getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(Timestamp createdDate) {
         this.createdDate = createdDate;
     }
 

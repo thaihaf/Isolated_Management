@@ -48,7 +48,7 @@ public class NotificationDBContext extends DBContext<Notification> {
                 n.setCreatedDate(rs.getTimestamp("CreateDate"));
                 notifs.add(n);
             }
-        } catch (Exception e) {
+        } catch (SQLException ex) {
         }
         return notifs;
     }
@@ -56,6 +56,24 @@ public class NotificationDBContext extends DBContext<Notification> {
     @Override
     public Notification get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public boolean confirmNotifInAccount(int id, String userID) {
+        try {
+            String sql = "SELECT [ID]\n"
+                    + "      ,[Receive_ID]\n"
+                    + "  FROM [Notification]\n"
+                    + "  WHERE [ID] = ? AND [Receive_ID] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+            stm.setString(2, userID);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+        }
+        return false;
     }
 
     @Override
@@ -94,7 +112,26 @@ public class NotificationDBContext extends DBContext<Notification> {
 
     @Override
     public void delete(Notification model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "DELETE FROM [Notification]\n"
+                    + "      WHERE [ID] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, model.getId());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+        }
+    }
+
+    public void markNotifAsRead(Notification model) {
+        try {
+            String sql = "UPDATE [Notification]\n"
+                    + "   SET [ReadMark] = 1\n"
+                    + " WHERE [ID] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, model.getId());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+        }
     }
 
 }

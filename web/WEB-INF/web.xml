@@ -162,6 +162,14 @@
         <servlet-name>NotificationListControler</servlet-name>
         <servlet-class>controler.NotificationListControler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteNotifiactionControler</servlet-name>
+        <servlet-class>controler.DeleteNotificationControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MarkAsReadNotificationControler</servlet-name>
+        <servlet-class>controler.MarkAsReadNotificationControler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -315,6 +323,14 @@
     <servlet-mapping>
         <servlet-name>NotificationListControler</servlet-name>
         <url-pattern>/base/notification</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteNotifiactionControler</servlet-name>
+        <url-pattern>/base/notif_delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MarkAsReadNotificationControler</servlet-name>
+        <url-pattern>/base/markasread</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -57,14 +57,8 @@
                              <c:if test="${r.status eq 'False'}">
                                  <td>Inactive</td>
                              </c:if>
-                             <td>${p.accDetail.email}</td>
-                             <c:if test="${p.backgroundDisease eq 'True'}">
-                                 <td>Yes</td>
-                             </c:if>
-                             <c:if test="${p.backgroundDisease eq 'False'}">
-                                 <td>No</td>
-                             </c:if>
                              <td>${p.bloodType}</td>
+                             <td><a href="testStatus?id=${r.id}&status=${!r.status}">Switch Status</a></td>
                          </tr>
                          <c:set var="count" value="${count+1}" />  
                      </c:forEach>

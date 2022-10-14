@@ -8,33 +8,28 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!--todo-->
-<c:set var="role" value="admin"/>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Admin</title>
-        <link rel="stylesheet" href="../assets/css/base.css"/>
+        <title>Admin dashboard - IMS</title>
+        <link rel="stylesheet" href="../assets/css/base2.css"/>
         <link rel="stylesheet" href="../assets/css/homeScreenAdmin.css"/>
     </head>
     <body>
-        <jsp:include page="../base/sidebar.jsp" />
+        <jsp:include page="/base/sidebar.jsp" />
 
-        <jsp:include page="../base/header.jsp" />
+        <jsp:include page="/base/header.jsp" />
 
-        <div class=<c:if test="${role eq 'admin'}">"wrapper wrapperAdmin"</c:if>
-        <c:if test="${role ne 'admin'}">"wrapper wrapperUser"</c:if>
-        >
-        <div class="container">
-            <!--Code vào đây là oke-->
-            <h1>Admin</h1>
-        <a href="changepass">Change Password</a>
+        <div class="wrapper wrapperAdmin">
+            <div class="container">
+                <!--Code vào đây là oke-->
+            </div>
+            <jsp:include page="/base/footer.jsp" />   
         </div>
-        <jsp:include page="../base/footer.jsp" />   
-    </div>
 
 
-</body>
+    </body>
 </html>
 

@@ -21,7 +21,7 @@ import java.util.Map;
  * @author Admin
  */
 public class AccountDetailDBContext extends DBContext<AccountDetail> {
-    
+
     public AccountDetail getEmail(String user) {
         try {
             String sql = "SELECT [Email]\n"
@@ -41,7 +41,7 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
         }
         return null;
     }
-    
+
     public AccountDetail get(String user) {
         try {
             String sql = "SELECT [Username]      ,[Role].[ID]\n"
@@ -93,7 +93,7 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
         }
         return null;
     }
-    
+
     public void UpdatePass(AccountDetail acc) {
         try {
             String sql = "UPDATE [dbo].[Account]\n"
@@ -108,22 +108,22 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
             Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @Override
     public void insert(AccountDetail model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     @Override
     public void update(AccountDetail model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     @Override
     public void delete(AccountDetail model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     @Override
     public ArrayList<AccountDetail> list() {
         ArrayList<AccountDetail> accounts = new ArrayList<>();
@@ -160,7 +160,7 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
         }
         return accounts;
     }
-    
+
     public ArrayList<AccountDetail> listByCriteria(Integer role, String criteria) {
         ArrayList<AccountDetail> accounts = new ArrayList<>();
         try {
@@ -214,9 +214,9 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
         } catch (SQLException ex) {
             Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return accounts.size() > 0 ? accounts : null;
+        return !accounts.isEmpty() ? accounts : null;
     }
-    
+
     public ArrayList<AccountDetail> listDoctorAndNurse() {
         ArrayList<AccountDetail> accounts = new ArrayList<>();
         try {
@@ -245,9 +245,35 @@ public class AccountDetailDBContext extends DBContext<AccountDetail> {
         }
         return accounts;
     }
-    
+
     @Override
     public AccountDetail get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public ArrayList<AccountDetail> listPatientByNurseID(String nurseID) {
+        ArrayList<AccountDetail> patients = new ArrayList<>();
+        try {
+            String sql = "SELECT [Account_Details].[ID]\n"
+                    + "      ,[Fullname]\n"
+                    + "  FROM [Account_Details]\n"
+                    + "  INNER JOIN [Patient] ON [Account_Details].[ID] = [Patient].[ID]\n"
+                    + "  INNER JOIN [Room] ON [Patient].[Room_ID] = [Room].[ID]\n"
+                    + "  WHERE [Room].[NurseManage] = ?";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setString(1, nurseID);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                AccountDetail acc = new AccountDetail();
+                Account a = new Account();
+                a.setUserName(rs.getString("ID"));
+                acc.setAccount(a);
+                acc.setFullName(rs.getNString("Fullname"));
+                patients.add(acc);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return patients;
     }
 }

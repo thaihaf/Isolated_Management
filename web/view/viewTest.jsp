@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="../assets/css/base.css"/>
+        <link rel="stylesheet" href="../assets/css/base2.css"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="../assets/css/base/home.css"/>     
     </head>
@@ -24,20 +24,23 @@
         <div class=<c:if test="${role.id eq 1}">"wrapper wrapperAdmin"</c:if>
              <c:if test="${role.id ne 1}">"wrapper wrapperUser"</c:if>
                  >
-            <div class="container">
+                 <div class="container">
                      <!--Code vào đây là oke-->
                      <h1>Patient ${patient} test's result</h1>
-                     <table class="table">
-                         <tr style="color: red;">
-                             <td>Patient ID</td>
-                             <td>Result</td>
-                             <td>Test Type</td>
-                             <td>Nurse Test</td>
-                             <td>Test time</td>
-                             <td>Status</td>
-                         </tr>
+                 <table class="table">
+                     <tr style="color: red;">
+                         <td></td>
+                         <td>Patient ID</td>
+                         <td>Result</td>
+                         <td>Test Type</td>
+                         <td>Nurse Test</td>
+                         <td>Test time</td>
+                         <td>Status</td>
+                     </tr>
+                     <c:set var="count" value="${1}" />
                      <c:forEach items="${requestScope.results}" var="r">
                          <tr>
+                             <td>${count}</td>
                              <td>${r.patientAccount.account.userName}</td>
                              <c:if test="${r.result eq 'True'}">
                                  <td>Negative</td>
@@ -63,6 +66,7 @@
                              </c:if>
                              <td>${p.bloodType}</td>
                          </tr>
+                         <c:set var="count" value="${count+1}" />  
                      </c:forEach>
                  </table>
 

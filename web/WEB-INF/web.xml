@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>pagesize</param-name>
+        <param-value>3</param-value>
+    </context-param>
     <servlet>
         <servlet-name>UpdateUserControler</servlet-name>
         <servlet-class>controler.UpdateUserControler</servlet-class>
@@ -99,6 +103,60 @@
     <servlet>
         <servlet-name>AddFoodControler</servlet-name>
         <servlet-class>controler.AddFoodControler</servlet-class>
+        <servlet-name>ReportListControler</servlet-name>
+        <servlet-class>controler.nurse.ReportListControler</servlet-class>
+    </servlet>
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>filters.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/base/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>AdminHomeControler</servlet-name>
+        <servlet-class>controler.admin.AdminHomeControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeControler</servlet-name>
+        <servlet-class>controler.HomeControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateMedicineController</servlet-name>
+        <servlet-class>controller.doctor.CreateMedicineController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MedicineListController</servlet-name>
+        <servlet-class>controller.doctor.MedicineListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateMedicineController</servlet-name>
+        <servlet-class>controller.doctor.UpdateMedicineController</servlet-class>
+		</servlet>
+		<servlet>
+        <servlet-name>NewReportControler</servlet-name>
+        <servlet-class>controler.nurse.NewReportControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportDetailControler</servlet-name>
+        <servlet-class>controler.nurse.ReportDetailControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteReportControler</servlet-name>
+        <servlet-class>controler.nurse.DeleteReportControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EmergencyContactControler</servlet-name>
+        <servlet-class>controler.patient.EmergencyContactControler</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
@@ -211,6 +269,44 @@
     <servlet-mapping>
         <servlet-name>AddFoodControler</servlet-name>
         <url-pattern>/addfood</url-pattern>
+        <servlet-name>ReportListControler</servlet-name>
+        <url-pattern>/base/nurseReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminHomeControler</servlet-name>
+        <url-pattern>/admin/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeControler</servlet-name>
+        <url-pattern>/base/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateMedicineController</servlet-name>
+        <url-pattern>/base/create-medicine</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MedicineListController</servlet-name>
+        <url-pattern>/base/medicine-list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateMedicineController</servlet-name>
+        <url-pattern>/base/update-medicine</url-pattern>
+		</servlet-mapping>
+		 <servlet-mapping>
+        <servlet-name>NewReportControler</servlet-name>
+        <url-pattern>/base/add_report</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportDetailControler</servlet-name>
+        <url-pattern>/base/reportDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteReportControler</servlet-name>
+        <url-pattern>/base/report_delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmergencyContactControler</servlet-name>
+        <url-pattern>/base/emergency</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

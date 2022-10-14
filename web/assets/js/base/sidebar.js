@@ -8,3 +8,10 @@ sidebar.click(function () {
     sidebar.removeClass("active");
     this.addClass("active");
 });
+
+function contactConfirm(){
+    var result = confirm('Are you sure you want to make an emergency contact?');
+    if(result){
+        window.location.href = 'emergency';
+    }
+}

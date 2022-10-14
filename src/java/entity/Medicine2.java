@@ -15,7 +15,6 @@ public class Medicine2 {
     private String description;
     private String dateManafacture;
     private String expirationDate;
-    private int medicineTypeId;
     private MedicineType medicineType;
 
     public Medicine2() {
@@ -67,14 +66,6 @@ public class Medicine2 {
 
     public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
-    }
-
-    public int getMedicineTypeId() {
-        return medicineTypeId;
-    }
-
-    public void setMedicineTypeId(int medicineTypeId) {
-        this.medicineTypeId = medicineTypeId;
     }
 
     public MedicineType getMedicineType() {

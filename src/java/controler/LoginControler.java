@@ -79,14 +79,17 @@ public class LoginControler extends HttpServlet {
         if (account == null) {
             request.setAttribute("mess", "Wrong username or password");
             request.getRequestDispatcher("view/login.jsp").forward(request, response);
-        }
-        if (account != null) {
+        } else {
             HttpSession session = request.getSession();
             session.setAttribute("account", account);
-            response.sendRedirect("base/home.jsp");
+            if (account.getRole().getId() == 1) {
+                response.sendRedirect("admin/home");
+            } else {
+                response.sendRedirect("base/home");
+            }
         }
     }
-
+    
     @Override
     public String getServletInfo() {
         return "Short description";

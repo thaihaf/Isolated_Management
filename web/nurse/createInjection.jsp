@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="../assets/css/base.css" />
+        <link rel="stylesheet" href="../assets/css/base2.css" />
         <link rel="stylesheet" href="../assets/css/view/profile.css" />
     </head>
 
@@ -62,6 +62,7 @@
                          <div class="updateInfo_item left">
                              <div class="item_title">Injection Creator</div>
                              <input type="text" class="item_input" name="creator">
+                             <p class="text-danger">${mess}</p>
                          </div>
                      </div>
 

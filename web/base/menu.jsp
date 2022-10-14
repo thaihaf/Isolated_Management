@@ -15,7 +15,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="../assets/css/base.css"/>
+        <link rel="stylesheet" href="../assets/css/base2.css"/>
         <link rel="stylesheet" href="../assets/css/base/menu.css"/>
     </head>
     <body>
@@ -37,7 +37,7 @@
             </c:choose>
 
             <a class="menu_item" href="profile">User Profile</a>
-            <a class="menu_item" href="changepass">Change Password</a>
+            <a class="menu_item" href="../base/changepass">Change Password</a>
             <a class="menu_item" href="../logout">Logout</a>
         </div>
 

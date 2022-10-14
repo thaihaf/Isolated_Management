@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="../assets/css/base.css"/>
+        <link rel="stylesheet" href="../assets/css/base2.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="../assets/css/patient/listpatient.css"/>
@@ -32,11 +32,6 @@
                                  <li class="breadcrumb-item active" aria-current="page">Patient List</li>
                              </ol>
                          </nav>
-
-                         <!--                         <div class="info">
-                                                      <div class="info_name">Patient : Nguyễn Thái Hà</div>
-                                                      <div class="info_bed">Area : A301 - Bed : 3</div>
-                                                  </div>-->
                      </div>
 
                      <form action="listpatient" method="POST" class="top2">
@@ -55,7 +50,7 @@
                                          checked="checked"
                                      </c:if>
                                      type="radio" name="gender" value="male" /> Male</span>
-                             
+
                              <span>
                                  <input type="radio"
                                         <c:if test="${param.gender eq null or param.gender eq 'both'}">
@@ -104,8 +99,6 @@
                                  <th>Phone</th>
                                  <th>Background Disease</th>
                                  <th>Blood Type</th>
-                                 <th>Date Comein</th>
-                                 <th>Action</th>
                              </tr>
                          </thead>
 
@@ -137,6 +130,8 @@
                                      <c:if test="${role.id eq 3}">
                                          <td><a href="createTest?username=${p.accDetail.account.userName}" >Create Test</a></td>    
                                          <td><a href="viewTest?username=${p.accDetail.account.userName}" >View Test</a></td>  
+                                         <td><a href="createInjection?username=${p.accDetail.account.userName}" >Create Ịnjection</a></td>  
+                                         <td><a href="viewInjection?username=${p.accDetail.account.userName}" >View Ịnjection</a></td>  
                                      </c:if>
                                      <c:if test="${role.id eq 2}">
                                          <td>1/1/2022</td>    

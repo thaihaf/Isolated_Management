@@ -12,10 +12,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="../assets/css/base.css"/>
+        <link rel="stylesheet" href="../assets/css/base2.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="../assets/css/doctor/medicine_list.css"/>
+        <link rel="stylesheet" href="../assets/css/doctor/list_medicine.css"/>
 
     </head>
     <body>
@@ -27,7 +27,7 @@
         <div class=<c:if test="${role.id eq 1}">"wrapper wrapperAdmin"</c:if>
              <c:if test="${role.id ne 1}">"wrapper wrapperUser"</c:if>
                  >
-                 <div class="container-fluid">
+                 <div class="container container-fluid">
                      <div class="top1">
                          <nav aria-label="breadcrumb">
                              <ol class="breadcrumb">
@@ -39,23 +39,23 @@
 
                      <div class="overview">
                          <div class="overview_item">
-                             <div class="overview_item-title">Total Medicine</div>
+                             <div class="overview_item-title">Total</div>
                              <div class="overview_item-number">100</div>
                          </div>
                          <div class="overview_item">
-                             <div class="overview_item-title">In stock of Medicine</div>
+                             <div class="overview_item-title">In stock</div>
                              <div class="overview_item-number">100</div>
                          </div>
                          <div class="overview_item">
-                             <div class="overview_item-title">Out stock of Medicine</div>
+                             <div class="overview_item-title">Out stock</div>
                              <div class="overview_item-number">100</div>
                          </div>
                          <div class="overview_item">
-                             <div class="overview_item-title">Expiration Medicine</div>
+                             <div class="overview_item-title">Expiration Date</div>
                              <div class="overview_item-number">100</div>
                          </div>
                          <div class="overview_item">
-                             <div class="overview_item-title">Expired Medicine</div>
+                             <div class="overview_item-title">Expired Date</div>
                              <div class="overview_item-number">100</div>
                          </div>
 
@@ -77,13 +77,13 @@
                              </div>
 
                              <div class="dateFilter">
-                                 Date Create From <input type="date" name="from" value="${param.from}" id="dateFrom"/>
+                                 <input type="date" name="from" value="${param.from}" id="dateFrom"/>
                              To <input type="date" name="to" value="${param.to}" id="dateTo"/>
                              <button 
                                  type="button" 
                                  class="btn btn-primary btn-info"
                                  id="filterDay">
-                                 Apply
+                                 Filter by Expiration Date
                              </button>
                          </div>
                      </div>

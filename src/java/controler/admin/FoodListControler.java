@@ -2,24 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controler;
+package controler.admin;
 
-import dao.TestResultDBContext;
-import entity.TestResult;
+import dao.FoodDBContext;
+import entity.Food;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public class ViewTestController extends HttpServlet {
+public class FoodListControler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +37,10 @@ public class ViewTestController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ViewTest</title>");
+            out.println("<title>Servlet FoodListControler</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ViewTest at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet FoodListControler at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,14 +58,10 @@ public class ViewTestController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String username = request.getParameter("username");
-        TestResultDBContext db = new TestResultDBContext();
-        ArrayList<TestResult> results = db.getTestResultByID(username);
-        request.setAttribute("results", results);
-        request.setAttribute("patient", username);
-        session.setAttribute("patient", username);
-        request.getRequestDispatcher("../view/viewTest.jsp").forward(request, response);
+        FoodDBContext fdb = new FoodDBContext();
+        ArrayList<Food> foods = fdb.FoodList();
+        request.setAttribute("food", foods);
+        request.getRequestDispatcher("admin/foodlist.jsp").forward(request, response);
     }
 
     /**
@@ -80,7 +75,7 @@ public class ViewTestController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("admin/foodlist.jsp").forward(request, response);
     }
 
     /**

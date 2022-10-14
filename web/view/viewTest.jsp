@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="../assets/css/base.css"/>
+        <link rel="stylesheet" href="../assets/css/base2.css"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="../assets/css/base/home.css"/>     
     </head>
@@ -57,14 +57,8 @@
                              <c:if test="${r.status eq 'False'}">
                                  <td>Inactive</td>
                              </c:if>
-                             <td>${p.accDetail.email}</td>
-                             <c:if test="${p.backgroundDisease eq 'True'}">
-                                 <td>Yes</td>
-                             </c:if>
-                             <c:if test="${p.backgroundDisease eq 'False'}">
-                                 <td>No</td>
-                             </c:if>
                              <td>${p.bloodType}</td>
+                             <td><a href="testStatus?id=${r.id}&status=${!r.status}">Switch Status</a></td>
                          </tr>
                          <c:set var="count" value="${count+1}" />  
                      </c:forEach>

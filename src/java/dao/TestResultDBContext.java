@@ -144,7 +144,7 @@ public class TestResultDBContext extends DBContext<TestResult> {
     public ArrayList<TestResult> getTestResultByID(String username) {
         ArrayList<TestResult> results = new ArrayList<>();
         try {
-            String sql = "select tr.Patient_ID,tr.Result,tt.Type,tr.Status,tr.Person_Test,tr.TestTime \n"
+            String sql = "select tr.ID,tr.Patient_ID,tr.Result,tt.Type,tr.Status,tr.Person_Test,tr.TestTime \n"
                     + "from Test_Result tr join Test_Type tt \n"
                     + "on tr.TestType_ID = tt.ID where tr.Patient_ID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -166,6 +166,7 @@ public class TestResultDBContext extends DBContext<TestResult> {
                 tr.setTestTime(rs.getTimestamp("TestTime"));
                 nurseAcc.setUserName(rs.getString("Person_Test"));
                 nurse.setAccount(nurseAcc);
+                tr.setId(rs.getInt("ID"));
                 tr.setPersonTest(nurse);
                 tr.setStatus(rs.getBoolean("Status"));
                 results.add(tr);
@@ -186,4 +187,20 @@ public class TestResultDBContext extends DBContext<TestResult> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public boolean changeStatus(boolean status, int id) {
+        try {
+            String sql = "UPDATE [Test_Result]\n"
+                    + "   SET \n"
+                    + "      [Status] = ?\n"
+                    + " WHERE ID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setBoolean(1, status);
+            stm.setInt(2, id);
+            stm.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 }

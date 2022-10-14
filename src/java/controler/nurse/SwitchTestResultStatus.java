@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controler;
+package controler.nurse;
 
 import dao.TestResultDBContext;
 import entity.TestResult;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  *
  * @author Admin
  */
-public class ViewTestController extends HttpServlet {
+public class SwitchTestResultStatus extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,45 +38,33 @@ public class ViewTestController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ViewTest</title>");
+            out.println("<title>Servlet SwitchTestResultStatus</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ViewTest at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SwitchTestResultStatus at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String username = request.getParameter("username");
-        TestResultDBContext db = new TestResultDBContext();
-        ArrayList<TestResult> results = db.getTestResultByID(username);
-        request.setAttribute("results", results);
-        request.setAttribute("patient", username);
-        session.setAttribute("patient", username);
-        request.getRequestDispatcher("../view/viewTest.jsp").forward(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        boolean status = Boolean.parseBoolean(request.getParameter("status"));
+        TestResultDBContext tr = new TestResultDBContext();
+        boolean change = tr.changeStatus(status, id);
+        if (change == true) {
+            TestResultDBContext db = new TestResultDBContext();
+            ArrayList<TestResult> results = db.getTestResultByID((String) session.getAttribute("patient"));
+            request.setAttribute("results", results);
+            request.setAttribute("patient", session.getAttribute("patient"));
+            request.setAttribute("mess", "Switch status of test result successfully");
+            request.getRequestDispatcher("../view/viewTest.jsp").forward(request, response);
+        }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -14,7 +14,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><c:set var="role" value="${sessionScope.account.role}"/>${sessionScope.account.userName}</title>
-        <link rel="stylesheet" href="../assets/css/base.css"/>
+        <link rel="stylesheet" href="../assets/css/base2.css"/>
         <link rel="stylesheet" href="../assets/css/doctor/doctorViewPrescription.css"/>
     </head>
     <body>

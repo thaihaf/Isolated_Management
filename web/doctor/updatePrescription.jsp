@@ -1,6 +1,6 @@
 <%-- 
-    Document   : create_prescription
-    Created on : Sep 27, 2022, 2:07:10 PM
+    Document   : updatePrescription
+    Created on : Oct 14, 2022, 12:13:58 PM
     Author     : hapro
 --%>
 
@@ -41,11 +41,11 @@
                      <div class="form-group">
                          <div class="form-item">
                              <label for="recipient-name" class="col-form-label">Symptom</label>
-                             <input type="text" class="form-control create" id="title-text">
+                             <input type="text" class="form-control create" id="title-text" value="${requestScope.prescription.title}">
                          </div>
                          <div class="form-item">
                              <label for="message-text" class="col-form-label">Guide</label>
-                             <textarea class="form-control create" id="guide-text" rows="6" cols="25"></textarea>
+                             <textarea class="form-control create" id="guide-text" rows="6" cols="25">${requestScope.prescription.guide}</textarea>
                          </div>
                          <div class="form-item search">
                              <div class="form-item">
@@ -128,9 +128,22 @@
                                  <th scope="col">Date of Manufacture</th>
                                  <th scope="col">Expiration date</th>
                                  <th scope="col">Type</th>
+                                 <th scope="col">Action</th>
                              </tr>
                          </thead>
                          <tbody id="tBody">
+                             <c:forEach items="${requestScope.prescription.medicines}" var="m" varStatus="loop">
+                                 <tr>
+                                     <td>${m.name}</td>
+                                     <td>${requestScope.prescription.prescriptionMedicines[loop.index].quantity}</td>
+                                     <td>${m.quantity}</td>
+                                     <td>${requestScope.prescription.medicineTypes[loop.index].dosage}</td>
+                                     <td>${m.dateOfManufacture}</td>
+                                     <td>${m.expirationDate}</td>
+                                     <td>${requestScope.prescription.medicineTypes[loop.index].type}</td>
+                                     <td id="${m.shipmentID}" style="width: 1rem; object-fit: contain"><img style="width: 100%" src="../assets/icons/delete.png" alt="alt"</td>
+                                 </tr>
+                             </c:forEach>
                          </tbody>
                      </table>
                  </div>
@@ -145,3 +158,4 @@
         <script src="../assets/js/doctor/createPres.js" type="text/javascript"></script>
     </body>
 </html>
+

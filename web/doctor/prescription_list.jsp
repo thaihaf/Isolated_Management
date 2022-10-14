@@ -59,13 +59,13 @@
                              </div>
 
                              <div class="dateFilter">
-                                 Date Create From <input type="date" name="from" value="${param.from}" id="dateFrom"/>
+                                 <input type="date" name="from" value="${param.from}" id="dateFrom"/>
                              To <input type="date" name="to" value="${param.to}" id="dateTo"/>
                              <button 
                                  type="button" 
                                  class="btn btn-primary btn-info"
                                  id="filterDay">
-                                 Apply
+                                 Filter by Date Create
                              </button>
                          </div>
                      </div>
@@ -92,6 +92,7 @@
                                  <th scope="col" class="thMedicine">Medicines</th>
                                  <th scope="col">Guides</th>
                                  <th scope="col">Status</th>
+                                 <th scope="col">Action</th>
                              </tr>
                          </thead>
                          <tbody id="tBody">
@@ -134,9 +135,12 @@
 
                                              <c:when test = "${type == 1}">
                                                  Đã phát thuốc
-                                             </c:when>
+                                               </c:when>
                                          </c:choose>
 
+                                     </td>
+                                     <td>
+                                         <a class="btn btn-info" href="/Isolated_Management/base/update-prescription?username=anhnd&pId=${p.id}">Update</a>
                                      </td>
                                  </tr>
 

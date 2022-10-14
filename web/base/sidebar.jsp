@@ -15,7 +15,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="../assets/css/base.css"/>
+        <link rel="stylesheet" href="../assets/css/base2.css"/>
         <link rel="stylesheet" href="../assets/css/base/sidebar.css"/>
     </head>
     <body>
@@ -45,12 +45,12 @@
                               <dd><a href="url">Request Medical</a></dd>
                               <dd><a href="url">Request Food</a></dd>
                               <dd><a href="url">Request Contact</a></dd>
-                          </dl> 
+                          </dl>
                           <br />
                       </c:when>   
 
                       <c:otherwise>
-                          <a class="sidebar_item" href="home.jsp">
+                          <a class="sidebar_item" href="home">
                               <img class="sidebar_item_img" src="../assets/icons/homeIcon.png" alt="alt"/>
                               <div>Home</div>
                           </a>
@@ -87,6 +87,10 @@
                               <a class="sidebar_item" href="patientPrescription">
                                   <img class="sidebar_item_img" src="../assets/icons/donthuoc.png" alt="alt"/>
                                   <div>Prescription</div>
+                              </a>
+                              <a class="sidebar_item" href="javascript:contactConfirm()">
+                                  <img class="sidebar_item_img" src="../assets/icons/emergency_icon.jpg" alt="alt"/>
+                                  <div>Emergency contact</div>
                               </a>
                           </c:if>
 

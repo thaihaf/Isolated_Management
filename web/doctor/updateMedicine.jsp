@@ -1,6 +1,6 @@
 <%-- 
-    Document   : createMedicine
-    Created on : Oct 11, 2022, 3:08:08 PM
+    Document   : updateMedicine
+    Created on : Oct 13, 2022, 10:45:06 PM
     Author     : hapro
 --%>
 
@@ -39,20 +39,20 @@
                      </div>
 
                      <div class="top2  d-flex justify-content-center align-items-start gap-5">
-                         <form  action="create-medicine" method="POST" class="needs-validation pt-5 right" novalidate>
-                             <div class="form-row title-create">Create new Medicine</div>
+                         <form  action="update-medicine" method="POST" class="needs-validation pt-5 right" novalidate>
+                             <div class="form-row title-create">Update Medicine</div>
 
                              <div class="form-row">
                                  <div class="col-md-12 mb-3">
                                      <label for="validationCustom01" class="lable">Shipment ID</label>
-                                     <input type="text" value="${requestScope.medicine ? requestScope.medicine.shipmentId : ''}" class="form-control" name="shipmentID" id="validationCustom01" required maxlength="6" >
+                                     <input type="text" value="${requestScope.medicine.shipmentId}" class="form-control" name="shipmentID" id="validationCustom01" required maxlength="6" >
                                  <div class="invalid-feedback">
                                      Please input Shipment ID
                                  </div>
                              </div>
                              <div class="col-md-12 mb-3">
                                  <label for="validationCustom02" class="lable">Name Medicine</label>
-                                 <input type="text" value="${requestScope.medicine ? requestScope.medicine.name : ''}" class="form-control" name="nameMedicine" id="validationCustom02" required>
+                                 <input type="text" value="${requestScope.medicine.name}" class="form-control" name="nameMedicine" id="validationCustom02" required>
                                  <div class="invalid-feedback">
                                      Please input Name Medicine
                                  </div>
@@ -61,7 +61,7 @@
                          <div class="form-row">
                              <div class="col-md-12 mb-3">
                                  <label for="validationCustom06" class="lable">Description</label>
-                                 <textarea class="form-control" value="${requestScope.medicine ? requestScope.medicine.description : ''}" name="descriptions" id="validationCustom06" rows="8" required></textarea>
+                                 <textarea class="form-control" name="descriptions" id="validationCustom06" rows="8" required>${requestScope.medicine.description}</textarea>
                                  <div class="invalid-feedback">
                                      Please input some Description.
                                  </div>
@@ -71,14 +71,14 @@
                          <div class="form-row">
                              <div class="col-md-6 mb-3">
                                  <label for="validationCustom04" class="lable">Date Of Manufacture</label>
-                                 <input type="date" class="form-control date1" name="date1" id="validationCustom04"  required>
+                                 <input type="date" class="form-control date1" value="${requestScope.medicine.dateManafacture}" name="date1" id="validationCustom04"  required>
                                  <div class="invalid-feedback">
                                      Please choose Date of Manufacture.
                                  </div>
                              </div>
                              <div class="col-md-6 mb-3">
                                  <label for="validationCustom05" class="lable">Expiration Date</label>
-                                 <input type="date" class="form-control date2" name="date2" id="validationCustom05" required>
+                                 <input type="date" class="form-control date2"  value="${requestScope.medicine.expirationDate}" name="date2" id="validationCustom05" required>
                                  <div class="invalid-feedback">
                                      Please choose Expiration Date.
                                  </div>
@@ -88,7 +88,7 @@
                          <div class="form-row">
                              <div class="col-md-3 mb-3">
                                  <label for="validationCustom05" class="lable">Quanty</label>
-                                 <input type="number" id="validationCustom08"  class="form-control date2" name="quantity" value="${requestScope.medicine ? requestScope.medicine.stock : 1}" min="1" max="100" maxlength="3" required>
+                                 <input type="number" id="validationCustom08"  class="form-control date2" name="quantity" value="${requestScope.medicine.stock}" min="1" max="100" maxlength="3" required>
                                  <div class="invalid-feedback">
                                      Please choose quantity number of medicine
                                  </div>
@@ -158,3 +158,4 @@
         </script>
     </body>
 </html>
+

@@ -30,15 +30,15 @@
                       <c:when test="${role.id eq 1}">
                           <dl>
                               <dt>System Admin</dt>
-                              <dd><a href="../admin/users" class="selected">Account Lists</a></dd>
-                              <dd><a href="../admin/rooms" class="selected">Room Lists</a></dd>
-                              <dd><a href="../admin/areas" class="selected">Area Lists</a></dd>
+                              <dd><a href="admin/users" class="selected">Account Lists</a></dd>
+                              <dd><a href="admin/rooms" class="selected">Room Lists</a></dd>
+                              <dd><a href="admin/areas" class="selected">Area Lists</a></dd>
                               <dd><a href="/abc">Add Patient</a></dd>
                               <dd><a href="url">Add Doctor</a></dd>
                               <dd><a href="url">Add Nurse</a></dd>
 
                               <dt>Manager</dt>
-                              <dd><a href="url">Food List</a></dd>
+                              <dd><a href="../foodlist">Food List</a></dd>
                               <dd><a href="url">Medical List</a></dd>
 
                               <dt>Request Manager</dt>
@@ -88,6 +88,9 @@
                                   <img class="sidebar_item_img" src="../assets/icons/donthuoc.png" alt="alt"/>
                                   <div>Prescription</div>
                               </a>
+                              <a class="sidebar_item" href="../foodmenu">
+                                  <img class="sidebar_item_img" src="../assets/icons/foodmenu.png" alt="alt"/>
+                                  <div>Food Menu</div>
                               <a class="sidebar_item" href="javascript:contactConfirm()">
                                   <img class="sidebar_item_img" src="../assets/icons/emergency_icon.jpg" alt="alt"/>
                                   <div>Emergency contact</div>
@@ -98,6 +101,11 @@
                               <img class="sidebar_item_img img_profile" src="../assets/icons/profileIcon.png" alt="alt"/>
                               <div>Profile</div>
                           </a>
+                          <br>
+                          <c:if test="${role.id eq 2}">
+                              <dt>Manager</dt>
+                              <dd><a href="../foodlist">Food List</a></dd>
+                          </c:if>
                       </c:otherwise>
                   </c:choose>
              </div>

@@ -64,17 +64,18 @@ public class UpdateUserControler extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         String accID = request.getParameter("user");
-        String username = request.getParameter("username");
+//        String username = request.getParameter("username");
         String fullName = request.getParameter("fullName");
         Boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
         String email = request.getParameter("email");
-        String nation = request.getParameter("nation");
-        Date dateofbirth = Date.valueOf(request.getParameter("dateofbirth"));
-        int role = Integer.parseInt(request.getParameter("role"));
-//        String dateofbirth = request.getParameter("dateofbirth");
-//        String role = request.getParameter("role");
+//        String nation = request.getParameter("nation");
+//        String nation = "hhhh";
+//        Date dateofbirth = Date.valueOf(request.getParameter("dateofbirth"));
+//        int role = Integer.parseInt(request.getParameter("role"));
+        String dateofbirth = request.getParameter("dateofbirth");
+        String role = request.getParameter("role");
         String leveleducation = request.getParameter("leveleducation");
         String hospital = request.getParameter("hospital");
         String blood_Type = request.getParameter("blood_Type");
@@ -86,7 +87,6 @@ public class UpdateUserControler extends HttpServlet {
         ArrayList<Role> roles = roleDB.list();
         UserDBContext udb = new UserDBContext();
         request.setAttribute("account", acc);
-        String mess = "Update successful";
         switch (acc.getAccount().getRole().getId()) {
             case 2: 
             case 3: {
@@ -94,8 +94,7 @@ public class UpdateUserControler extends HttpServlet {
                 MedicalStaff med = medDB.getByAccountDetail(acc);
                 request.setAttribute("account", acc);
                 request.setAttribute("medical", med);
-                udb.updateDoctorAndnurse(fullName, gender, phone, address, email, dateofbirth, nation, username, role, leveleducation, hospital);
-                request.setAttribute(mess, "mess");
+                udb.updateDoctorAndNurse(fullName, gender, phone, address, email, dateofbirth, accID, role, leveleducation, hospital);
                 break;
             }
             case 4: {
@@ -103,12 +102,15 @@ public class UpdateUserControler extends HttpServlet {
                 Patient p = patientDB.get(acc);
                 request.setAttribute("account", acc);
                 request.setAttribute("patient", p);
-                udb.updatePatient(fullName, gender, phone, address, email, dateofbirth, nation, username, note, blood_Type, background_disease);
-                request.setAttribute(mess, "mess");
+                udb.updatePatient(fullName, gender, phone, address, email, dateofbirth, accID, note, blood_Type, background_disease);
             }
         }
+        String mess = "Update successful";
+        request.setAttribute(mess, "mess");
         request.setAttribute("roles", roles);
+//        request.setAttribute("account", acc);
         request.getRequestDispatcher("updateuser.jsp").forward(request, response);
+//        response.sendRedirect("updateuser");
     }
 
     /**

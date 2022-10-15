@@ -63,7 +63,7 @@
                                   <div>Patient</div>
                               </a>
                               <a class="sidebar_item" href="medicine-list">
-                                  <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                                  <img class="sidebar_item_img" src="../assets/icons/medicine.png" alt="alt"/>
                                   <div>Medicine</div>
                               </a>
                           </c:if>
@@ -90,26 +90,30 @@
                                   <img class="sidebar_item_img" src="../assets/icons/donthuoc.png" alt="alt"/>
                                   <div>Prescription</div>
                               </a>
+                              <a class="sidebar_item" href="viewInjection?username=${sessionScope.account.userName}">
+                                  <img class="sidebar_item_img" src="../assets/icons/testIcon.png" alt="alt"/>
+                                  <div>Injection</div>
+                              </a>
                               <a class="sidebar_item" href="../foodmenu">
                                   <img class="sidebar_item_img" src="../assets/icons/foodmenu.png" alt="alt"/>
                                   <div>Food Menu</div>
-                              <a class="sidebar_item" href="javascript:contactConfirm()">
-                                  <img class="sidebar_item_img" src="../assets/icons/emergency_icon.jpg" alt="alt"/>
-                                  <div>Emergency contact</div>
-                              </a>
-                          </c:if>
+                                  <a class="sidebar_item" href="javascript:contactConfirm()">
+                                      <img class="sidebar_item_img" src="../assets/icons/emergency_icon.jpg" alt="alt"/>
+                                      <div>Emergency contact</div>
+                                  </a>
+                              </c:if>
 
-                          <a class="sidebar_item" href="profile">
-                              <img class="sidebar_item_img img_profile" src="../assets/icons/profileIcon.png" alt="alt"/>
-                              <div>Profile</div>
-                          </a>
-                          <br>
-                          <c:if test="${role.id eq 2}">
-                              <dt>Manager</dt>
-                              <dd><a href="../foodlist">Food List</a></dd>
-                          </c:if>
-                      </c:otherwise>
-                  </c:choose>
+                              <a class="sidebar_item" href="profile">
+                                  <img class="sidebar_item_img img_profile" src="../assets/icons/profileIcon.png" alt="alt"/>
+                                  <div>Profile</div>
+                              </a>
+                              <br>
+                              <c:if test="${role.id eq 2}">
+                                  <dt>Manager</dt>
+                                  <dd><a href="../foodlist">Food List</a></dd>
+                              </c:if>
+                          </c:otherwise>
+                      </c:choose>
              </div>
              <a class="sidebar_item" href="../logout">
                  <div class="sidebar_btnLogout">

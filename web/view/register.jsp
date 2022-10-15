@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
-        <link rel="stylesheet" href="./assets/css/base.css"/>
+        <link rel="stylesheet" href="./assets/css/base2.css"/>
         <link rel="stylesheet" href="./assets/css/view/register.css"/>
     </head>
     <body>

@@ -77,6 +77,7 @@ public class PatientDBContext extends DBContext<Patient> {
                 room.setName(rs.getNString("RoomName"));
                 p.setRoom(room);
                 p.setAccount(acc.getAccount());
+                p.setAccDetail(acc);
                 p.setNote(rs.getNString("Note"));
                 p.setBloodType(rs.getNString("Blood Type"));
                 p.setBackgroundDisease(rs.getBoolean("BackgroundDisease"));

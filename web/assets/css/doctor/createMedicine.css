@@ -14,6 +14,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 .container-fluid{
     font-size: 1.3rem;
+    width: 99%;
     margin-bottom: 3rem;
 }
 .form{
@@ -128,9 +129,9 @@ ion-icon{
 .top2{
     background: #E9ECEF;
     padding: 2rem 3rem;
-    padding-bottom: 0;
+    padding-bottom: 8rem;
     margin: 0;
-    margin-bottom: 3rem;
+    margin-bottom: 0rem;
     border-radius: 2rem;
 }
 .title-create{

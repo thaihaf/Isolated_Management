@@ -311,6 +311,40 @@ public class PrescriptionDBContext extends DBContext<Prescription> {
         return 0;
     }
 
+    public boolean updatePrescription(Prescription2 model) {
+        try {
+            connection.setAutoCommit(false);
+
+            String sql = "UPDATE [dbo].[Prescription]\n"
+                    + "   SET [Patient_ID] = ?\n"
+                    + "      ,[Doctor_ID] = ?\n"
+                    + "      ,[PrescriptionDate] = ?\n"
+                    + "      ,[Title] = ?\n"
+                    + "      ,[Guide] = ?\n"
+                    + "      ,[Status] = ?\n"
+                    + " WHERE [Prescription].ID = ?";
+
+            PreparedStatement stm = connection.prepareCall(sql);
+
+            stm.setString(1, model.getPatientID());
+            stm.setString(2, model.getDoctorID());
+            stm.setString(3, model.getPrescriptionDate());
+            stm.setString(4, model.getTitle());
+            stm.setString(5, model.getGuide());
+            stm.setInt(6, model.getStatus());
+            stm.setInt(7, model.getId());
+
+            if (stm.executeUpdate() > 0) {
+                connection.commit();
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+    }
+
     @Override
     public ArrayList<Prescription> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

@@ -32,7 +32,7 @@
                                  <li class="breadcrumb-item"><a href="../base/home.jsp">Home</a></li>
                                  <li class="breadcrumb-item"><a href="listpatient">Patient List</a></li>
                                  <li class="breadcrumb-item"><a href="prescription-list?username=${param.username}">Pressciption List</a></li>
-                             <li class="breadcrumb-item active" aria-current="page">Create Prescription</li>
+                             <li class="breadcrumb-item active" aria-current="page">Update Prescription</li>
                          </ol>
                      </nav>
                  </div>
@@ -100,7 +100,7 @@
                                  </tr>
                                  <tr>
                                      <td>Area</td>
-                                     <td>${requestScope.patient.room}</td>
+                                     <td>${requestScope.patient.room.area.name}${requestScope.patient.room.name} - Bed : ${requestScope.patient.room.numOfBed}</td>
                                  </tr>
                                  <tr>
                                      <td>Phone</td>
@@ -133,7 +133,7 @@
                          </thead>
                          <tbody id="tBody">
                              <c:forEach items="${requestScope.prescription.medicines}" var="m" varStatus="loop">
-                                 <tr>
+                                 <tr class="medicine_item" id="${m.shipmentID}-${requestScope.prescription.prescriptionMedicines[loop.index].quantity}">
                                      <td>${m.name}</td>
                                      <td>${requestScope.prescription.prescriptionMedicines[loop.index].quantity}</td>
                                      <td>${m.quantity}</td>
@@ -141,7 +141,9 @@
                                      <td>${m.dateOfManufacture}</td>
                                      <td>${m.expirationDate}</td>
                                      <td>${requestScope.prescription.medicineTypes[loop.index].type}</td>
-                                     <td id="${m.shipmentID}" style="width: 1rem; object-fit: contain"><img style="width: 100%" src="../assets/icons/delete.png" alt="alt"</td>
+                                     <td>
+                                         <button class="btn btn-success" id="${m.shipmentID}">Delete</button>
+                                     </td>
                                  </tr>
                              </c:forEach>
                          </tbody>
@@ -155,7 +157,7 @@
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <script src="../assets/js/doctor/createPres.js" type="text/javascript"></script>
+        <script src="../assets/js/doctor/updatePres3.js "type="text/javascript"></script>
     </body>
 </html>
 

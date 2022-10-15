@@ -33,7 +33,7 @@
                              <ol class="breadcrumb">
                                  <li class="breadcrumb-item"><a href="../base/home.jsp">Home</a></li>
                                  <li class="breadcrumb-item"><a href="medicine-list">List Medicine</a></li>
-                                 <li class="breadcrumb-item active" aria-current="page">Add Medicine</li>
+                                 <li class="breadcrumb-item active" aria-current="page">Update Medicine</li>
                              </ol>
                          </nav>
                      </div>

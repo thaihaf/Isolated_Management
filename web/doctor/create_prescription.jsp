@@ -100,7 +100,7 @@
                                  </tr>
                                  <tr>
                                      <td>Area</td>
-                                     <td>${requestScope.patient.room}</td>
+                                     <td>${requestScope.patient.room.area.name}${requestScope.patient.room.name} - Bed : ${requestScope.patient.room.numOfBed}</td>
                                  </tr>
                                  <tr>
                                      <td>Phone</td>

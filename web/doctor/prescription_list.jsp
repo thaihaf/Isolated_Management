@@ -47,19 +47,19 @@
                          <div class="filter">
                              <a href="create-prescription?username=${param.username}" class="btn btn-primary btn-add">Add new +</a>
 
-                             <div class="dropdown show">
-                                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                     Sort  by
-                                 </a>
+                         <div class="dropdown show">
+                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 Sort  by
+                             </a>
 
-                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                     <div class="dropdown-item" id="sortByDate">Date</div>
-                                     <div class="dropdown-item" id="sortByStatus">Status</div>
-                                 </div>
+                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                 <div class="dropdown-item" id="sortByDate">Date</div>
+                                 <div class="dropdown-item" id="sortByStatus">Status</div>
                              </div>
+                         </div>
 
-                             <div class="dateFilter">
-                                 <input type="date" name="from" value="${param.from}" id="dateFrom"/>
+                         <div class="dateFilter">
+                             <input type="date" name="from" value="${param.from}" id="dateFrom"/>
                              To <input type="date" name="to" value="${param.to}" id="dateTo"/>
                              <button 
                                  type="button" 
@@ -130,17 +130,23 @@
                                          <c:set var = "type" scope = "session" value = "${p.status}"/>
                                          <c:choose>
                                              <c:when test = "${type == 0}">
-                                                 Đang phát thuốc
+                                                 Chưa phát
                                              </c:when>
 
                                              <c:when test = "${type == 1}">
-                                                 Đã phát thuốc
-                                               </c:when>
+                                                 Đã phát
+                                             </c:when>
+
+                                             <c:when test = "${type == 2}">
+                                                 Đã edit, chưa phát
+                                             </c:when>
                                          </c:choose>
 
                                      </td>
                                      <td>
-                                         <a class="btn btn-info" href="/Isolated_Management/base/update-prescription?username=anhnd&pId=${p.id}">Update</a>
+                                         <c:if test="${type != 1}">
+                                             <a class="btn btn-info btn-lg" href="/Isolated_Management/base/update-prescription?username=anhnd&pId=${p.id}">Update</a>
+                                         </c:if>
                                      </td>
                                  </tr>
 

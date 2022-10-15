@@ -103,6 +103,8 @@
     <servlet>
         <servlet-name>AddFoodControler</servlet-name>
         <servlet-class>controler.AddFoodControler</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ReportListControler</servlet-name>
         <servlet-class>controler.nurse.ReportListControler</servlet-class>
     </servlet>
@@ -273,6 +275,8 @@
     <servlet-mapping>
         <servlet-name>AddFoodControler</servlet-name>
         <url-pattern>/addfood</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ReportListControler</servlet-name>
         <url-pattern>/base/nurseReport</url-pattern>
     </servlet-mapping>
@@ -318,7 +322,7 @@
     </servlet-mapping>
     <session-config>
         <session-timeout>
-            120
+            1000
         </session-timeout>
     </session-config>
     <servlet>

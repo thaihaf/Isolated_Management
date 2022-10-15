@@ -12,7 +12,6 @@ import entity.AccountDetail;
 import entity.Report;
 import entity.Room;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -47,7 +46,7 @@ public class ReportListControler extends HttpServlet {
         }
         int pageIndex = Integer.parseInt(page);
         ReportDBContext reportDB = new ReportDBContext();
-        int count = reportDB.countRecord(account.getUserName(), patientToSearch, roomToSearch);
+        int count = reportDB.countReport(account.getUserName(), patientToSearch, roomToSearch);
         int totalPage = (count % pageSize == 0) ? count / pageSize : (count / pageSize) + 1;
         ArrayList<Report> reports = reportDB.listByNurseAccountWithSearchAndPaginated(account.getUserName(), patientToSearch, roomToSearch, pageIndex, pageSize);
         AccountDetailDBContext accDetailDB = new AccountDetailDBContext();

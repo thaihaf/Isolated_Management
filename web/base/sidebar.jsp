@@ -45,6 +45,8 @@
                               <dd><a href="url">Request Medical</a></dd>
                               <dd><a href="url">Request Food</a></dd>
                               <dd><a href="url">Request Contact</a></dd>
+                              <dd><a href="notif_create">Create Notification</a></dd>
+                              
                           </dl>
                           <br />
                       </c:when>   

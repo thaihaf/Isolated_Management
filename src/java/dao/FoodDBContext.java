@@ -55,11 +55,11 @@ public class FoodDBContext extends DBContext<Food> {
         return false;
     }
 
-    public Boolean deleteFood(int id) {
+    public Boolean deleteFood(String id) {
         try {
             String sql = "delete from Food where ID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, id);
+            stm.setString(1, id);
             stm.executeUpdate();
             return true;
         } catch (SQLException ex) {

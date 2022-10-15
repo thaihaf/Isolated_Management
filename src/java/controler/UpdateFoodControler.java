@@ -60,6 +60,7 @@ public class UpdateFoodControler extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        int id = Integer.parseInt(request.getParameter("id"));
+        response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("id");
         String food = request.getParameter("food");
         String type = request.getParameter("type");
@@ -68,15 +69,15 @@ public class UpdateFoodControler extends HttpServlet {
         FoodDBContext fdb = new FoodDBContext();
         Food f = fdb.loadFoodById(id);
         request.setAttribute("food", f);
-        fdb.updateFood(food, type, addedDate, id);
-
-//        request.setAttribute("food", fdb.updateFood(food, type, addedDate, id));
-//        request.setAttribute("food", f);
-        request.setAttribute("food", fdb.loadFoodById(id));
-        String mess = "";
-        mess = "Change food success";
-        request.setAttribute("mess", mess);
-        request.getRequestDispatcher("admin/updatefood.jsp").forward(request, response);
+//        String mess = "";
+        if (fdb.updateFood(food, type, addedDate, id) == true) {
+            fdb.updateFood(food, type, addedDate, id);
+            request.setAttribute("food", fdb.loadFoodById(id));
+            request.setAttribute("mess", "Change food success");
+            request.getRequestDispatcher("admin/updatefood.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("admin/updatefood.jsp").forward(request, response);
+        }
     }
 
     /**

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : create_prescription
-    Created on : Sep 27, 2022, 2:07:10 PM
+    Document   : updatePrescription
+    Created on : Oct 14, 2022, 12:13:58 PM
     Author     : hapro
 --%>
 
@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="../assets/css/base.css"/>
+        <link rel="stylesheet" href="../assets/css/base2.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="../assets/css/doctor/createPrescription.css"/>
@@ -32,7 +32,7 @@
                                  <li class="breadcrumb-item"><a href="../base/home.jsp">Home</a></li>
                                  <li class="breadcrumb-item"><a href="listpatient">Patient List</a></li>
                                  <li class="breadcrumb-item"><a href="prescription-list?username=${param.username}">Pressciption List</a></li>
-                             <li class="breadcrumb-item active" aria-current="page">Create Prescription</li>
+                             <li class="breadcrumb-item active" aria-current="page">Update Prescription</li>
                          </ol>
                      </nav>
                  </div>
@@ -41,11 +41,11 @@
                      <div class="form-group">
                          <div class="form-item">
                              <label for="recipient-name" class="col-form-label">Symptom</label>
-                             <input type="text" class="form-control create" id="title-text">
+                             <input type="text" class="form-control create" id="title-text" value="${requestScope.prescription.title}">
                          </div>
                          <div class="form-item">
                              <label for="message-text" class="col-form-label">Guide</label>
-                             <textarea class="form-control create" id="guide-text" rows="6" cols="25"></textarea>
+                             <textarea class="form-control create" id="guide-text" rows="6" cols="25">${requestScope.prescription.guide}</textarea>
                          </div>
                          <div class="form-item search">
                              <div class="form-item">
@@ -128,9 +128,24 @@
                                  <th scope="col">Date of Manufacture</th>
                                  <th scope="col">Expiration date</th>
                                  <th scope="col">Type</th>
+                                 <th scope="col">Action</th>
                              </tr>
                          </thead>
                          <tbody id="tBody">
+                             <c:forEach items="${requestScope.prescription.medicines}" var="m" varStatus="loop">
+                                 <tr class="medicine_item" id="${m.shipmentID}-${requestScope.prescription.prescriptionMedicines[loop.index].quantity}">
+                                     <td>${m.name}</td>
+                                     <td>${requestScope.prescription.prescriptionMedicines[loop.index].quantity}</td>
+                                     <td>${m.quantity}</td>
+                                     <td>${requestScope.prescription.medicineTypes[loop.index].dosage}</td>
+                                     <td>${m.dateOfManufacture}</td>
+                                     <td>${m.expirationDate}</td>
+                                     <td>${requestScope.prescription.medicineTypes[loop.index].type}</td>
+                                     <td>
+                                         <button class="btn btn-success" id="${m.shipmentID}">Delete</button>
+                                     </td>
+                                 </tr>
+                             </c:forEach>
                          </tbody>
                      </table>
                  </div>
@@ -142,6 +157,7 @@
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <script src="../assets/js/doctor/createPres.js" type="text/javascript"></script>
+        <script src="../assets/js/doctor/updatePres3.js "type="text/javascript"></script>
     </body>
 </html>
+

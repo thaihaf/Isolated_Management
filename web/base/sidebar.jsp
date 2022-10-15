@@ -61,7 +61,7 @@
                                   <div>Patient</div>
                               </a>
                               <a class="sidebar_item" href="medicine-list">
-                                  <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                                  <img class="sidebar_item_img" src="../assets/icons/medicine.png" alt="alt"/>
                                   <div>Medicine</div>
                               </a>
                           </c:if>

@@ -141,8 +141,8 @@
     <servlet>
         <servlet-name>UpdateMedicineController</servlet-name>
         <servlet-class>controller.doctor.UpdateMedicineController</servlet-class>
-		</servlet>
-		<servlet>
+    </servlet>
+    <servlet>
         <servlet-name>NewReportControler</servlet-name>
         <servlet-class>controler.nurse.NewReportControler</servlet-class>
     </servlet>
@@ -291,8 +291,8 @@
     <servlet-mapping>
         <servlet-name>UpdateMedicineController</servlet-name>
         <url-pattern>/base/update-medicine</url-pattern>
-		</servlet-mapping>
-		 <servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>NewReportControler</servlet-name>
         <url-pattern>/base/add_report</url-pattern>
     </servlet-mapping>
@@ -325,6 +325,14 @@
         <servlet-name>ForgotPasswordControler</servlet-name>
         <servlet-class>controler.ForgotPasswordControler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SwitchTestResultStatus</servlet-name>
+        <servlet-class>controler.nurse.SwitchTestResultStatus</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SwitchTestResultStatus</servlet-name>
+        <url-pattern>/base/testStatus</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>AccountListControler</servlet-name>
         <servlet-class>controler.AccountListControler</servlet-class>

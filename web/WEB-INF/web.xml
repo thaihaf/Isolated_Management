@@ -163,8 +163,8 @@
     <servlet>
         <servlet-name>UpdatePrescriptionController</servlet-name>
         <servlet-class>controller.doctor.UpdatePrescriptionController</servlet-class>
-		</servlet>
-		<servlet>
+    </servlet>
+    <servlet>
         <servlet-name>NotificationListControler</servlet-name>
         <servlet-class>controler.NotificationListControler</servlet-class>
     </servlet>
@@ -355,8 +355,8 @@
     <servlet-mapping>
         <servlet-name>UpdatePrescriptionController</servlet-name>
         <url-pattern>/base/update-prescription</url-pattern>
-		</servlet-mapping>
-		<servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>NotificationListControler</servlet-name>
         <url-pattern>/base/notification</url-pattern>
     </servlet-mapping>
@@ -368,11 +368,6 @@
         <servlet-name>MarkAsReadNotificationControler</servlet-name>
         <url-pattern>/base/markasread</url-pattern>
     </servlet-mapping>
-    <session-config>
-        <session-timeout>
-            1000
-        </session-timeout>
-    </session-config>
     <servlet>
         <servlet-name>LoginControler</servlet-name>
         <servlet-class>controler.LoginControler</servlet-class>

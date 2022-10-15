@@ -188,7 +188,7 @@ public class ReportDBContext extends DBContext<Report> {
         return reports;
     }
 
-    public int countRecord(String nurseID, String patientToSearch, Integer roomToSearch) {
+    public int countReport(String nurseID, String patientToSearch, Integer roomToSearch) {
         try {
             String sql = "SELECT COUNT(*) AS Total\n"
                     + "  FROM [Report]\n"

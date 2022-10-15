@@ -37,31 +37,59 @@
                          <td>Test time</td>
                          <td>Status</td>
                      </tr>
-                     <c:set var="count" value="${1}" />
-                     <c:forEach items="${requestScope.results}" var="r">
-                         <tr>
-                             <td>${count}</td>
-                             <td>${r.patientAccount.account.userName}</td>
-                             <c:if test="${r.result eq 'True'}">
-                                 <td>Negative</td>
-                             </c:if>
-                             <c:if test="${r.result eq 'False'}">
-                                 <td>Positive</td>
-                             </c:if>
-                             <td>${r.testType.typeName}</td>
-                             <td>${r.personTest.account.userName}</td>
-                             <td>${r.testTime}</td>
-                             <c:if test="${r.status eq 'True'}">
-                                 <td>Active</td>
-                             </c:if>
-                             <c:if test="${r.status eq 'False'}">
-                                 <td>Inactive</td>
-                             </c:if>
-                             <td>${p.bloodType}</td>
-                             <td><a href="testStatus?id=${r.id}&status=${!r.status}">Switch Status</a></td>
-                         </tr>
-                         <c:set var="count" value="${count+1}" />  
-                     </c:forEach>
+                     <c:if test="${role.id eq 3}">
+                         <c:set var="count" value="${1}" />
+                         <c:forEach items="${requestScope.results}" var="r">
+                             <tr>
+                                 <td>${count}</td>
+                                 <td>${r.patientAccount.account.userName}</td>
+                                 <c:if test="${r.result eq 'True'}">
+                                     <td>Negative</td>
+                                 </c:if>
+                                 <c:if test="${r.result eq 'False'}">
+                                     <td>Positive</td>
+                                 </c:if>
+                                 <td>${r.testType.typeName}</td>
+                                 <td>${r.personTest.account.userName}</td>
+                                 <td>${r.testTime}</td>
+                                 <c:if test="${r.status eq 'True'}">
+                                     <td>Active</td>
+                                 </c:if>
+                                 <c:if test="${r.status eq 'False'}">
+                                     <td>Inactive</td>
+                                 </c:if>
+                                 <td>${p.bloodType}</td>
+                                 <td><a href="testStatus?id=${r.id}&status=${!r.status}">Switch Status</a></td>
+                             </tr>
+                             <c:set var="count" value="${count+1}" />  
+                         </c:forEach>
+                     </c:if>
+                     <c:if test="${role.id eq 4}">
+                         <c:set var="count" value="${1}" />
+                         <c:forEach items="${requestScope.results}" var="r">
+                             <tr>
+                                 <td>${count}</td>
+                                 <td>${r.patientAccount.account.userName}</td>
+                                 <c:if test="${r.result eq 'True'}">
+                                     <td>Negative</td>
+                                 </c:if>
+                                 <c:if test="${r.result eq 'False'}">
+                                     <td>Positive</td>
+                                 </c:if>
+                                 <td>${r.testType.typeName}</td>
+                                 <td>${r.personTest.account.userName}</td>
+                                 <td>${r.testTime}</td>
+                                 <c:if test="${r.status eq 'True'}">
+                                     <td>Active</td>
+                                 </c:if>
+                                 <c:if test="${r.status eq 'False'}">
+                                     <td>Inactive</td>
+                                 </c:if>
+                                 <td>${p.bloodType}</td>
+                             </tr>
+                             <c:set var="count" value="${count+1}" />  
+                         </c:forEach>
+                     </c:if>
                  </table>
 
              </div>

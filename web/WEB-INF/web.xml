@@ -161,6 +161,10 @@
         <servlet-class>controler.patient.EmergencyContactControler</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>UpdatePrescriptionController</servlet-name>
+        <servlet-class>controller.doctor.UpdatePrescriptionController</servlet-class>
+		</servlet>
+		<servlet>
         <servlet-name>NotificationListControler</servlet-name>
         <servlet-class>controler.NotificationListControler</servlet-class>
     </servlet>
@@ -349,6 +353,10 @@
         <url-pattern>/base/emergency</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>UpdatePrescriptionController</servlet-name>
+        <url-pattern>/base/update-prescription</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
         <servlet-name>NotificationListControler</servlet-name>
         <url-pattern>/base/notification</url-pattern>
     </servlet-mapping>
@@ -360,6 +368,35 @@
         <servlet-name>MarkAsReadNotificationControler</servlet-name>
         <url-pattern>/base/markasread</url-pattern>
     </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            1000
+        </session-timeout>
+    </session-config>
+    <servlet>
+        <servlet-name>LoginControler</servlet-name>
+        <servlet-class>controler.LoginControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePassController</servlet-name>
+        <servlet-class>controler.ChangePassController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ForgotPasswordControler</servlet-name>
+        <servlet-class>controler.ForgotPasswordControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SwitchTestResultStatus</servlet-name>
+        <servlet-class>controler.nurse.SwitchTestResultStatus</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SwitchTestResultStatus</servlet-name>
+        <url-pattern>/base/testStatus</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AccountListControler</servlet-name>
+        <servlet-class>controler.AccountListControler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginControler</servlet-name>
         <url-pattern>/login</url-pattern>

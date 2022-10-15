@@ -27,7 +27,7 @@
         <div class=<c:if test="${role.id eq 1}">"wrapper wrapperAdmin"</c:if>
              <c:if test="${role.id ne 1}">"wrapper wrapperUser"</c:if>
                  >
-                 <div class="container container-fluid">
+                 <div class="container-fluid">
                      <div class="top1">
                          <nav aria-label="breadcrumb">
                              <ol class="breadcrumb">

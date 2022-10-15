@@ -103,8 +103,8 @@
     <servlet>
         <servlet-name>AddFoodControler</servlet-name>
         <servlet-class>controler.AddFoodControler</servlet-class>
-    </servlet>    
-    <servlet>    
+    </servlet>
+    <servlet>
         <servlet-name>ReportListControler</servlet-name>
         <servlet-class>controler.nurse.ReportListControler</servlet-class>
     </servlet>
@@ -159,6 +159,10 @@
     <servlet>
         <servlet-name>EmergencyContactControler</servlet-name>
         <servlet-class>controler.patient.EmergencyContactControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteFoodControler</servlet-name>
+        <servlet-class>controler.DeleteFoodControler</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
@@ -272,7 +276,7 @@
         <servlet-name>AddFoodControler</servlet-name>
         <url-pattern>/addfood</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>    
+    <servlet-mapping>
         <servlet-name>ReportListControler</servlet-name>
         <url-pattern>/base/nurseReport</url-pattern>
     </servlet-mapping>
@@ -312,11 +316,11 @@
         <servlet-name>EmergencyContactControler</servlet-name>
         <url-pattern>/base/emergency</url-pattern>
     </servlet-mapping>
-    <session-config>
+    <!--    <session-config>
         <session-timeout>
             120
         </session-timeout>
-    </session-config>
+    </session-config>-->
     <servlet>
         <servlet-name>LoginControler</servlet-name>
         <servlet-class>controler.LoginControler</servlet-class>
@@ -352,6 +356,10 @@
     <servlet-mapping>
         <servlet-name>AreaListControler</servlet-name>
         <url-pattern>/admin/areas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteFoodControler</servlet-name>
+        <url-pattern>/deletefood</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>login</welcome-file>

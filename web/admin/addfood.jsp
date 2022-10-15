@@ -12,14 +12,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="addfood" method="post">
+        <form action="addfood" method="get">
             <span style="color: red;">${mess}</span><br>
-            Food name: <input type="text" name="food"><br>
+            Food name: <input required type="text" name="food"><br>
             Type: <select name="type">
                 <option value="Drink">Drink</option>
                 <option value="Food">Food</option>
             </select><br>
-            Added date: <input type="date" name="addedDate"><br>
+            Added date: <input required type="date" name="addedDate"><br>
             <input type="Submit" value="Add">
         </form>
     </body>

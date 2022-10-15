@@ -28,7 +28,7 @@
         <jsp:include page="/base/header.jsp" />
         <form action="foodlist" method="get"> 
             <h1>FOOD LISTS</h1>
-            <a href="addfood">Add more food</a>
+            <button><a style="text-decoration: none" href="addfood">Add more food</a></button>
             <table>
                 <tr>
                     <td>Name</td>
@@ -41,7 +41,7 @@
                     <td>${food.name}</td>
                     <td>${food.type}</td>
                     <td>${food.addedDate}</td>
-                    <td><a href="">Edit</a></td>
+                    <td><button><a style="text-decoration: none" href="updatefood?id=${food.id}">Edit</a></button></td>
                 </tr>
                 </c:forEach>
             </table>

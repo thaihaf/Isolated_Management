@@ -2,30 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controler.nurse;
+package controler;
 
-import dao.AccountDetailDBContext;
-import dao.ReportDBContext;
-import dao.RoomDBContext;
+import dao.NotificationDBContext;
 import entity.Account;
-import entity.AccountDetail;
-import entity.Report;
-import entity.Room;
+import entity.Notification;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 /**
  *
  * @author Mountain
  */
-public class ReportListControler extends HttpServlet {
-
-    private String patientToSearch;
-    private Integer roomToSearch;
+public class DeleteNotificationControler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,27 +31,15 @@ public class ReportListControler extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
         Account account = (Account) request.getSession().getAttribute("account");
-        int pageSize = Integer.parseInt(request.getServletContext().getInitParameter("pagesize"));
-        String page = request.getParameter("page");
-        if (page == null) {
-            page = "1";
+        NotificationDBContext notifDB = new NotificationDBContext();
+        if (notifDB.confirmNotifInAccount(id, account.getUserName())) {
+            Notification n = new Notification();
+            n.setId(id);
+            notifDB.delete(n);
         }
-        int pageIndex = Integer.parseInt(page);
-        ReportDBContext reportDB = new ReportDBContext();
-        int count = reportDB.countReport(account.getUserName(), patientToSearch, roomToSearch);
-        int totalPage = (count % pageSize == 0) ? count / pageSize : (count / pageSize) + 1;
-        ArrayList<Report> reports = reportDB.listByNurseAccountWithSearchAndPaginated(account.getUserName(), patientToSearch, roomToSearch, pageIndex, pageSize);
-        AccountDetailDBContext accDetailDB = new AccountDetailDBContext();
-        ArrayList<AccountDetail> patients = accDetailDB.listPatientByNurseID(account.getUserName());
-        RoomDBContext roomDB = new RoomDBContext();
-        ArrayList<Room> rooms = roomDB.roomListByNurseID(account.getUserName());
-        request.setAttribute("reports", reports);
-        request.setAttribute("patients", patients);
-        request.setAttribute("rooms", rooms);
-        request.setAttribute("totalpage", totalPage);
-        request.setAttribute("pageindex", pageIndex);
-        request.getRequestDispatcher("../nurse/reportlist.jsp").forward(request, response);
+        response.sendRedirect("notification");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -87,11 +68,6 @@ public class ReportListControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        String raw_patient = request.getParameter("patient");
-        String raw_room = request.getParameter("room");
-        patientToSearch = (raw_patient != null && raw_patient.length() > 0 && !raw_patient.equals("-1")) ? raw_patient : null;
-        roomToSearch = (raw_room != null && raw_room.length() > 0 && !raw_room.equals("-1")) ? new Integer(raw_room) : null;
         processRequest(request, response);
     }
 

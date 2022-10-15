@@ -4,12 +4,8 @@
  */
 package dao;
 
-import entity.Account;
-import entity.AccountDetail;
-import entity.Area;
 import entity.Medicine2;
 import entity.MedicineType;
-import entity.Room;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

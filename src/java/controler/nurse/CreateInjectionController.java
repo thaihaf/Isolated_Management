@@ -77,10 +77,10 @@ public class CreateInjectionController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Account acc = (Account) session.getAttribute("account");
-        String id = request.getParameter("id");
+        String id = request.getParameter("id");//id patient
         Account a = new Account();
         a.setUserName(id);
-        AccountDetail ad = new AccountDetail();
+        AccountDetail ad = new AccountDetail();//account detail of patient
         ad.setAccount(a);
         InjectionReport ir = new InjectionReport();
         ir.setPatientAccount(ad);

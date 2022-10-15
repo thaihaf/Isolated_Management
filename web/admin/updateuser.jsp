@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Update user account - IMS</title>
-        <link rel="stylesheet" href="../assets/css/base2.css"/>
+        <link rel="stylesheet" href="../assets/css/base.css"/>
         <link rel="stylesheet" href="../assets/css/base/home.css"/>
         <script>
             function changeRole() {

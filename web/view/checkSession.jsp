@@ -22,7 +22,7 @@
             }
             setInterval(redirect, 1000);
         </script>
-        <link rel="stylesheet" href="../assets/css/base2.css"/>
+        <link rel="stylesheet" href="../assets/css/base.css"/>
         <link rel="stylesheet" href="../assets/css/view/checkSession.css"/>
     </head>
     <body>

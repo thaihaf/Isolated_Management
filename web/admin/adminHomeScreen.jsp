@@ -14,7 +14,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Admin dashboard - IMS</title>
-        <link rel="stylesheet" href="../assets/css/base2.css"/>
+        <link rel="stylesheet" href="../assets/css/base.css"/>
         <link rel="stylesheet" href="../assets/css/homeScreenAdmin.css"/>
     </head>
     <body>

@@ -38,15 +38,24 @@
                          </nav>
                      </div>
 
-                     <div class="top2  d-flex justify-content-center align-items-start gap-5">
+                     <div class="top2  d-flex justify-content-center align-items-start gap-5 pb-5">
                          <form  action="update-medicine" method="POST" class="needs-validation pt-5 right" novalidate>
                              <div class="form-row title-create">Update Medicine</div>
 
                              <div class="form-row">
                                  <div class="col-md-12 mb-3">
                                      <label for="validationCustom01" class="lable">Shipment ID</label>
-                                     <input type="text" value="${requestScope.medicine.shipmentId}" class="form-control" name="shipmentID" id="validationCustom01" required maxlength="6" >
-                                 <div class="invalid-feedback">
+                                     <input 
+                                         type="text" 
+                                         value="${requestScope.medicine.shipmentId}" 
+                                     class="form-control" 
+                                     name="shipmentID" 
+                                     id="validationCustom01" 
+                                     required 
+                                     maxlength="6" 
+                                     onkeyup="this.value = this.value.replace(/[^0-9]/g, '');"
+                                     >
+                                 <div class="invalid-feedback validationCustom01">
                                      Please input Shipment ID
                                  </div>
                              </div>
@@ -113,7 +122,7 @@
 
                          <div class="mt-5 d-flex justify-content-end">
                              <button class="btn btn-primary btn-lg mr-3" type="reset">Reset</button>
-                             <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                             <button class="btn btn-primary btn-lg" id="btn_submit" type="submit">Submit</button>
                          </div>
                      </form>
 
@@ -131,7 +140,7 @@
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <script src="../assets/js/doctor/perscriptionList.js" type="text/javascript"></script>
+        <script src="../assets/js/doctor/createMedicine.js" type="text/javascript"></script>
         <script>
             $(function () {
                 $('[data-toggle="popover"]').popover({

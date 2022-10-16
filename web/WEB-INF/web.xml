@@ -352,11 +352,6 @@
         <servlet-name>EmergencyContactControler</servlet-name>
         <url-pattern>/base/emergency</url-pattern>
     </servlet-mapping>
-    <session-config>
-        <session-timeout>
-            120
-        </session-timeout>
-    </session-config>
     <servlet-mapping>
         <servlet-name>UpdatePrescriptionController</servlet-name>
         <url-pattern>/base/update-prescription</url-pattern>

@@ -298,19 +298,19 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FoodListControler</servlet-name>
-        <url-pattern>/foodlist</url-pattern>
+        <url-pattern>/admin/foodlist</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FoodMenuControler</servlet-name>
-        <url-pattern>/foodmenu</url-pattern>
+        <url-pattern>/admin/foodmenu</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateFoodControler</servlet-name>
-        <url-pattern>/updatefood</url-pattern>
+        <url-pattern>/admin/updatefood</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddFoodControler</servlet-name>
-        <url-pattern>/addfood</url-pattern>
+        <url-pattern>/admin/addfood</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ReportListControler</servlet-name>

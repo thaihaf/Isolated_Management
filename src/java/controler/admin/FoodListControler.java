@@ -61,7 +61,7 @@ public class FoodListControler extends HttpServlet {
         FoodDBContext fdb = new FoodDBContext();
         ArrayList<Food> foods = fdb.FoodList();
         request.setAttribute("food", foods);
-        request.getRequestDispatcher("admin/foodlist.jsp").forward(request, response);
+        request.getRequestDispatcher("admin/foodList.jsp").forward(request, response);
     }
 
     /**
@@ -75,7 +75,7 @@ public class FoodListControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("admin/foodlist.jsp").forward(request, response);
+        request.getRequestDispatcher("admin/foodList.jsp").forward(request, response);
     }
 
     /**

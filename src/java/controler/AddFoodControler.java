@@ -79,13 +79,9 @@ public class AddFoodControler extends HttpServlet {
         String addedDate = request.getParameter("addedDate");
         FoodDBContext fdb = new FoodDBContext();
         Food f = fdb.loadFoodById(id);
-        if (fdb.addFood(food, type, addedDate) == false) {
-            request.getRequestDispatcher("admin/addfood.jsp").forward(request, response);
-        } else {
-            fdb.addFood(food, type, addedDate);
-            request.setAttribute("mess", "Add food success");
-            request.getRequestDispatcher("admin/addfood.jsp").forward(request, response);
-        }
+        fdb.addFood(food, type, addedDate);
+        request.setAttribute("mess", "Add food success");
+        request.getRequestDispatcher("admin/addfood.jsp").forward(request, response);
     }
 
     /**

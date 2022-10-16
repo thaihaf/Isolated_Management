@@ -1,7 +1,7 @@
 <%-- 
-    Document   : insert_confirm
-    Created on : Jul 17, 2022, 9:11:42 PM
-    Author     : Admin
+    Document   : notif_status
+    Created on : Oct 16, 2022, 6:27:48 AM
+    Author     : Mountain
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,18 +17,20 @@
                 count--;
                 document.getElementById('timer').innerHTML = count;
                 if (count <= 0)
-                    window.location.href = '../login';
+                    window.location.href = 'home';
             }
             setInterval(redirect, 1000);
         </script>
-        <link rel="stylesheet" href="../assets/css/base.css"/>
-        <link rel="stylesheet" href="../assets/css/view/confirm.css"/>
     </head>
     <body>
-        <div class="container">
-            <h1 style="text-align: center">${requestScope.action} successfully</h1>
-            <h3 style="text-align: center"> Go back to Login page after <span id="timer">3</span> seconds </h2>
+        <jsp:include page="/base/sidebar.jsp" />
+        <jsp:include page="/base/header.jsp" />
+        <div class="wrapper wrapperAdmin">
+            <div class="container">
+                ${requestScope.mess}<br/>
+                Redirect to home page in <span id="timer">3</span> seconds...
+            </div>
+            <jsp:include page="/base/footer.jsp" />   
         </div>
-
     </body>
 </html>

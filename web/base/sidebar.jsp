@@ -15,7 +15,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="../assets/css/base2.css"/>
+        <link rel="stylesheet" href="../assets/css/base.css"/>
         <link rel="stylesheet" href="../assets/css/base/sidebar.css"/>
     </head>
     <body>
@@ -45,6 +45,8 @@
                               <dd><a href="url">Request Medical</a></dd>
                               <dd><a href="url">Request Food</a></dd>
                               <dd><a href="url">Request Contact</a></dd>
+                              <dd><a href="notif_create">Create Notification</a></dd>
+                              
                           </dl>
                           <br />
                       </c:when>   
@@ -61,7 +63,7 @@
                                   <div>Patient</div>
                               </a>
                               <a class="sidebar_item" href="medicine-list">
-                                  <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                                  <img class="sidebar_item_img" src="../assets/icons/medicine.png" alt="alt"/>
                                   <div>Medicine</div>
                               </a>
                           </c:if>

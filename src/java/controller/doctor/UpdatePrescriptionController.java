@@ -261,26 +261,27 @@ public class UpdatePrescriptionController extends HttpServlet {
                 if (isSuccess) {
                     PrescriptionMedicineDBContext pmdbc = new PrescriptionMedicineDBContext();
 
-                    int p = 0;
-
-                    boolean deleteSuccess = pmdbc.deletePms(pId);
+                    pmdbc.deletePms(pId);
 
                     for (CreatePrescriptionController.Data item : listPm) {
                         PrescriptionMedicine2 pm = new PrescriptionMedicine2();
 
-                        Medicine2 m = new Medicine2();
+                        Medicine2 m = mDBContext.getQuantiy(item.getId());
                         m.setShipmentId(item.getId());
 
                         pm.setPrescriptionId(pId);
                         pm.setQuantity(item.getQuantity());
                         pm.setMedicine(m);
 
-                        p = pmdbc.insertPM(pm);
+                        boolean p = pmdbc.insertPM(pm);
+
+                        if (p) {
+                            int stock = m.getStock() - item.getQuantity();
+                            mDBContext.updateQuantity(item.getId(), stock);
+                        }
                     }
 
-                    if (p != 0) {
-                        response.sendRedirect("/prescription-list");
-                    }
+                    response.sendRedirect("/prescription-list");
                 }
 
             }

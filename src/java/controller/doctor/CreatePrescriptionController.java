@@ -235,7 +235,7 @@ public class CreatePrescriptionController extends HttpServlet {
                 if (primkey != 0) {
                     PrescriptionMedicineDBContext pmdbc = new PrescriptionMedicineDBContext();
 
-                    int p = 0;
+                    boolean p = false;
 
                     for (Data item : listPm) {
                         PrescriptionMedicine2 pm = new PrescriptionMedicine2();
@@ -249,7 +249,7 @@ public class CreatePrescriptionController extends HttpServlet {
                         p = pmdbc.insertPM(pm);
                     }
 
-                    if (p != 0) {
+                    if (p) {
                         response.sendRedirect("/prescription-list");
                     }
                 }

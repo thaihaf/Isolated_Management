@@ -26,7 +26,6 @@ public class MedicineDBContext extends DBContext<Medicine2> {
     public ArrayList<Medicine2> getMedicines(String searchByName, String searchByType, String typeSearch, String searchName, String typeSort) {
         ArrayList<Medicine2> medicines = new ArrayList<>();
 
-        
         try {
             String sql = "SELECT        \n"
                     + "Medicine.*, \n"
@@ -264,6 +263,73 @@ public class MedicineDBContext extends DBContext<Medicine2> {
             Logger.getLogger(RoomDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public boolean checkExistID(int id) {
+        try {
+            String sql = "SELECT TOP 1 1 as 'count'FROM Medicine WHERE ShipmentID = ? \n";
+
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setInt(1, id);
+
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+    }
+
+    public Medicine2 getQuantiy(int id) {
+        Medicine2 m = new Medicine2();
+
+        try {
+            String sql = "SELECT [ShipmentID],[Quantity]\n"
+                    + "FROM [SWP391].[dbo].[Medicine]\n"
+                    + "where ShipmentID = ?\n";
+
+            PreparedStatement stm = connection.prepareCall(sql);
+
+            stm.setInt(1, id);
+
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                m.setShipmentId(rs.getInt("ShipmentID"));
+                m.setStock(rs.getInt("Quantity"));
+
+                return m;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public boolean updateQuantity(int id, int quantity) {
+        try {
+            connection.setAutoCommit(false);
+
+            String sql = "UPDATE [dbo].[Medicine]\n"
+                    + "   SET [Quantity] = ?\n"
+                    + " WHERE ShipmentID = ?";
+
+            PreparedStatement stm = connection.prepareCall(sql);
+
+            stm.setInt(1, quantity);
+            stm.setInt(2, id);
+
+            if (stm.executeUpdate() > 0) {
+                connection.commit();
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicineDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
     }
 
     @Override

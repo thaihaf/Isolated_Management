@@ -91,37 +91,54 @@ public class CreateMedicineController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
 
-        int shipmentID = Integer.parseInt(request.getParameter("shipmentID"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-        int type = Integer.parseInt(request.getParameter("type"));
-        String nameMedicine = request.getParameter("nameMedicine");
-        String descriptions = request.getParameter("descriptions");
-        String date1 = request.getParameter("date1");
-        String date2 = request.getParameter("date2");
+        String idCheck = request.getParameter("idCheck");
 
-        MedicineType mt = new MedicineType();
-        mt.setId(type);
+        if (idCheck != null) {
+            MedicineDBContext mdb = new MedicineDBContext();
 
-        Medicine2 m = new Medicine2();
-        m.setShipmentId(shipmentID);
-        m.setName(nameMedicine);
-        m.setDescription(descriptions);
-        m.setStock(quantity);
-        m.setMedicineType(mt);
-        m.setDateManafacture(date1);
-        m.setExpirationDate(date2);
+            boolean exisId = mdb.checkExistID(Integer.parseInt(idCheck));
 
-        MedicineDBContext mDB = new MedicineDBContext();
+            if (exisId) {
+                out.print("Shipment ID existed");
+            } else {
+                out.print("");
+            }
 
-        if (mDB.createMedicine(m)) {
-            response.sendRedirect("/Isolated_Management/base/medicine-list");
         } else {
-            ArrayList<MedicineType> medicineTypes = mDB.getMedicineTypes();
-            request.setAttribute("medicineTypes", medicineTypes);
-            request.setAttribute("medicine", m);
-            request.getRequestDispatcher("../doctor/createMedicine.jsp").forward(request, response);
+            int shipmentID = Integer.parseInt(request.getParameter("shipmentID"));
+            int quantity = Integer.parseInt(request.getParameter("quantity"));
+            int type = Integer.parseInt(request.getParameter("type"));
+            String nameMedicine = request.getParameter("nameMedicine");
+            String descriptions = request.getParameter("descriptions");
+            String date1 = request.getParameter("date1");
+            String date2 = request.getParameter("date2");
+
+            MedicineType mt = new MedicineType();
+            mt.setId(type);
+
+            Medicine2 m = new Medicine2();
+            m.setShipmentId(shipmentID);
+            m.setName(nameMedicine);
+            m.setDescription(descriptions);
+            m.setStock(quantity);
+            m.setMedicineType(mt);
+            m.setDateManafacture(date1);
+            m.setExpirationDate(date2);
+
+            MedicineDBContext mDB = new MedicineDBContext();
+
+            if (mDB.createMedicine(m)) {
+                response.sendRedirect("/Isolated_Management/base/medicine-list");
+            } else {
+                ArrayList<MedicineType> medicineTypes = mDB.getMedicineTypes();
+                request.setAttribute("medicineTypes", medicineTypes);
+                request.setAttribute("medicine", m);
+                request.getRequestDispatcher("../doctor/createMedicine.jsp").forward(request, response);
+            }
         }
+
     }
 
     /**

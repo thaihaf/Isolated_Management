@@ -61,9 +61,9 @@ public class DeleteFoodControler extends HttpServlet {
         fdb.deleteFood(id);
         if (fdb.deleteFood(id) == true) {
             request.setAttribute("mess", "Delete success");
-            request.getRequestDispatcher("admin/updatefood.jsp").forward(request, response);
+            request.getRequestDispatcher("updatefood.jsp").forward(request, response);
         }else{
-            request.getRequestDispatcher("admin/updatefood.jsp").forward(request, response);
+            request.getRequestDispatcher("updatefood.jsp").forward(request, response);
         }
     }
 
@@ -78,7 +78,7 @@ public class DeleteFoodControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("admin/updatefood.jsp").forward(request, response);
+        request.getRequestDispatcher("updatefood.jsp").forward(request, response);
     }
 
     /**

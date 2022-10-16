@@ -128,18 +128,21 @@ public class UpdatePrescriptionController extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
+        
         Account acc = (Account) session.getAttribute("account");
+        
         if (acc == null) {
             request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
+        
         } else {
             String patientId = request.getParameter("username");
             int pId = Integer.parseInt(request.getParameter("pId"));
 
             AccountDetailDBContext detailDBContext = new AccountDetailDBContext();
-            AccountDetail accountDetails = detailDBContext.get(patientId);
+            AccountDetail accountDetail = detailDBContext.get(patientId);
 
             PatientDBContext patientDBContext = new PatientDBContext();
-            Patient patient = patientDBContext.get(accountDetails);
+            Patient patient = patientDBContext.get(accountDetail);
 
             PrescriptionDBContext pdbc = new PrescriptionDBContext();
             Prescription p = pdbc.getPrescriptionDetails(acc.getUserName(), patientId, pId);

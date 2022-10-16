@@ -40,13 +40,13 @@ public class FoodDBContext extends DBContext<Food> {
         return foods;
     }
 
-    public Boolean addFood(String name, String type, Date addedDate) {
+    public Boolean addFood(String name, String type, String addedDate) {
         try {
             String sql = "Insert into Food values(?, ?, ?)";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, name);
             stm.setString(2, type);
-            stm.setDate(3, addedDate);
+            stm.setString(3, addedDate);
             stm.executeQuery();
             return true;
         } catch (SQLException ex) {

@@ -30,9 +30,28 @@
                     </select><br>
                 </c:if>
                 Added date: <input type="date" name="addedDate" value="${food.addedDate}"><br>
-                <input type="Submit" value="Change">
-                <button><a style="text-decoration: none" href="deletefood?id=${food.id}">Delete</a></button>
+                <button onclick="confirmUpdate()">Change</button>
+                <button onclick="confirmDelete()"><a style="text-decoration: none" href="deletefood?id=${food.id}">Delete</a></button>
                 <button><a style="text-decoration: none" href="foodlist">Return to Food List</a></button><br>
         </form>
     </body>
+    <script>
+        function confirmDelete(confirm){
+            confirm("Confirm to delete ?");
+            if(confirm == 'OK'){
+                
+            }else{
+                
+            }
+        }
+        
+        function confirmUpdate(confirm){
+            confirm("Confirm to Update ?");
+            if(confirm == 'OK'){
+                
+            }else{
+                
+            }
+        }
+    </script>
 </html>

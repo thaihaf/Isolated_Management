@@ -73,20 +73,17 @@ public class AddFoodControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String id = request.getParameter("id");
         String food = request.getParameter("food");
         String type = request.getParameter("type");
-        Date addedDate = Date.valueOf(request.getParameter("addedDate"));
+        String addedDate = request.getParameter("addedDate");
         FoodDBContext fdb = new FoodDBContext();
-        String mess = "";
-        Boolean add = fdb.addFood(food, type, addedDate);
-        if (add == false) {
-            fdb.addFood(food, type, addedDate);
-            mess = "Add food success";
-            request.setAttribute("mess", mess);
+        Food f = fdb.loadFoodById(id);
+        if (fdb.addFood(food, type, addedDate) == false) {
             request.getRequestDispatcher("admin/addfood.jsp").forward(request, response);
         } else {
-            mess = "Add food fail";
-            request.setAttribute("mess", mess);
+            fdb.addFood(food, type, addedDate);
+            request.setAttribute("mess", "Add food success");
             request.getRequestDispatcher("admin/addfood.jsp").forward(request, response);
         }
     }

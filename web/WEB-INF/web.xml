@@ -401,9 +401,6 @@
         <servlet-name>CreateNotificationControler</servlet-name>
         <url-pattern>/admin/notif_create</url-pattern>
     </servlet-mapping>
-    <session-config>
-        <session-timeout>120</session-timeout>
-    </session-config>
     <welcome-file-list>
         <welcome-file>login</welcome-file>
     </welcome-file-list>

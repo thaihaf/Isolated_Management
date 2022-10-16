@@ -161,7 +161,6 @@
         <servlet-class>controler.patient.EmergencyContactControler</servlet-class>
     </servlet>
     <servlet>
-    <servlet>
         <servlet-name>DeleteFoodControler</servlet-name>
         <servlet-class>controler.DeleteFoodControler</servlet-class>
     </servlet>
@@ -180,10 +179,6 @@
     <servlet>
         <servlet-name>MarkAsReadNotificationControler</servlet-name>
         <servlet-class>controler.MarkAsReadNotificationControler</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>LoginControler</servlet-name>
-        <servlet-class>controler.LoginControler</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ChangePassController</servlet-name>
@@ -357,7 +352,7 @@
         <servlet-name>EmergencyContactControler</servlet-name>
         <url-pattern>/base/emergency</url-pattern>
     </servlet-mapping>
-   <session-config>
+    <session-config>
         <session-timeout>
             120
         </session-timeout>
@@ -383,14 +378,6 @@
         <servlet-class>controler.LoginControler</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ChangePassController</servlet-name>
-        <servlet-class>controler.ChangePassController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ForgotPasswordControler</servlet-name>
-        <servlet-class>controler.ForgotPasswordControler</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SwitchTestResultStatus</servlet-name>
         <servlet-class>controler.nurse.SwitchTestResultStatus</servlet-class>
     </servlet>
@@ -398,10 +385,6 @@
         <servlet-name>SwitchTestResultStatus</servlet-name>
         <url-pattern>/base/testStatus</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>AccountListControler</servlet-name>
-        <servlet-class>controler.AccountListControler</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>LoginControler</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -414,6 +397,7 @@
         <servlet-name>DeleteFoodControler</servlet-name>
         <url-pattern>/deletefood</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CreateNotificationControler</servlet-name>
         <url-pattern>/admin/notif_create</url-pattern>
     </servlet-mapping>

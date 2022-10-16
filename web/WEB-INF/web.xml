@@ -161,6 +161,11 @@
         <servlet-class>controler.patient.EmergencyContactControler</servlet-class>
     </servlet>
     <servlet>
+    <servlet>
+        <servlet-name>DeleteFoodControler</servlet-name>
+        <servlet-class>controler.DeleteFoodControler</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UpdatePrescriptionController</servlet-name>
         <servlet-class>controller.doctor.UpdatePrescriptionController</servlet-class>
     </servlet>
@@ -352,6 +357,11 @@
         <servlet-name>EmergencyContactControler</servlet-name>
         <url-pattern>/base/emergency</url-pattern>
     </servlet-mapping>
+   <session-config>
+        <session-timeout>
+            120
+        </session-timeout>
+    </session-config>
     <servlet-mapping>
         <servlet-name>UpdatePrescriptionController</servlet-name>
         <url-pattern>/base/update-prescription</url-pattern>
@@ -401,6 +411,9 @@
         <url-pattern>/admin/areas</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>DeleteFoodControler</servlet-name>
+        <url-pattern>/deletefood</url-pattern>
+    </servlet-mapping>
         <servlet-name>CreateNotificationControler</servlet-name>
         <url-pattern>/admin/notif_create</url-pattern>
     </servlet-mapping>

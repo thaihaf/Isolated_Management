@@ -5,21 +5,18 @@
 package controler;
 
 import dao.FoodDBContext;
-import entity.Food;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Date;
-import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public class AddFoodControler extends HttpServlet {
+public class DeleteFoodControler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +35,10 @@ public class AddFoodControler extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddFoodControler</title>");
+            out.println("<title>Servlet DeleteFoodControler</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddFoodControler at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteFoodControler at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,7 +56,15 @@ public class AddFoodControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("admin/addfood.jsp").forward(request, response);
+        String id = request.getParameter("id");
+        FoodDBContext fdb = new FoodDBContext();
+        fdb.deleteFood(id);
+        if (fdb.deleteFood(id) == true) {
+            request.setAttribute("mess", "Delete success");
+            request.getRequestDispatcher("admin/updatefood.jsp").forward(request, response);
+        }else{
+            request.getRequestDispatcher("admin/updatefood.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -73,19 +78,7 @@ public class AddFoodControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("id");
-        String food = request.getParameter("food");
-        String type = request.getParameter("type");
-        String addedDate = request.getParameter("addedDate");
-        FoodDBContext fdb = new FoodDBContext();
-        Food f = fdb.loadFoodById(id);
-        if (fdb.addFood(food, type, addedDate) == false) {
-            request.getRequestDispatcher("admin/addfood.jsp").forward(request, response);
-        } else {
-            fdb.addFood(food, type, addedDate);
-            request.setAttribute("mess", "Add food success");
-            request.getRequestDispatcher("admin/addfood.jsp").forward(request, response);
-        }
+        request.getRequestDispatcher("admin/updatefood.jsp").forward(request, response);
     }
 
     /**

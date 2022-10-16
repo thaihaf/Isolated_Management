@@ -145,7 +145,7 @@
                                      </td>
                                      <td>
                                          <c:if test="${type != 1}">
-                                             <a class="btn btn-info btn-lg" href="/Isolated_Management/base/update-prescription?username=anhnd&pId=${p.id}">Update</a>
+                                             <a class="btn btn-info btn-lg" href="/Isolated_Management/base/update-prescription?username=${param.username}&pId=${p.id}">Update</a>
                                          </c:if>
                                      </td>
                                  </tr>
@@ -153,20 +153,6 @@
                              </c:forEach>
                          </tbody>
                      </table>
-
-                     <nav aria-label="Page navigation example">
-                         <ul class="pagination justify-content-center pagination-lg">
-                             <li class="page-item disabled">
-                                 <a class="page-link" href="#" tabindex="-1">Previous</a>
-                             </li>
-                             <li class="page-item"><a class="page-link" href="#">1</a></li>
-                             <li class="page-item"><a class="page-link" href="#">2</a></li>
-                             <li class="page-item"><a class="page-link" href="#">3</a></li>
-                             <li class="page-item">
-                                 <a class="page-link" href="#">Next</a>
-                             </li>
-                         </ul>
-                     </nav>
                  </div>
              </div>
              <jsp:include page="../base/footer.jsp" />   

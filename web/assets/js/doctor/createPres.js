@@ -119,6 +119,7 @@ $("#btn_submit").click(() => {
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             success: function (data) {
                 console.log("succ");
+                listPm = [];
                 location.href = "prescription-list" + search;
             },
             error: function (xhr) {

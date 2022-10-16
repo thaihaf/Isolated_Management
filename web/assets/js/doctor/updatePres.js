@@ -97,12 +97,16 @@ $("#close-medicines").click(() => {
 $("#btn_submit").click(() => {
     let title_text = $("#title-text").val().toString();
     let guide_text = $("#guide-text").val().toString();
+
     if (listPm.length === 0) {
         alert("You must choose Medicine");
+
     } else if (title_text === "") {
         alert("You must input Symptom");
+
     } else if (guide_text === "") {
         alert("You must input Guide");
+
     } else {
         let search = $(location).attr('search');
         let json = JSON.stringify(listPm);
@@ -118,10 +122,12 @@ $("#btn_submit").click(() => {
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             success: function (data) {
                 console.log("succ");
+                listPm = [];
                 location.href = "prescription-list" + search;
             },
             error: function (xhr) {
                 console.log("err");
+                location.href = "prescription-list" + search;
             }
         });
     }

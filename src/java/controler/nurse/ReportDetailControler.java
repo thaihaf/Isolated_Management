@@ -68,7 +68,7 @@ public class ReportDetailControler extends HttpServlet {
             request.setAttribute("report", r);
             request.getRequestDispatcher("../nurse/reportDetail.jsp").forward(request, response);
         } else {
-            request.setAttribute("mess", "ID not found, please try again.");
+            request.setAttribute("mess", "ID not found, please try again!");
             request.getRequestDispatcher("../nurse/report_status.jsp").forward(request, response);
         }
     }

@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="../assets/css/base2.css"/>
+        <link rel="stylesheet" href="../assets/css/base.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="../assets/css/doctor/list_medicine.css"/>
@@ -27,7 +27,7 @@
         <div class=<c:if test="${role.id eq 1}">"wrapper wrapperAdmin"</c:if>
              <c:if test="${role.id ne 1}">"wrapper wrapperUser"</c:if>
                  >
-                 <div class="container container-fluid">
+                 <div class="container-fluid">
                      <div class="top1">
                          <nav aria-label="breadcrumb">
                              <ol class="breadcrumb">

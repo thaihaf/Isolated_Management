@@ -105,6 +105,39 @@ public class NotificationDBContext extends DBContext<Notification> {
         }
     }
 
+    public void insert(Notification model, ArrayList<Account> accounts) {
+        try {
+            connection.setAutoCommit(false);
+            for (Account account : accounts) {
+                String sql = "INSERT INTO [Notification]\n"
+                        + "           ([Sender_ID]\n"
+                        + "           ,[Receive_ID]\n"
+                        + "           ,[Title]\n"
+                        + "           ,[Content]\n"
+                        + "           ,[ReadMark]\n"
+                        + "           ,[CreateDate])\n"
+                        + "     VALUES\n"
+                        + "           (?\n"
+                        + "           ,?\n"
+                        + "           ,?\n"
+                        + "           ,?\n"
+                        + "           ,?\n"
+                        + "           ,?)";
+                PreparedStatement stm = connection.prepareStatement(sql);
+                stm.setString(1, model.getSenderID().getUserName());
+                stm.setString(2, account.getUserName());
+                stm.setString(3, model.getTitle());
+                stm.setString(4, model.getContent());
+                stm.setBoolean(5, model.isReadMark());
+                stm.setTimestamp(6, model.getCreatedDate());
+                stm.executeUpdate();
+            }
+            connection.commit();
+            connection.setAutoCommit(true);
+        } catch (SQLException ex) {
+        }
+    }
+
     @Override
     public void update(Notification model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

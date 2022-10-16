@@ -101,7 +101,6 @@ public class PrescriptionListController extends HttpServlet {
 //            Gson gson = new Gson();
 //            Integer[] days = gson.fromJson(request.getParameter("days"), Integer[].class);
 //            Object[] subjects = gson.fromJson(request.getParameter("ids"), Object[].class);
-
             ArrayList<Prescription> prescriptions = pDB.getListPrescriptionDetails(
                     acc.getUserName(),
                     username,
@@ -115,6 +114,7 @@ public class PrescriptionListController extends HttpServlet {
                         + "                                     <td>" + p.getPrescriptionDate() + "</td>\n"
                         + "                                     <td>" + p.getTitle() + "</td><td>"
                 );
+
                 for (Medicine m : p.getMedicines()) {
                     int index = p.getMedicines().indexOf(m);
                     int loop = index + 1;
@@ -142,12 +142,23 @@ public class PrescriptionListController extends HttpServlet {
                             + "                                                 </div>\n"
                             + "                                             </div>");
                 }
+
                 out.println("</td><td>" + p.getGuide() + "</td>\n");
 
-                if (p.getStatus() == 0) {
-                    out.println("<td>Processing</td>\n");
-                } else {
-                    out.println("<td>Done</td>\n");
+                switch (p.getStatus()) {
+                    case 0:
+                        out.println("<td>Chưa phát</td>\n");
+                        break;
+                    case 1:
+                        out.println("<td>Đã phát</td>\n");
+                        break;
+                    case 2:
+                        out.println("<td>Đã edit, chưa phát</td>\n");
+                        break;
+                }
+
+                if(p.getStatus() != 1){
+                    out.println("<td><a class=\"btn btn-info btn-lg\" href=\"/Isolated_Management/base/update-prescription?username="+username+"&pId="+p.getId()+"\">Update</a></td>\n");
                 }
             }
 

@@ -30,9 +30,9 @@
                       <c:when test="${role.id eq 1}">
                           <dl>
                               <dt>System Admin</dt>
-                              <dd><a href="admin/users" class="selected">Account Lists</a></dd>
-                              <dd><a href="admin/rooms" class="selected">Room Lists</a></dd>
-                              <dd><a href="admin/areas" class="selected">Area Lists</a></dd>
+                              <dd><a href="../admin/users" class="selected">Account Lists</a></dd>
+                              <dd><a href="../admin/rooms" class="selected">Room Lists</a></dd>
+                              <dd><a href="../admin/areas" class="selected">Area Lists</a></dd>
                               <dd><a href="/abc">Add Patient</a></dd>
                               <dd><a href="url">Add Doctor</a></dd>
                               <dd><a href="url">Add Nurse</a></dd>
@@ -45,6 +45,8 @@
                               <dd><a href="url">Request Medical</a></dd>
                               <dd><a href="url">Request Food</a></dd>
                               <dd><a href="url">Request Contact</a></dd>
+                              <dd><a href="notif_create">Create Notification</a></dd>
+                              
                           </dl>
                           <br />
                       </c:when>   
@@ -61,7 +63,7 @@
                                   <div>Patient</div>
                               </a>
                               <a class="sidebar_item" href="medicine-list">
-                                  <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                                  <img class="sidebar_item_img" src="../assets/icons/medicine.png" alt="alt"/>
                                   <div>Medicine</div>
                               </a>
                           </c:if>

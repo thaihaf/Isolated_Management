@@ -34,7 +34,7 @@ import java.util.Date;
  *
  * @author hapro
  */
-public class CreatePrescriptionController extends HttpServlet {
+public class UpdatePrescriptionController extends HttpServlet {
 
     Gson gson = new Gson();
 
@@ -100,7 +100,18 @@ public class CreatePrescriptionController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet UpdatePrescriptionController</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet UpdatePrescriptionController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -115,20 +126,28 @@ public class CreatePrescriptionController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         Account acc = (Account) session.getAttribute("account");
         if (acc == null) {
             request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
         } else {
+            String patientId = request.getParameter("username");
+            int pId = Integer.parseInt(request.getParameter("pId"));
+
             AccountDetailDBContext detailDBContext = new AccountDetailDBContext();
-            AccountDetail accountDetails = detailDBContext.get(request.getParameter("username"));
+            AccountDetail accountDetails = detailDBContext.get(patientId);
 
             PatientDBContext patientDBContext = new PatientDBContext();
             Patient patient = patientDBContext.get(accountDetails);
 
-            request.setAttribute("patient", patient);
+            PrescriptionDBContext pdbc = new PrescriptionDBContext();
+            Prescription p = pdbc.getPrescriptionDetails(acc.getUserName(), patientId, pId);
 
-            request.getRequestDispatcher("../doctor/create_prescription.jsp").forward(request, response);
+            request.setAttribute("patient", patient);
+            request.setAttribute("prescription", p);
+            request.getRequestDispatcher("../doctor/updatePrescription.jsp").forward(request, response);
+
         }
     }
 
@@ -174,16 +193,16 @@ public class CreatePrescriptionController extends HttpServlet {
                 }
             }
 
-            if (listPmJson != null) {
+            if (value == null && listPmJson != null) {
 
-                Data[] listPm = gson.fromJson(listPmJson, Data[].class);
+                CreatePrescriptionController.Data[] listPm = gson.fromJson(listPmJson, CreatePrescriptionController.Data[].class);
 
                 ArrayList<PrescriptionMedicine2> pres = new ArrayList<>();
 
                 ArrayList<Medicine2> medicines = mDBContext.getMedicines(null, null, null, null, null);
 
                 for (Medicine2 medicine : medicines) {
-                    for (Data item : listPm) {
+                    for (CreatePrescriptionController.Data item : listPm) {
                         if (item.getId() == medicine.getShipmentId()) {
                             PrescriptionMedicine2 pm = new PrescriptionMedicine2();
 
@@ -196,7 +215,7 @@ public class CreatePrescriptionController extends HttpServlet {
                 }
 
                 for (PrescriptionMedicine2 p : pres) {
-                    out.print("<tr>\n"
+                    String output = "<tr class=\"medicine_item\" id=\"" + p.getMedicine().getShipmentId() + "-" + p.getQuantity() + "\">\n"
                             + "                                     <td>" + p.getMedicine().getName() + "</td>\n"
                             + "                                     <td>" + p.getQuantity() + "</td>\n"
                             + "                                     <td>" + p.getMedicine().getStock() + "</td>\n"
@@ -204,47 +223,57 @@ public class CreatePrescriptionController extends HttpServlet {
                             + "                                     <td>" + p.getMedicine().getDateManafacture() + "</td>\n"
                             + "                                     <td>" + p.getMedicine().getExpirationDate() + "</td>\n"
                             + "                                     <td>" + p.getMedicine().getMedicineType().getType() + "</td>\n"
-                            + "                                 </tr>");
+                            + "                                     <td>\n"
+                            + "                                         <button class=\"btn btn-success\" id=\"" + p.getMedicine().getShipmentId() + "\">Delete</button>\n"
+                            + "                                     </td>\n"
+                            + "                                 </tr>";
+
+                    out.print(output);
                 }
             }
 
-            if (value != null) {
-                Data[] listPm = gson.fromJson(listPmJson, Data[].class);
-                TranferVal tranferValue = gson.fromJson(value, TranferVal.class);
+            if (value != null && listPmJson != null) {
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                Date date = new Date();
+
+                CreatePrescriptionController.Data[] listPm = gson.fromJson(listPmJson, CreatePrescriptionController.Data[].class);
+                CreatePrescriptionController.TranferVal tranferValue = gson.fromJson(value, CreatePrescriptionController.TranferVal.class);
 
                 String titleVal = tranferValue.getTitle();
                 String guideVal = tranferValue.getGuide();
-
-                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                Date date = new Date();
+                int pId = Integer.parseInt(request.getParameter("pId"));
 
                 PrescriptionDBContext createPrescriptionDBContext = new PrescriptionDBContext();
                 Prescription2 prescription2 = new Prescription2();
 
+                prescription2.setId(pId);
                 prescription2.setDoctorID(acc.getUserName());
                 prescription2.setPatientID(request.getParameter("username"));
                 prescription2.setTitle(titleVal);
                 prescription2.setGuide(guideVal);
                 prescription2.setPrescriptionDate(dateFormat.format(date));
-                prescription2.setStatus(0);
+                prescription2.setStatus(2);
 
-                int primkey = createPrescriptionDBContext.insertPrescription(prescription2);
+                boolean isSuccess = createPrescriptionDBContext.updatePrescription(prescription2);
 
-                System.out.println("Record updated with id = " + primkey);
+                System.out.println("Record updated with id = " + isSuccess);
 
-                if (primkey != 0) {
+                if (isSuccess) {
                     PrescriptionMedicineDBContext pmdbc = new PrescriptionMedicineDBContext();
 
                     int p = 0;
 
-                    for (Data item : listPm) {
+                    boolean deleteSuccess = pmdbc.deletePms(pId);
+
+                    for (CreatePrescriptionController.Data item : listPm) {
                         PrescriptionMedicine2 pm = new PrescriptionMedicine2();
+
                         Medicine2 m = new Medicine2();
                         m.setShipmentId(item.getId());
 
-                        pm.setPrescriptionId(primkey);
-                        pm.setMedicine(m);
+                        pm.setPrescriptionId(pId);
                         pm.setQuantity(item.getQuantity());
+                        pm.setMedicine(m);
 
                         p = pmdbc.insertPM(pm);
                     }
@@ -257,7 +286,6 @@ public class CreatePrescriptionController extends HttpServlet {
             }
 
         }
-
     }
 
     /**

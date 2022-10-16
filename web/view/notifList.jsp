@@ -42,6 +42,9 @@
                                 <c:if test="${n.readMark eq false}">
                                     <td><a href="markasread?id=${n.id}">Mark as read</a></td>
                                 </c:if>
+                                <c:if test="${n.readMark eq true}">
+                                    <td>Read</td>
+                                </c:if>
                                 <td><a href="javascript:deleteConfirm(${n.id})">Delete</a></td>
                             </tr>
                         </c:forEach>

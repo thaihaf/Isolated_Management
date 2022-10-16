@@ -4,6 +4,22 @@
         <param-name>pagesize</param-name>
         <param-value>3</param-value>
     </context-param>
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>filters.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/base/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
     <servlet>
         <servlet-name>UpdateUserControler</servlet-name>
         <servlet-class>controler.UpdateUserControler</servlet-class>
@@ -108,22 +124,6 @@
         <servlet-name>ReportListControler</servlet-name>
         <servlet-class>controler.nurse.ReportListControler</servlet-class>
     </servlet>
-    <filter>
-        <filter-name>AuthenticationFilter</filter-name>
-        <filter-class>filters.AuthenticationFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AuthenticationFilter</filter-name>
-        <url-pattern>/base/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthenticationFilter</filter-name>
-        <url-pattern>/admin/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-    </filter-mapping>
     <servlet>
         <servlet-name>AdminHomeControler</servlet-name>
         <servlet-class>controler.admin.AdminHomeControler</servlet-class>
@@ -161,6 +161,14 @@
         <servlet-class>controler.patient.EmergencyContactControler</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DeleteFoodControler</servlet-name>
+        <servlet-class>controler.DeleteFoodControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdatePrescriptionController</servlet-name>
+        <servlet-class>controller.doctor.UpdatePrescriptionController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>NotificationListControler</servlet-name>
         <servlet-class>controler.NotificationListControler</servlet-class>
     </servlet>
@@ -171,6 +179,26 @@
     <servlet>
         <servlet-name>MarkAsReadNotificationControler</servlet-name>
         <servlet-class>controler.MarkAsReadNotificationControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePassController</servlet-name>
+        <servlet-class>controler.ChangePassController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ForgotPasswordControler</servlet-name>
+        <servlet-class>controler.ForgotPasswordControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AccountListControler</servlet-name>
+        <servlet-class>controler.AccountListControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AreaListControler</servlet-name>
+        <servlet-class>controler.admin.AreaListControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateNotificationControler</servlet-name>
+        <servlet-class>controler.admin.CreateNotificationControler</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
@@ -324,6 +352,15 @@
         <servlet-name>EmergencyContactControler</servlet-name>
         <url-pattern>/base/emergency</url-pattern>
     </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            120
+        </session-timeout>
+    </session-config>
+    <servlet-mapping>
+        <servlet-name>UpdatePrescriptionController</servlet-name>
+        <url-pattern>/base/update-prescription</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>NotificationListControler</servlet-name>
         <url-pattern>/base/notification</url-pattern>
@@ -336,22 +373,9 @@
         <servlet-name>MarkAsReadNotificationControler</servlet-name>
         <url-pattern>/base/markasread</url-pattern>
     </servlet-mapping>
-    <session-config>
-        <session-timeout>
-            120
-        </session-timeout>
-    </session-config>
     <servlet>
         <servlet-name>LoginControler</servlet-name>
         <servlet-class>controler.LoginControler</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ChangePassController</servlet-name>
-        <servlet-class>controler.ChangePassController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ForgotPasswordControler</servlet-name>
-        <servlet-class>controler.ForgotPasswordControler</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SwitchTestResultStatus</servlet-name>
@@ -361,22 +385,25 @@
         <servlet-name>SwitchTestResultStatus</servlet-name>
         <url-pattern>/base/testStatus</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>AccountListControler</servlet-name>
-        <servlet-class>controler.AccountListControler</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>LoginControler</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>AreaListControler</servlet-name>
-        <servlet-class>controler.admin.AreaListControler</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>AreaListControler</servlet-name>
         <url-pattern>/admin/areas</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteFoodControler</servlet-name>
+        <url-pattern>/deletefood</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateNotificationControler</servlet-name>
+        <url-pattern>/admin/notif_create</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>120</session-timeout>
+    </session-config>
     <welcome-file-list>
         <welcome-file>login</welcome-file>
     </welcome-file-list>

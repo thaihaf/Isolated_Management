@@ -390,7 +390,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteFoodControler</servlet-name>
-        <url-pattern>/deletefood</url-pattern>
+        <url-pattern>/admin/deletefood</url-pattern> 
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateNotificationControler</servlet-name>

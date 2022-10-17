@@ -59,12 +59,8 @@ public class DeleteFoodControler extends HttpServlet {
         String id = request.getParameter("id");
         FoodDBContext fdb = new FoodDBContext();
         fdb.deleteFood(id);
-        if (fdb.deleteFood(id) == true) {
-            request.setAttribute("mess", "Delete success");
-            request.getRequestDispatcher("updatefood.jsp").forward(request, response);
-        }else{
-            request.getRequestDispatcher("updatefood.jsp").forward(request, response);
-        }
+        request.setAttribute("mess", "Delete success");
+        request.getRequestDispatcher("updatefood.jsp").forward(request, response);
     }
 
     /**

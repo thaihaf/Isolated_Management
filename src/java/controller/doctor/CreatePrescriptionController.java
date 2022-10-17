@@ -161,7 +161,7 @@ public class CreatePrescriptionController extends HttpServlet {
             String value = request.getParameter("value");
 
             if (searchByName != null || searchByType != null) {
-                ArrayList<Medicine2> medicines = mDBContext.getMedicines(searchByName, searchByType);
+                ArrayList<Medicine2> medicines = mDBContext.getMedicines(searchByName, searchByType, null, null, null);
 
                 for (Medicine2 m : medicines) {
                     out.print("<li class=\"list-group-item d-flex justify-content-between align-items-center\">\n"
@@ -180,7 +180,7 @@ public class CreatePrescriptionController extends HttpServlet {
 
                 ArrayList<PrescriptionMedicine2> pres = new ArrayList<>();
 
-                ArrayList<Medicine2> medicines = mDBContext.getMedicines(null, null);
+                ArrayList<Medicine2> medicines = mDBContext.getMedicines(null, null, null, null, null);
 
                 for (Medicine2 medicine : medicines) {
                     for (Data item : listPm) {
@@ -235,7 +235,7 @@ public class CreatePrescriptionController extends HttpServlet {
                 if (primkey != 0) {
                     PrescriptionMedicineDBContext pmdbc = new PrescriptionMedicineDBContext();
 
-                    int p = 0;
+                    boolean p = false;
 
                     for (Data item : listPm) {
                         PrescriptionMedicine2 pm = new PrescriptionMedicine2();
@@ -249,7 +249,7 @@ public class CreatePrescriptionController extends HttpServlet {
                         p = pmdbc.insertPM(pm);
                     }
 
-                    if (p != 0) {
+                    if (p) {
                         response.sendRedirect("/prescription-list");
                     }
                 }

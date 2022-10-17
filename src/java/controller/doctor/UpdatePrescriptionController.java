@@ -128,18 +128,21 @@ public class UpdatePrescriptionController extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
+        
         Account acc = (Account) session.getAttribute("account");
+        
         if (acc == null) {
             request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
+        
         } else {
             String patientId = request.getParameter("username");
             int pId = Integer.parseInt(request.getParameter("pId"));
 
             AccountDetailDBContext detailDBContext = new AccountDetailDBContext();
-            AccountDetail accountDetails = detailDBContext.get(patientId);
+            AccountDetail accountDetail = detailDBContext.get(patientId);
 
             PatientDBContext patientDBContext = new PatientDBContext();
-            Patient patient = patientDBContext.get(accountDetails);
+            Patient patient = patientDBContext.get(accountDetail);
 
             PrescriptionDBContext pdbc = new PrescriptionDBContext();
             Prescription p = pdbc.getPrescriptionDetails(acc.getUserName(), patientId, pId);
@@ -180,7 +183,7 @@ public class UpdatePrescriptionController extends HttpServlet {
             String value = request.getParameter("value");
 
             if (searchByName != null || searchByType != null) {
-                ArrayList<Medicine2> medicines = mDBContext.getMedicines(searchByName, searchByType);
+                ArrayList<Medicine2> medicines = mDBContext.getMedicines(searchByName, searchByType, null, null, null);
 
                 for (Medicine2 m : medicines) {
                     out.print("<li class=\"list-group-item d-flex justify-content-between align-items-center\">\n"
@@ -199,7 +202,7 @@ public class UpdatePrescriptionController extends HttpServlet {
 
                 ArrayList<PrescriptionMedicine2> pres = new ArrayList<>();
 
-                ArrayList<Medicine2> medicines = mDBContext.getMedicines(null, null);
+                ArrayList<Medicine2> medicines = mDBContext.getMedicines(null, null, null, null, null);
 
                 for (Medicine2 medicine : medicines) {
                     for (CreatePrescriptionController.Data item : listPm) {
@@ -261,26 +264,27 @@ public class UpdatePrescriptionController extends HttpServlet {
                 if (isSuccess) {
                     PrescriptionMedicineDBContext pmdbc = new PrescriptionMedicineDBContext();
 
-                    int p = 0;
-
-                    boolean deleteSuccess = pmdbc.deletePms(pId);
+                    pmdbc.deletePms(pId);
 
                     for (CreatePrescriptionController.Data item : listPm) {
                         PrescriptionMedicine2 pm = new PrescriptionMedicine2();
 
-                        Medicine2 m = new Medicine2();
+                        Medicine2 m = mDBContext.getQuantiy(item.getId());
                         m.setShipmentId(item.getId());
 
                         pm.setPrescriptionId(pId);
                         pm.setQuantity(item.getQuantity());
                         pm.setMedicine(m);
 
-                        p = pmdbc.insertPM(pm);
+                        boolean p = pmdbc.insertPM(pm);
+
+                        if (p) {
+                            int stock = m.getStock() - item.getQuantity();
+                            mDBContext.updateQuantity(item.getId(), stock);
+                        }
                     }
 
-                    if (p != 0) {
-                        response.sendRedirect("/prescription-list");
-                    }
+                    response.sendRedirect("/prescription-list");
                 }
 
             }

@@ -19,7 +19,7 @@
         <jsp:include page="/base/header.jsp" />
 
         <div class="wrapper wrapperUser">
-            <div class="container" style="text-align: center;">
+            <div class="container" style="text-align: center; width:40%;">
                 <form action="notif_create" method="POST">
                     <h1>Create notification</h1>
                     Selection: <select name="choice" id="choice" class="selection" onchange="choiceChange()">

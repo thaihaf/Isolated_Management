@@ -23,7 +23,7 @@ public class MedicineDBContext extends DBContext<Medicine2> {
 
     FormatDate fd = new FormatDate();
 
-    public ArrayList<Medicine2> getMedicines(String searchByName, String searchByType) {
+    public ArrayList<Medicine2> getMedicines(String searchByName, String searchByType, String typeSearch, String searchName, String typeSort) {
         ArrayList<Medicine2> medicines = new ArrayList<>();
 
         try {
@@ -43,6 +43,40 @@ public class MedicineDBContext extends DBContext<Medicine2> {
             if (searchByType != null) {
                 sql += "where MedicineType.Type like ?";
             }
+            if (searchName != null) {
+                sql += "where Medicine.Name like ?";
+            }
+            if (typeSearch != null) {
+                switch (typeSearch) {
+                    case "get-total":
+                        break;
+                    case "get-in-stock":
+                        sql += "where Medicine.Quantity > 0";
+                        break;
+                    case "get-out-stock":
+                        sql += "where Medicine.Quantity = 0";
+                        break;
+                    case "get-expiration-date":
+                        sql += "where Medicine.ExpirationDate > GETDATE()";
+                        break;
+                    case "get-expired-date":
+                        sql += "where Medicine.ExpirationDate < GETDATE()";
+                        break;
+                }
+            }
+            if (typeSort != null) {
+                switch (typeSort) {
+                    case "sortByName":
+                        sql += "order by Medicine.Name";
+                        break;
+                    case "sortByQuantity":
+                        sql += "order by Medicine.Quantity";
+                        break;
+                    case "sortByType":
+                        sql += "order by MedicineType.Type";
+                        break;
+                }
+            }
 
             PreparedStatement stm = connection.prepareCall(sql);
 
@@ -51,6 +85,9 @@ public class MedicineDBContext extends DBContext<Medicine2> {
             }
             if (searchByType != null) {
                 stm.setString(1, "%" + searchByType + "%");
+            }
+            if (searchName != null) {
+                stm.setString(1, "%" + searchName + "%");
             }
 
             ResultSet rs = stm.executeQuery();
@@ -226,6 +263,73 @@ public class MedicineDBContext extends DBContext<Medicine2> {
             Logger.getLogger(RoomDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public boolean checkExistID(int id) {
+        try {
+            String sql = "SELECT TOP 1 1 as 'count'FROM Medicine WHERE ShipmentID = ? \n";
+
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setInt(1, id);
+
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+    }
+
+    public Medicine2 getQuantiy(int id) {
+        Medicine2 m = new Medicine2();
+
+        try {
+            String sql = "SELECT [ShipmentID],[Quantity]\n"
+                    + "FROM [SWP391].[dbo].[Medicine]\n"
+                    + "where ShipmentID = ?\n";
+
+            PreparedStatement stm = connection.prepareCall(sql);
+
+            stm.setInt(1, id);
+
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                m.setShipmentId(rs.getInt("ShipmentID"));
+                m.setStock(rs.getInt("Quantity"));
+
+                return m;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public boolean updateQuantity(int id, int quantity) {
+        try {
+            connection.setAutoCommit(false);
+
+            String sql = "UPDATE [dbo].[Medicine]\n"
+                    + "   SET [Quantity] = ?\n"
+                    + " WHERE ShipmentID = ?";
+
+            PreparedStatement stm = connection.prepareCall(sql);
+
+            stm.setInt(1, quantity);
+            stm.setInt(2, id);
+
+            if (stm.executeUpdate() > 0) {
+                connection.commit();
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicineDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
     }
 
     @Override

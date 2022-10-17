@@ -59,7 +59,7 @@ public class AddFoodControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("admin/addfood.jsp").forward(request, response);
+        request.getRequestDispatcher("addfood.jsp").forward(request, response);
     }
 
     /**
@@ -81,7 +81,7 @@ public class AddFoodControler extends HttpServlet {
         Food f = fdb.loadFoodById(id);
         fdb.addFood(food, type, addedDate);
         request.setAttribute("mess", "Add food success");
-        request.getRequestDispatcher("admin/addfood.jsp").forward(request, response);
+        request.getRequestDispatcher("addfood.jsp").forward(request, response);
     }
 
     /**

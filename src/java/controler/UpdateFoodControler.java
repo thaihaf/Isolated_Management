@@ -74,9 +74,9 @@ public class UpdateFoodControler extends HttpServlet {
             fdb.updateFood(food, type, addedDate, id);
             request.setAttribute("food", fdb.loadFoodById(id));
             request.setAttribute("mess", "Change food success");
-            request.getRequestDispatcher("admin/updatefood.jsp").forward(request, response);
+            request.getRequestDispatcher("updatefood.jsp").forward(request, response);
         } else {
-            request.getRequestDispatcher("admin/updatefood.jsp").forward(request, response);
+            request.getRequestDispatcher("updatefood.jsp").forward(request, response);
         }
     }
 
@@ -97,7 +97,7 @@ public class UpdateFoodControler extends HttpServlet {
 //            fdb.updateFood(food, type, addedDate, id);
 //            mess = "Change food success";
 //            request.setAttribute("mess", mess);
-        request.getRequestDispatcher("admin/updatefood.jsp").forward(request, response);
+        request.getRequestDispatcher("updatefood.jsp").forward(request, response);
 //        }else{
 //            mess = "Change food fail";
 //            request.setAttribute("mess", mess);

@@ -62,6 +62,9 @@ public class SwitchTestResultStatus extends HttpServlet {
             request.setAttribute("patient", session.getAttribute("patient"));
             request.setAttribute("mess", "Switch status of test result successfully");
             request.getRequestDispatcher("../view/viewTest.jsp").forward(request, response);
+        } else {
+            request.setAttribute("mess", "Switch status of test result failed");
+            request.getRequestDispatcher("../view/viewTest.jsp").forward(request, response);
         }
     }
 

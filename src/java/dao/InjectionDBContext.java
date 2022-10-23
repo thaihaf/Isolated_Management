@@ -36,18 +36,20 @@ public class InjectionDBContext extends DBContext<InjectionReport> {
     @Override
     public void insert(InjectionReport model) {
         try {
-            String sql = "INSERT INTO [Injection_Report]\n"
+            String sql = "INSERT INTO [dbo].[Injection_Report]\n"
                     + "           ([PatientID]\n"
                     + "           ,[VaccineID]\n"
                     + "           ,[Date]\n"
-                    + "           ,[PersonInjected])\n"
+                    + "           ,[PersonInjected]\n"
+                    + "           ,[Note])\n"
                     + "     VALUES\n"
-                    + "           (?,?,?,?)";
+                    + "           (?,?,?,?,?)";
             PreparedStatement stm = connection.prepareCall(sql);
             stm.setString(1, model.getPatientAccount().getAccount().getUserName());
             stm.setInt(2, model.getVaccine().getId());
             stm.setDate(3, model.getDate());
             stm.setString(4, model.getPersonInject().getAccount().getUserName());
+            stm.setString(5, model.getNote());
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(InjectionDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -67,7 +69,7 @@ public class InjectionDBContext extends DBContext<InjectionReport> {
     public ArrayList<InjectionReport> getInjectionResultByID(String username) {
         ArrayList<InjectionReport> lists = new ArrayList<>();
         try {
-            String sql = "select PatientID,v.VaccineName,Date,PersonInjected from Injection_Report ir join Vaccine v \n"
+            String sql = "select PatientID,v.VaccineName,Date,PersonInjected,Note from Injection_Report ir join Vaccine v \n"
                     + "on ir.VaccineID = v.VaccineID\n"
                     + "where PatientID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -89,6 +91,7 @@ public class InjectionDBContext extends DBContext<InjectionReport> {
                 AccountDetail ad1 = new AccountDetail();
                 ad1.setAccount(acc2);
                 ir.setPersonInject(ad1);
+                ir.setNote(rs.getString("Note"));
                 lists.add(ir);
             }
         } catch (SQLException ex) {

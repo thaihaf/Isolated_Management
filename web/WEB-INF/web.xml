@@ -200,6 +200,10 @@
         <servlet-name>CreateNotificationControler</servlet-name>
         <servlet-class>controler.admin.CreateNotificationControler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddExistInjection</servlet-name>
+        <servlet-class>controler.patient.AddExistInjectionController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -390,11 +394,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteFoodControler</servlet-name>
-        <url-pattern>/admin/deletefood</url-pattern> 
+        <url-pattern>/admin/deletefood</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateNotificationControler</servlet-name>
         <url-pattern>/admin/notif_create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddExistInjection</servlet-name>
+        <url-pattern>/base/addExistInjection</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>login</welcome-file>

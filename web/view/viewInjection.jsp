@@ -53,6 +53,28 @@
                          </tr>
                          <c:set var="count" value="${count+1}" />  
                      </c:forEach>
+                     <c:if test="${role.id eq 4}">
+                         <c:set var="count" value="${1}" />
+                         <c:forEach items="${requestScope.lists}" var="l">
+                             <tr>
+                                 <td>${count}</td>
+                                 <td>${l.patientAccount.account.userName}</td>
+                                 <td>${l.vaccine.vaccineName}</td>
+                                 <td>${l.personInject.account.userName}</td>
+                                 <td>${l.date}</td>
+                                 <c:if test="${p.backgroundDisease eq 'True'}">
+                                     <td>Yes</td>
+                                 </c:if>
+                                 <c:if test="${p.backgroundDisease eq 'False'}">
+                                     <td>No</td>
+                                 </c:if>
+                                 <td>${p.bloodType}</td>
+                             </tr>
+                             <a href="createInjection?username=${p.accDetail.account.userName}">Add injection</a>
+                             <p>(Note: This is used for patient who already haved injection before coming to quarantine centre)</p>
+                             <c:set var="count" value="${count+1}" />  
+                         </c:forEach>
+                     </c:if>
                  </table>
 
              </div>

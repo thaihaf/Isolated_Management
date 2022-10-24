@@ -148,3 +148,10 @@ input[type=date]{
     width: 100%;
     text-align: center;
 }
+
+.title-create{
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+
+}

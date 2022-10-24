@@ -124,7 +124,7 @@ public class MedicineDBContext extends DBContext<Medicine2> {
             String sql = "SELECT [ID]\n"
                     + "      ,[Type]\n"
                     + "      ,[Dosage]\n"
-                    + "  FROM [dbo].[MedicineType]\n";
+                    + "  FROM [dbo].[MedicineType] order by ID desc\n";
 
             PreparedStatement stm = connection.prepareCall(sql);
             ResultSet rs = stm.executeQuery();
@@ -141,6 +141,74 @@ public class MedicineDBContext extends DBContext<Medicine2> {
             Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return medicineTypes;
+    }
+    public ArrayList<MedicineType> searchMedicineTypes(String type, String dosage) {
+        ArrayList<MedicineType> medicineTypes = new ArrayList<>();
+
+        try {
+            String sql = "SELECT [ID]\n"
+                    + "      ,[Type]\n"
+                    + "      ,[Dosage]\n"
+                    + "  FROM [dbo].[MedicineType]\n";
+
+            if (type != null) {
+                sql += "where type like ?\n";
+            }
+            if (dosage != null) {
+                sql += "where Dosage like ?\n";
+            }
+            
+            sql += "order by ID desc";
+            
+            PreparedStatement stm = connection.prepareCall(sql);
+            
+            if (type != null) {
+                stm.setString(1, "%" + type + "%");
+            }
+            if (dosage != null) {
+                stm.setString(1, "%" + dosage + "%");
+            }
+            
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                MedicineType mt = new MedicineType();
+
+                mt.setId(rs.getInt("ID"));
+                mt.setType(rs.getString("Type"));
+                mt.setDosage(rs.getString("Dosage"));
+
+                medicineTypes.add(mt);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return medicineTypes;
+    }
+
+    public boolean insertMedicineType(String type, String dosage) {
+        try {
+            connection.setAutoCommit(false);
+
+            String sql = "INSERT INTO [dbo].[MedicineType]\n"
+                    + "           ([Type]\n"
+                    + "           ,[Dosage])\n"
+                    + "     VALUES\n"
+                    + "           (?,?)\n";
+
+            PreparedStatement stm = connection.prepareCall(sql);
+
+            stm.setString(1, type);
+            stm.setString(2, dosage);
+
+            if (stm.executeUpdate() > 0) {
+                connection.commit();
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
     }
 
     public boolean createMedicine(Medicine2 m) {

@@ -8,6 +8,7 @@ import dao.MedicineDBContext;
 import dao.PrescriptionDBContext;
 import entity.Account;
 import entity.Medicine2;
+import entity.MedicineType;
 import entity.Prescription;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -71,6 +72,7 @@ public class MedicineListController extends HttpServlet {
         } else {
             MedicineDBContext mDB = new MedicineDBContext();
             ArrayList<Medicine2> m = mDB.getMedicines(null, null, null, null, null);
+            ArrayList<MedicineType> mt = mDB.getMedicineTypes();
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -109,6 +111,7 @@ public class MedicineListController extends HttpServlet {
             request.setAttribute("expiredNum", expiredNum);
 
             request.setAttribute("medicines", m);
+            request.setAttribute("medicineTypes", mt);
             request.getRequestDispatcher("../doctor/listMedicine.jsp").forward(request, response);
         }
 
@@ -127,35 +130,115 @@ public class MedicineListController extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-
-        String typeSearch = request.getParameter("typeSearch");
-        String searchName = request.getParameter("searchVal");
-        String typeSort = request.getParameter("typeSort");
-
         MedicineDBContext mDB = new MedicineDBContext();
-        ArrayList<Medicine2> medicines = mDB.getMedicines(null, null, typeSearch, searchName, typeSort);
 
-        for (Medicine2 m : medicines) {
-            out.print("<tr>\n"
-                    + "                                 <th scope=\"row\">" + m.getShipmentId() + "</th>\n"
-                    + "                                 <td>" + m.getName() + "</td>\n"
-                    + "                                 <td>\n"
-                    + "                                     <div class=\"des_show\" >\n"
-                    + "                                         <button type=\"button\" class=\"btn btn-success\">View</button>\n"
-                    + "                                         <div class=\"des_hidden\">\n"
-                    + "                                             " + m.getDescription() + "\n"
-                    + "                                         </div>\n"
-                    + "                                     </div>\n"
-                    + "                                 </td>\n"
-                    + "                                 <td>" + m.getStock() + "</td>\n"
-                    + "                                 <td>" + m.getDateManafacture() + "</td>\n"
-                    + "                                 <td>" + m.getExpirationDate() + "</td>\n"
-                    + "                                 <td>" + m.getMedicineType().getType() + "</td>\n"
-                    + "                                 <td>" + m.getMedicineType().getDosage() + "</td>\n"
-                    + "                                 <td>\n"
-                    + "                                     <a href=\"/Isolated_Management/base/update-medicine?id=" + m.getShipmentId() + "\" class=\"btn btn-success\">Update</a>\n"
-                    + "                                 </td>\n"
-                    + "                             </tr>");
+        boolean listMedicine = Boolean.parseBoolean(request.getParameter("listMedicine"));
+
+        if (listMedicine) {
+            String typeSearch = request.getParameter("typeSearch");
+            String searchName = request.getParameter("searchVal");
+            String typeSort = request.getParameter("typeSort");
+
+            ArrayList<Medicine2> medicines = mDB.getMedicines(null, null, typeSearch, searchName, typeSort);
+
+            for (Medicine2 m : medicines) {
+                out.print("<tr>\n"
+                        + "                                 <th scope=\"row\">" + m.getShipmentId() + "</th>\n"
+                        + "                                 <td>" + m.getName() + "</td>\n"
+                        + "                                 <td>\n"
+                        + "                                     <div class=\"des_show\" >\n"
+                        + "                                         <button type=\"button\" class=\"btn btn-success\">View</button>\n"
+                        + "                                         <div class=\"des_hidden\">\n"
+                        + "                                             " + m.getDescription() + "\n"
+                        + "                                         </div>\n"
+                        + "                                     </div>\n"
+                        + "                                 </td>\n"
+                        + "                                 <td>" + m.getStock() + "</td>\n"
+                        + "                                 <td>" + m.getDateManafacture() + "</td>\n"
+                        + "                                 <td>" + m.getExpirationDate() + "</td>\n"
+                        + "                                 <td>" + m.getMedicineType().getType() + "</td>\n"
+                        + "                                 <td>" + m.getMedicineType().getDosage() + "</td>\n"
+                        + "                                 <td>\n"
+                        + "                                     <a href=\"/Isolated_Management/base/update-medicine?id=" + m.getShipmentId() + "\" class=\"btn btn-success\">Update</a>\n"
+                        + "                                 </td>\n"
+                        + "                             </tr>");
+            }
+        } else {
+            boolean createMT = Boolean.parseBoolean(request.getParameter("createMT"));
+            boolean searchMT = Boolean.parseBoolean(request.getParameter("searchMT"));
+
+            if (createMT) {
+                String medicineType = request.getParameter("medicineType");
+                String medicineDosage = request.getParameter("medicineDosage");
+
+                boolean createSuccess = mDB.insertMedicineType(medicineType, medicineDosage);
+
+                if (createSuccess) {
+                    ArrayList<MedicineType> medicineTypes = mDB.getMedicineTypes();
+
+                    for (MedicineType mt : medicineTypes) {
+                        out.print("<tr>\n"
+                                + "                                                     <th scope=\"row\">\n"
+                                + "                                                         <input \n"
+                                + "                                                             type=\"text\" \n"
+                                + "                                                             class=\"form-control date2\" \n"
+                                + "                                                             name=\"date2\" \n"
+                                + "                                                             id=\"validationCustom05\" \n"
+                                + "                                                             required\n"
+                                + "                                                             value=\"" + mt.getType() + "\"\n"
+                                + "                                                             >\n"
+                                + "                                                     </th>\n"
+                                + "                                                     <td> \n"
+                                + "                                                         <input \n"
+                                + "                                                             type=\"text\" \n"
+                                + "                                                             class=\"form-control date2\" \n"
+                                + "                                                             name=\"date2\" \n"
+                                + "                                                             id=\"validationCustom05\" \n"
+                                + "                                                             required\n"
+                                + "                                                             value=\"" + mt.getDosage() + "\"\n"
+                                + "                                                             >\n"
+                                + "                                                     </td>\n"
+                                + "                                                     <td><button type=\"button\" updateId=\"" + mt.getId() + "\" class=\"btn btn-success\">Update</button></td>\n"
+                                + "                                                     <td><button type=\"button\"  deleteId=\"" + mt.getId() + "\" class=\"btn btn-secondary\">Delete</button></td>\n"
+                                + "                                                 </tr>");
+                    }
+                }
+            }
+
+            if (searchMT) {
+                String searchByType = request.getParameter("searchByType");
+                String searchByDosage = request.getParameter("searchByDosage");
+
+                ArrayList<MedicineType> medicineTypes = mDB.searchMedicineTypes(searchByType, searchByDosage);
+                
+                for (MedicineType mt : medicineTypes) {
+                        out.print("<tr>\n"
+                                + "                                                     <th scope=\"row\">\n"
+                                + "                                                         <input \n"
+                                + "                                                             type=\"text\" \n"
+                                + "                                                             class=\"form-control date2\" \n"
+                                + "                                                             name=\"date2\" \n"
+                                + "                                                             id=\"validationCustom05\" \n"
+                                + "                                                             required\n"
+                                + "                                                             value=\"" + mt.getType() + "\"\n"
+                                + "                                                             >\n"
+                                + "                                                     </th>\n"
+                                + "                                                     <td> \n"
+                                + "                                                         <input \n"
+                                + "                                                             type=\"text\" \n"
+                                + "                                                             class=\"form-control date2\" \n"
+                                + "                                                             name=\"date2\" \n"
+                                + "                                                             id=\"validationCustom05\" \n"
+                                + "                                                             required\n"
+                                + "                                                             value=\"" + mt.getDosage() + "\"\n"
+                                + "                                                             >\n"
+                                + "                                                     </td>\n"
+                                + "                                                     <td><button type=\"button\" updateId=\"" + mt.getId() + "\" class=\"btn btn-success\">Update</button></td>\n"
+                                + "                                                     <td><button type=\"button\"  deleteId=\"" + mt.getId() + "\" class=\"btn btn-secondary\">Delete</button></td>\n"
+                                + "                                                 </tr>");
+                    }
+            }
+
         }
 
     }

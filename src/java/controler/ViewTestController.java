@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 /**
@@ -58,11 +59,13 @@ public class ViewTestController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String username = request.getParameter("username");
         TestResultDBContext db = new TestResultDBContext();
         ArrayList<TestResult> results = db.getTestResultByID(username);
         request.setAttribute("results", results);
         request.setAttribute("patient", username);
+        session.setAttribute("patient", username);
         request.getRequestDispatcher("../view/viewTest.jsp").forward(request, response);
     }
 

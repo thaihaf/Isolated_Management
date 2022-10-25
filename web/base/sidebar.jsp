@@ -38,19 +38,21 @@
                               <dd><a href="url">Add Nurse</a></dd>
 
                               <dt>Manager</dt>
-                              <dd><a href="url">Food List</a></dd>
+                              <dd><a href="../admin/foodlist">Food List</a></dd>
                               <dd><a href="url">Medical List</a></dd>
 
                               <dt>Request Manager</dt>
                               <dd><a href="url">Request Medical</a></dd>
                               <dd><a href="url">Request Food</a></dd>
                               <dd><a href="url">Request Contact</a></dd>
-                          </dl> 
+                              <dd><a href="notif_create">Create Notification</a></dd>
+                              
+                          </dl>
                           <br />
                       </c:when>   
 
                       <c:otherwise>
-                          <a class="sidebar_item" href="home.jsp">
+                          <a class="sidebar_item" href="home">
                               <img class="sidebar_item_img" src="../assets/icons/homeIcon.png" alt="alt"/>
                               <div>Home</div>
                           </a>
@@ -61,7 +63,7 @@
                                   <div>Patient</div>
                               </a>
                               <a class="sidebar_item" href="medicine-list">
-                                  <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                                  <img class="sidebar_item_img" src="../assets/icons/medicine.png" alt="alt"/>
                                   <div>Medicine</div>
                               </a>
                           </c:if>
@@ -88,14 +90,30 @@
                                   <img class="sidebar_item_img" src="../assets/icons/donthuoc.png" alt="alt"/>
                                   <div>Prescription</div>
                               </a>
-                          </c:if>
+                              <a class="sidebar_item" href="viewInjection?username=${sessionScope.account.userName}">
+                                  <img class="sidebar_item_img" src="../assets/icons/testIcon.png" alt="alt"/>
+                                  <div>Injection</div>
+                              </a>
+                              <a class="sidebar_item" href="../foodmenu">
+                                  <img class="sidebar_item_img" src="../assets/icons/foodmenu.png" alt="alt"/>
+                                  <div>Food Menu</div>
+                                  <a class="sidebar_item" href="javascript:contactConfirm()">
+                                      <img class="sidebar_item_img" src="../assets/icons/emergency_icon.jpg" alt="alt"/>
+                                      <div>Emergency contact</div>
+                                  </a>
+                              </c:if>
 
-                          <a class="sidebar_item" href="profile">
-                              <img class="sidebar_item_img img_profile" src="../assets/icons/profileIcon.png" alt="alt"/>
-                              <div>Profile</div>
-                          </a>
-                      </c:otherwise>
-                  </c:choose>
+                              <a class="sidebar_item" href="profile">
+                                  <img class="sidebar_item_img img_profile" src="../assets/icons/profileIcon.png" alt="alt"/>
+                                  <div>Profile</div>
+                              </a>
+                              <br>
+                              <c:if test="${role.id eq 2}">
+                                  <dt>Manager</dt>
+                                  <dd><a href="../foodlist">Food List</a></dd>
+                              </c:if>
+                          </c:otherwise>
+                      </c:choose>
              </div>
              <a class="sidebar_item" href="../logout">
                  <div class="sidebar_btnLogout">

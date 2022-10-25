@@ -35,7 +35,7 @@
                          </div>
                          <div class="updateInfo_item right">
                              <div class="item_title">Note</div>
-                             <input type="text" class="item_input" value="${patient.note}">
+                             <input type="text" class="item_input" name="note">
                          </div>
                      </div>
 
@@ -62,6 +62,7 @@
                          <div class="updateInfo_item left">
                              <div class="item_title">Injection Creator</div>
                              <input type="text" class="item_input" name="creator">
+                             <p class="text-danger">${mess}</p>
                          </div>
                      </div>
 

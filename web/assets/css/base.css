@@ -82,6 +82,7 @@ html, body{
 .wrapper{
     display: flex;
     flex-direction: column;
+    align-items: center;
     min-height: 100%;
     height: max-content;
     padding-top: var(--header-height);
@@ -98,5 +99,22 @@ body.hideSidebar .wrapper{
     padding-left: 0;
 }
 .container{
-    padding: 5rem 3rem !important;
+    width: 99%;
+}
+.breadcrumb{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 1.75rem 3rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: #e9ecef;
+    border-radius: 2rem;
+}
+.container-fluid{
+    font-size: 1.3rem;
+    width: 99%;
+    margin-bottom: 3rem;
 }

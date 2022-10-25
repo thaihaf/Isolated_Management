@@ -35,6 +35,7 @@
                          <td>Nurse Inject</td>
                          <td>Inject Date</td>
                          <td>Note</td>
+                         <td>Take In Qurantine Centre</td>
                      </tr>
                      <c:if test="${role.id eq 3}">
                          <c:set var="count" value="${1}" />
@@ -43,9 +44,35 @@
                                  <td>${count}</td>
                                  <td>${l.patientAccount.account.userName}</td>
                                  <td>${l.vaccine.vaccineName}</td>
-                                 <td>${l.personInject.account.userName}</td>
-                                 <td>${l.date}</td>
-                                 <td>${l.note}</td>
+                                 <td><c:choose>
+                                         <c:when test="${l.personInject.fullName eq null}">
+                                             None
+                                         </c:when>
+                                         <c:when test="${l.personInject.fullName ne null}">
+                                             ${l.personInject.fullName}
+                                         </c:when>
+                                     </c:choose></td>
+                                 <td><c:choose>
+                                         <c:when test="${l.date eq null}">
+                                             Not Remember
+                                         </c:when>
+                                         <c:when test="${l.date ne null}">
+                                             ${l.date}
+                                         </c:when>
+                                     </c:choose></td>
+                                 <td><c:choose>
+                                         <c:when test="${l.note eq null}">
+                                             None
+                                         </c:when>
+                                         <c:when test="${l.note ne null}">
+                                             ${l.note}
+                                         </c:when>
+                                     </c:choose></td>
+                                 <td><input type="checkbox" 
+                                            <c:if test="${l.taken}">
+                                                checked="checked"
+                                            </c:if>
+                                            /></td>
                              </tr>
                              <c:set var="count" value="${count+1}" />  
                          </c:forEach>
@@ -57,9 +84,35 @@
                                  <td>${count}</td>
                                  <td>${l.patientAccount.account.userName}</td>
                                  <td>${l.vaccine.vaccineName}</td>
-                                 <td>${l.personInject.account.userName}</td>
-                                 <td>${l.date}</td>
-                                 <td>${l.note}</td>
+                                 <td><c:choose>
+                                         <c:when test="${l.personInject.fullName eq null}">
+                                             None
+                                         </c:when>
+                                         <c:when test="${l.personInject.fullName ne null}">
+                                             ${l.personInject.fullName}
+                                         </c:when>
+                                     </c:choose></td>
+                                 <td><c:choose>
+                                         <c:when test="${l.date eq null}">
+                                             Not Remember
+                                         </c:when>
+                                         <c:when test="${l.date ne null}">
+                                             ${l.date}
+                                         </c:when>
+                                     </c:choose></td>
+                                 <td><c:choose>
+                                         <c:when test="${l.note eq null}">
+                                             None
+                                         </c:when>
+                                         <c:when test="${l.note ne null}">
+                                             ${l.note}
+                                         </c:when>
+                                     </c:choose></td>
+                                 <td><input type="checkbox" 
+                                            <c:if test="${l.taken}">
+                                                checked="checked"
+                                            </c:if>
+                                            /></td>
                              </tr>
                              <c:set var="count" value="${count+1}" />  
                          </c:forEach>

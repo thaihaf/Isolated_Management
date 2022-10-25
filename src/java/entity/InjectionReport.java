@@ -17,6 +17,15 @@ public class InjectionReport {
     private AccountDetail personInject;
     private Vaccine vaccine;
     private Date date;
+    private String note;
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
 
     public int getId() {
         return id;

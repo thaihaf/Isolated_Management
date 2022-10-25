@@ -2,21 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controler;
+package controler.patient;
 
-import dao.FoodDBContext;
+import dao.VaccineDBContext;
+import entity.Vaccine;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public class DeleteFoodControler extends HttpServlet {
+public class AddExistInjectionController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,53 +37,31 @@ public class DeleteFoodControler extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteFoodControler</title>");
+            out.println("<title>Servlet AddExistInjection</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteFoodControler at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddExistInjection at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("id");
-        FoodDBContext fdb = new FoodDBContext();
-        fdb.deleteFood(id);
-        request.setAttribute("mess", "Delete success");
-        request.getRequestDispatcher("updatefood.jsp").forward(request, response);
+        String username = request.getParameter("username");
+        VaccineDBContext vdb = new VaccineDBContext();
+        ArrayList<Vaccine> vaccines = vdb.list();
+        request.setAttribute("vaccine", vaccines);
+        request.getRequestDispatcher("../patient/addExistInjection.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("updatefood.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

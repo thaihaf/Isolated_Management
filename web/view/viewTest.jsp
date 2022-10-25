@@ -39,6 +39,7 @@
                      </tr>
                      <c:if test="${role.id eq 3}">
                          <c:set var="count" value="${1}" />
+                         <p class="text-danger">${mess}</p>
                          <c:forEach items="${requestScope.results}" var="r">
                              <tr>
                                  <td>${count}</td>

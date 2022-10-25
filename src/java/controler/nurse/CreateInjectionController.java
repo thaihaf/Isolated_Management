@@ -86,6 +86,7 @@ public class CreateInjectionController extends HttpServlet {
         ir.setPatientAccount(ad);
         String creator = request.getParameter("creator");
         Account a1 = new Account();
+        String note = request.getParameter("note");
         if (creator == "") {
             a1.setUserName(acc.getUserName());
             AccountDetail ad1 = new AccountDetail();
@@ -98,6 +99,7 @@ public class CreateInjectionController extends HttpServlet {
             java.util.Date utilDate = new java.util.Date();
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
             ir.setDate(sqlDate);
+            ir.setNote(note);
             InjectionDBContext jdb = new InjectionDBContext();
             jdb.insert(ir);
             request.setAttribute("action", "Create Injection");
@@ -117,6 +119,7 @@ public class CreateInjectionController extends HttpServlet {
                 java.util.Date utilDate = new java.util.Date();
                 java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
                 ir.setDate(sqlDate);
+                ir.setNote(note);
                 InjectionDBContext jdb = new InjectionDBContext();
                 jdb.insert(ir);
                 request.setAttribute("action", "Create Injection");

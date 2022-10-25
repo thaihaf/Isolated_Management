@@ -38,7 +38,7 @@
                               <dd><a href="url">Add Nurse</a></dd>
 
                               <dt>Manager</dt>
-                              <dd><a href="../foodlist">Food List</a></dd>
+                              <dd><a href="../admin/foodlist">Food List</a></dd>
                               <dd><a href="url">Medical List</a></dd>
 
                               <dt>Request Manager</dt>

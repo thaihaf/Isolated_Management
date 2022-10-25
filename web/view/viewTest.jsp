@@ -51,7 +51,7 @@
                                      <td>Positive</td>
                                  </c:if>
                                  <td>${r.testType.typeName}</td>
-                                 <td>${r.personTest.account.userName}</td>
+                                 <td>${r.personTest.fullName}</td>
                                  <td>${r.testTime}</td>
                                  <c:if test="${r.status eq 'True'}">
                                      <td>Active</td>
@@ -78,7 +78,7 @@
                                      <td>Positive</td>
                                  </c:if>
                                  <td>${r.testType.typeName}</td>
-                                 <td>${r.personTest.account.userName}</td>
+                                 <td>${r.personTest.fullName}</td>
                                  <td>${r.testTime}</td>
                                  <c:if test="${r.status eq 'True'}">
                                      <td>Active</td>

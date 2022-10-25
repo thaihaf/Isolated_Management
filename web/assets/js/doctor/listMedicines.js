@@ -11,7 +11,7 @@ $(".overview_item").on('click', function () {
         url: "/Isolated_Management/base/medicine-list",
         type: "post",
         data: {
-            listMedicine: true,
+            tp: "listMedicine",
             typeSearch: typeSearch
         },
         success: function (data) {
@@ -31,7 +31,7 @@ $('#inputSearch').on('input', function () {
         url: "/Isolated_Management/base/medicine-list",
         type: "post",
         data: {
-            listMedicine: true,
+            tp: "listMedicine",
             searchVal: text
         },
         success: function (data) {
@@ -49,7 +49,7 @@ $('.dropdown-item').on('click', function () {
         url: "/Isolated_Management/base/medicine-list",
         type: "post",
         data: {
-            listMedicine: true,
+            tp: "listMedicine",
             typeSort: typeSort
         },
         success: function (data) {
@@ -74,7 +74,7 @@ $("#btn_submit").on('click', function () {
             url: "/Isolated_Management/base/medicine-list",
             type: "post",
             data: {
-                createMT: true,
+                tp: "createMT",
                 medicineType: medicineType,
                 medicineDosage: medicineDosage
             },
@@ -98,7 +98,7 @@ $('#searchMTByType').on('input', function () {
         url: "/Isolated_Management/base/medicine-list",
         type: "post",
         data: {
-            searchMT: true,
+            tp: "searchMT",
             searchByType: text
         },
         success: function (data) {
@@ -117,7 +117,7 @@ $('#searchMTByDosage').on('input', function () {
         url: "/Isolated_Management/base/medicine-list",
         type: "post",
         data: {
-            searchMT: true,
+            tp: "searchMT",
             searchByDosage: text
         },
         success: function (data) {
@@ -127,4 +127,41 @@ $('#searchMTByDosage').on('input', function () {
             //Do Something to handle error
         }
     });
+});
+$(document).on('click', '.btn-update-mt', function () {
+    let parent = $(this).parent().parent();
+
+    let id = Number(this.id);
+    let medicineType = parent.find('input[name="medicineType"]').val();
+    let medicineDosage = parent.find('input[name="medicineDosage"]').val();
+
+    if (medicineType.toString().trim() == "") {
+        alert("Update : Medicine Type cant empty");
+    } else if (medicineDosage.toString().trim() == "") {
+        alert("Update : Medicine Dosage cant empty");
+    } else {
+        $.ajax({
+            url: "/Isolated_Management/base/medicine-list",
+            type: "post",
+            data: {
+                tp: "updateMT",
+                medicineId: id,
+                medicineType: medicineType,
+                medicineDosage: medicineDosage
+            },
+            success: function (data) {
+                if (data == "true") {
+                    alert("Update successfully");
+                } else {
+                    alert("Update failed");
+                }
+            },
+            error: function (xhr) {
+                //Do Something to handle error
+            }
+        });
+
+    }
+
+
 });

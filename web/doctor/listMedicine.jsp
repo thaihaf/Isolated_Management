@@ -97,34 +97,28 @@
                                                      <th scope="col">Medicine Type</th>
                                                      <th scope="col">Dosage</th>
                                                      <th scope="col">Action</th>
-                                                     <th scope="col">Action</th>
                                                  </tr>
                                              </thead>
                                              <tbody id="medicineTypeBody">
                                              <c:forEach items="${requestScope.medicineTypes}" var="mt">
-                                                 <tr>
+                                                 <tr class="parent">
                                                      <th scope="row">
                                                          <input 
                                                              type="text" 
-                                                             class="form-control date2" 
-                                                             name="date2" 
-                                                             id="validationCustom05" 
-                                                             required
+                                                             class="form-control medicineType" 
+                                                             name="medicineType" 
                                                              value="${mt.type}"
                                                              >
                                                      </th>
                                                      <td> 
                                                          <input 
                                                              type="text" 
-                                                             class="form-control date2" 
-                                                             name="date2" 
-                                                             id="validationCustom05" 
-                                                             required
+                                                             class="form-control medicineDosage" 
+                                                             name="medicineDosage" 
                                                              value="${mt.dosage}"
                                                              >
                                                      </td>
-                                                     <td><button type="button" updateId="${mt.id}" class="btn btn-success">Update</button></td>
-                                                     <td><button type="button"  deleteId="${mt.id}" class="btn btn-secondary">Delete</button></td>
+                                                     <td><button type="button" id="${mt.id}" class="btn btn-success btn-update-mt">Update</button></td>
                                                  </tr>
                                              </c:forEach>
                                          </tbody>
@@ -256,7 +250,7 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <script src="../assets/js/doctor/listMedicine.js" type="text/javascript"></script>
+        <script src="../assets/js/doctor/listMedicines.js" type="text/javascript"></script>
         <script>
             $(function () {
                 $('[data-toggle="popover"]').popover({

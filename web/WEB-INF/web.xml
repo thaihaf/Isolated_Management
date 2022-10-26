@@ -204,6 +204,10 @@
         <servlet-name>AddExistInjection</servlet-name>
         <servlet-class>controler.patient.AddExistInjectionController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteInjectionController</servlet-name>
+        <servlet-class>controler.DeleteInjectionController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -403,6 +407,10 @@
     <servlet-mapping>
         <servlet-name>AddExistInjection</servlet-name>
         <url-pattern>/base/addExistInjection</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteInjectionController</servlet-name>
+        <url-pattern>/base/deleteInjection</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>login</welcome-file>

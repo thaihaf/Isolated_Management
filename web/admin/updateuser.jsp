@@ -50,12 +50,14 @@
         <div class="wrapper wrapperAdmin">
             <div class="container">
                 <form action="updateuser" method="get">
-                    <input type="hidden" value="${account.account.userName}"/>
+                    <span style="color: red;">${mess}</span>
+                    <input type="hidden" name="user" value="${account.account.userName}"/>
+                    <!--Username <input type="text" name="username" value="">-->
                     Full name: <input required type="text" name="fullName" value="${account.fullName}"/><br/>
                     Gender: <input required type="radio" name="gender" value="true" <c:if test="${account.gender eq true}">checked="checked"</c:if> /> Male <Input type="radio" name="gender" value="false" <c:if test="${account.gender eq false}">checked="checked"</c:if> /> Female <br/>
                     Phone: <input required type="text" name="phone" value="${account.phone}"/><br/>
                     Address: <input required type="text" name="address" value="${account.address}"/><br/>
-                    Email: <input required type="text" value="${account.email}"/><br/>
+                    Email: <input required type="text" name="email" value="${account.email}"/><br/>
                     <!--Nationality: <input required type="text" name="nation" value="${account.nation}"/><br/>-->
                     Nationality: <select required name="nation" disabled>
                         <option value="${account.nation}" >${account.nation}</option>
@@ -63,12 +65,15 @@
                     Date Of Birth: <input type="date" name="dateofbirth" value="${account.dateofbirth}"/><br/>
                     <div id="optional">
                         <c:if test="${requestScope.account.account.role.id eq 2 || requestScope.account.account.role.id eq 3}">
+                            Role: 
+                            <input type="radio" name="role" value="${requestScope.account.account.role.id}" <c:if test="${requestScope.account.account.role.id eq 2}">checked="checked"</c:if> />Doctor
+                            <input type="radio" name="role" value="${requestScope.account.account.role.id}" <c:if test="${requestScope.account.account.role.id eq 3}">checked=checked</c:if> />Nurse<br/>
                             Level of education: <input type="text" name="leveleducation" value="${requestScope.medical.levelOfEducation}"/><br/>
                             Hospital: <input type="text" name="hospital" value="${requestScope.medical.hospital}"/><br/>
                         </c:if>
                         <c:if test="${requestScope.account.account.role.id eq 4}">
-                            Room: <input type="text" name="room" value="${requestScope.patient.room.name}"/><br/>
-                            Area: <input type="text" name="area" value="${patient.room.area.name}"/><br/>
+<!--                            Room: <input type="text" name="room" value="${requestScope.patient.room.name}"/><br/>
+                            Area: <input type="text" name="area" value="${patient.room.area.name}"/><br/>-->
                             Background disease: 
                             <input type="radio" name="background_disease" value="${requestScope.patient.backgroundDisease}" <c:if test="${requestScope.patient.backgroundDisease eq true}">checked="checked"</c:if> />Yes
                             <input type="radio" name="background_disease" value="${requestScope.patient.backgroundDisease}" <c:if test="${requestScope.patient.backgroundDisease eq false}">checked=checked</c:if> />No<br/>

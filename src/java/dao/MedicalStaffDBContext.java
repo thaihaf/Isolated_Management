@@ -91,4 +91,23 @@ public class MedicalStaffDBContext extends DBContext<MedicalStaff> {
         return null;
     }
 
+    public boolean checkMedicalStaff(String username) {
+        try {
+            String sql = "SELECT [ID]\n"
+                    + "      ,[Level of education]\n"
+                    + "      ,[Hospital]\n"
+                    + "  FROM [Medical_Staff] where ID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicalStaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
 }

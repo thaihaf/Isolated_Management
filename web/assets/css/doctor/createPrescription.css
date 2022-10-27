@@ -7,9 +7,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : hapro
 */
 
+.container {
+    padding: 0 3rem !important;
+    padding-bottom: 3rem;
+}
 .container-fluid{
     font-size: 1.3rem;
-    margin-bottom: 25rem;
+    margin-bottom: 3rem;
 }
 .form{
     display: flex;
@@ -101,7 +105,16 @@ ion-icon{
     gap: 3rem;
 }
 .info_2{
+    display: flex;
     margin-left: auto;
+    gap : 2rem;
+}
+.info_2 button {
+    padding: 1rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
 }
 .search-list.hidden{
     visibility: hidden;
@@ -109,4 +122,41 @@ ion-icon{
 #close-medicines{
     padding : 0.3rem;
     cursor: pointer;
+}
+
+.top2{
+    background: #E9ECEF;
+    padding: 2rem 3rem;
+    padding-bottom: 0;
+    margin: 0;
+    margin-bottom: 3rem;
+    border-radius: 2rem;
+}
+.title-create{
+    font-size: 3rem;
+    font-weight: 500;
+    padding: 2rem 0.4rem;
+    color: darkturquoise;
+}
+.form-control{
+    padding: 0.775rem 1.75rem !important;
+    border-radius: 2rem !important;
+}
+.right {
+    width: 35%;
+}
+.left {
+    width: 30%;
+}
+.lable {
+    font-weight: 600;
+    color: darkgreen !important;
+}
+#validationCustom07{
+    height: calc(2.25rem + 12px);
+}
+.btn{
+    width: 50%;
+    padding: 0.8rem;
+    border-radius: 2rem;
 }

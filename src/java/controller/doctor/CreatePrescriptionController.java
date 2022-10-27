@@ -6,14 +6,15 @@ package controller.doctor;
 
 import com.google.gson.Gson;
 import dao.AccountDetailDBContext;
-import dao.CreatePrescriptionDBContext;
 import dao.MedicineDBContext;
+import dao.PatientDBContext;
 import dao.PrescriptionDBContext;
 import dao.PrescriptionMedicineDBContext;
 import entity.Account;
 import entity.AccountDetail;
 import entity.Medicine2;
 import entity.MedicineType;
+import entity.Patient;
 import entity.Prescription;
 import entity.Prescription2;
 import entity.PrescriptionMedicine2;
@@ -34,36 +35,36 @@ import java.util.Date;
  * @author hapro
  */
 public class CreatePrescriptionController extends HttpServlet {
-    
+
     Gson gson = new Gson();
-    
+
     public static class Data {
-        
+
         private int id;
         private int quantity;
-        
+
         public int getId() {
             return id;
         }
-        
+
         public void setId(int id) {
             this.id = id;
         }
-        
+
         public int getQuantity() {
             return quantity;
         }
-        
+
         public void setQuantity(int quantity) {
             this.quantity = quantity;
         }
-        
+
         public Data() {
         }
     }
-    
+
     public static class TranferVal {
-        
+
         private String title;
         private String guide;
 
@@ -82,7 +83,7 @@ public class CreatePrescriptionController extends HttpServlet {
         public void setGuide(String guide) {
             this.guide = guide;
         }
-        
+
         public TranferVal() {
         }
     }
@@ -99,7 +100,7 @@ public class CreatePrescriptionController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -120,9 +121,13 @@ public class CreatePrescriptionController extends HttpServlet {
             request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
         } else {
             AccountDetailDBContext detailDBContext = new AccountDetailDBContext();
-            AccountDetail accountDetail = detailDBContext.get(request.getParameter("username"));
-            request.setAttribute("accountDetail", accountDetail);
-            
+            AccountDetail accountDetails = detailDBContext.get(request.getParameter("username"));
+
+            PatientDBContext patientDBContext = new PatientDBContext();
+            Patient patient = patientDBContext.get(accountDetails);
+
+            request.setAttribute("patient", patient);
+
             request.getRequestDispatcher("../doctor/create_prescription.jsp").forward(request, response);
         }
     }
@@ -139,25 +144,25 @@ public class CreatePrescriptionController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        
+
         HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
-        
+
         Account acc = (Account) session.getAttribute("account");
-        
+
         if (acc == null) {
             request.getRequestDispatcher("../view/checkSession.jsp").forward(request, response);
         } else {
             MedicineDBContext mDBContext = new MedicineDBContext();
-            
+
             String searchByName = request.getParameter("searchByName");
             String searchByType = request.getParameter("searchByType");
             String listPmJson = request.getParameter("listPm");
             String value = request.getParameter("value");
-            
+
             if (searchByName != null || searchByType != null) {
-                ArrayList<Medicine2> medicines = mDBContext.getMedicines(searchByName, searchByType);
-                
+                ArrayList<Medicine2> medicines = mDBContext.getMedicines(searchByName, searchByType, null, null, null);
+
                 for (Medicine2 m : medicines) {
                     out.print("<li class=\"list-group-item d-flex justify-content-between align-items-center\">\n"
                             + "                                             <span class=\"btn-add\" id=\"" + m.getShipmentId() + "\">\n"
@@ -168,28 +173,28 @@ public class CreatePrescriptionController extends HttpServlet {
                             + "                                         </li>");
                 }
             }
-            
+
             if (listPmJson != null) {
-                
+
                 Data[] listPm = gson.fromJson(listPmJson, Data[].class);
-                
+
                 ArrayList<PrescriptionMedicine2> pres = new ArrayList<>();
-                
-                ArrayList<Medicine2> medicines = mDBContext.getMedicines(null, null);
-                
+
+                ArrayList<Medicine2> medicines = mDBContext.getMedicines(null, null, null, null, null);
+
                 for (Medicine2 medicine : medicines) {
                     for (Data item : listPm) {
                         if (item.getId() == medicine.getShipmentId()) {
                             PrescriptionMedicine2 pm = new PrescriptionMedicine2();
-                            
+
                             pm.setQuantity(item.getQuantity());
                             pm.setMedicine(medicine);
-                            
+
                             pres.add(pm);
                         }
                     }
                 }
-                
+
                 for (PrescriptionMedicine2 p : pres) {
                     out.print("<tr>\n"
                             + "                                     <td>" + p.getMedicine().getName() + "</td>\n"
@@ -202,57 +207,57 @@ public class CreatePrescriptionController extends HttpServlet {
                             + "                                 </tr>");
                 }
             }
-            
+
             if (value != null) {
                 Data[] listPm = gson.fromJson(listPmJson, Data[].class);
                 TranferVal tranferValue = gson.fromJson(value, TranferVal.class);
-                
+
                 String titleVal = tranferValue.getTitle();
                 String guideVal = tranferValue.getGuide();
-                
+
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 Date date = new Date();
-                
-                CreatePrescriptionDBContext createPrescriptionDBContext = new CreatePrescriptionDBContext();
+
+                PrescriptionDBContext createPrescriptionDBContext = new PrescriptionDBContext();
                 Prescription2 prescription2 = new Prescription2();
-                
+
                 prescription2.setDoctorID(acc.getUserName());
                 prescription2.setPatientID(request.getParameter("username"));
                 prescription2.setTitle(titleVal);
                 prescription2.setGuide(guideVal);
                 prescription2.setPrescriptionDate(dateFormat.format(date));
                 prescription2.setStatus(0);
-                
+
                 int primkey = createPrescriptionDBContext.insertPrescription(prescription2);
-                
+
                 System.out.println("Record updated with id = " + primkey);
-                
+
                 if (primkey != 0) {
                     PrescriptionMedicineDBContext pmdbc = new PrescriptionMedicineDBContext();
-                    
-                    int p = 0;
-                    
+
+                    boolean p = false;
+
                     for (Data item : listPm) {
                         PrescriptionMedicine2 pm = new PrescriptionMedicine2();
                         Medicine2 m = new Medicine2();
                         m.setShipmentId(item.getId());
-                        
+
                         pm.setPrescriptionId(primkey);
                         pm.setMedicine(m);
                         pm.setQuantity(item.getQuantity());
-                        
+
                         p = pmdbc.insertPM(pm);
                     }
-                    
-                    if(p != 0){
+
+                    if (p) {
                         response.sendRedirect("/prescription-list");
                     }
                 }
-                
+
             }
-            
+
         }
-        
+
     }
 
     /**

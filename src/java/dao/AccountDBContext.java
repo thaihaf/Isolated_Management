@@ -70,8 +70,8 @@ public class AccountDBContext extends DBContext<Account> {
 
     public Boolean Register(String ID, String fullName, Boolean gender, String phone, String address,
             String email, String nation, String password, Date dateofbirth) {
-        String sql ="insert into Account values (?, ?, 4)\n" 
-                +"insert into Account_Details values\n"
+        String sql = "insert into Account values (?, ?, 4)\n"
+                + "insert into Account_Details values\n"
                 + "(?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -135,4 +135,62 @@ public class AccountDBContext extends DBContext<Account> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public Account getNotificationReceiver(int roomID) {
+        try {
+            String sql = "SELECT [Username]\n"
+                    + "  FROM [Account]\n"
+                    + "  INNER JOIN [Room] ON [Account].[Username] = [Room].[DoctorManage]\n"
+                    + "  WHERE [Room].[ID] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, roomID);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Account a = new Account();
+                a.setUserName(rs.getString("Username"));
+                return a;
+            }
+        } catch (SQLException e) {
+        }
+        return null;
+    }
+
+    public ArrayList<Account> listInRoom(int roomID) {
+        ArrayList<Account> accounts = new ArrayList<>();
+        try {
+            String sql = "SELECT [Username]\n"
+                    + "  FROM [Account]\n"
+                    + "  INNER JOIN [Patient] ON [Account].[Username] = [Patient].[ID]\n"
+                    + "  INNER JOIN [Room] ON [Patient].[Room_ID] = [Room].[ID]\n"
+                    + "  WHERE [Room].[ID] = ?";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setInt(1, roomID);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Account a = new Account();
+                a.setUserName(rs.getString("Username"));
+                accounts.add(a);
+            }
+        } catch (SQLException ex) {
+        }
+        return accounts;
+    }
+
+    public ArrayList<Account> listByRole(int roleID) {
+        ArrayList<Account> accounts = new ArrayList<>();
+        try {
+            String sql = "SELECT [Username]\n"
+                    + "  FROM [Account]\n"
+                    + "  WHERE [Account].[Role_ID] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, roleID);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Account a = new Account();
+                a.setUserName(rs.getString("Username"));
+                accounts.add(a);
+            }
+        } catch (SQLException ex) {
+        }
+        return accounts;
+    }
 }

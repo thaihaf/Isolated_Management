@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="../assets/css/base.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="../assets/css/doctor/prescription_list.css"/>
+        <link rel="stylesheet" href="../assets/css/doctor/list_prescriptions.css"/>
 
     </head>
     <body>
@@ -47,25 +47,25 @@
                          <div class="filter">
                              <a href="create-prescription?username=${param.username}" class="btn btn-primary btn-add">Add new +</a>
 
-                             <div class="dropdown show">
-                                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                     Sort  by
-                                 </a>
+                         <div class="dropdown show">
+                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 Sort  by
+                             </a>
 
-                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                     <div class="dropdown-item" id="sortByDate">Date</div>
-                                     <div class="dropdown-item" id="sortByStatus">Status</div>
-                                 </div>
+                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                 <div class="dropdown-item" id="sortByDate">Date</div>
+                                 <div class="dropdown-item" id="sortByStatus">Status</div>
                              </div>
+                         </div>
 
-                             <div class="dateFilter">
-                                 Date Create From <input type="date" name="from" value="${param.from}" id="dateFrom"/>
+                         <div class="dateFilter">
+                             <input type="date" name="from" value="${param.from}" id="dateFrom"/>
                              To <input type="date" name="to" value="${param.to}" id="dateTo"/>
                              <button 
                                  type="button" 
                                  class="btn btn-primary btn-info"
                                  id="filterDay">
-                                 Apply
+                                 Filter by Date Create
                              </button>
                          </div>
                      </div>
@@ -92,6 +92,7 @@
                                  <th scope="col" class="thMedicine">Medicines</th>
                                  <th scope="col">Guides</th>
                                  <th scope="col">Status</th>
+                                 <th scope="col">Action</th>
                              </tr>
                          </thead>
                          <tbody id="tBody">
@@ -129,34 +130,29 @@
                                          <c:set var = "type" scope = "session" value = "${p.status}"/>
                                          <c:choose>
                                              <c:when test = "${type == 0}">
-                                                 Đang phát thuốc
+                                                 Chưa phát
                                              </c:when>
 
                                              <c:when test = "${type == 1}">
-                                                 Đã phát thuốc
+                                                 Đã phát
+                                             </c:when>
+
+                                             <c:when test = "${type == 2}">
+                                                 Đã edit, chưa phát
                                              </c:when>
                                          </c:choose>
 
+                                     </td>
+                                     <td>
+                                         <c:if test="${type != 1}">
+                                             <a class="btn btn-info btn-lg" href="/Isolated_Management/base/update-prescription?username=${param.username}&pId=${p.id}">Update</a>
+                                         </c:if>
                                      </td>
                                  </tr>
 
                              </c:forEach>
                          </tbody>
                      </table>
-
-                     <nav aria-label="Page navigation example">
-                         <ul class="pagination justify-content-center pagination-lg">
-                             <li class="page-item disabled">
-                                 <a class="page-link" href="#" tabindex="-1">Previous</a>
-                             </li>
-                             <li class="page-item"><a class="page-link" href="#">1</a></li>
-                             <li class="page-item"><a class="page-link" href="#">2</a></li>
-                             <li class="page-item"><a class="page-link" href="#">3</a></li>
-                             <li class="page-item">
-                                 <a class="page-link" href="#">Next</a>
-                             </li>
-                         </ul>
-                     </nav>
                  </div>
              </div>
              <jsp:include page="../base/footer.jsp" />   

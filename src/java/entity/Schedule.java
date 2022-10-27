@@ -19,7 +19,7 @@ public class Schedule {
     private Food food;
     private String meal;
     private Week week;
-    private DayOfWeek dayOfWeek;
+    private Calendar dayOfWeek;
 
     public Schedule() {
     }
@@ -88,11 +88,11 @@ public class Schedule {
         this.week = week;
     }
 
-    public DayOfWeek getDayOfWeek() {
+    public Calendar getDayOfWeek() {
         return dayOfWeek;
     }
 
-    public void setDayOfWeek(DayOfWeek dayOfWeek) {
+    public void setDayOfWeek(Calendar dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
     

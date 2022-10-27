@@ -10,11 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <!--        <link rel="stylesheet" href="../assets/css/base2.css"/>
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-                <link rel="stylesheet" href="../assets/css/doctor/create_prescription.css"/>-->
+        <title>Update Food</title>
         <link rel="stylesheet" href="../assets/css/base2.css"/>
         <link rel="stylesheet" href="../assets/css/base/home.css"/>
     </head>
@@ -41,41 +37,20 @@
                     </c:if>
                     Added date: <input type="date" name="addedDate" value="${food.addedDate}"><br>
                     <button>Change</button>
-                    <button onclick="confirmDelete()"><a style="text-decoration: none" href="deletefood?id=${food.id}">Delete</a></button>
+                    <button><a onclick="confirmDelete(${food.id})" style="text-decoration: none" href="#">Delete</a></button>
                     <button><a style="text-decoration: none" href="foodlist">Return to Food List</a></button><br>
-                    <span style="color: red" id="sign"></span>
                 </form>
             </div>
             <jsp:include page="/base/footer.jsp" />
         </div>
-
-
-
-
-        <!--        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-                <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-                <script src="../assets/js/doctor/perscriptionList.js" type="text/javascript"></script>-->
         <script>
-            function confirmDelete(confirmDelete) {
-                confirm("Confirm to delete ?");
-                if (confirm(text) == true) {
-                    text = "Delete food success!";
-                } else {
-                    text = "Delete food fail!";
+            function confirmDelete(id) {
+                var result = confirm("Confirm to delete ?");
+                if (result === true) {
+                    alert("Delete food success!");
+                    window.location.href = 'deletefood?id='+id;
                 }
             }
-
-//            function confirmUpdate(confirmUpdate) {
-//                confirm("Confirm to Change ?");
-//                if (confirm(text) == true) {
-//                    text = "Change food success!";
-//                } else {
-//                    text = "Change food fail!";
-//                }
-//            }
-            document.getElementById("sign").innerHTML = text;
         </script>
     </body>
 </html>

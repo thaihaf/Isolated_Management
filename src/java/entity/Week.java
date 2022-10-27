@@ -12,8 +12,7 @@ import java.sql.Date;
  */
 public class Week {
     private int id;
-    private Date dayFrom;
-    private Date dayTo;
+    private String dayName;
 
     public Week() {
     }
@@ -26,21 +25,11 @@ public class Week {
         this.id = id;
     }
 
-    public Date getDayFrom() {
-        return dayFrom;
+    public String getDayName() {
+        return dayName;
     }
 
-    public void setDayFrom(Date dayFrom) {
-        this.dayFrom = dayFrom;
+    public void setDayName(String dayName) {
+        this.dayName = dayName;
     }
-
-    public Date getDayTo() {
-        return dayTo;
-    }
-
-    public void setDayTo(Date dayTo) {
-        this.dayTo = dayTo;
-    }
-    
-    
 }

@@ -4,15 +4,18 @@
  */
 package entity;
 
+import java.sql.Date;
+
 /**
  *
  * @author Admin
  */
-public class DayOfWeek {
+public class Calendar {
     private int id;
-    private String dayOfWeek;
+    private Date dayTo;
+    private Date dayFrom;
 
-    public DayOfWeek() {
+    public Calendar() {
     }
 
     public int getId() {
@@ -23,13 +26,19 @@ public class DayOfWeek {
         this.id = id;
     }
 
-    public String getDayOfWeek() {
-        return dayOfWeek;
+    public Date getDayTo() {
+        return dayTo;
     }
 
-    public void setDayOfWeek(String dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
+    public void setDayTo(Date dayTo) {
+        this.dayTo = dayTo;
     }
-    
-    
+
+    public Date getDayFrom() {
+        return dayFrom;
+    }
+
+    public void setDayFrom(Date dayFrom) {
+        this.dayFrom = dayFrom;
+    }
 }

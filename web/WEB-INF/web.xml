@@ -208,6 +208,10 @@
         <servlet-name>CreateScheduleControler</servlet-name>
         <servlet-class>controler.admin.CreateScheduleControler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteInjectionController</servlet-name>
+        <servlet-class>controler.DeleteInjectionController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -411,6 +415,10 @@
     <servlet-mapping>
         <servlet-name>CreateScheduleControler</servlet-name>
         <url-pattern>/admin/sched_create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteInjectionController</servlet-name>
+        <url-pattern>/base/deleteInjection</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>login</welcome-file>

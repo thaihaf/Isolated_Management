@@ -39,7 +39,7 @@
                          </div>
                      </div>
 
-
+                     <input type="hidden" name="taken" value="True">
                      <div class="updateInfo_group">
                          <div class="updateInfo_item full">
                              <div class="item_title">Background Diseases</div>

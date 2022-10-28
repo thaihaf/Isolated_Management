@@ -28,7 +28,28 @@ public class PatientDBContext extends DBContext<Patient> {
 
     @Override
     public ArrayList<Patient> list() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<Patient> patients = new ArrayList<>();
+        try {
+            String sql = "SELECT [Patient].[ID]\n"
+                    + "      ,[Account_Details].[Fullname]\n"
+                    + "  FROM [Patient]\n"
+                    + "  INNER JOIN [Account_Details] ON [Patient].[ID] = [Account_Details].[ID]";
+            PreparedStatement stm = connection.prepareCall(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Patient p = new Patient();
+                AccountDetail ad = new AccountDetail();
+                Account a = new Account();
+                a.setUserName(rs.getString("ID"));
+                ad.setAccount(a);
+                ad.setFullName(rs.getNString("Fullname"));
+                p.setAccDetail(ad);
+                patients.add(p);
+            }
+        } catch (SQLException ex) {
+
+        }
+        return patients;
     }
 
     @Override

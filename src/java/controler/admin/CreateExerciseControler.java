@@ -5,7 +5,9 @@
 package controler.admin;
 
 import dao.ExerciseSourceTypeDBContext;
+import dao.PatientDBContext;
 import entity.Exercise_Source_Type;
+import entity.Patient;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -34,7 +36,10 @@ public class CreateExerciseControler extends HttpServlet {
             throws ServletException, IOException {
         ExerciseSourceTypeDBContext estDB = new ExerciseSourceTypeDBContext();
         ArrayList<Exercise_Source_Type> exSourceType = estDB.list();
+        PatientDBContext patientDB = new PatientDBContext();
+        ArrayList<Patient> patients = patientDB.list();
         request.setAttribute("sourcetype", exSourceType);
+        request.setAttribute("patient", patients);
         request.getRequestDispatcher("").forward(request, response);
     }
 

@@ -18,6 +18,7 @@ public class InjectionReport {
     private Vaccine vaccine;
     private Date date;
     private String note;
+    private boolean taken;
 
     public String getNote() {
         return note;
@@ -65,6 +66,14 @@ public class InjectionReport {
 
     public void setPersonInject(AccountDetail personInject) {
         this.personInject = personInject;
+    }
+
+    public boolean isTaken() {
+        return taken;
+    }
+
+    public void setTaken(boolean taken) {
+        this.taken = taken;
     }
 
 }

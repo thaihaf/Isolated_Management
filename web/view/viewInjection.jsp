@@ -14,6 +14,16 @@
         <link rel="stylesheet" href="../assets/css/base.css"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="../assets/css/base/home.css"/>     
+        <script>
+            function removeStu(id)
+            {
+                var result = confirm('are you sure?');
+                if (result)
+                {
+                    window.location.href = 'deleteInjection?id=' + id;
+                }
+            }
+        </script>
     </head>
 
     <jsp:include page="../base/sidebar.jsp" />
@@ -35,6 +45,7 @@
                          <td>Nurse Inject</td>
                          <td>Inject Date</td>
                          <td>Note</td>
+                         <td>Take In Qurantine Centre</td>
                      </tr>
                      <c:if test="${role.id eq 3}">
                          <c:set var="count" value="${1}" />
@@ -43,9 +54,39 @@
                                  <td>${count}</td>
                                  <td>${l.patientAccount.account.userName}</td>
                                  <td>${l.vaccine.vaccineName}</td>
-                                 <td>${l.personInject.account.userName}</td>
-                                 <td>${l.date}</td>
-                                 <td>${l.note}</td>
+                                 <td><c:choose>
+                                         <c:when test="${l.personInject.fullName eq null}">
+                                             None
+                                         </c:when>
+                                         <c:when test="${l.personInject.fullName ne null}">
+                                             ${l.personInject.fullName}
+                                         </c:when>
+                                     </c:choose></td>
+                                 <td><c:choose>
+                                         <c:when test="${l.date eq null}">
+                                             Not Remember
+                                         </c:when>
+                                         <c:when test="${l.date ne null}">
+                                             ${l.date}
+                                         </c:when>
+                                     </c:choose></td>
+                                 <td><c:choose>
+                                         <c:when test="${l.note eq null}">
+                                             None
+                                         </c:when>
+                                         <c:when test="${l.note ne null}">
+                                             ${l.note}
+                                         </c:when>
+                                     </c:choose></td>
+                                 <td><input type="checkbox" 
+                                            <c:if test="${l.taken}">
+                                                checked="checked"
+                                            </c:if>
+                                            /></td>
+                                 <td><c:if test="${l.taken eq true}">
+                                     <td><input type="button" value="Delete" onclick="removeStu(${l.id})"></td>
+                                     </c:if>
+                                 </td>
                              </tr>
                              <c:set var="count" value="${count+1}" />  
                          </c:forEach>
@@ -57,11 +98,41 @@
                                  <td>${count}</td>
                                  <td>${l.patientAccount.account.userName}</td>
                                  <td>${l.vaccine.vaccineName}</td>
-                                 <td>${l.personInject.account.userName}</td>
-                                 <td>${l.date}</td>
-                                 <td>${l.note}</td>
+                                 <td><c:choose>
+                                         <c:when test="${l.personInject.fullName eq null}">
+                                             None
+                                         </c:when>
+                                         <c:when test="${l.personInject.fullName ne null}">
+                                             ${l.personInject.fullName}
+                                         </c:when>
+                                     </c:choose></td>
+                                 <td><c:choose>
+                                         <c:when test="${l.date eq null}">
+                                             Not Remember
+                                         </c:when>
+                                         <c:when test="${l.date ne null}">
+                                             ${l.date}
+                                         </c:when>
+                                     </c:choose></td>
+                                 <td><c:choose>
+                                         <c:when test="${l.note eq null}">
+                                             None
+                                         </c:when>
+                                         <c:when test="${l.note ne null}">
+                                             ${l.note}
+                                         </c:when>
+                                     </c:choose></td>
+                                 <td><input type="checkbox" 
+                                            <c:if test="${l.taken}">
+                                                checked="checked"
+                                            </c:if>
+                                            /></td>
+                                 <td><c:if test="${l.taken eq false}">
+                                     <td><input type="button" value="Delete" onclick="removeStu(${l.id})"></td>
+                                     </c:if>
+                                 </td>
                              </tr>
-                             <c:set var="count" value="${count+1}" />  
+                             <c:set var="count" value="${count+1}" />            
                          </c:forEach>
                          <a href="addExistInjection?username=${sessionScope.account.userName}">Add injection</a>
                          <p>(Note: This is used for patient who already haved injection before coming to quarantine centre)</p>

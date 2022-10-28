@@ -79,9 +79,9 @@ public class InjectionDBContext extends DBContext<InjectionReport> {
     public ArrayList<InjectionReport> getInjectionResultByID(String username) {
         ArrayList<InjectionReport> lists = new ArrayList<>();
         try {
-            String sql = "select ir.ID, PatientID,v.VaccineName,Date,ir.PersonInjected,ad.Fullname,ir.Taken,ir.Note from Injection_Report ir left join Vaccine v \n"
-                    + "on ir.VaccineID = v.VaccineID left join Account_Details ad on ir.PersonInjected = ad.ID \n"
-                    + "where PatientID = ?";
+            String sql = "select ir.ID, PatientID,v.VaccineName,Date,ir.PersonInjected,ad.Fullname,ir.Taken,ir.Note from Injection_Report ir left join Vaccine v\n"
+                    + "                    on ir.VaccineID = v.VaccineID left join Account_Details ad on ir.PersonInjected = ad.ID \n"
+                    + "                    where PatientID = ? order by ir.Date asc";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, username);
             ResultSet rs = stm.executeQuery();

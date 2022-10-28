@@ -5,6 +5,9 @@
 package dao;
 
 import entity.Exercise_Source_Type;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +18,22 @@ public class ExerciseSourceTypeDBContext extends DBContext<Exercise_Source_Type>
 
     @Override
     public ArrayList<Exercise_Source_Type> list() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<Exercise_Source_Type> exSourceType = new ArrayList<>();
+        try {
+            String sql = "SELECT [ID]\n"
+                    + "      ,[Type]\n"
+                    + "  FROM [Exercise_Source_Type]";
+            PreparedStatement stm = connection.prepareCall(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Exercise_Source_Type est = new Exercise_Source_Type();
+                est.setId(rs.getInt("ID"));
+                est.setType(rs.getNString("Type"));
+                exSourceType.add(est);
+            }
+        } catch (SQLException ex) {
+        }
+        return exSourceType;
     }
 
     @Override

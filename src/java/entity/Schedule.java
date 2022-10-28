@@ -4,10 +4,7 @@
  */
 package entity;
 
-
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.sql.Timestamp;
 
 /**
  *
@@ -16,23 +13,11 @@ import java.sql.Timestamp;
 public class Schedule {
 
     private int id;
-    private Account assignedUser;
+    private AccountDetail assignedUser;
     private Room room;
     private LocalDate date;
-    private LocalTime startTime;
+    private Schedule_Time time;
     private String description;
-    private int id;
-    private String assignedUser;
-    private Room room;
-    private Timestamp time;
-    private String description;
-    private Food food;
-    private String meal;
-    private Week week;
-    private DayOfWeek dayOfWeek;
-
-    public Schedule() {
-    }
 
     public int getId() {
         return id;
@@ -42,16 +27,11 @@ public class Schedule {
         this.id = id;
     }
 
-    public Account getAssignedUser() {
+    public AccountDetail getAssignedUser() {
         return assignedUser;
     }
 
-    public void setAssignedUser(Account assignedUser) {
-    public String getAssignedUser() {
-        return assignedUser;
-    }
-
-    public void setAssignedUser(String assignedUser) {
+    public void setAssignedUser(AccountDetail assignedUser) {
         this.assignedUser = assignedUser;
     }
 
@@ -62,6 +42,7 @@ public class Schedule {
     public void setRoom(Room room) {
         this.room = room;
     }
+
     public LocalDate getDate() {
         return date;
     }
@@ -70,17 +51,11 @@ public class Schedule {
         this.date = date;
     }
 
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
-    public Timestamp getTime() {
+    public Schedule_Time getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(Schedule_Time time) {
         this.time = time;
     }
 
@@ -91,38 +66,5 @@ public class Schedule {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public Food getFood() {
-        return food;
-    }
-
-    public void setFood(Food food) {
-        this.food = food;
-    }
-
-    public String getMeal() {
-        return meal;
-    }
-
-    public void setMeal(String meal) {
-        this.meal = meal;
-    }
-
-    public Week getWeek() {
-        return week;
-    }
-
-    public void setWeek(Week week) {
-        this.week = week;
-    }
-
-    public DayOfWeek getDayOfWeek() {
-        return dayOfWeek;
-    }
-
-    public void setDayOfWeek(DayOfWeek dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-    }
-    
 
 }

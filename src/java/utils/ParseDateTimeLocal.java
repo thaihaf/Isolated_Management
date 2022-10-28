@@ -5,8 +5,6 @@
 package utils;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 /**
  *
@@ -15,12 +13,7 @@ import java.time.LocalTime;
 public class ParseDateTimeLocal {
 
     public LocalDate parseDate(String dateTimeLocal) {
-        LocalDateTime ldt = LocalDateTime.parse(dateTimeLocal);
-        return ldt.toLocalDate();
-    }
-
-    public LocalTime parseTime(String dateTimeLocal) {
-        LocalDateTime ldt = LocalDateTime.parse(dateTimeLocal);
-        return ldt.toLocalTime();
+        LocalDate ldt = LocalDate.parse(dateTimeLocal);
+        return ldt;
     }
 }

@@ -46,7 +46,7 @@
                               <dd><a href="url">Request Food</a></dd>
                               <dd><a href="url">Request Contact</a></dd>
                               <dd><a href="notif_create">Create Notification</a></dd>
-                              
+
                           </dl>
                           <br />
                       </c:when>   
@@ -85,6 +85,10 @@
                               <a class="sidebar_item" href="viewTest?username=${sessionScope.account.userName}">
                                   <img class="sidebar_item_img" src="../assets/icons/testIcon.png" alt="alt"/>
                                   <div>Test result</div>
+                              </a>
+                              <a class="sidebar_item" href="createSymptom?username=${sessionScope.account.userName}">
+                                  <img class="sidebar_item_img" src="../assets/icons/testIcon.png" alt="alt"/>
+                                  <div>Symptom</div>
                               </a>
                               <a class="sidebar_item" href="patientPrescription">
                                   <img class="sidebar_item_img" src="../assets/icons/donthuoc.png" alt="alt"/>

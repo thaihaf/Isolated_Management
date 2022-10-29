@@ -212,6 +212,14 @@
         <servlet-name>CreateSymptomController</servlet-name>
         <servlet-class>controler.patient.CreateSymptomController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewSymptomController</servlet-name>
+        <servlet-class>controler.ViewSymptomController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSymptomController</servlet-name>
+        <servlet-class>controler.patient.UpdateSymptomController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -419,6 +427,14 @@
     <servlet-mapping>
         <servlet-name>CreateSymptomController</servlet-name>
         <url-pattern>/base/createSymptom</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewSymptomController</servlet-name>
+        <url-pattern>/base/viewSymptom</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSymptomController</servlet-name>
+        <url-pattern>/base/updateSymptom</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>login</welcome-file>

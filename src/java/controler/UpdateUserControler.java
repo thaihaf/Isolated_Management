@@ -94,7 +94,7 @@ public class UpdateUserControler extends HttpServlet {
                 MedicalStaff med = medDB.getByAccountDetail(acc);
                 request.setAttribute("account", acc);
                 request.setAttribute("medical", med);
-                udb.updateDoctorAndNurse(fullName, gender, phone, address, email, dateofbirth, accID, role, leveleducation, hospital);
+//                udb.updateDoctorAndNurse(fullName, gender, phone, address, email, dateofbirth, accID, role, leveleducation, hospital);
                 break;
             }
             case 4: {
@@ -102,7 +102,7 @@ public class UpdateUserControler extends HttpServlet {
                 Patient p = patientDB.get(acc);
                 request.setAttribute("account", acc);
                 request.setAttribute("patient", p);
-                udb.updatePatient(fullName, gender, phone, address, email, dateofbirth, accID, note, blood_Type, background_disease);
+//                udb.updatePatient(fullName, gender, phone, address, email, dateofbirth, accID, note, blood_Type, background_disease);
             }
         }
         String mess = "Update successful";

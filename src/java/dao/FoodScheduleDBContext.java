@@ -53,7 +53,7 @@ public class FoodScheduleDBContext extends DBContext<FoodSchedule> {
                 fs.setDate(rs.getDate("date"));
                 fs.setTime(rs.getTime("time"));
                 week.setDayName(rs.getString("dayName"));
-                food.setFoodName(rs.getString("foodName"));
+//                food.setFoodName(rs.getString("foodName"));
                 food.setType(rs.getString("type"));
                 acc.setUserName(rs.getString("userName"));
                 fs.setMeal(rs.getString("meal"));

@@ -23,7 +23,7 @@
         <div class="wrapper wrapperAdmin">
             <div class="container">
                 <h2>Create schedule</h2>
-                <form id="schedule" action="sched_create" method="POST" class="schedule">
+                <form id="schedule" action="sched_create" method="POST" class="schedule" name="schedule">
                     Person assigned: <select name="person">
                         <c:forEach items="${requestScope.account}" var="a">
                             <option value="${a.account.userName}">${a.fullName}</option>
@@ -34,12 +34,13 @@
                             <option value="${r.id}">${r.name}</option>
                         </c:forEach>
                     </select><br/>
-                    Schedule time: <input type="datetime-local" id="time" name="time"/><br/>
-                    Description:<br/> <textarea name="desc" required style="resize:none;"></textarea><br/>
-                    <button id="submitButton" type="submit">Add</button><br/>
-                </form>
-                <div class="response"></div>
-            </div>
+                    Schedule date: <input type="date" id="date" name="date"/><br/>
+                    Schedule time: <c:forEach items="${requestScope.schedtime}" var="time"><input type="radio" name="time" value="${time.id}" id="time" required/> ${time.name}</c:forEach><br/>
+                        Description:<br/> <textarea name="desc" required style="resize:none;"></textarea><br/>
+                        <button id="submitButton" type="submit">Add</button><br/>
+                    </form>
+                    <div class="response"></div>
+                </div>
             <jsp:include page="../base/footer.jsp" />   
         </div>
     </body>

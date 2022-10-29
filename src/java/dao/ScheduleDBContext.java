@@ -156,6 +156,7 @@ public class ScheduleDBContext extends DBContext<Schedule> {
         try {
             String sql = "SELECT [Schedule].[ID]\n"
                     + "      ,[Account_Details].[Fullname] AS [UserName]\n"
+                    + "   ,[Room].[ID] AS RoomID\n"
                     + "	  ,[Room].[Name] AS [RoomName]\n"
                     + "      ,[Date]\n"
                     + "	  ,[Schedule_Time].[ID] AS [TimeID]\n"
@@ -178,11 +179,134 @@ public class ScheduleDBContext extends DBContext<Schedule> {
                 ad.setFullName(rs.getNString("UserName"));
                 s.setAssignedUser(ad);
                 Room r = new Room();
+                r.setId(rs.getInt("RoomID"));
                 r.setName(rs.getNString("RoomName"));
                 s.setRoom(r);
                 s.setDate(rs.getDate("Date").toLocalDate());
                 Schedule_Time st = new Schedule_Time();
                 st.setId(rs.getInt("TimeID"));
+                s.setTime(st);
+                s.setDescription(rs.getNString("Description"));
+                scheds.add(s);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ScheduleDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return scheds;
+    }
+
+    public ArrayList<Schedule> listByRoom(int roomID, LocalDate firstDay, LocalDate lastDay) {
+        ArrayList<Schedule> scheds = new ArrayList<>();
+        try {
+            String sql = "SELECT [Schedule].[ID]\n"
+                    + "                          ,[Account_Details].[Fullname] AS [AssignedUser]\n"
+                    + "                          ,[Room_ID]\n"
+                    + "                          ,[Date]\n"
+                    + "                          ,[Time]\n"
+                    + "                          ,[Description]\n"
+                    + "                      FROM [Schedule]\n"
+                    + "                      INNER JOIN [Account_Details] ON [Schedule].[AssignedUser] = [Account_Details].[ID]\n"
+                    + "                      WHERE [Room_ID] = ?\n"
+                    + "                      AND [Date] BETWEEN CAST(? AS DATE) AND CAST(? AS DATE)";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setInt(1, roomID);
+            stm.setObject(2, firstDay);
+            stm.setObject(3, lastDay);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Schedule s = new Schedule();
+                s.setId(rs.getInt("ID"));
+                AccountDetail ad = new AccountDetail();
+                ad.setFullName(rs.getNString("AssignedUser"));
+                s.setAssignedUser(ad);
+                Room r = new Room();
+                r.setId(rs.getInt("Room_ID"));
+                s.setRoom(r);
+                s.setDate(rs.getDate("Date").toLocalDate());
+                Schedule_Time st = new Schedule_Time();
+                st.setId(rs.getInt("Time"));
+                s.setTime(st);
+                s.setDescription(rs.getNString("Description"));
+                scheds.add(s);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ScheduleDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return scheds;
+    }
+
+    public ArrayList<Schedule> listByAccountToday(String account, LocalDate currentDate) {
+        ArrayList<Schedule> scheds = new ArrayList<>();
+        try {
+            String sql = "SELECT [Schedule].[ID]\n"
+                    + "      ,[AssignedUser]\n"
+                    + "      ,[Room].[ID] AS [RoomID]\n"
+                    + "      ,[Room].[Name] AS [RoomName]\n"
+                    + "      ,[Date]\n"
+                    + "      ,[Time]\n"
+                    + "      ,[Description]\n"
+                    + "  FROM [Schedule]\n"
+                    + "  INNER JOIN [Room] ON [Schedule].[Room_ID] = [Room].[ID]\n"
+                    + "  WHERE [Schedule].[AssignedUser] = ?\n"
+                    + "  AND [Schedule].[Date] = CAST(? AS DATE)\n"
+                    + "  ORDER BY [Date] ASC";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, account);
+            stm.setObject(2, currentDate);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Schedule s = new Schedule();
+                s.setId(rs.getInt("ID"));
+                AccountDetail ad = new AccountDetail();
+                Account a = new Account();
+                a.setUserName(rs.getString("AssignedUser"));
+                ad.setAccount(a);
+                s.setAssignedUser(ad);
+                Room r = new Room();
+                r.setId(rs.getInt("RoomID"));
+                r.setName(rs.getNString("RoomName"));
+                s.setRoom(r);
+                s.setDate(rs.getDate("Date").toLocalDate());
+                Schedule_Time st = new Schedule_Time();
+                st.setId(rs.getInt("Time"));
+                s.setTime(st);
+                s.setDescription(rs.getNString("Description"));
+                scheds.add(s);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ScheduleDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return scheds;
+    }
+
+    public ArrayList<Schedule> listByRoomToday(Room room, LocalDate currentDate) {
+        ArrayList<Schedule> scheds = new ArrayList<>();
+        try {
+            String sql = "SELECT [Schedule].[ID]\n"
+                    + "      ,[Account_Details].[Fullname] AS [AssignedUser]\n"
+                    + "      ,[Room_ID]\n"
+                    + "      ,[Date]\n"
+                    + "      ,[Time]\n"
+                    + "      ,[Description]\n"
+                    + "  FROM [Schedule]\n"
+                    + "  INNER JOIN [Account_Details] ON [Schedule].[AssignedUser] = [Account_Details].[ID]\n"
+                    + "  WHERE [Schedule].[Room_ID] = ?\n"
+                    + "  AND [Schedule].[Date] = CAST(? AS DATE)\n"
+                    + "  ORDER BY [Date] ASC";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setInt(1, room.getId());
+            stm.setObject(2, currentDate);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Schedule s = new Schedule();
+                s.setId(rs.getInt("ID"));
+                AccountDetail ad = new AccountDetail();
+                ad.setFullName(rs.getNString("AssignedUser"));
+                s.setAssignedUser(ad);
+                s.setRoom(room);
+                s.setDate(rs.getDate("Date").toLocalDate());
+                Schedule_Time st = new Schedule_Time();
+                st.setId(rs.getInt("Time"));
                 s.setTime(st);
                 s.setDescription(rs.getNString("Description"));
                 scheds.add(s);

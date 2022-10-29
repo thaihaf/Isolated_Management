@@ -3,26 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
 
-window.addEventListener('load', () => {
-    var cal = new Date();
-    cal.setMinutes(cal.getMinutes() - cal.getTimezoneOffset());
-    cal.setMilliseconds(null);
-    cal.setSeconds(null);
-    document.getElementById('date').value = cal.toISOString().substr(0, 10);
-    document.schedule.time[0].checked = true;
-});
 
-$(document).ready(function () {
-    $(".schedule").submit(function (event) {
+function save() {
+    $("#submitButton").click(function (event) {
         event.preventDefault();
+        var form = $("#edit");
         $.ajax({
-            method: $(this).attr('method'),
-            data: $(this).serialize(),
-            url: $(this).attr('action'),
-            processData: false,
-            cache: false,
+            url: form.attr('action'),
+            method: form.attr('method'),
+            data: form.serialize(),
             success: function (response) {
-                $(".response").html(response);
+                $("#response").html(response);
+                
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 if (jqXHR.status === 401) {
@@ -34,4 +26,9 @@ $(document).ready(function () {
             }
         });
     });
+}
+
+$(document).ready(function () {
+    save();
 });
+

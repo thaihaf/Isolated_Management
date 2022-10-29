@@ -4,8 +4,10 @@
  */
 package controler.admin;
 
+import dao.ExerciseDBContext;
 import dao.ExerciseSourceTypeDBContext;
 import dao.PatientDBContext;
+import entity.Exercise;
 import entity.Exercise_Source_Type;
 import entity.Patient;
 import java.io.IOException;
@@ -36,11 +38,8 @@ public class CreateExerciseControler extends HttpServlet {
             throws ServletException, IOException {
         ExerciseSourceTypeDBContext estDB = new ExerciseSourceTypeDBContext();
         ArrayList<Exercise_Source_Type> exSourceType = estDB.list();
-        PatientDBContext patientDB = new PatientDBContext();
-        ArrayList<Patient> patients = patientDB.list();
         request.setAttribute("sourcetype", exSourceType);
-        request.setAttribute("patient", patients);
-        request.getRequestDispatcher("").forward(request, response);
+        request.getRequestDispatcher("exercise_create.jsp").forward(request, response);
     }
 
     /**
@@ -54,7 +53,22 @@ public class CreateExerciseControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String name = request.getParameter("name");
+        String note = request.getParameter("note");
+        int type = Integer.parseInt(request.getParameter("type"));
+        String src = request.getParameter("src");
+        String src_validate = (src.length() > 0 && src != null) ? src : null;
+        Exercise e = new Exercise();
+        e.setName(name);
+        e.setNote(note);
+        Exercise_Source_Type exType = new Exercise_Source_Type();
+        exType.setId(type);
+        e.setSourceType(exType);
+        e.setSource(src_validate);
+        ExerciseDBContext exerciseDB = new ExerciseDBContext();
+        exerciseDB.insert(e);
+        PrintWriter out = response.getWriter();
+        out.print("Add successfully.");
     }
 
     /**

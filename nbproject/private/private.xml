@@ -3,45 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/controler/UpdateUserControler.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/base/sidebar.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/dao/DBContext.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/controler/nurse/ReportListControler.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/dao/FoodDBContext.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/admin/foodlist.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/controler/AddFoodControler.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/admin/addfood.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/view/foodmenu.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/dao/UserDBContext.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/controler/FoodMenuControler.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/controler/admin/AddUserControler.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/view/checkSession.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/dao/RoomDBContext.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/admin/updateuser.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/dao/MedicalStaffDBContext.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/entity/Schedule.java</file>
-        </group>
-        <group>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/dao/FoodDBContext.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/patient/patientHomeScreen.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/admin/foodlist.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/controler/AddFoodControler.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/admin/addfood.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/view/foodmenu.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/admin/updatefood.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/controler/UpdateFoodControler.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/controler/UpdateUserControler.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/dao/UserDBContext.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/base/sidebar.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/controler/FoodMenuControler.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/dao/FoodDBContext.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/controler/admin/AddUserControler.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/admin/foodlist.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/admin/updateuser.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/admin/addfood.jsp</file>
-        </group>
-        <group>
             <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/admin/updatefood.jsp</file>
             <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/controler/UpdateUserControler.java</file>
             <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/controler/DeleteFoodControler.java</file>
@@ -79,6 +40,14 @@
             <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/dao/UserDBContext.java</file>
             <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/src/java/controler/admin/AddUserControler.java</file>
             <file>file:/C:/Users/Admin/Documents/GitHub/Isolated_Management/web/admin/updateuser.jsp</file>
+        </group>
+        <group>
+            <file>file:/D:/2_University/Term/Term_9/SWP391/3/Isolated_Management/src/java/controller/doctor/PrescriptionListController.java</file>
+            <file>file:/D:/2_University/Term/Term_9/SWP391/3/Isolated_Management/src/java/controller/doctor/MedicineListController.java</file>
+        </group>
+        <group>
+            <file>file:/D:/2_University/Term/Term_9/SWP391/3/Isolated_Management/src/java/controller/doctor/PrescriptionListController.java</file>
+            <file>file:/D:/2_University/Term/Term_9/SWP391/3/Isolated_Management/src/java/controller/doctor/MedicineListController.java</file>
         </group>
     </open-files>
 </project-private>

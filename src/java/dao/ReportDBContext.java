@@ -94,6 +94,7 @@ public class ReportDBContext extends DBContext<Report> {
             stm.setString(3, model.getNote());
             stm.executeUpdate();
         } catch (SQLException ex) {
+            Logger.getLogger(ReportDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

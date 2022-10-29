@@ -7,6 +7,7 @@ package controler;
 import dao.AccountDetailDBContext;
 import dao.MedicalStaffDBContext;
 import dao.PatientDBContext;
+import dao.UserDBContext;
 import entity.Account;
 import entity.AccountDetail;
 import entity.MedicalStaff;
@@ -45,6 +46,19 @@ public class ProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String userName = request.getParameter("userName");
+        String fullName = request.getParameter("fullName");
+        String gender = request.getParameter("gender");
+        String email = request.getParameter("email");
+        String dateOfBirth = request.getParameter("dateOfBirth");
+        String phone = request.getParameter("phone");
+        String nation = request.getParameter("nation");
+        String address = request.getParameter("address");
+        String levelOfEducation = request.getParameter("levelOfEducation");
+        String hospital = request.getParameter("hospital");
+        String bloodType = request.getParameter("bloodType");
+        String note = request.getParameter("note");
+        String backgroundDesease = request.getParameter("backgroundDesease");
         HttpSession session = request.getSession();
         Account acc = (Account) session.getAttribute("account");
         if (acc == null) {
@@ -54,14 +68,19 @@ public class ProfileController extends HttpServlet {
             AccountDetail info = db.get(acc.getUserName());
             request.setAttribute("info", info);
             String role = acc.getRole().getRole();
+            UserDBContext udb = new UserDBContext();
             if (role.equalsIgnoreCase("Doctor") || role.equalsIgnoreCase("Nurse")) {
                 MedicalStaffDBContext msdb = new MedicalStaffDBContext();
                 MedicalStaff ms = msdb.getInfo(acc.getUserName());
                 request.setAttribute("staff", ms);
-                //request.getRequestDispatcher("view/profile.jsp").forward(request, response);
+                udb.updateDoctorAndNurse(fullName, gender, phone, address, email, dateOfBirth, userName, role, levelOfEducation, hospital);
+                request.setAttribute("staff", ms);
+//request.getRequestDispatcher("view/profile.jsp").forward(request, response);
             } else if (role.equalsIgnoreCase("Patient")) {
                 PatientDBContext pdb = new PatientDBContext();
                 Patient patient = pdb.getInfo(acc.getUserName());
+                request.setAttribute("patient", patient);
+                udb.updatePatient(fullName, gender, phone, address, email, dateOfBirth, userName, note, bloodType, backgroundDesease);
                 request.setAttribute("patient", patient);
                 //request.getRequestDispatcher("view/profile.jsp").forward(request, response);
             }
@@ -72,7 +91,7 @@ public class ProfileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     /**

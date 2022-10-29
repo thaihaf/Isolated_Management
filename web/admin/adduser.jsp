@@ -20,7 +20,7 @@
             <div class="container">
                 <form action="adduser" method="post">
                     <input type="hidden" value=""/>
-                    <span style="color: red;">${mess}</span><br>
+                    <span style="color: red;">${mes}</span><br>
                     Username: <input required type="text" name="username"><br>
                     Password: <input required type="password" name="password"><br>
                     Full name: <input required type="text" name="fullName" value=""/><br/>

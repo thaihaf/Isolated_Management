@@ -21,6 +21,7 @@ public class FoodSchedule {
     private Time time;
     private Room room;
     private String meal;
+    private int quantityBringToPatient;
 
     public FoodSchedule() {
     }
@@ -95,5 +96,13 @@ public class FoodSchedule {
 
     public void setMeal(String meal) {
         this.meal = meal;
+    }
+
+    public int getQuantityBringToPatient() {
+        return quantityBringToPatient;
+    }
+
+    public void setQuantityBringToPatient(int quantityBringToPatient) {
+        this.quantityBringToPatient = quantityBringToPatient;
     }
 }

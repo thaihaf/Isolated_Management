@@ -85,15 +85,6 @@ public class AccountDBContext extends DBContext<Account> {
             stm.setString(8, email);
             stm.setString(9, nation);
             stm.setDate(10, dateofbirth);
-//            stm.setString(1, ID);
-//            stm.setString(2, fullName);
-//            stm.setBoolean(3, gender);
-//            stm.setString(4, phone);
-//            stm.setString(5, address);
-//            stm.setString(6, email);
-//            stm.setString(7, nation);
-//            stm.setString(8, ID);
-//            stm.setString(9, password);
             stm.executeQuery();
             return true;
         } catch (SQLException ex) {

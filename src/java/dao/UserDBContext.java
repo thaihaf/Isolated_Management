@@ -45,9 +45,9 @@ public class UserDBContext extends DBContext<Account> {
 //        stm.setString(1, );
 //    }
 
-    public void updatePatient(String fullName, Boolean gender, String phone, String address,
+    public void updatePatient(String fullName, String gender, String phone, String address,
             String email, String dateofbirth, String ID, String note,
-            String bloodType, Boolean backgroundDesease) {
+            String bloodType, String backgroundDesease) {
         try {
             String sql = "UPDATE Account_Details\n"
                     + "SET Account_Details.Fullname = ?, \n"
@@ -66,7 +66,7 @@ public class UserDBContext extends DBContext<Account> {
                     + "WHERE Account.Username = ? and Account.Role_ID = 4";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, fullName);
-            stm.setBoolean(2, gender);
+            stm.setString(2, gender);
             stm.setString(3, phone);
             stm.setString(4, address);
             stm.setString(5, email);
@@ -74,7 +74,7 @@ public class UserDBContext extends DBContext<Account> {
 //            stm.setString(7, nation);
             stm.setString(7, ID);
             stm.setString(8, note);
-            stm.setBoolean(9, backgroundDesease);
+            stm.setString(9, backgroundDesease);
             stm.setString(10, bloodType);
             stm.setString(11, ID);
             stm.executeUpdate();
@@ -83,9 +83,9 @@ public class UserDBContext extends DBContext<Account> {
         }
     }
 
-    public void updateDoctorAndNurse(String fullName, Boolean gender, String phone, String address,
+    public void updateDoctorAndNurse(String fullName, String gender, String phone, String address,
             String email, String dateofbirth, String ID,
-            String role, String leveleducation, String hospital) {
+            String role, String levelOfEducation, String hospital) {
         try {
             String sql = "UPDATE Account_Details\n"
                     + "SET Account_Details.Fullname = ?, \n"
@@ -104,7 +104,7 @@ public class UserDBContext extends DBContext<Account> {
                     + "WHERE Account.Username = ? and Account.Role_ID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, fullName);
-            stm.setBoolean(2, gender);
+            stm.setString(2, gender);
             stm.setString(3, phone);
             stm.setString(4, address);
             stm.setString(5, email);
@@ -112,7 +112,7 @@ public class UserDBContext extends DBContext<Account> {
 //            stm.setString(7, nation);
             stm.setString(7, ID);
             stm.setString(8, role);
-            stm.setString(9, leveleducation);
+            stm.setString(9, levelOfEducation);
             stm.setString(10, hospital);
             stm.setString(11, ID);
             stm.setString(12, role);

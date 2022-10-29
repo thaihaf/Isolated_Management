@@ -6,6 +6,15 @@ package controler.admin;
 
 import dao.AccountDBContext;
 import dao.UserDBContext;
+import entity.Account;
+import entity.AccountDetail;
+import jakarta.mail.Authenticator;
+import jakarta.mail.Message;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,6 +22,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Date;
+import java.util.Properties;
+import utils.Mail;
 
 /**
  *
@@ -58,6 +69,10 @@ public class AddUserControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+//        Mail mail = new Mail();
+//        Account acc = new Account();
+//        AccountDetail ad = new AccountDetail();
+//        mail.sendAccAndPassToEmail(ad, acc);
         request.getRequestDispatcher("admin/adduser.jsp").forward(request, response);
     }
 
@@ -79,7 +94,7 @@ public class AddUserControler extends HttpServlet {
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
         String email = request.getParameter("email");
-        String nation = request.getParameter("nation"); 
+        String nation = request.getParameter("nation");
         Date dateofbirth = Date.valueOf(request.getParameter("dateofbirth"));
         int role = Integer.parseInt(request.getParameter("role"));
         String leveleducation = request.getParameter("leveleducation");
@@ -87,16 +102,18 @@ public class AddUserControler extends HttpServlet {
         AccountDBContext adb = new AccountDBContext();
         String checkUsername = adb.checkUser(username);
         UserDBContext udb = new UserDBContext();
-        String mess = "";
+        String mes = "";
         if (checkUsername == "This username is existed") {
             request.setAttribute("mess", checkUsername);
             request.getRequestDispatcher("admin/adduser.jsp").forward(request, response);
         } else {
             udb.addUser(username, fullName, gender, phone, address, role, email, nation, password, dateofbirth, leveleducation, hospital);
-            mess = "Add more user successful";
-            request.setAttribute("mess", mess);
+            mes = "Add more user successful";
+            request.setAttribute("mes", mes);
             request.getRequestDispatcher("admin/adduser.jsp").forward(request, response);
         }
+        Mail mail = new Mail();
+        
     }
 
     /**

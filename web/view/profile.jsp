@@ -42,26 +42,28 @@
                              <input type="submit" class="updateInfo_btnSubmit" title="save" />
                          </div>
                      </div>
+                     
+                     <input type="hidden" name="userName" value="${infor.userName}">
 
                      <div class="updateInfo_group">
                          <div class="updateInfo_item left">
                              <div class="item_title">fullname</div>
-                             <input type="text" class="item_input" value="${info.fullName}">
+                             <input name="name" type="text" class="item_input" value="${info.fullName}">
                          </div>
                          <div class="updateInfo_item right">
                              <div class="item_title">gender</div>
                              <div class="btns_radio">
                                  <div class="btn_radioGroup">
-                                     <input type="radio" title="Male" class="btn_radioInput" <c:if test="${info.gender eq true}">
+                                     <input name="gender" type="radio" title="Male" class="btn_radioInput" <c:if test="${info.gender eq true}">
                                             checked="checked"
-                                         </c:if> name="gender">
+                                         </c:if>>
                                      <div class="btn_radioText">male</div>
                                  </div>
                                  <div class="btn_radioGroup">
-                                     <input type="radio" title="Female" class="btn_radioInput" <c:if
+                                     <input name="gender" type="radio" title="Female" class="btn_radioInput" <c:if
                                                 test="${info.gender eq false}">
                                                 checked="checked"
-                                            </c:if> name="gender">
+                                            </c:if>>
                                      <div class="btn_radioText">female</div>
                                  </div>
 
@@ -72,29 +74,29 @@
                      <div class="updateInfo_group">
                          <div class="updateInfo_item left">
                              <div class="item_title">email</div>
-                             <input type="text" class="item_input" value="${info.email}">
+                             <input type="text" name="email" class="item_input" value="${info.email}">
                          </div>
                          <div class="updateInfo_item right">
                              <div class="item_title">Date of birth</div>
-                             <input type="text" class="item_input" value="${info.dateofbirth}">
+                             <input type="text" name="dateOfBirth" class="item_input" value="${info.dateofbirth}">
                          </div>
                      </div>
 
                      <div class="updateInfo_group">
                          <div class="updateInfo_item left">
                              <div class="item_title">phone</div>
-                             <input type="text" class="item_input" value="${info.phone}">
+                             <input type="text" name="phone" class="item_input" value="${info.phone}">
                          </div>
                          <div class="updateInfo_item right">
                              <div class="item_title">national</div>
-                             <input type="text" class="item_input" value="${info.nation}">
+                             <input type="text" name="nation" class="item_input" value="${info.nation}">
                          </div>
                      </div>
 
                      <div class="updateInfo_group">
                          <div class="updateInfo_item full">
                              <div class="item_title">address</div>
-                             <input type="text" class="item_input" value="${info.address}">
+                             <input type="text" name="address" class="item_input" value="${info.address}">
                          </div>
                      </div>
 
@@ -102,11 +104,11 @@
                          <div class="updateInfo_group">
                              <div class="updateInfo_item left">
                                  <div class="item_title">Level of education</div>
-                                 <input type="text" class="item_input" value="${staff.levelOfEducation}">
+                                 <input type="text" name="levelOfEducation" class="item_input" value="${staff.levelOfEducation}">
                              </div>
                              <div class="updateInfo_item right">
                                  <div class="item_title">Hospital</div>
-                                 <input type="text" class="item_input" value="${staff.hospital}">
+                                 <input type="text" name="hospital" class="item_input" value="${staff.hospital}">
                              </div>
                          </div>
                      </c:if>
@@ -115,11 +117,11 @@
                          <div class="updateInfo_group">
                              <div class="updateInfo_item left">
                                  <div class="item_title">Blood Type</div>
-                                 <input type="text" class="item_input" value="${patient.bloodType}">
+                                 <input type="text" name="bloodType" class="item_input" value="${patient.bloodType}">
                              </div>
                              <div class="updateInfo_item right">
                                  <div class="item_title">Note</div>
-                                 <input type="text" class="item_input" value="${patient.note}">
+                                 <input type="text" name="note" class="item_input" value="${patient.note}">
                              </div>
                          </div>
 
@@ -129,7 +131,7 @@
                          <div class="updateInfo_group">
                              <div class="updateInfo_item full">
                                  <div class="item_title">Background Diseases</div>
-                                 <textarea rows="5" cols="25" placeholder="${patient.backgroundDisease}" class="item_input"></textarea>
+                                 <textarea name="backgroundDesease" rows="5" cols="25" placeholder="${patient.backgroundDisease}" class="item_input"></textarea>
                              </div>
                          </div>
                      </c:if>

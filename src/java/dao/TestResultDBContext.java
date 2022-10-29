@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  * @author Mountain
  */
 public class TestResultDBContext extends DBContext<TestResult> {
-
+    
     @Override
     public ArrayList<TestResult> list() {
         ArrayList<TestResult> testResult = new ArrayList<>();
@@ -70,7 +70,7 @@ public class TestResultDBContext extends DBContext<TestResult> {
         }
         return testResult;
     }
-
+    
     @Override
     public TestResult get(int id) {
         try {
@@ -115,7 +115,7 @@ public class TestResultDBContext extends DBContext<TestResult> {
         }
         return null;
     }
-
+    
     @Override
     public void insert(TestResult model) {
         try {
@@ -140,13 +140,14 @@ public class TestResultDBContext extends DBContext<TestResult> {
             Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public ArrayList<TestResult> getTestResultByID(String username) {
         ArrayList<TestResult> results = new ArrayList<>();
         try {
-            String sql = "select tr.ID,tr.Patient_ID,tr.Result,tt.Type,tr.Status,tr.Person_Test,tr.TestTime \n"
+            String sql = "select tr.ID,tr.Patient_ID,tr.Result,tt.Type,tr.Status,ad.Fullname,tr.TestTime \n"
                     + "from Test_Result tr join Test_Type tt \n"
-                    + "on tr.TestType_ID = tt.ID where tr.Patient_ID = ?";
+                    + "on tr.TestType_ID = tt.ID join Account_Details ad on ad.ID = tr.Person_Test\n"
+                    + "where tr.Patient_ID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, username);
             ResultSet rs = stm.executeQuery();
@@ -155,7 +156,6 @@ public class TestResultDBContext extends DBContext<TestResult> {
                 AccountDetail patient = new AccountDetail();
                 Account patientAcc = new Account();
                 AccountDetail nurse = new AccountDetail();
-                Account nurseAcc = new Account();
                 patientAcc.setUserName(rs.getString("Patient_ID"));
                 patient.setAccount(patientAcc);
                 tr.setPatientAccount(patient);
@@ -164,8 +164,7 @@ public class TestResultDBContext extends DBContext<TestResult> {
                 tt.setTypeName(rs.getNString("Type"));
                 tr.setTestType(tt);
                 tr.setTestTime(rs.getTimestamp("TestTime"));
-                nurseAcc.setUserName(rs.getString("Person_Test"));
-                nurse.setAccount(nurseAcc);
+                nurse.setFullName(rs.getString("Fullname"));
                 tr.setId(rs.getInt("ID"));
                 tr.setPersonTest(nurse);
                 tr.setStatus(rs.getBoolean("Status"));
@@ -176,17 +175,17 @@ public class TestResultDBContext extends DBContext<TestResult> {
         }
         return results;
     }
-
+    
     @Override
     public void update(TestResult model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public void delete(TestResult model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     public boolean changeStatus(boolean status, int id) {
         try {
             String sql = "UPDATE [Test_Result]\n"

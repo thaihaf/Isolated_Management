@@ -90,6 +90,10 @@
                                   <img class="sidebar_item_img" src="../assets/icons/testIcon.png" alt="alt"/>
                                   <div>Test result</div>
                               </a>
+                              <a class="sidebar_item" href="createSymptom?username=${sessionScope.account.userName}">
+                                  <img class="sidebar_item_img" src="../assets/icons/testIcon.png" alt="alt"/>
+                                  <div>Symptom</div>
+                              </a>
                               <a class="sidebar_item" href="patientPrescription">
                                   <img class="sidebar_item_img" src="../assets/icons/donthuoc.png" alt="alt"/>
                                   <div>Prescription</div>

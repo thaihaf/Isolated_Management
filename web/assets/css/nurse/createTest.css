@@ -1,0 +1,31 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Oct 29, 2022, 7:54:07 AM
+    Author     : hapro
+*/
+
+.table{
+    font-size: 1.4rem;
+}
+
+.des_show{
+    position: relative;
+}
+.des_hidden{
+    position: absolute;
+    left: 110%;
+    top: -300%;
+    width: max-content;
+    background-color: white;
+    padding: 1rem 2rem;
+    width: 35rem;
+    border-radius: 1rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    visibility: hidden;
+}
+.des_show:hover .des_hidden{
+    visibility: visible;
+}

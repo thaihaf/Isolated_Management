@@ -12,11 +12,13 @@ public class Room {
 
     private int id;
     private String name;
+    private int numOfUse;
     private int numOfBed;
     private Area area;
     private AccountDetail doctorManage;
     private AccountDetail nurseManage;
     private boolean available;
+    private int level;
 
     public boolean isAvailable() {
         return available;
@@ -73,6 +75,23 @@ public class Room {
     public void setNurseManage(AccountDetail nurseManage) {
         this.nurseManage = nurseManage;
     }
+
+    public int getNumOfUse() {
+        return numOfUse;
+    }
+
+    public void setNumOfUse(int numOfUse) {
+        this.numOfUse = numOfUse;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+    
     @Override
     public String toString() {
         return "Room{" + "id=" + id + ", name=" + name + ", numOfBed=" + numOfBed + ", area=" + area + ", doctorManage=" + doctorManage + ", nurseManage=" + nurseManage + ", toString=" +  '}';

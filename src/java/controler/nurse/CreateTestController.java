@@ -114,6 +114,22 @@ public class CreateTestController extends HttpServlet {
             ts.setPersonTest(ad1);
             TestResultDBContext db = new TestResultDBContext();
             db.insert(ts);
+            
+             // thai ha
+                String roomSelect = request.getParameter("roomSelect");
+                if (roomSelect != null || !roomSelect.trim().isEmpty()) {
+                    PatientDBContext patientDB = new PatientDBContext();
+                    RoomDBContext roomDB = new RoomDBContext();
+                    String username = request.getParameter("id");
+                    int currentRoomId = patientDB.getInfo(username).getRoom().getId();
+                    int newRoomId = Integer.parseInt(roomSelect);
+                    boolean changeRoomSuccess = patientDB.changePatientRoom(newRoomId, username);
+                    if (changeRoomSuccess) {
+                        roomDB.updateNumOfUseById(currentRoomId, roomDB.getNumOfUseByRoomId(currentRoomId) - 1);
+                        roomDB.updateNumOfUseById(newRoomId, roomDB.getNumOfUseByRoomId(newRoomId) + 1);
+                    }
+                }
+            
             request.setAttribute("action", "Create Test");
             request.getRequestDispatcher("../view/createConfirm.jsp").forward(request, response);
         } else {

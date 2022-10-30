@@ -6,14 +6,12 @@ package entity;
 
 /**
  *
- * @author Admin
+ * @author Mountain
  */
-public class DayOfWeek {
-    private int id;
-    private String dayOfWeek;
+public class Exercise_Source_Type {
 
-    public DayOfWeek() {
-    }
+    private int id;
+    private String type;
 
     public int getId() {
         return id;
@@ -23,13 +21,12 @@ public class DayOfWeek {
         this.id = id;
     }
 
-    public String getDayOfWeek() {
-        return dayOfWeek;
+    public String getType() {
+        return type;
     }
 
-    public void setDayOfWeek(String dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
+    public void setType(String type) {
+        this.type = type;
     }
-    
-    
+
 }

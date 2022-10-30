@@ -66,5 +66,4 @@ public class Schedule {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }

@@ -18,7 +18,7 @@
 
         <jsp:include page="/base/header.jsp" />
 
-        <div class="wrapper wrapperUser">
+        <div class="wrapper wrapperAdmin">
             <div class="container" style="text-align: center; width:40%;">
                 <form action="notif_create" method="POST">
                     <h1>Create notification</h1>

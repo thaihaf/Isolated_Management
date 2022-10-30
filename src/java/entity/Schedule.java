@@ -4,20 +4,25 @@
  */
 package entity;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 
 /**
  *
  * @author Admin
  */
 public class Schedule {
-
     private int id;
-    private AccountDetail assignedUser;
+    private String assignedUser;
     private Room room;
-    private LocalDate date;
-    private Schedule_Time time;
+    private Timestamp time;
     private String description;
+    private Food food;
+    private String meal;
+    private Week week;
+    private DayOfWeek dayOfWeek;
+
+    public Schedule() {
+    }
 
     public int getId() {
         return id;
@@ -27,11 +32,11 @@ public class Schedule {
         this.id = id;
     }
 
-    public AccountDetail getAssignedUser() {
+    public String getAssignedUser() {
         return assignedUser;
     }
 
-    public void setAssignedUser(AccountDetail assignedUser) {
+    public void setAssignedUser(String assignedUser) {
         this.assignedUser = assignedUser;
     }
 
@@ -43,19 +48,11 @@ public class Schedule {
         this.room = room;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public Schedule_Time getTime() {
+    public Timestamp getTime() {
         return time;
     }
 
-    public void setTime(Schedule_Time time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
 
@@ -66,4 +63,38 @@ public class Schedule {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Food getFood() {
+        return food;
+    }
+
+    public void setFood(Food food) {
+        this.food = food;
+    }
+
+    public String getMeal() {
+        return meal;
+    }
+
+    public void setMeal(String meal) {
+        this.meal = meal;
+    }
+
+    public Week getWeek() {
+        return week;
+    }
+
+    public void setWeek(Week week) {
+        this.week = week;
+    }
+
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public void setDayOfWeek(DayOfWeek dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
+    }
+    
+    
 }

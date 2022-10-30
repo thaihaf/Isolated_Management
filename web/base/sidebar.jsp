@@ -33,12 +33,18 @@
                               <dd><a href="../admin/users" class="selected">Account Lists</a></dd>
                               <dd><a href="../admin/rooms" class="selected">Room Lists</a></dd>
                               <dd><a href="../admin/areas" class="selected">Area Lists</a></dd>
+                              <dd><a href="/abc">Add Patient</a></dd>
+                              <dd><a href="url">Add Doctor</a></dd>
+                              <dd><a href="url">Add Nurse</a></dd>
 
                               <dt>Manager</dt>
                               <dd><a href="../admin/foodlist">Food List</a></dd>
                               <dd><a href="url">Medical List</a></dd>
 
-                              <dt>Request & Notification Manager</dt>
+                              <dt>Request Manager</dt>
+                              <dd><a href="url">Request Medical</a></dd>
+                              <dd><a href="url">Request Food</a></dd>
+                              <dd><a href="url">Request Contact</a></dd>
                               <dd><a href="notif_create">Create Notification</a></dd>
 
                               <dt>Exercise Management</dt>
@@ -48,7 +54,6 @@
                               <dt>Schedule Management</dt>
                               <dd><a href="sched_create">Create Schedule</a></dd>
                               <dd><a href="sched_list">Schedule list</a></dd>
-
                           </dl>
                           <br />
                       </c:when>   
@@ -114,10 +119,6 @@
                                   <div>Profile</div>
                               </a>
                               <br>
-                              <a class="sidebar_item" href="schedule">
-                                  <img class="sidebar_item_img img_profile" src="../assets/icons/schedule.png" alt="alt"/>
-                                  <div>Schedule</div>
-                              </a>
                               <c:if test="${role.id eq 2}">
                                   <dt>Manager</dt>
                                   <dd><a href="../foodlist">Food List</a></dd>

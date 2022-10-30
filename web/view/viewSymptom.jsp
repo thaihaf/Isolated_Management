@@ -17,12 +17,15 @@
     <body>
         <jsp:include page="../base/sidebar.jsp" />
         <jsp:include page="../base/header.jsp" />
+        <c:set var="role" value="${sessionScope.account.role}" />
         <div class="wrapper wrapperUser">
             <div class="container">
                 <!--Code vào đây là oke-->
                 <div>
                     <h1>SYMPTOM REPORTS</h1>
-                    <a href="updateSymptom">Update latest symptom report click here</a>  
+                    <c:if test="${role.id eq 4}">
+                        <a href="updateSymptom">Update latest symptom report click here</a> 
+                    </c:if>
                 </div>
                 <table class="table">
                     <tr style="color: red;">

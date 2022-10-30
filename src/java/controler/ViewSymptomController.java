@@ -62,7 +62,7 @@ public class ViewSymptomController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Account acc = (Account) session.getAttribute("account");
-        String username = acc.getUserName();
+        String username = request.getParameter("username");
         SymptomDBContext db = new SymptomDBContext();
         ArrayList<Symptom> lists = db.getSymptomByID(username);
         request.setAttribute("symptoms", lists);

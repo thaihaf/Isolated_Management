@@ -74,6 +74,13 @@ table{
     width:100%;
 }
 
+.wrapper_btn{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #submitForm{
     width: 300px;
     background-color: #cdffc9;
@@ -81,4 +88,5 @@ table{
     height: 30px;
     border-radius: 4px;
     margin-bottom: 1rem;
+    cursor: pointer;
 }

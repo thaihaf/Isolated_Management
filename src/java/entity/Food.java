@@ -11,19 +11,17 @@ import java.sql.Date;
  * @author Admin
  */
 public class Food {
+
     private int id;
     private String name;
     private String type;
     private Date addedDate;
+    private String sourcesOfSupply;
+    private int quantity;
+    private Date dateOfManufacture;
+    private Date expiry;
 
     public Food() {
-    }
-
-    public Food(int id, String name, String type, Date addedDate) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.addedDate = addedDate;
     }
 
     public int getId() {
@@ -58,8 +56,36 @@ public class Food {
         this.addedDate = addedDate;
     }
 
-    @Override
-    public String toString() {
-        return "Food{" + "id=" + id + ", name=" + name + ", type=" + type + ", addedDate=" + addedDate + '}';
+    public String getSourcesOfSupply() {
+        return sourcesOfSupply;
     }
+
+    public void setSourcesOfSupply(String sourcesOfSupply) {
+        this.sourcesOfSupply = sourcesOfSupply;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Date getDateOfManufacture() {
+        return dateOfManufacture;
+    }
+
+    public void setDateOfManufacture(Date dateOfManufacture) {
+        this.dateOfManufacture = dateOfManufacture;
+    }
+
+    public Date getExpiry() {
+        return expiry;
+    }
+
+    public void setExpiry(Date expiry) {
+        this.expiry = expiry;
+    }
+
 }

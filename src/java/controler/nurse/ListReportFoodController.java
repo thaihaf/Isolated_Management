@@ -3,23 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controler;
+package controler.nurse;
 
-import dao.FoodDBContext;
+import dao.ReportFoodDBContext;
+import entity.FoodReport;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Date;
 import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public class FoodMenuControler extends HttpServlet {
+public class ListReportFoodController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -30,19 +30,10 @@ public class FoodMenuControler extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet FoodMenuControler</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet FoodMenuControler at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        ReportFoodDBContext rfdb = new ReportFoodDBContext();
+        ArrayList<FoodReport> frs = rfdb.showAllFoodReport();
+        request.setAttribute("frs", frs);
+        request.getRequestDispatcher("../nurse/listreportfood.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -56,7 +47,7 @@ public class FoodMenuControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("view/foodmenu.jsp").forward(request, response);
+        processRequest(request, response);
     } 
 
     /** 
@@ -69,10 +60,7 @@ public class FoodMenuControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        Date day = Date.valueOf(request.getParameter("day"));
-        FoodDBContext fdb = new FoodDBContext();
-        
-        request.getRequestDispatcher("view/foodmenu.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /** 

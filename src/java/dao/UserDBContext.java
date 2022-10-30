@@ -46,7 +46,7 @@ public class UserDBContext extends DBContext<Account> {
 //    }
 
     public void updatePatient(String fullName, String gender, String phone, String address,
-            String email, String dateofbirth, String ID, String note,
+            String email, String dateofbirth, String nation, String ID, String note,
             String bloodType, String backgroundDesease) {
         try {
             String sql = "UPDATE Account_Details\n"
@@ -56,6 +56,7 @@ public class UserDBContext extends DBContext<Account> {
                     + "Account_Details.Address = ?,\n"
                     + "Account_Details.Email = ?,\n"
                     + "Account_Details.DateOfBirth = ?\n"
+                    + "Account_Details.Nation = ?,\n"
                     + "FROM Account_Details INNER JOIN Account\n"
                     + "ON Account.Username = Account_Details.ID\n"
                     + "WHERE Account.Username = ? and Account.Role_ID = 4\n"
@@ -71,12 +72,12 @@ public class UserDBContext extends DBContext<Account> {
             stm.setString(4, address);
             stm.setString(5, email);
             stm.setString(6, dateofbirth);
-//            stm.setString(7, nation);
-            stm.setString(7, ID);
-            stm.setString(8, note);
-            stm.setString(9, backgroundDesease);
-            stm.setString(10, bloodType);
-            stm.setString(11, ID);
+            stm.setString(7, nation);
+            stm.setString(8, ID);
+            stm.setString(9, note);
+            stm.setString(10, backgroundDesease);
+            stm.setString(11, bloodType);
+            stm.setString(12, ID);
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -84,7 +85,7 @@ public class UserDBContext extends DBContext<Account> {
     }
 
     public void updateDoctorAndNurse(String fullName, String gender, String phone, String address,
-            String email, String dateofbirth, String ID,
+            String email, String dateofbirth, String nation, String ID,
             String role, String levelOfEducation, String hospital) {
         try {
             String sql = "UPDATE Account_Details\n"
@@ -94,6 +95,7 @@ public class UserDBContext extends DBContext<Account> {
                     + "Account_Details.Address = ?,\n"
                     + "Account_Details.Email = ?,\n"
                     + "Account_Details.DateOfBirth = ?\n"
+                    + "Account_Details.Nation = ?,\n"
                     + "FROM Account_Details INNER JOIN Account\n"
                     + "ON Account.Username = Account_Details.ID\n"
                     + "WHERE Account.Username = ? and Account.Role_ID = ?\n"
@@ -109,13 +111,13 @@ public class UserDBContext extends DBContext<Account> {
             stm.setString(4, address);
             stm.setString(5, email);
             stm.setString(6, dateofbirth);
-//            stm.setString(7, nation);
-            stm.setString(7, ID);
-            stm.setString(8, role);
-            stm.setString(9, levelOfEducation);
-            stm.setString(10, hospital);
-            stm.setString(11, ID);
-            stm.setString(12, role);
+            stm.setString(7, nation);
+            stm.setString(8, ID);
+            stm.setString(9, role);
+            stm.setString(10, levelOfEducation);
+            stm.setString(11, hospital);
+            stm.setString(12, ID);
+            stm.setString(13, role);
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);

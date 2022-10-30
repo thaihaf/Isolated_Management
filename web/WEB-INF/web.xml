@@ -216,6 +216,14 @@
         <servlet-name>CreateSymptomController</servlet-name>
         <servlet-class>controler.patient.CreateSymptomController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListReportFoodController</servlet-name>
+        <servlet-class>controler.nurse.ListReportFoodController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FoodScheduleForPatientController</servlet-name>
+        <servlet-class>controler.patient.FoodScheduleForPatientController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -418,15 +426,23 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FoodScheduleForNurseController</servlet-name>
-        <url-pattern>/food_schedule_for_nurse</url-pattern>
-        </servlet-mapping>
-    <servlet-mapping> 
+        <url-pattern>/nurse/food_schedule_for_nurse</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DeleteInjectionController</servlet-name>
         <url-pattern>/base/deleteInjection</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateSymptomController</servlet-name>
         <url-pattern>/base/createSymptom</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListReportFoodController</servlet-name>
+        <url-pattern>/nurse/list_reports_food</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FoodScheduleForPatientController</servlet-name>
+        <url-pattern>/patient/food_schedule_for_patient</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>login</welcome-file>

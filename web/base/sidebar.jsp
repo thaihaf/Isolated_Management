@@ -78,7 +78,7 @@
                                   <img class="sidebar_item_img" src="../assets/icons/reportIcon.png" alt="alt"/>
                                   <div>Report</div>
                               </a>
-                              <a class="sidebar_item" href="../foodschedulefornurse">
+                              <a class="sidebar_item" href="../nurse/food_schedule_for_nurse">
                                   <img class="sidebar_item_img" src="../assets/icons/foodmenu.png" alt="alt"/>
                                   <div>Food Schedule</div>
                               </a>
@@ -102,7 +102,7 @@
                                   <img class="sidebar_item_img" src="../assets/icons/testIcon.png" alt="alt"/>
                                   <div>Injection</div>
                               </a>
-                              <a class="sidebar_item" href="../foodscheduleforpatient">
+                              <a class="sidebar_item" href="../patient/food_schedule_for_patient">
                                   <img class="sidebar_item_img" src="../assets/icons/foodmenu.png" alt="alt"/>
                                   <div>Food Schedule</div>
                               </a>

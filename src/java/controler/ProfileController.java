@@ -73,14 +73,14 @@ public class ProfileController extends HttpServlet {
                 MedicalStaffDBContext msdb = new MedicalStaffDBContext();
                 MedicalStaff ms = msdb.getInfo(acc.getUserName());
                 request.setAttribute("staff", ms);
-                udb.updateDoctorAndNurse(fullName, gender, phone, address, email, dateOfBirth, userName, role, levelOfEducation, hospital);
+                udb.updateDoctorAndNurse(fullName, gender, phone, address, email, dateOfBirth, nation, userName, role, levelOfEducation, hospital);
                 request.setAttribute("staff", ms);
 //request.getRequestDispatcher("view/profile.jsp").forward(request, response);
             } else if (role.equalsIgnoreCase("Patient")) {
                 PatientDBContext pdb = new PatientDBContext();
                 Patient patient = pdb.getInfo(acc.getUserName());
                 request.setAttribute("patient", patient);
-                udb.updatePatient(fullName, gender, phone, address, email, dateOfBirth, userName, note, bloodType, backgroundDesease);
+                udb.updatePatient(fullName, gender, phone, address, email, dateOfBirth, nation, userName, note, bloodType, backgroundDesease);
                 request.setAttribute("patient", patient);
                 //request.getRequestDispatcher("view/profile.jsp").forward(request, response);
             }

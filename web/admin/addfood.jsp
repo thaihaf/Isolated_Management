@@ -30,8 +30,12 @@
                         <option value="Drink">Drink</option>
                         <option value="Food">Food</option>
                     </select><br>
+                    Quantity: <input required type="text" name="quantity" value=""><br>
                     Added date: <input required type="date" name="addedDate" value=""><br>
-                    <input onclick="confirmAdd()" type="Submit" value="Add">
+                    Sources of Supply: <input required type="text" name="sourcesOfSupply" value=""><br>
+                    Date of manufacture: <input required type="date" name="dateOfManufacture" value=""><br>
+                    Expiry: <input required type="date" name="expiry" value=""><br>
+                    <input type="Submit" value="Add">
                     <button><a style="text-decoration: none;" href="foodlist">Return to Food List</a></button>
                 </form>
             </div>

@@ -39,7 +39,7 @@
                          <div class="updateInfo_title">basic info</div>
                          <div class="updateInfo_btns">
                              <input type="reset" class="updateInfo_btnReset" title="reset" />
-                             <input type="submit" class="updateInfo_btnSubmit" title="save" />
+                             <input type="submit" class="updateInfo_btnSubmit" title="save"/>
                          </div>
                      </div>
                      

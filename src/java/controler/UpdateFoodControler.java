@@ -64,14 +64,18 @@ public class UpdateFoodControler extends HttpServlet {
         String id = request.getParameter("id");
         String food = request.getParameter("food");
         String type = request.getParameter("type");
+//        Date addedDate = request.getParameter("addedDate");
+        String sourcesOfSupply = request.getParameter("sourcesOfSupply");
         String addedDate = request.getParameter("addedDate");
-//        Date addedDate = Date.valueOf(request.getParameter("addedDate"));
+        String quantity = request.getParameter("quantity");
+        String dateOfManufacture = request.getParameter("dateOfManufacture");
+        String expiry = request.getParameter("expiry");
         FoodDBContext fdb = new FoodDBContext();
         Food f = fdb.loadFoodById(id);
         request.setAttribute("food", f);
 //        String mess = "";
-        if (fdb.updateFood(food, type, addedDate, id) == true) {
-            fdb.updateFood(food, type, addedDate, id);
+        if (fdb.updateFood(food, type, addedDate, sourcesOfSupply, quantity, dateOfManufacture, expiry, id) == true) {
+            fdb.updateFood(food, type, addedDate, sourcesOfSupply, quantity, dateOfManufacture, expiry, id);
             request.setAttribute("food", fdb.loadFoodById(id));
             request.setAttribute("mess", "Change food success");
             request.getRequestDispatcher("updatefood.jsp").forward(request, response);

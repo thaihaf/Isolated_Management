@@ -8,12 +8,15 @@ import entity.Account;
 import entity.Calendar;
 import entity.Food;
 import entity.FoodSchedule;
-import entity.FoodScheduleNurse;
+import entity.FoodSchedule2;
 import entity.Room;
 import entity.Week;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,49 +27,52 @@ import java.util.logging.Logger;
  */
 public class FoodScheduleDBContext extends DBContext<FoodSchedule> {
 
-    public ArrayList<FoodScheduleNurse> fsns = new ArrayList<>();
-    public ArrayList<FoodScheduleNurse> foodScheduleForNurse(String userName, String calendarID) {
+    public ArrayList<FoodSchedule2> fsns = new ArrayList<>();
+    public ArrayList<FoodSchedule2> foodScheduleForNurse(String userName) {
         try {
             String sql = "Select Food_Schedule.Date, Food_Schedule.Time, \n"
                     + "Week.dayName, Food.Name, Food.Type, Food.AddedDate,\n"
-                    + "Food_Schedule.AsignedUser, Food_Schedule.Meal, Food.Quantity, \n"
-                    + "Food_Schedule.Note, Room.Name, Calendar.dayFrom, Calendar.dayTo,\n"
+                    + "Food_Schedule.AsignedUser, Food_Schedule.Meal, \n"
+                    + "Food_Schedule.Note, Room.Name, Food.Quantity, \n"
                     + "Food_Schedule.QuantityBringToPatient from Food_Schedule inner join Week\n"
-                    + "on Week.id = Food_Schedule.WeekID inner join Calendar\n"
-                    + "on Calendar.id = Food_Schedule.CalendarID inner join\n"
+                    + "on Week.id = Food_Schedule.WeekID inner join \n"
                     + "Account on Account.Username = Food_Schedule.AsignedUser\n"
                     + "inner join Room on Room.ID = Food_Schedule.RoomID\n"
                     + "inner join Food on Food.ID = Food_Schedule.Food_ID\n"
-                    + "where Food_Schedule.Date between Calendar.dayFrom and Calendar.dayTo\n"
-                    + "and AsignedUser = ? and Calendar.id = ?";
+                    + "where Account.Username = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, userName);
-            stm.setString(2, calendarID);
             ResultSet rs = stm.executeQuery();
-            while(rs.next()){
-                FoodSchedule fs = new FoodSchedule();
-                Food food = new Food();
-                Week week = new Week();
-                Account acc = new Account();
-                Calendar cal = new Calendar();
-                Room room = new Room();
-                fs.setDate(rs.getDate("date"));
-                fs.setTime(rs.getTime("time"));
-                week.setDayName(rs.getString("dayName"));
-//                food.setFoodName(rs.getString("foodName"));
-                food.setType(rs.getString("type"));
-                acc.setUserName(rs.getString("userName"));
-                fs.setMeal(rs.getString("meal"));
-                fs.setNote(rs.getString("note"));
-                room.setName(rs.getString("name"));
-                cal.setDayFrom(rs.getDate("dayFrom"));
-                cal.setDayTo(rs.getDate("dayTo"));
-                fs.setQuantityBringToPatient(rs.getInt(""));
+            while (rs.next()) {
+                FoodSchedule2 fsn = new FoodSchedule2();
+                fsn.setDate(rs.getDate("date"));
+                fsn.setTime(rs.getTime("time"));
+                fsn.setDayName(rs.getString("dayName"));
+                fsn.setFoodName(rs.getString("Name"));
+                fsn.setType(rs.getString("type"));
+                fsn.setAddedDate(rs.getDate("addedDate"));
+                fsn.setUserName(rs.getString("AsignedUser"));
+                fsn.setMeal(rs.getString("meal"));
+                fsn.setNote(rs.getString("note"));
+                fsn.setRoomName(rs.getString("Name"));
+                fsn.setQuantityBringToPatient(rs.getInt("quantityBringToPatient"));
+                fsn.setQuantity(rs.getInt("quantity"));
+                fsns.add(fsn);
             }
         } catch (SQLException ex) {
             Logger.getLogger(FoodScheduleDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return fsns;
+    }
+
+//    public static void main(String[] args) throws ParseException {
+//        FoodScheduleDBContext d = new FoodScheduleDBContext();
+//        ArrayList<FoodSchedule2> list = d.foodScheduleForNurse("halh");
+//        System.out.println(list.get(0).getFoodName());
+//    }
+
+    public void addFoodToSchedule() {
+        String sql = "";
     }
 
     @Override

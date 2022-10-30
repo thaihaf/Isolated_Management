@@ -35,7 +35,11 @@
                             <option value="Drink">Drink</option>
                         </select><br>
                     </c:if>
+                    Quantity: <input required type="text" name="quantity" value="${food.quantity}"><br>
                     Added date: <input type="date" name="addedDate" value="${food.addedDate}"><br>
+                    Sources of Supply: <input required type="text" name="sourcesOfSupply" value="${food.sourcesOfSupply}"><br>
+                    Date of manufacture: <input required type="date" name="dateOfManufacture" value="${food.dateOfManufacture}"><br>
+                    Expiry: <input required type="date" name="expiry" value="${food.expiry}"><br>
                     <button>Change</button>
                     <button><a onclick="confirmDelete(${food.id})" style="text-decoration: none" href="#">Delete</a></button>
                     <button><a style="text-decoration: none" href="foodlist">Return to Food List</a></button><br>

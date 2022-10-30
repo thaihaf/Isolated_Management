@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,29 +12,45 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+        table, th, td {
+            border:1px solid black;
+        }
+    </style>
     <body>
-        <form action="food_schedule_for_nurse" method="post">
+        <form action="food_schedule_for_nurse" method="get">
+            <c:forEach items="${requestScope.fsns}" var="fsns">
+            <input type="hidden" name="userName" value="${fsns.userName}">
+            </c:forEach>
             <table>
                 <tr>
-                    <td></td>
-                    <td>Monday</td>
-                    <td>Tuesday</td>
-                    <td>Wednesday</td>
-                    <td>Thursday</td>
-                    <td>Friday</td>
-                    <td>Saturday</td>
-                    <td>Sunday</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>Date</td>
+                    <td>Meal - Time</td>
+                    <td>Food</td>
+                    <td>Quantity</td>
+                    <td>Note</td>
+                    <td>Room</td>
+                    <td>Assigned User</td>
                     <td></td>
                 </tr>
+                <c:forEach items="${requestScope.fsns}" var="fsns">
+                        <tr>
+                            <td>${fsns.date}</td>
+                            <td>${fsns.meal} - ${fsns.time}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                </c:forEach>
             </table>
         </form>
     </body>

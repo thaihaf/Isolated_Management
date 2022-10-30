@@ -23,7 +23,9 @@ public class FoodDBContext extends DBContext<Food> {
     public ArrayList<Food> FoodList() {
         ArrayList<Food> foods = new ArrayList<>();
         try {
-            String sql = "Select Food.ID, Food.[Name], Food.[Type], Food.AddedDate From Food";
+            String sql = "Select Food.ID, Food.[Name], Food.[Type], Food.AddedDate, \n"
+                    + "Food.SourcesOfSupply, Food.Quantity, Food.DateOfManufacture, \n"
+                    + "Food.Expiry From Food";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -32,6 +34,10 @@ public class FoodDBContext extends DBContext<Food> {
                 food.setName(rs.getString("name"));
                 food.setType(rs.getString("type"));
                 food.setAddedDate(rs.getDate("addedDate"));
+                food.setSourcesOfSupply(rs.getString("sourcesOfSupply"));
+                food.setQuantity(rs.getInt("quantity"));
+                food.setDateOfManufacture(rs.getDate("dateOfManufacture"));
+                food.setExpiry(rs.getDate("expiry"));
                 foods.add(food);
             }
         } catch (SQLException ex) {
@@ -40,13 +46,18 @@ public class FoodDBContext extends DBContext<Food> {
         return foods;
     }
 
-    public Boolean addFood(String name, String type, String addedDate) {
+    public Boolean addFood(String name, String type, Date addedDate, String sourcesOfSupply,
+            int quantity, Date dateOfManufacture, Date expiry) {
         try {
-            String sql = "Insert into Food values(?, ?, ?)";
+            String sql = "Insert into Food values(?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, name);
             stm.setString(2, type);
-            stm.setString(3, addedDate);
+            stm.setDate(3, addedDate);
+            stm.setString(4, sourcesOfSupply);
+            stm.setInt(5, quantity);
+            stm.setDate(6, dateOfManufacture);
+            stm.setDate(7, expiry);
             stm.executeQuery();
             return true;
         } catch (SQLException ex) {
@@ -68,15 +79,23 @@ public class FoodDBContext extends DBContext<Food> {
         return false;
     }
 
-    public Boolean updateFood(String name, String type, String addedDate, String id) {
+    public Boolean updateFood(String name, String type, String addedDate,
+            String sourcesOfSupply, String quantity, String dateOfManufacture,
+            String expiry, String id) {
         try {
             String sql = "update Food set Name = ?,\n"
-                    + "Type = ?, AddedDate = ? where ID = ?";
+                    + "Type = ?, AddedDate = ?, Quantity = ?, \n"
+                    + "SourcesOfSupply = ?, DateOfManufacture = ?, \n"
+                    + "Expiry = ? where ID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, name);
             stm.setString(2, type);
             stm.setString(3, addedDate);
-            stm.setString(4, id);
+            stm.setString(4, quantity);
+            stm.setString(5, sourcesOfSupply);
+            stm.setString(6, dateOfManufacture);
+            stm.setString(7, expiry);
+            stm.setString(8, id);
             stm.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -84,19 +103,27 @@ public class FoodDBContext extends DBContext<Food> {
         }
         return false;
     }
-    
-    public Food loadFoodById(String id){
+
+    public Food loadFoodById(String id) {
         try {
-            String sql = "Select Food.ID, Food.[Name], Food.[Type], Food.AddedDate From Food where Food.ID = ?";
+            String sql = "Select * From Food where Food.ID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, id);
             ResultSet rs = stm.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Food food = new Food();
+//                food.setId(rs.getInt("id"));
+//                food.setName(rs.getString("name"));
+//                food.setType(rs.getString("type"));
+//                food.setAddedDate(rs.getDate("addedDate"));
                 food.setId(rs.getInt("id"));
                 food.setName(rs.getString("name"));
                 food.setType(rs.getString("type"));
                 food.setAddedDate(rs.getDate("addedDate"));
+                food.setSourcesOfSupply(rs.getString("sourcesOfSupply"));
+                food.setQuantity(rs.getInt("quantity"));
+                food.setDateOfManufacture(rs.getDate("dateOfManufacture"));
+                food.setExpiry(rs.getDate("expiry"));
                 return food;
             }
         } catch (SQLException ex) {

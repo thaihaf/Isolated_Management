@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controler;
 
-import dao.FoodDBContext;
-import entity.Food;
+package controler.patient;
+
+import dao.FoodScheduleDBContext;
+import entity.FoodSchedule2;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -19,38 +20,35 @@ import java.util.ArrayList;
  *
  * @author Admin
  */
-public class AddFoodControler extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
+public class FoodScheduleForPatientController extends HttpServlet {
+   
+    /** 
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddFoodControler</title>");
+            out.println("<title>Servlet FoodScheduleForPatientController</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddFoodControler at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet FoodScheduleForPatientController at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-    }
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
+    /** 
      * Handles the HTTP <code>GET</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -58,13 +56,12 @@ public class AddFoodControler extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.getRequestDispatcher("addfood.jsp").forward(request, response);
-    }
+    throws ServletException, IOException {
+        request.getRequestDispatcher("../patient/food_schedule_for_patient.jsp").forward(request, response);
+    } 
 
-    /**
+    /** 
      * Handles the HTTP <code>POST</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -72,26 +69,17 @@ public class AddFoodControler extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String id = request.getParameter("id");
-        String food = request.getParameter("food");
-        String type = request.getParameter("type");
-//        String addedDate = request.getParameter("addedDate");
-        String sourcesOfSupply = request.getParameter("sourcesOfSupply");
-        Date addedDate = Date.valueOf(request.getParameter("addedDate"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-        Date dateOfManufacture = Date.valueOf(request.getParameter("dateOfManufacture"));
-        Date expiry = Date.valueOf(request.getParameter("expiry"));
-        FoodDBContext fdb = new FoodDBContext();
-        Food f = fdb.loadFoodById(id);
-        fdb.addFood(food, type, addedDate, sourcesOfSupply, quantity, dateOfManufacture, expiry);
-        request.setAttribute("mess", "Add food success");
-        request.getRequestDispatcher("addfood.jsp").forward(request, response);
+    throws ServletException, IOException {
+        String userName = request.getParameter("userName");
+        String dayFrom = request.getParameter("dayFrom");
+        FoodScheduleDBContext fsdb = new FoodScheduleDBContext();
+        ArrayList<FoodSchedule2> fsns = fsdb.foodScheduleForNurse(userName, dayFrom);
+        request.setAttribute("fs", fsns);
+        request.getRequestDispatcher("../patient/food_schedule_for_patient.jsp").forward(request, response);
     }
 
-    /**
+    /** 
      * Returns a short description of the servlet.
-     *
      * @return a String containing servlet description
      */
     @Override

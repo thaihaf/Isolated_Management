@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="../assets/css/base/home.css"/>
     </head>
     <style>
-        /*        *{
+                *{
                     margin: 0;
                     padding: 0;
                     box-sizing: border-box;
@@ -27,7 +27,7 @@
                 }
                 table, th, td {
                     border:1px solid black;
-                }*/
+                }
     </style>
     <body>
         <jsp:include page="/base/sidebar.jsp" />
@@ -35,13 +35,19 @@
         <div class="wrapper wrapperAdmin">
             <div class="container">
                 <form action="foodlist" method="get"> 
-                    <h1>FOOD LISTS</h1>
+                    <h1>List of foods provided to the patient</h1>
                     <button><a style="text-decoration: none" href="addfood">Add more food</a></button>
+                    <button><a style="text-decoration: none" href="../nurse/food_schedule_for_nurse">See food schedule</a></button>
+                    <button><a style="text-decoration: none" href="../nurse/list_reports_food">See reports food</a></button>
                     <table>
                         <tr>
                             <td>Name</td>
                             <td>Type</td>
                             <td>Added Date</td>
+                            <td>Quantity</td>
+                            <td>Sources of supply</td>
+                            <td>Date of manufacture</td>
+                            <td>Expiry</td>
                             <td></td>
                         </tr>
                         <c:forEach items="${requestScope.food}" var="food">
@@ -49,6 +55,10 @@
                                 <td>${food.name}</td>
                                 <td>${food.type}</td>
                                 <td>${food.addedDate}</td>
+                                <td>${food.quantity}</td>
+                                <td>${food.sourcesOfSupply}</td>
+                                <td>${food.dateOfManufacture}</td>
+                                <td>${food.expiry}</td>
                                 <td><button><a style="text-decoration: none" href="updatefood?id=${food.id}">Edit</a></button></td>
                             </tr>
                         </c:forEach>

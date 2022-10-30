@@ -7,7 +7,6 @@ package dao;
 import entity.Account;
 import entity.AccountDetail;
 import entity.Area;
-import entity.Bed;
 import entity.Patient;
 import entity.Room;
 import java.sql.Date;
@@ -30,38 +29,6 @@ public class PatientDBContext extends DBContext<Patient> {
     @Override
     public ArrayList<Patient> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public ArrayList<Patient> listByRoom(int roomID) {
-        ArrayList<Patient> patients = new ArrayList<>();
-        try {
-            String sql = "SELECT [Patient].[Room_ID]\n"
-                    + "	  ,[Account_Details].[Fullname]\n"
-                    + "	  ,[Bed].[Bed_Number]\n"
-                    + "  FROM [Patient]\n"
-                    + "  INNER JOIN [Bed] ON [Patient].[ID] = [Bed].[Patient_ID]\n"
-                    + "  INNER JOIN [Account_Details] ON [Patient].[ID] = [Account_Details].[ID]\n"
-                    + "  INNER JOIN [Room] ON [Patient].[Room_ID] = [Room].[ID]\n"
-                    + "  WHERE ([Bed].[Patient_ID] IS NOT NULL) AND ([Room].[ID] = ?)\n"
-                    + "  GROUP BY [Patient].[Room_ID],[Account_Details].[Fullname],[Bed].[Bed_Number]\n"
-                    + "  ORDER BY [Bed].[Bed_Number] ASC";
-            PreparedStatement stm = connection.prepareCall(sql);
-            stm.setInt(1, roomID);
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                Patient p = new Patient();
-                AccountDetail ad = new AccountDetail();
-                ad.setFullName(rs.getNString("Fullname"));
-                p.setAccDetail(ad);
-                Bed b = new Bed();
-                b.setBedNumber(rs.getInt("Bed_Number"));
-                p.setBed(b);
-                patients.add(p);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(PatientDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return patients;
     }
 
     @Override

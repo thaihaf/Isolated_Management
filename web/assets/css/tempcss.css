@@ -1,0 +1,38 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Oct 24, 2022, 10:17:16 PM
+    Author     : Mountain
+*/
+
+*{
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+    column-gap: 2rem;
+}
+
+.schedule-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.schedule-title{
+    text-align: left;
+    font-size: 1.25rem;
+    margin-bottom: 0.3rem;
+}
+
+.schedule__form-control{
+    border: 1px solid #D8D6DE;
+    border-radius: 8px;
+    width: 200px;
+    padding: 0.2rem 0.5rem;
+}

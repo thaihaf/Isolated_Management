@@ -40,7 +40,7 @@
 
                               <dt>Request & Notification Manager</dt>
                               <dd><a href="notif_create">Create Notification</a></dd>
-
+                              
                               <dt>Exercise Management</dt>
                               <dd><a href="create_exercise">Create new Exercise</a></dd>
                               <dd><a href="exercise_list">Exercise list</a></dd>
@@ -87,10 +87,6 @@
                                   <img class="sidebar_item_img" src="../assets/icons/testIcon.png" alt="alt"/>
                                   <div>Test result</div>
                               </a>
-                              <a class="sidebar_item" href="createSymptom?username=${sessionScope.account.userName}">
-                                  <img class="sidebar_item_img" src="../assets/icons/testIcon.png" alt="alt"/>
-                                  <div>Symptom</div>
-                              </a>
                               <a class="sidebar_item" href="patientPrescription">
                                   <img class="sidebar_item_img" src="../assets/icons/donthuoc.png" alt="alt"/>
                                   <div>Prescription</div>
@@ -113,6 +109,10 @@
                                   <div>Profile</div>
                               </a>
                               <br>
+                              <a class="sidebar_item" href="schedule">
+                                  <img class="sidebar_item_img img_profile" src="../assets/icons/schedule.png" alt="alt"/>
+                                  <div>Schedule</div>
+                              </a>
                               <c:if test="${role.id eq 2}">
                                   <dt>Manager</dt>
                                   <dd><a href="../foodlist">Food List</a></dd>

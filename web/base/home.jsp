@@ -16,6 +16,8 @@
         <title><c:set var="role" value="${sessionScope.account.role}"/>${sessionScope.account.userName}</title>
         <link rel="stylesheet" href="../assets/css/base.css"/>
         <link rel="stylesheet" href="../assets/css/doctor/doctorViewPrescription.css"/>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css" />
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     </head>
     <body>
         <c:set var="role" value="${sessionScope.account.role}"/>
@@ -25,9 +27,11 @@
 
         <div class="wrapper wrapperUser">
             <div class="container">
-                <!--                     Code vào đây là oke-->
+                <div id="modal" style="display:none;"></div>
             </div>
-            <jsp:include page="./footer.jsp" />   
+            <jsp:include page="./footer.jsp" />
         </div>
+        <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+        <script src="../assets/js/base/today_sched.js" type="text/javascript"></script>
     </body>
 </html>

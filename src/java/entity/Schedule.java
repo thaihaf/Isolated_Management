@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class Schedule {
 
     private int id;
-    private String assignedUser;
+    private AccountDetail assignedUser;
     private Room room;
     private LocalDate date;
     private Schedule_Time time;
@@ -27,11 +27,11 @@ public class Schedule {
         this.id = id;
     }
 
-    public String getAssignedUser() {
+    public AccountDetail getAssignedUser() {
         return assignedUser;
     }
 
-    public void setAssignedUser(String assignedUser) {
+    public void setAssignedUser(AccountDetail assignedUser) {
         this.assignedUser = assignedUser;
     }
 

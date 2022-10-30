@@ -44,6 +44,7 @@
                               <dt>Exercise Management</dt>
                               <dd><a href="create_exercise">Create new Exercise</a></dd>
                               <dd><a href="exercise_list">Exercise list</a></dd>
+                              <dd><a href="assign_exercise">Assign exercise to schedule</a></dd>
 
                               <dt>Schedule Management</dt>
                               <dd><a href="sched_create">Create Schedule</a></dd>

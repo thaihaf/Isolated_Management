@@ -4,8 +4,11 @@
  */
 package dao;
 
+import entity.Account;
+import entity.AccountDetail;
 import entity.Symptom;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -54,6 +57,70 @@ public class SymptomDBContext extends DBContext<Symptom> {
     @Override
     public void delete(Symptom model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public ArrayList<Symptom> getSymptomByID(String username) {
+        ArrayList<Symptom> lists = new ArrayList<>();
+        try {
+            String sql = "select PatientID, Symptom,Date from Symptom where PatientID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Symptom symptom = new Symptom();
+                Account acc = new Account();
+                acc.setUserName(rs.getString("PatientID"));
+                AccountDetail ad = new AccountDetail();
+                ad.setAccount(acc);
+                symptom.setUsername(ad);
+                symptom.setNote(rs.getString("Symptom").trim());
+                symptom.setDate(rs.getDate("Date"));
+                lists.add(symptom);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SymptomDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lists;
+    }
+
+    public boolean checkSymptomExist(String username) {
+        ArrayList<Symptom> lists = new ArrayList<>();
+        try {
+            String sql = "select PatientID, Symptom,Date from Symptom where PatientID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SymptomDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public Symptom getLastReport(String username) {
+        try {
+            String sql = "select top 1 PatientID, Symptom,Date from Symptom where PatientID = ? order by ID Desc";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                Account acc = new Account();
+                acc.setUserName(rs.getString("PatientID"));
+                AccountDetail ad = new AccountDetail();
+                ad.setAccount(acc);
+                Symptom symptom = new Symptom();
+                symptom.setUsername(ad);
+                symptom.setNote(rs.getString("Symptom"));
+                symptom.setDate(rs.getDate("Date"));
+                return symptom;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SymptomDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }

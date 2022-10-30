@@ -77,6 +77,9 @@ public class CreateSymptomController extends HttpServlet {
                 list2.add(ir);
             }
         }
+        SymptomDBContext db = new SymptomDBContext();
+        Boolean check = db.checkSymptomExist(username);
+        request.setAttribute("check", check);
         request.setAttribute("list2", list2);
         request.getRequestDispatcher("../patient/createSymptom.jsp").forward(request, response);
     }
@@ -95,25 +98,25 @@ public class CreateSymptomController extends HttpServlet {
         String s7 = request.getParameter("s7");
         String symptoms = new String();
         if (s1 != "") {
-            symptoms += s1;
+            symptoms = s1 + ",";
         }
         if (s2 != "") {
-            symptoms = symptoms + "," + s2;
+            symptoms = symptoms + " " + s2 + ",";
         }
         if (s3 != "") {
-            symptoms = symptoms + "," + s3;
+            symptoms = symptoms + " " + s3 + ",";
         }
         if (s4 != "") {
-            symptoms = symptoms + "," + s4;
+            symptoms = symptoms + " " + s4 + ",";
         }
         if (s5 != "") {
-            symptoms = symptoms + "," + s5;
+            symptoms = symptoms + " " + s5 + ",";
         }
         if (s6 != "") {
-            symptoms = symptoms + "," + s6;
+            symptoms = symptoms + " " + s6 + ",";
         }
         if (s7 != "") {
-            symptoms = symptoms + "," + s7;
+            symptoms = symptoms + " " + s7;
         }
         String username = acc.getUserName();
         Account account = new Account();

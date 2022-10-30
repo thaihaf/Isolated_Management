@@ -47,6 +47,7 @@ $(document).on('input', '#searchRoomByName', function () {
         }
     });
 });
+
 //$(document).on('click', '.updateInfo_btnSubmit', function () {
 //    let search = $(location).attr('search');
 //    var areaId = $("#areaSelect option:selected").val();

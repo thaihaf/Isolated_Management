@@ -116,7 +116,9 @@ public class CreateTestController extends HttpServlet {
             ArrayList<Room> rooms = listAreaActiveWithRoom.get(0).getRooms();
 
             if (roomName == null) {
+
                 String roomSelect = "<option selected value=\"\" style=\"font-size: 15px\">---- Choose Room ----</option>\n";
+
                 String roomList = "";
 
                 for (Room r : rooms) {
@@ -130,11 +132,13 @@ public class CreateTestController extends HttpServlet {
                             + "                                                                                 <td>" + r.getNurseManage().getAccount().getUserName() + "</td>\n";
 
                     switch (r.getLevel()) {
+
                         case -1:
                             roomList += "<td><div class=\"des_show\" >\n"
                                     + "                                                                                                 <button type=\"button\" class=\"btn btn-secondary\">Đang chờ</button>\n"
                                     + "                                                                                             </div>";
                             break;
+
                         case 0:
                             roomList += "<td><div class=\"des_show\" >\n"
                                     + "                                                                                                 <button type=\"button\" class=\"btn btn-secondary\">Không triệu chứng</button>\n"
@@ -207,11 +211,13 @@ public class CreateTestController extends HttpServlet {
                             + "                                                                                 <td>" + r.getNurseManage().getAccount().getUserName() + "</td>\n";
 
                     switch (r.getLevel()) {
+
                         case -1:
                             output += "<td><div class=\"des_show\" >\n"
                                     + "                                                                                                 <button type=\"button\" class=\"btn btn-secondary\">Đang chờ</button>\n"
                                     + "                                                                                             </div>";
                             break;
+
                         case 0:
                             output += "<td><div class=\"des_show\" >\n"
                                     + "                                                                                                 <button type=\"button\" class=\"btn btn-secondary\">Không triệu chứng</button>\n"
@@ -344,6 +350,7 @@ public class CreateTestController extends HttpServlet {
                     TestResultDBContext db = new TestResultDBContext();
                     db.insert(ts);
 
+
                     // thai ha
                     String roomSelect = request.getParameter("roomSelect");
 
@@ -364,6 +371,7 @@ public class CreateTestController extends HttpServlet {
                         }
 
                     }
+
 
                     request.setAttribute("action", "Create Test");
                     request.getRequestDispatcher("../view/createConfirm.jsp").forward(request, response);

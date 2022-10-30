@@ -66,7 +66,7 @@ public class DeleteInjectionController extends HttpServlet {
         ir.setId(Integer.parseInt(id));
         InjectionDBContext db = new InjectionDBContext();
         db.delete(ir);
-        request.setAttribute("action", "Create Injection");
+        request.setAttribute("action", "Delete Injection");
         if (acc.getRole().getId() == 3) {
             request.getRequestDispatcher("../view/createConfirm.jsp").forward(request, response);
         } else if (acc.getRole().getId() == 4) {

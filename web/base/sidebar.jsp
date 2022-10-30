@@ -40,11 +40,13 @@
 
                               <dt>Request & Notification Manager</dt>
                               <dd><a href="notif_create">Create Notification</a></dd>
+
                               
                               <dt>Schedule Management</dt>
                               <dd><a href="sched_create">Create Schedule</a></dd>
                               <dd><a href="sched_list">Schedule list</a></dd>
                               
+
                           </dl>
                           <br />
                       </c:when>   
@@ -83,6 +85,10 @@
                               <a class="sidebar_item" href="viewTest?username=${sessionScope.account.userName}">
                                   <img class="sidebar_item_img" src="../assets/icons/testIcon.png" alt="alt"/>
                                   <div>Test result</div>
+                              </a>
+                              <a class="sidebar_item" href="createSymptom?username=${sessionScope.account.userName}">
+                                  <img class="sidebar_item_img" src="../assets/icons/testIcon.png" alt="alt"/>
+                                  <div>Symptom</div>
                               </a>
                               <a class="sidebar_item" href="patientPrescription">
                                   <img class="sidebar_item_img" src="../assets/icons/donthuoc.png" alt="alt"/>

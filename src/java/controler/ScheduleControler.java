@@ -97,7 +97,7 @@ public class ScheduleControler extends HttpServlet {
                 scheds = schedDB.listByRoom(r.getId(), firstDayOfWeek, lastDayOfWeek);
                 break;
             }
-        }//
+        }
         ScheduleTimeDBContext schedTimeDB = new ScheduleTimeDBContext();
         ArrayList<Schedule_Time> schedTime = schedTimeDB.list();
         for (String day : listDaysInWeek) {
@@ -129,7 +129,7 @@ public class ScheduleControler extends HttpServlet {
                     count.replace((int) key1, (int) val1 * 2);
                 }
             }
-        }//
+        }
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.println("<table>");

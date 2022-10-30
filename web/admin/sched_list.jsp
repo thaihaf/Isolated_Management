@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Hello</title>
+        <title>JSP Page</title>
         <link href="../assets/css/admin/sched_create.css" rel="stylesheet" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="../assets/js/admin/sched_manage.js" type="text/javascript"></script>

@@ -14,7 +14,7 @@
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
         <link href="../assets/css/admin/sched_create.css" rel="stylesheet" type="text/css"/>
         <script src="../assets/js/admin/sched_create.js" type="text/javascript"></script>
-        <style type="text/css">
+          <style type="text/css">
             <%@include file="../assets/css/admin/sched_create.css"%>
         </style>
     </head>
@@ -26,7 +26,7 @@
         <div class="wrapper wrapperAdmin">
             <div class="container">
                 <form id="schedule" action="sched_create" method="POST" class="schedule" name="schedule">
-                <h2 style="line-height: 2rem;margin-bottom:1rem;">Create schedule</h2>
+                    <h2 style="line-height: 2rem;margin-bottom:1rem;">Create schedule</h2>
                     <div class="row">
                         <div class="schedule-column">
                             <label for="selectPerson" class="schedule-title">Person assigned</label>

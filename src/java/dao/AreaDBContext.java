@@ -65,7 +65,8 @@ public class AreaDBContext extends DBContext<Area> {
                     + "FROM [Area]\n"
                     + "INNER JOIN [Room] ON [Area].[ID] = [Room].[Area_ID]\n"
                     + "INNER JOIN [AreaType] ON [AreaType].[ID] = [Area].[AreaType]\n"
-                    + "where Room.Available = 1\n"
+                    + "where Area.ID != 5\n"
+                    + "and Room.Available = 1\n"
                     + "and Room.NumOfBed > Room.NumOfUse\n";
 
             if (areaId != null) {

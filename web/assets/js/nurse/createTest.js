@@ -47,3 +47,24 @@ $(document).on('input', '#searchRoomByName', function () {
         }
     });
 });
+//$(document).on('click', '.updateInfo_btnSubmit', function () {
+//    let search = $(location).attr('search');
+//    var areaId = $("#areaSelect option:selected").val();
+//    let roomName = $('#searchRoomByName').val();
+//
+//    $.ajax({
+//        url: "/Isolated_Management/base/createTest" + search,
+//        type: "post",
+//        data: {
+//            addToRoom: true,
+//            areaId: areaId,
+//            roomName: roomName
+//        },
+//        success: function (data) {
+//            $("#roomListBody").html(data);
+//        },
+//        error: function (xhr) {
+//            //Do Something to handle error
+//        }
+//    });
+//});

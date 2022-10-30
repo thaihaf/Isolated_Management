@@ -8,6 +8,7 @@ import dao.AccountDetailDBContext;
 import dao.AreaDBContext;
 import dao.MedicalStaffDBContext;
 import dao.PatientDBContext;
+import dao.RoomDBContext;
 import dao.TestResultDBContext;
 import dao.TestTypeDBContext;
 import entity.Account;
@@ -115,7 +116,7 @@ public class CreateTestController extends HttpServlet {
             ArrayList<Room> rooms = listAreaActiveWithRoom.get(0).getRooms();
 
             if (roomName == null) {
-                String roomSelect = "";
+                String roomSelect = "<option selected value=\"\" style=\"font-size: 15px\">---- Choose Room ----</option>\n";
                 String roomList = "";
 
                 for (Room r : rooms) {
@@ -129,6 +130,11 @@ public class CreateTestController extends HttpServlet {
                             + "                                                                                 <td>" + r.getNurseManage().getAccount().getUserName() + "</td>\n";
 
                     switch (r.getLevel()) {
+                        case -1:
+                            roomList += "<td><div class=\"des_show\" >\n"
+                                    + "                                                                                                 <button type=\"button\" class=\"btn btn-secondary\">Đang chờ</button>\n"
+                                    + "                                                                                             </div>";
+                            break;
                         case 0:
                             roomList += "<td><div class=\"des_show\" >\n"
                                     + "                                                                                                 <button type=\"button\" class=\"btn btn-secondary\">Không triệu chứng</button>\n"
@@ -201,6 +207,11 @@ public class CreateTestController extends HttpServlet {
                             + "                                                                                 <td>" + r.getNurseManage().getAccount().getUserName() + "</td>\n";
 
                     switch (r.getLevel()) {
+                        case -1:
+                            output += "<td><div class=\"des_show\" >\n"
+                                    + "                                                                                                 <button type=\"button\" class=\"btn btn-secondary\">Đang chờ</button>\n"
+                                    + "                                                                                             </div>";
+                            break;
                         case 0:
                             output += "<td><div class=\"des_show\" >\n"
                                     + "                                                                                                 <button type=\"button\" class=\"btn btn-secondary\">Không triệu chứng</button>\n"
@@ -289,6 +300,28 @@ public class CreateTestController extends HttpServlet {
                 ts.setPersonTest(ad1);
                 TestResultDBContext db = new TestResultDBContext();
                 db.insert(ts);
+
+                // thai ha
+                String roomSelect = request.getParameter("roomSelect");
+
+                if (roomSelect != null || !roomSelect.trim().isEmpty()) {
+                    PatientDBContext patientDB = new PatientDBContext();
+                    RoomDBContext roomDB = new RoomDBContext();
+
+                    String username = request.getParameter("id");
+
+                    int currentRoomId = patientDB.getInfo(username).getRoom().getId();
+                    int newRoomId = Integer.parseInt(roomSelect);
+
+                    boolean changeRoomSuccess = patientDB.changePatientRoom(newRoomId, username);
+
+                    if (changeRoomSuccess) {
+                        roomDB.updateNumOfUseById(currentRoomId, roomDB.getNumOfUseByRoomId(currentRoomId) - 1);
+                        roomDB.updateNumOfUseById(newRoomId, roomDB.getNumOfUseByRoomId(newRoomId) + 1);
+                    }
+
+                }
+
                 request.setAttribute("action", "Create Test");
                 request.getRequestDispatcher("../view/createConfirm.jsp").forward(request, response);
             } else {
@@ -310,9 +343,28 @@ public class CreateTestController extends HttpServlet {
                     ts.setPersonTest(ad1);
                     TestResultDBContext db = new TestResultDBContext();
                     db.insert(ts);
-                    
-                    
-                    
+
+                    // thai ha
+                    String roomSelect = request.getParameter("roomSelect");
+
+                    if (roomSelect != null || !roomSelect.trim().isEmpty()) {
+                        PatientDBContext patientDB = new PatientDBContext();
+                        RoomDBContext roomDB = new RoomDBContext();
+
+                        String username = request.getParameter("id");
+
+                        int currentRoomId = patientDB.getInfo(username).getRoom().getId();
+                        int newRoomId = Integer.parseInt(roomSelect);
+
+                        boolean changeRoomSuccess = patientDB.changePatientRoom(newRoomId, username);
+
+                        if (changeRoomSuccess) {
+                            roomDB.updateNumOfUseById(currentRoomId, roomDB.getNumOfUseByRoomId(currentRoomId) - 1);
+                            roomDB.updateNumOfUseById(newRoomId, roomDB.getNumOfUseByRoomId(newRoomId) + 1);
+                        }
+
+                    }
+
                     request.setAttribute("action", "Create Test");
                     request.getRequestDispatcher("../view/createConfirm.jsp").forward(request, response);
                 } else if (check == false) {

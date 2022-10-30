@@ -47,7 +47,7 @@ public class DaysOfWeek {
     public int getCurrentWeekNumber(Locale locale) {
         LocalDate date = LocalDate.now();
         TemporalField weekOfYear = WeekFields.of(locale).weekOfWeekBasedYear();
-        return date.get(weekOfYear);
+        return date.get(weekOfYear);// tuan thu may cua nam
     }
 
     public List<String> getDaysInWeek(int year, int weekNumber, Locale locale) {

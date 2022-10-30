@@ -76,7 +76,7 @@ public class TodayScheduleControler extends HttpServlet {
         }
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            out.println("<h2>Today's Schedule</h2>");
+            out.println("<h2>Today's Schedule ("+currentDate.toString()+" )</h2>");
             out.println("<table>\n"
                     + "        <tr>");
             if (!count.isEmpty()) {

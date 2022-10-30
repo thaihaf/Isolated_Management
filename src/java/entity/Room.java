@@ -12,21 +12,13 @@ public class Room {
 
     private int id;
     private String name;
-    private int numOfUse;
     private int numOfBed;
     private Area area;
     private AccountDetail doctorManage;
     private AccountDetail nurseManage;
     private boolean available;
+    private int numOfUse;
     private int level;
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
 
     public int getId() {
         return id;
@@ -76,6 +68,14 @@ public class Room {
         this.nurseManage = nurseManage;
     }
 
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
     public int getNumOfUse() {
         return numOfUse;
     }
@@ -91,9 +91,5 @@ public class Room {
     public void setLevel(int level) {
         this.level = level;
     }
-    
-    @Override
-    public String toString() {
-        return "Room{" + "id=" + id + ", name=" + name + ", numOfBed=" + numOfBed + ", area=" + area + ", doctorManage=" + doctorManage + ", nurseManage=" + nurseManage + ", toString=" +  '}';
-    }
+
 }

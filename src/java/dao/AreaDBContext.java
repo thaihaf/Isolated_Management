@@ -23,28 +23,6 @@ import java.util.logging.Logger;
  */
 public class AreaDBContext extends DBContext<Area> {
 
-    @Override
-    public ArrayList<Area> list() {
-        ArrayList<Area> areas = new ArrayList<>();
-        try {
-            String sql = "SELECT [ID]\n"
-                    + "      ,[Name]\n"
-                    + "  FROM [Area]";
-            PreparedStatement stm = connection.prepareCall(sql);
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                Area a = new Area();
-                a.setId(rs.getInt("ID"));
-                a.setName(rs.getNString("Name"));
-                areas.add(a);
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(AreaDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return areas;
-    }
-
     public ArrayList<Area> listAreaActiveWithRoom(String areaId, String roomId) {
         ArrayList<Area> areas = new ArrayList<>();
         try {
@@ -141,6 +119,28 @@ public class AreaDBContext extends DBContext<Area> {
                 a.setRooms(rooms);
                 areas.add(a);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(AreaDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return areas;
+    }
+
+    @Override
+    public ArrayList<Area> list() {
+        ArrayList<Area> areas = new ArrayList<>();
+        try {
+            String sql = "SELECT [ID]\n"
+                    + "      ,[Name]\n"
+                    + "  FROM [Area]";
+            PreparedStatement stm = connection.prepareCall(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Area a = new Area();
+                a.setId(rs.getInt("ID"));
+                a.setName(rs.getNString("Name"));
+                areas.add(a);
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(AreaDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }

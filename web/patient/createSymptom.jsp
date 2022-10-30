@@ -27,6 +27,7 @@
     <body>
         <jsp:include page="../base/sidebar.jsp" />
         <jsp:include page="../base/header.jsp" />
+        <c:set var="username" value="${sessionScope.account.userName}" />
         <div class="wrapper wrapperUser">
             <form action="createSymptom" method="POST" class="profilForm container">
                 <div class="container">
@@ -91,7 +92,13 @@
                         </c:choose>
                     </table>
 
-                    <h1> I. Symptoms</h1>           
+                    <h1> I. Symptoms</h1>
+                    <c:if test="${check eq false}">
+                        <h2>You do not have any symptom report, please complete this form to create it</h2>    
+                    </c:if>
+                    <c:if test="${check eq true}">
+                        <a href="viewSymptom?username=${info.account.userName}">To view your symptom report history click here</a>  
+                    </c:if>
                     <table class="table"> 
                         <tr>
                             <td>1</td>

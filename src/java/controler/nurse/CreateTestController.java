@@ -28,13 +28,11 @@ import jakarta.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.ArrayList;
-
 /**
  *
  * @author Admin
  */
 public class CreateTestController extends HttpServlet {
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -60,7 +58,6 @@ public class CreateTestController extends HttpServlet {
             out.println("</html>");
         }
     }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -97,7 +94,6 @@ public class CreateTestController extends HttpServlet {
             request.getRequestDispatcher("../nurse/createTest.jsp").forward(request, response);
         }
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -394,5 +390,4 @@ public class CreateTestController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

@@ -237,8 +237,24 @@
         <servlet-class>controler.ScheduleControler</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CreateSymptomController</servlet-name>
-        <servlet-class>controler.patient.CreateSymptomController</servlet-class>
+        <servlet-name>ExerciseEditControler</servlet-name>
+        <servlet-class>controler.admin.ExerciseEditControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExerciseListControler</servlet-name>
+        <servlet-class>controler.admin.ExerciseListControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateExerciseControler</servlet-name>
+        <servlet-class>controler.admin.CreateExerciseControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExerciseDeleteControler</servlet-name>
+        <servlet-class>controler.admin.ExerciseDeleteControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AssignExerciseToScheduleControler</servlet-name>
+        <servlet-class>controler.admin.AssignExerciseToScheduleControler</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
@@ -473,8 +489,24 @@
         <url-pattern>/base/schedule</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CreateSymptomController</servlet-name>
-        <url-pattern>/base/createSymptom</url-pattern>
+        <servlet-name>ExerciseEditControler</servlet-name>
+        <url-pattern>/admin/exercise_edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExerciseListControler</servlet-name>
+        <url-pattern>/admin/exercise_list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateExerciseControler</servlet-name>
+        <url-pattern>/admin/create_exercise</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExerciseDeleteControler</servlet-name>
+        <url-pattern>/admin/exercise_delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AssignExerciseToScheduleControler</servlet-name>
+        <url-pattern>/admin/assign_exercise</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>login</welcome-file>

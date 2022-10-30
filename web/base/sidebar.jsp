@@ -40,14 +40,15 @@
 
                               <dt>Request & Notification Manager</dt>
                               <dd><a href="notif_create">Create Notification</a></dd>
-                              
+
                               <dt>Exercise Management</dt>
                               <dd><a href="create_exercise">Create new Exercise</a></dd>
+                              <dd><a href="exercise_list">Exercise list</a></dd>
 
                               <dt>Schedule Management</dt>
                               <dd><a href="sched_create">Create Schedule</a></dd>
                               <dd><a href="sched_list">Schedule list</a></dd>
-                              
+
                           </dl>
                           <br />
                       </c:when>   

@@ -12,15 +12,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 /**
  *
  * @author Mountain
  */
-public class ExerciseListControler extends HttpServlet {
-
-    private String searchCriteria;
+public class ExerciseDeleteControler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,20 +30,14 @@ public class ExerciseListControler extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int pageSize = Integer.parseInt(request.getServletContext().getInitParameter("pagesize"));
-        String page = request.getParameter("page");
-        if (page == null) {
-            page = "1";
+        String id_raw = request.getParameter("eid");
+        if (id_raw != null && id_raw.length() > 0) {
+            int id = Integer.parseInt(request.getParameter("eid"));
+            ExerciseDBContext exDB = new ExerciseDBContext();
+            Exercise e = new Exercise();
+            e.setId(id);
+            exDB.delete(e);
         }
-        int pageIndex = Integer.parseInt(page);
-        ExerciseDBContext exerciseDB = new ExerciseDBContext();
-        int count = exerciseDB.count(searchCriteria);
-        int totalPage = (count % pageSize == 0) ? count / pageSize : (count / pageSize) + 1;
-        ArrayList<Exercise> exercises = exerciseDB.listWithSearchAndPaginate(searchCriteria, pageIndex, pageSize);
-        request.setAttribute("exercise", exercises);
-        request.setAttribute("totalpage", totalPage);
-        request.setAttribute("pageindex", pageIndex);
-        request.getRequestDispatcher("exercise_list.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -75,8 +66,6 @@ public class ExerciseListControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String search_raw = request.getParameter("search");
-        searchCriteria = (search_raw != null && search_raw.length() > 0) ? search_raw : null;
         processRequest(request, response);
     }
 

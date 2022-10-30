@@ -2,6 +2,32 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
+function deleteExercise() {
+    $(document).delegate("#btnDelete", 'click', function (event) {
+        event.preventDefault();
+        if (confirm('Are you sure you want to delete this?')) {
+            $.ajax({
+                url: 'exercise_delete',
+                method: 'GET',
+                data: {
+                    eid: $(this).attr('data-id')
+                },
+                success: function () {
+                    alert('Delete successfully.');
+                    window.location.href = 'exercise_list';
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.status === 401) {
+                        alert('Access denied.');
+                    } else {
+                        alert(jqXHR.status);
+                    }
+                    window.location.href = '../login';
+                }
+            });
+        }
+    });
+}
 
 function content() {
     $(function () {
@@ -58,4 +84,6 @@ function getHtml(link) {
 
 $(document).ready(function () {
     content();
+
+    deleteExercise();
 });

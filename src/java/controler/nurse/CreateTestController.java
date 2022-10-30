@@ -8,7 +8,6 @@ import dao.AccountDetailDBContext;
 import dao.AreaDBContext;
 import dao.MedicalStaffDBContext;
 import dao.PatientDBContext;
-import dao.RoomDBContext;
 import dao.TestResultDBContext;
 import dao.TestTypeDBContext;
 import entity.Account;
@@ -307,27 +306,21 @@ public class CreateTestController extends HttpServlet {
                 TestResultDBContext db = new TestResultDBContext();
                 db.insert(ts);
 
-                // thai ha
+                 // thai ha
                 String roomSelect = request.getParameter("roomSelect");
-
                 if (roomSelect != null || !roomSelect.trim().isEmpty()) {
                     PatientDBContext patientDB = new PatientDBContext();
                     RoomDBContext roomDB = new RoomDBContext();
-
                     String username = request.getParameter("id");
-
                     int currentRoomId = patientDB.getInfo(username).getRoom().getId();
                     int newRoomId = Integer.parseInt(roomSelect);
-
                     boolean changeRoomSuccess = patientDB.changePatientRoom(newRoomId, username);
-
                     if (changeRoomSuccess) {
                         roomDB.updateNumOfUseById(currentRoomId, roomDB.getNumOfUseByRoomId(currentRoomId) - 1);
                         roomDB.updateNumOfUseById(newRoomId, roomDB.getNumOfUseByRoomId(newRoomId) + 1);
                     }
-
                 }
-
+                
                 request.setAttribute("action", "Create Test");
                 request.getRequestDispatcher("../view/createConfirm.jsp").forward(request, response);
             } else {

@@ -106,7 +106,7 @@
                                          <div class="modal-body px-5">
                                              <div class="form-row">
                                                  <div class="col-md-6 mb-3">
-                                                     <div  class="lable">Area Select</div>
+                                                     <div  class="lable">Choose Area</div>
                                                      <select name="areaSelect" id="areaSelect">
                                                          <c:forEach items="${requestScope.listArea}" var="a">
                                                              <option value="${a.id}" style="font-size: 15px">${a.name} - ${a.areaType.type}</option>
@@ -114,9 +114,8 @@
                                                      </select> 
                                                  </div>
                                                  <div class="col-md-6 mb-3">
-                                                     <div  class="lable">Room Select</div>
+                                                     <div  class="lable">Choose Room</div>
                                                      <select name="roomSelect" id="roomSelect">
-                                                         <option selected value="" style="font-size: 15px">---- Choose Room ----</option>
                                                          <c:forEach items="${requestScope.listArea}" var="b" varStatus="loop">
                                                              <c:if test="${loop.first}">
                                                                  <c:forEach items="${b.rooms}" var="r">
@@ -178,7 +177,7 @@
                                                                                                  </div>
                                                                                              </div>
                                                                                          </c:when>
-
+                                                                                         
                                                                                          <c:when test = "${level == 1}">
                                                                                              <div class="des_show" >
                                                                                                  <button type="button" class="btn btn-secondary">Mức độ nhẹ</button>

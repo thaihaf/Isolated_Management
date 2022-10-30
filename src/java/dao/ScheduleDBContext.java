@@ -22,12 +22,45 @@ import java.util.logging.Logger;
  * @author Mountain
  */
 public class ScheduleDBContext extends DBContext<Schedule> {
-
+    
     @Override
     public ArrayList<Schedule> list() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<Schedule> schedules = new ArrayList<>();
+        try {
+            String sql = "SELECT [Schedule].[ID]\n"
+                    + "      ,[Account_Details].[Fullname] AS [AssignedUser]\n"
+                    + "      ,[Room].[Name] AS [RoomName]\n"
+                    + "      ,[Date]\n"
+                    + "      ,[Schedule_Time].[Name] AS [Time]\n"
+                    + "      ,[Description]\n"
+                    + "  FROM [Schedule]\n"
+                    + "  INNER JOIN [Room] ON [Room].[ID] = [Schedule].[Room_ID]\n"
+                    + "  INNER JOIN [Account_Details] ON [Schedule].[AssignedUser] = [Account_Details].[ID]\n"
+                    + "  INNER JOIN [Schedule_Time] ON [Schedule].[Time] = [Schedule_Time].[ID]";
+            PreparedStatement stm = connection.prepareCall(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Schedule s = new Schedule();
+                s.setId(rs.getInt("ID"));
+                AccountDetail ad = new AccountDetail();
+                ad.setFullName(rs.getNString("AssignedUser"));
+                s.setAssignedUser(ad);
+                Room r = new Room();
+                r.setName(rs.getNString("RoomName"));
+                s.setRoom(r);
+                s.setDate(rs.getDate("Date").toLocalDate());
+                Schedule_Time st = new Schedule_Time();
+                st.setName(rs.getNString("Time"));
+                s.setTime(st);
+                s.setDescription(rs.getNString("Description"));
+                schedules.add(s);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ScheduleDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return schedules;
     }
-
+    
     @Override
     public Schedule get(int id) {
         try {
@@ -65,7 +98,7 @@ public class ScheduleDBContext extends DBContext<Schedule> {
         }
         return null;
     }
-
+    
     @Override
     public void insert(Schedule model) {
         try {
@@ -92,7 +125,7 @@ public class ScheduleDBContext extends DBContext<Schedule> {
             Logger.getLogger(ScheduleDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @Override
     public void update(Schedule model) {
         try {
@@ -115,7 +148,7 @@ public class ScheduleDBContext extends DBContext<Schedule> {
             Logger.getLogger(ScheduleDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @Override
     public void delete(Schedule model) {
         try {
@@ -128,7 +161,7 @@ public class ScheduleDBContext extends DBContext<Schedule> {
             Logger.getLogger(ScheduleDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public boolean validate(Schedule model) {
         try {
             String sql = "SELECT [ID]\n"
@@ -150,7 +183,7 @@ public class ScheduleDBContext extends DBContext<Schedule> {
         }
         return false;
     }
-
+    
     public ArrayList<Schedule> listByAccount(String account, LocalDate firstDay, LocalDate lastDay) {
         ArrayList<Schedule> scheds = new ArrayList<>();
         try {
@@ -194,7 +227,7 @@ public class ScheduleDBContext extends DBContext<Schedule> {
         }
         return scheds;
     }
-
+    
     public ArrayList<Schedule> listByRoom(int roomID, LocalDate firstDay, LocalDate lastDay) {
         ArrayList<Schedule> scheds = new ArrayList<>();
         try {
@@ -234,7 +267,7 @@ public class ScheduleDBContext extends DBContext<Schedule> {
         }
         return scheds;
     }
-
+    
     public ArrayList<Schedule> listByAccountToday(String account, LocalDate currentDate) {
         ArrayList<Schedule> scheds = new ArrayList<>();
         try {
@@ -278,7 +311,7 @@ public class ScheduleDBContext extends DBContext<Schedule> {
         }
         return scheds;
     }
-
+    
     public ArrayList<Schedule> listByRoomToday(Room room, LocalDate currentDate) {
         ArrayList<Schedule> scheds = new ArrayList<>();
         try {
@@ -316,5 +349,5 @@ public class ScheduleDBContext extends DBContext<Schedule> {
         }
         return scheds;
     }
-
+    
 }

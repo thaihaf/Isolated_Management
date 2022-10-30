@@ -23,7 +23,22 @@ public class ExerciseDBContext extends DBContext<Exercise> {
 
     @Override
     public ArrayList<Exercise> list() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<Exercise> exercises = new ArrayList<>();
+        try {
+            String sql = "SELECT [ID]\n"
+                    + "      ,[ExerciseName]\n"
+                    + "  FROM [Exercise]";
+            PreparedStatement stm = connection.prepareCall(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Exercise e = new Exercise();
+                e.setId(rs.getInt("ID"));
+                e.setName(rs.getNString("ExerciseName"));
+                exercises.add(e);
+            }
+        } catch (SQLException ex) {
+        }
+        return exercises;
     }
 
     @Override

@@ -14,9 +14,7 @@ import java.util.ArrayList;
 public class Schedule_Exercise {
 
     private ArrayList<Exercise> exercise = new ArrayList<>();
-    private AccountDetail patient;
-    private LocalDate date;
-    private Schedule_Time time;
+    private Schedule schedule;
 
     public ArrayList<Exercise> getExercise() {
         return exercise;
@@ -26,28 +24,11 @@ public class Schedule_Exercise {
         this.exercise = exercise;
     }
 
-    public AccountDetail getPatient() {
-        return patient;
+    public Schedule getSchedule() {
+        return schedule;
     }
 
-    public void setPatient(AccountDetail patient) {
-        this.patient = patient;
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
     }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public Schedule_Time getTime() {
-        return time;
-    }
-
-    public void setTime(Schedule_Time time) {
-        this.time = time;
-    }
-
 }

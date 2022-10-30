@@ -32,6 +32,30 @@ public class PatientDBContext extends DBContext<Patient> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public boolean changePatientRoom(int roomId, String username) {
+        try {
+            connection.setAutoCommit(false);
+
+            String sql = "UPDATE [dbo].[Patient]\n"
+                    + "   SET [Room_ID] = ?\n"
+                    + " WHERE ID = ?\n";
+
+            PreparedStatement stm = connection.prepareCall(sql);
+
+            stm.setInt(1, roomId);
+            stm.setString(2, username);
+
+            if (stm.executeUpdate() > 0) {
+                connection.commit();
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+    }
+
     public ArrayList<Patient> listByRoom(int roomID) {
         ArrayList<Patient> patients = new ArrayList<>();
         try {
@@ -231,6 +255,9 @@ public class PatientDBContext extends DBContext<Patient> {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Patient patient = new Patient();
+                Room r = new Room();
+                r.setId(rs.getInt("Room_ID"));
+                patient.setRoom(r);
                 patient.setBackgroundDisease(rs.getBoolean("BackgroundDisease"));
                 patient.setBloodType(rs.getString("Blood Type"));
                 patient.setNote(rs.getString("Note"));

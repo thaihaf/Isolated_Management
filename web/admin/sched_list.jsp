@@ -55,7 +55,8 @@
                             </select>
                         </div>
                     </div>
-                    <button id="submitForm" type="button" class="button">View</button>
+                    
+                    <div class="wrapper_btn"><button id="submitForm" type="button" class="button">View</button></div>
                 </form>
                 <h2 style="line-height: 2rem;margin-bottom:1rem;">Schedule List</h2>
 

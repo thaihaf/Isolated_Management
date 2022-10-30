@@ -132,10 +132,12 @@
                                          <td><a href="viewTest?username=${p.accDetail.account.userName}" >View Test</a></td>  
                                          <td><a href="createInjection?username=${p.accDetail.account.userName}" >Create Ịnjection</a></td>  
                                          <td><a href="viewInjection?username=${p.accDetail.account.userName}" >View Ịnjection</a></td>  
+                                         <td><a href="viewSymptom?username=${p.accDetail.account.userName}">View Symptom</a></td> 
                                      </c:if>
                                      <c:if test="${role.id eq 2}">
                                          <td>1/1/2022</td>    
                                          <td><a href="prescription-list?username=${p.accDetail.account.userName}" >View Prescription</a></td>  
+                                         <td><a href="viewSymptom?username=${p.accDetail.account.userName}">View Symptom</a></td> 
                                      </c:if>
                                  </tr>
                              </c:forEach>

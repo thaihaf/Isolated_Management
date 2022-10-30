@@ -5,7 +5,6 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,10 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="../assets/css/base.css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="../assets/css/view/profile.css" />
-        <link rel="stylesheet" href="../assets/css/nurse/createTest.css" />
     </head>
 
     <body>
@@ -82,8 +78,6 @@
                              <input type="text" class="item_input" name="creator">
                              <p class="text-danger">${mess}</p>
                          </div>
-
-
                      </div>
 
                      <c:if test="${requestScope.isFirstTest}">
@@ -106,7 +100,7 @@
                                          <div class="modal-body px-5">
                                              <div class="form-row">
                                                  <div class="col-md-6 mb-3">
-                                                     <div  class="lable">Area Select</div>
+                                                     <div  class="lable">Choose Area</div>
                                                      <select name="areaSelect" id="areaSelect">
                                                          <c:forEach items="${requestScope.listArea}" var="a">
                                                              <option value="${a.id}" style="font-size: 15px">${a.name} - ${a.areaType.type}</option>
@@ -114,9 +108,8 @@
                                                      </select> 
                                                  </div>
                                                  <div class="col-md-6 mb-3">
-                                                     <div  class="lable">Room Select</div>
+                                                     <div  class="lable">Choose Room</div>
                                                      <select name="roomSelect" id="roomSelect">
-                                                         <option selected value="" style="font-size: 15px">---- Choose Room ----</option>
                                                          <c:forEach items="${requestScope.listArea}" var="b" varStatus="loop">
                                                              <c:if test="${loop.first}">
                                                                  <c:forEach items="${b.rooms}" var="r">
@@ -168,7 +161,7 @@
                                                                                                  <button type="button" class="btn btn-secondary">Đang chờ</button>
                                                                                              </div>
                                                                                          </c:when>
-
+                                                                                         
                                                                                          <c:when test = "${level == 0}">
                                                                                              <div class="des_show" >
                                                                                                  <button type="button" class="btn btn-secondary">Không triệu chứng</button>
@@ -178,7 +171,7 @@
                                                                                                  </div>
                                                                                              </div>
                                                                                          </c:when>
-
+                                                                                         
                                                                                          <c:when test = "${level == 1}">
                                                                                              <div class="des_show" >
                                                                                                  <button type="button" class="btn btn-secondary">Mức độ nhẹ</button>
@@ -314,7 +307,7 @@
                      </div><br>
 
                      <div class="updateInfo_btns">
-                         <input type="submit" class="updateInfo_btnSubmit" value="Submit" />
+                         <input type="submit" class="updateInfo_btnSubmit" value="Create" />
                      </div>
                  </div>
              </form>
@@ -322,24 +315,6 @@
 
         <jsp:include page="../base/footer.jsp" />
     </div>
-
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="../assets/js/nurse/createTest.js" type="text/javascript"></script>
-    <script>
-        $(function () {
-            $('[data-toggle="popover"]').popover({
-                trigger: 'focus'
-            });
-        });
-    </script>
 </body>
 
 </html>

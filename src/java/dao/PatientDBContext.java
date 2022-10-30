@@ -7,7 +7,6 @@ package dao;
 import entity.Account;
 import entity.AccountDetail;
 import entity.Area;
-import entity.Bed;
 import entity.Patient;
 import entity.Room;
 import java.sql.Date;
@@ -29,89 +28,12 @@ public class PatientDBContext extends DBContext<Patient> {
 
     @Override
     public ArrayList<Patient> list() {
-        ArrayList<Patient> patients = new ArrayList<>();
-        try {
-            String sql = "SELECT [Patient].[ID]\n"
-                    + "      ,[Account_Details].[Fullname]\n"
-                    + "  FROM [Patient]\n"
-                    + "  INNER JOIN [Account_Details] ON [Patient].[ID] = [Account_Details].[ID]";
-            PreparedStatement stm = connection.prepareCall(sql);
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                Patient p = new Patient();
-                AccountDetail ad = new AccountDetail();
-                Account a = new Account();
-                a.setUserName(rs.getString("ID"));
-                ad.setAccount(a);
-                ad.setFullName(rs.getNString("Fullname"));
-                p.setAccDetail(ad);
-                patients.add(p);
-            }
-        } catch (SQLException ex) {
-
-        }
-        return patients;
-    }
-
-    public ArrayList<Patient> listByRoom(int roomID) {
-        ArrayList<Patient> patients = new ArrayList<>();
-        try {
-            String sql = "SELECT [Patient].[Room_ID]\n"
-                    + "	  ,[Account_Details].[Fullname]\n"
-                    + "	  ,[Bed].[Bed_Number]\n"
-                    + "  FROM [Patient]\n"
-                    + "  INNER JOIN [Bed] ON [Patient].[ID] = [Bed].[Patient_ID]\n"
-                    + "  INNER JOIN [Account_Details] ON [Patient].[ID] = [Account_Details].[ID]\n"
-                    + "  INNER JOIN [Room] ON [Patient].[Room_ID] = [Room].[ID]\n"
-                    + "  WHERE ([Bed].[Patient_ID] IS NOT NULL) AND ([Room].[ID] = ?)\n"
-                    + "  GROUP BY [Patient].[Room_ID],[Account_Details].[Fullname],[Bed].[Bed_Number]\n"
-                    + "  ORDER BY [Bed].[Bed_Number] ASC";
-            PreparedStatement stm = connection.prepareCall(sql);
-            stm.setInt(1, roomID);
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                Patient p = new Patient();
-                AccountDetail ad = new AccountDetail();
-                ad.setFullName(rs.getNString("Fullname"));
-                p.setAccDetail(ad);
-                Bed b = new Bed();
-                b.setBedNumber(rs.getInt("Bed_Number"));
-                p.setBed(b);
-                patients.add(p);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(PatientDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return patients;
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public Patient get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public boolean changePatientRoom(int roomId, String username) {
-        try {
-            connection.setAutoCommit(false);
-
-            String sql = "UPDATE [dbo].[Patient]\n"
-                    + "   SET [Room_ID] = ?\n"
-                    + " WHERE ID = ?\n";
-
-            PreparedStatement stm = connection.prepareCall(sql);
-
-            stm.setInt(1, roomId);
-            stm.setString(2, username);
-
-            if (stm.executeUpdate() > 0) {
-                connection.commit();
-                return true;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return false;
     }
 
     public Patient get(AccountDetail acc) {
@@ -276,11 +198,6 @@ public class PatientDBContext extends DBContext<Patient> {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Patient patient = new Patient();
-                
-                Room r = new Room();
-                r.setId(rs.getInt("Room_ID"));
-                
-                patient.setRoom(r);
                 patient.setBackgroundDisease(rs.getBoolean("BackgroundDisease"));
                 patient.setBloodType(rs.getString("Blood Type"));
                 patient.setNote(rs.getString("Note"));

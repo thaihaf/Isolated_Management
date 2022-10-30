@@ -16,15 +16,6 @@ public class Patient {
     private boolean backgroundDisease;
     private String bloodType;
     private AccountDetail accDetail;
-    private Bed Bed;
-
-    public Bed getBed() {
-        return Bed;
-    }
-
-    public void setBed(Bed Bed) {
-        this.Bed = Bed;
-    }
 
     public Account getAccount() {
         return account;

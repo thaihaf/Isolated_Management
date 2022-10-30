@@ -91,7 +91,13 @@
                         </c:choose>
                     </table>
 
-                    <h1> I. Symptoms</h1>           
+                    <h1> I. Symptoms</h1>
+                    <c:if test="${check eq false}">
+                        <h2>You do not have any symptom report, please complete this form to create it</h2>    
+                    </c:if>
+                    <c:if test="${check eq true}">
+                        <a href="viewSymptom">To view your symptom report history click here</a>  
+                    </c:if>
                     <table class="table"> 
                         <tr>
                             <td>1</td>

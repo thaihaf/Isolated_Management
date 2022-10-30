@@ -205,48 +205,20 @@
         <servlet-class>controler.patient.AddExistInjectionController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CreateScheduleControler</servlet-name>
-        <servlet-class>controler.admin.CreateScheduleControler</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ScheduleListControler</servlet-name>
-        <servlet-class>controler.admin.ScheduleListControler</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>GetWeekControler</servlet-name>
-        <servlet-class>controler.admin.GetWeekControler</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ScheduleDeleteControler</servlet-name>
-        <servlet-class>controler.admin.ScheduleDeleteControler</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ScheduleEditControler</servlet-name>
-        <servlet-class>controler.admin.ScheduleEditControler</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>TodayScheduleControler</servlet-name>
-        <servlet-class>controler.TodayScheduleControler</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>GetPatientInRoomControler</servlet-name>
-        <servlet-class>controler.GetPatientInRoomControler</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ScheduleControler</servlet-name>
-        <servlet-class>controler.ScheduleControler</servlet-class>
+        <servlet-name>DeleteInjectionController</servlet-name>
+        <servlet-class>controler.DeleteInjectionController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreateSymptomController</servlet-name>
         <servlet-class>controler.patient.CreateSymptomController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CreateExerciseControler</servlet-name>
-        <servlet-class>controler.admin.CreateExerciseControler</servlet-class>
+        <servlet-name>ViewSymptomController</servlet-name>
+        <servlet-class>controler.ViewSymptomController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ExerciseListControler</servlet-name>
-        <servlet-class>controler.admin.ExerciseListControler</servlet-class>
+        <servlet-name>UpdateSymptomController</servlet-name>
+        <servlet-class>controler.patient.UpdateSymptomController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
@@ -449,48 +421,20 @@
         <url-pattern>/base/addExistInjection</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CreateScheduleControler</servlet-name>
-        <url-pattern>/admin/sched_create</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ScheduleListControler</servlet-name>
-        <url-pattern>/admin/sched_list</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GetWeekControler</servlet-name>
-        <url-pattern>/get_week</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ScheduleDeleteControler</servlet-name>
-        <url-pattern>/admin/sched_delete</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ScheduleEditControler</servlet-name>
-        <url-pattern>/admin/sched_edit</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>TodayScheduleControler</servlet-name>
-        <url-pattern>/base/today_sched</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GetPatientInRoomControler</servlet-name>
-        <url-pattern>/base/get_room</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ScheduleControler</servlet-name>
-        <url-pattern>/base/schedule</url-pattern>
+        <servlet-name>DeleteInjectionController</servlet-name>
+        <url-pattern>/base/deleteInjection</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateSymptomController</servlet-name>
         <url-pattern>/base/createSymptom</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CreateExerciseControler</servlet-name>
-        <url-pattern>/admin/create_exercise</url-pattern>
+        <servlet-name>ViewSymptomController</servlet-name>
+        <url-pattern>/base/viewSymptom</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ExerciseListControler</servlet-name>
-        <url-pattern>/admin/exercise_list</url-pattern>
+        <servlet-name>UpdateSymptomController</servlet-name>
+        <url-pattern>/base/updateSymptom</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>login</welcome-file>

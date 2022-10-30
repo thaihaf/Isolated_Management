@@ -28,7 +28,7 @@ public class AuthenticationFilter implements Filter {
      */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        
+
     }
 
     /**
@@ -47,7 +47,6 @@ public class AuthenticationFilter implements Filter {
             fc.doFilter(request, response);
             return;
         }
-        response.setStatus(401);
         request.getRequestDispatcher("/view/checkSession.jsp").forward(request, response);
     }
 
@@ -57,9 +56,9 @@ public class AuthenticationFilter implements Filter {
     @Override
     public void destroy() {
     }
-    
+
     public boolean isAuthenticated(HttpServletRequest request) {
         return request.getSession() != null && request.getSession().getAttribute("account") != null;
     }
-    
+
 }

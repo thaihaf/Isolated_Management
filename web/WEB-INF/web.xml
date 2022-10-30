@@ -205,12 +205,36 @@
         <servlet-class>controler.patient.AddExistInjectionController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DeleteInjectionController</servlet-name>
-        <servlet-class>controler.DeleteInjectionController</servlet-class>
+        <servlet-name>CreateScheduleControler</servlet-name>
+        <servlet-class>controler.admin.CreateScheduleControler</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CreateSymptomController</servlet-name>
-        <servlet-class>controler.patient.CreateSymptomController</servlet-class>
+        <servlet-name>ScheduleListControler</servlet-name>
+        <servlet-class>controler.admin.ScheduleListControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetWeekControler</servlet-name>
+        <servlet-class>controler.admin.GetWeekControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ScheduleDeleteControler</servlet-name>
+        <servlet-class>controler.admin.ScheduleDeleteControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ScheduleEditControler</servlet-name>
+        <servlet-class>controler.admin.ScheduleEditControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TodayScheduleControler</servlet-name>
+        <servlet-class>controler.TodayScheduleControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetPatientInRoomControler</servlet-name>
+        <servlet-class>controler.GetPatientInRoomControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ScheduleControler</servlet-name>
+        <servlet-class>controler.ScheduleControler</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
@@ -413,12 +437,36 @@
         <url-pattern>/base/addExistInjection</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DeleteInjectionController</servlet-name>
-        <url-pattern>/base/deleteInjection</url-pattern>
+        <servlet-name>CreateScheduleControler</servlet-name>
+        <url-pattern>/admin/sched_create</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CreateSymptomController</servlet-name>
-        <url-pattern>/base/createSymptom</url-pattern>
+        <servlet-name>ScheduleListControler</servlet-name>
+        <url-pattern>/admin/sched_list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetWeekControler</servlet-name>
+        <url-pattern>/get_week</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ScheduleDeleteControler</servlet-name>
+        <url-pattern>/admin/sched_delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ScheduleEditControler</servlet-name>
+        <url-pattern>/admin/sched_edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TodayScheduleControler</servlet-name>
+        <url-pattern>/base/today_sched</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetPatientInRoomControler</servlet-name>
+        <url-pattern>/base/get_room</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ScheduleControler</servlet-name>
+        <url-pattern>/base/schedule</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>login</welcome-file>

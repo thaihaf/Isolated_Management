@@ -118,3 +118,12 @@ body.hideSidebar .wrapper{
     width: 99%;
     margin-bottom: 3rem;
 }
+table,tbody,th,td{
+    text-align:center;
+    margin:auto;
+    border:5px solid #ddd;
+    border-collapse: collapse;
+}
+h2{
+    text-align:center;
+}

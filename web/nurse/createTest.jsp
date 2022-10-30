@@ -168,7 +168,7 @@
                                                                                                  <button type="button" class="btn btn-secondary">Đang chờ</button>
                                                                                              </div>
                                                                                          </c:when>
-
+                                                                                         
                                                                                          <c:when test = "${level == 0}">
                                                                                              <div class="des_show" >
                                                                                                  <button type="button" class="btn btn-secondary">Không triệu chứng</button>

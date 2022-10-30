@@ -33,18 +33,12 @@
                               <dd><a href="../admin/users" class="selected">Account Lists</a></dd>
                               <dd><a href="../admin/rooms" class="selected">Room Lists</a></dd>
                               <dd><a href="../admin/areas" class="selected">Area Lists</a></dd>
-                              <dd><a href="/abc">Add Patient</a></dd>
-                              <dd><a href="url">Add Doctor</a></dd>
-                              <dd><a href="url">Add Nurse</a></dd>
 
                               <dt>Manager</dt>
                               <dd><a href="../admin/foodlist">Food List</a></dd>
                               <dd><a href="url">Medical List</a></dd>
 
-                              <dt>Request Manager</dt>
-                              <dd><a href="url">Request Medical</a></dd>
-                              <dd><a href="url">Request Food</a></dd>
-                              <dd><a href="url">Request Contact</a></dd>
+                              <dt>Request & Notification Manager</dt>
                               <dd><a href="notif_create">Create Notification</a></dd>
 
                               <dt>Exercise Management</dt>

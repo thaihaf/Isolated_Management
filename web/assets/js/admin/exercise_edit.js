@@ -117,6 +117,7 @@ $().ready(function () {
                 data: data,
                 success: function (response) {
                     alert(response);
+                    window.location.href = 'exercise_list';
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     if (jqXHR.status === 401) {

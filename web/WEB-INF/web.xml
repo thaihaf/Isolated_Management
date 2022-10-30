@@ -225,6 +225,14 @@
         <servlet-class>controler.admin.ExerciseEditControler</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ExerciseListControler</servlet-name>
+        <servlet-class>controler.admin.ExerciseListControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateExerciseControler</servlet-name>
+        <servlet-class>controler.admin.CreateExerciseControler</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ExerciseDeleteControler</servlet-name>
         <servlet-class>controler.admin.ExerciseDeleteControler</servlet-class>
     </servlet>
@@ -451,6 +459,14 @@
     <servlet-mapping>
         <servlet-name>ExerciseEditControler</servlet-name>
         <url-pattern>/admin/exercise_edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExerciseListControler</servlet-name>
+        <url-pattern>/admin/exercise_list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateExerciseControler</servlet-name>
+        <url-pattern>/admin/create_exercise</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ExerciseDeleteControler</servlet-name>

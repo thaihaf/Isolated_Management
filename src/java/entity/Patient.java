@@ -16,16 +16,15 @@ public class Patient {
     private boolean backgroundDisease;
     private String bloodType;
     private AccountDetail accDetail;
-    private Bed Bed;
+    private Bed bed;
 
     public Bed getBed() {
-        return Bed;
+        return bed;
     }
 
-    public void setBed(Bed Bed) {
-        this.Bed = Bed;
+    public void setBed(Bed bed) {
+        this.bed = bed;
     }
-
     public Account getAccount() {
         return account;
     }

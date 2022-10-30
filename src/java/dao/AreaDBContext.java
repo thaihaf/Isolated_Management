@@ -4,8 +4,6 @@
  */
 package dao;
 
-import entity.Account;
-import entity.AccountDetail;
 import entity.Area;
 import entity.AreaType;
 import entity.Room;

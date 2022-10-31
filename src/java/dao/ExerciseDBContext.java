@@ -41,6 +41,28 @@ public class ExerciseDBContext extends DBContext<Exercise> {
         return exercises;
     }
 
+    public ArrayList<Exercise> list(int schedID) {
+        ArrayList<Exercise> ex = new ArrayList<>();
+        try {
+            String sql = "SELECT [ID]\n"
+                    + "      ,[ExerciseName]\n"
+                    + "  FROM [Exercise]\n"
+                    + "  INNER JOIN [Schedule_Exercise] On [Schedule_Exercise].[Exercise_ID] = [Exercise].[ID]\n"
+                    + "  WHERE [Schedule_Exercise].[Schedule_ID] = ?";
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setInt(1, schedID);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Exercise e = new Exercise();
+                e.setId(rs.getInt("ID"));
+                e.setName(rs.getNString("ExerciseName"));
+                ex.add(e);
+            }
+        } catch (Exception e) {
+        }
+        return ex;
+    }
+
     @Override
     public Exercise get(int id) {
         try {

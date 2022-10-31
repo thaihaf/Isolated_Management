@@ -24,6 +24,14 @@ function handleData()
             data: $form.serializeArray(),
             success: function (response) {
                 alert(response);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status === 401) {
+                    alert('Access denied.');
+                } else {
+                    alert(jqXHR.status);
+                }
+                window.location.href = '../login';
             }
         });
         return true;

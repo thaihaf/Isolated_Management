@@ -12,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link href="../assets/css/admin/exercise_assign.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css" />
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     </head>
@@ -23,6 +24,7 @@
         <div class="wrapper wrapperAdmin">
             <div class="container">
                 <form id="assignForm" onsubmit="return handleData()" action="assign_exercise" method="POST">
+                    <h2 style="text-align: center;">Assign exercise to schedule</h2>
                     <table>
                         <tr>
                             <td>Schedule to assign:</td>

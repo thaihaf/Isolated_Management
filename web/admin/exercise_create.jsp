@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link href="../assets/css/admin/exercise_create.css" rel="stylesheet" type="text/css"/>
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
         <meta name="referrer" content="no-referrer">
     </head>
@@ -22,7 +23,7 @@
         <div class="wrapper wrapperAdmin">
             <div class="container">
                 <form action="exercise_create" method="POST" id="exerciseForm" name="exerciseForm" enctype="multipart/form-data">
-                    <h2>Create exercise</h2>
+                    <h2 style="text-align: center;">Create exercise</h2>
                     <table>
                         <tr>
                             <td>Exercise name:</td>

@@ -3,6 +3,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
 */
 /* 
+    Created on : Nov 10, 2022, 3:45:23 PM
+    Author     : hapro
+*/
+
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
     Created on : Sep 14, 2022, 12:06:29 PM
     Author     : hapro
 */
@@ -47,22 +56,30 @@ body.hideSidebar .sidebar{
     width: 100%;
     height : 100%;
     margin : 2rem 0;
+    padding-left : 1rem;
 }
-.sidebar_list_Admin{
-    padding-left : 3rem;
+/*.sidebar_list_Admin{
+    padding-left : 1rem;
 
-}
-.sidebar_list_User, .sidebar_list_User .sidebar_item{
+}*/
+.sidebar_item{
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    margin-top: 2rem;
+    gap : 0.5rem;
 }
 
 .sidebar_list a{
     text-decoration: none;
-    color : var(--white-color);
+    color: var(--white-color);
+    text-align: center;
+    margin-bottom: 2rem;
+    background: darkcyan;
+    border-radius: 2rem;
+    padding: 1rem 0;
+}
+.sidebar_list a.select {
+    border: 2px solid;
 }
 .sidebar_item_img{
     width: 3.5rem
@@ -75,8 +92,14 @@ dl{
 }
 dt{
     font-weight: bold;
-    margin-bottom: 2rem;
-
+    margin: 7rem 0 1.5rem 0;
+    text-align: center;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    line-height: 2.3rem;
+}
+dt.first{
+    margin-top:0;
 }
 dt a.selected{
     font-style: italic;

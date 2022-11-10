@@ -13,8 +13,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     --text-color:#333;
     --bg-color : #22506C;
     --header-height: 8rem;
-    --sidebar-admin-width: 20rem;
-    --sidebar-user-width: 11rem;
+    --sidebar-admin-width: 25rem;
+    --sidebar-user-width: 25rem;
 }
 
 * {

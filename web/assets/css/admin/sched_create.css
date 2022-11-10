@@ -41,7 +41,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 .schedule__form-control{
     border: 1px solid #D8D6DE;
     border-radius: 8px;
-    width: 200px;
     padding: 0.2rem 0.5rem;
 }
 
@@ -81,7 +80,7 @@ table{
     justify-content: center;
 }
 
-#submitForm{
+/*#submitForm{
     width: 300px;
     background-color: #cdffc9;
     border: 1px solid #e1b6b6;
@@ -89,4 +88,4 @@ table{
     border-radius: 4px;
     margin-bottom: 1rem;
     cursor: pointer;
-}
+}*/

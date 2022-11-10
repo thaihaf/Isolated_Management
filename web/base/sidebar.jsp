@@ -16,7 +16,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="../assets/css/base.css"/>
-        <link rel="stylesheet" href="../assets/css/base/sidebar.css"/>
+        <link rel="stylesheet" href="../assets/css/base/sidebar2.css"/>
     </head>
     <body>
         <c:set var="role" value="${sessionScope.account.role}"/>
@@ -28,25 +28,57 @@
                       >
                   <c:choose>
                       <c:when test="${role.id eq 1}">
-                          <dl>
-                              <dt>System Admin</dt>
-                              <dd><a href="../admin/users" class="selected">Account Lists</a></dd>
-                              <dd><a href="../admin/rooms" class="selected">Room Lists</a></dd>
-                              <dd><a href="../admin/areas" class="selected">Area Lists</a></dd>
+                          <!-- comment -->
+                          <dt class="first">System Admin</dt>
+                          <a class="sidebar_item select" href="../admin/users">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Account Lists</div>
+                          </a>
+                          <a class="sidebar_item" href="../admin/rooms">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Room Lists</div>
+                          </a>
+                          <a class="sidebar_item" href="../admin/areas">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Area Lists</div>
+                          </a>
 
-                              <dt>Manager</dt>
-                              <dd><a href="../admin/foodlist">Food List</a></dd>
-                              <dd><a href="url">Medical List</a></dd>
+                          <!-- comment -->
+                          <dt>Food Manager</dt>
+                          <a class="sidebar_item" href="../admin/foodlist">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Food List</div>
+                          </a>
 
-                              <dt>Request & Notification Manager</dt>
-                              <dd><a href="notif_create">Create Notification</a></dd>
-                              
-                              <dt>Schedule Management</dt>
-                              <dd><a href="sched_create">Create Schedule</a></dd>
-                              <dd><a href="sched_list">Schedule list</a></dd>
-                              
-                          </dl>
-                          <br />
+                          <!-- comment -->
+                          <dt>Request & Notification Manager</dt>
+                          <a class="sidebar_item" href="notif_create">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Create Notification</div>
+                          </a>
+
+                          <!-- comment -->
+                          <dt>Exercise Management</dt>
+                          <a class="sidebar_item" href="create_exercise">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Create new Exercise</div>
+                          </a>
+                          <a class="sidebar_item" href="exercise_list">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Exercise list</div>
+                          </a>
+
+
+                          <!-- comment -->
+                          <dt>Schedule Management</dt>
+                          <a class="sidebar_item" href="sched_create">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Create Schedule</div>
+                          </a>
+                          <a class="sidebar_item" href="sched_list">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Schedule list</div>
+                          </a>
                       </c:when>   
 
                       <c:otherwise>
@@ -95,27 +127,32 @@
                               <a class="sidebar_item" href="../foodmenu">
                                   <img class="sidebar_item_img" src="../assets/icons/foodmenu.png" alt="alt"/>
                                   <div>Food Menu</div>
-                                  <a class="sidebar_item" href="javascript:contactConfirm()">
-                                      <img class="sidebar_item_img" src="../assets/icons/emergency_icon.jpg" alt="alt"/>
-                                      <div>Emergency contact</div>
-                                  </a>
-                              </c:if>
+                              </a>
+                              <a class="sidebar_item" href="javascript:contactConfirm()">
+                                  <img class="sidebar_item_img" src="../assets/icons/emergency_icon.jpg" alt="alt"/>
+                                  <div>Emergency contact</div>
+                              </a>
+                              <a class="sidebar_item" href="exercise_sched">
+                                  <img class="sidebar_item_img" src="../assets/icons/exercise.png" alt="alt"/>
+                                  <div>Exercise Schedule</div>
+                              </a>
+                          </c:if>
 
-                              <a class="sidebar_item" href="profile">
-                                  <img class="sidebar_item_img img_profile" src="../assets/icons/profileIcon.png" alt="alt"/>
-                                  <div>Profile</div>
-                              </a>
-                              <br>
-                              <a class="sidebar_item" href="schedule">
-                                  <img class="sidebar_item_img img_profile" src="../assets/icons/schedule.png" alt="alt"/>
-                                  <div>Schedule</div>
-                              </a>
-                              <c:if test="${role.id eq 2}">
-                                  <dt>Manager</dt>
-                                  <dd><a href="../foodlist">Food List</a></dd>
-                              </c:if>
-                          </c:otherwise>
-                      </c:choose>
+                          <a class="sidebar_item" href="profile">
+                              <img class="sidebar_item_img img_profile" src="../assets/icons/profileIcon.png" alt="alt"/>
+                              <div>Profile</div>
+                          </a>
+                          <br>
+                          <a class="sidebar_item" href="schedule">
+                              <img class="sidebar_item_img img_profile" src="../assets/icons/schedule.png" alt="alt"/>
+                              <div>Schedule</div>
+                          </a>
+                          <c:if test="${role.id eq 2}">
+                              <dt>Manager</dt>
+                              <dd><a href="../foodlist">Food List</a></dd>
+                          </c:if>
+                      </c:otherwise>
+                  </c:choose>
              </div>
              <a class="sidebar_item" href="../logout">
                  <div class="sidebar_btnLogout">

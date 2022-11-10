@@ -4,6 +4,8 @@
  */
 package dao;
 
+import entity.Account;
+import entity.AccountDetail;
 import entity.Area;
 import entity.AreaType;
 import entity.Room;
@@ -20,6 +22,108 @@ import java.util.logging.Logger;
  * @author Mountain
  */
 public class AreaDBContext extends DBContext<Area> {
+
+    public ArrayList<Area> listAreaActiveWithRoom(String areaId, String roomId) {
+        ArrayList<Area> areas = new ArrayList<>();
+        try {
+            String sql = "SELECT        \n"
+                    + "Area.ID, \n"
+                    + "Area.Name, \n"
+                    + "Area.Address,\n"
+                    + "AreaType.ID as AreaID,  \n"
+                    + "AreaType.AreaType, \n"
+                    + "Room.ID AS RoomID, \n"
+                    + "Room.Name AS RoomName, \n"
+                    + "Room.NumOfUse, \n"
+                    + "Room.NumOfBed, \n"
+                    + "Room.DoctorManage, \n"
+                    + "Room.NurseManage, \n"
+                    + "Room.Available, \n"
+                    + "Room.[Level]\n"
+                    + "FROM [Area]\n"
+                    + "INNER JOIN [Room] ON [Area].[ID] = [Room].[Area_ID]\n"
+                    + "INNER JOIN [AreaType] ON [AreaType].[ID] = [Area].[AreaType]\n"
+                    + "where Area.ID != 5\n"
+                    + "and Room.Available = 1\n"
+                    + "and Room.NumOfBed > Room.NumOfUse\n";
+
+            if (areaId != null) {
+                sql += "and Area.ID = ?\n";
+            };
+            if (roomId != null) {
+                sql += "and Room.Name like ?\n";
+            };
+
+            PreparedStatement stm = connection.prepareCall(sql);
+
+            if (areaId != null) {
+                stm.setInt(1, Integer.parseInt(areaId));
+            }
+            if (roomId != null) {
+                stm.setInt(1, Integer.parseInt(areaId));
+                stm.setString(2, "%" + roomId + "%");
+            }
+
+            ResultSet rs = stm.executeQuery();
+
+            Area a = new Area();
+            AreaType at = new AreaType();
+
+            ArrayList<Room> rooms = new ArrayList<>();
+
+            while (rs.next()) {
+                int tmp = rs.getInt("ID");
+                if (a.getId() != tmp) {
+                    if (a.getId() != 0) {
+                        a.setRooms(rooms);
+                        areas.add(a);
+                        at = new AreaType();
+                        rooms = new ArrayList<>();
+                    }
+                    a = new Area();
+                    a.setId(tmp);
+                    a.setName(rs.getString("Name"));
+                    a.setAddress(rs.getString("Address"));
+                    at.setId(rs.getInt("AreaID"));
+                    at.setType(rs.getString("AreaType"));
+                    a.setAreaType(at);
+                    a.setAvailable(rs.getBoolean("Available"));
+                }
+
+                Room r = new Room();
+
+                AccountDetail doctorDetails = new AccountDetail();
+                Account accDoctor = new Account();
+
+                AccountDetail nurseDetails = new AccountDetail();
+                Account accNurse = new Account();
+
+                accDoctor.setUserName(rs.getString("DoctorManage"));
+                accNurse.setUserName(rs.getString("NurseManage"));
+                doctorDetails.setAccount(accDoctor);
+                nurseDetails.setAccount(accNurse);
+
+                r.setId(rs.getInt("RoomID"));
+                r.setName(rs.getNString("RoomName"));
+                r.setNumOfUse(rs.getInt("NumOfUse"));
+                r.setNumOfBed(rs.getInt("NumOfBed"));
+                r.setDoctorManage(doctorDetails);
+                r.setNurseManage(nurseDetails);
+                r.setAvailable(rs.getBoolean("Available"));
+                r.setLevel(rs.getInt("Level"));
+
+                rooms.add(r);
+
+            }
+            if (rs.isAfterLast()) {
+                a.setRooms(rooms);
+                areas.add(a);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AreaDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return areas;
+    }
 
     @Override
     public ArrayList<Area> list() {

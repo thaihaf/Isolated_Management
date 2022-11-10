@@ -22,6 +22,50 @@ import java.util.logging.Logger;
  */
 public class RoomDBContext extends DBContext<Room> {
 
+    public boolean updateNumOfUseById(int roomId, int numOfUse) {
+        try {
+            connection.setAutoCommit(false);
+
+            String sql = "UPDATE [dbo].[Room]\n"
+                    + "   SET [NumOfUse] = ?\n"
+                    + " WHERE Room.ID = ?\n";
+
+            PreparedStatement stm = connection.prepareCall(sql);
+
+            stm.setInt(1, numOfUse);
+            stm.setInt(2, roomId);
+
+            if (stm.executeUpdate() > 0) {
+                connection.commit();
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TestResultDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+    }
+
+    public int getNumOfUseByRoomId(int roomId) {
+        try {
+            String sql = "SELECT [NumOfUse]\n"
+                    + "FROM [dbo].[Room]\n"
+                    + "where ID = ?";
+
+            PreparedStatement stm = connection.prepareStatement(sql);
+
+            stm.setInt(1, roomId);
+
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+                return rs.getInt("NumOfUse");
+            }
+        } catch (SQLException ex) {
+        }
+        return -1;
+    }
+
     @Override
     public ArrayList<Room> list() {
         ArrayList<Room> rooms = new ArrayList<>();

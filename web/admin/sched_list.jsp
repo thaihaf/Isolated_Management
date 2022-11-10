@@ -34,7 +34,7 @@
                 </div>
 
                 <form class="top2 d-flex justify-content-between mb-5"  id="view">
-                    <h1>Food Lists</h1>
+                    <h1>Schedule List</h1>
                     <div class="schedule-column w-">
                         <label for="selectPerson" class="schedule-title">Account:</label>
                         <select id="selectPerson" class="schedule__form-control" name="account">
@@ -53,7 +53,7 @@
                     </div>
                     <div class="schedule-column">
                         <label for="year" class="schedule-title">Week</label>
-                        <select style="width:415px;" name="week" id="year" class="schedule__form-control">
+                        <select style="width:415px;" name="week" id="week" class="schedule__form-control">
                             <c:forEach items="${requestScope.date}" var="date">
                                 <option value="${date.key}" <c:if test="${date.key eq requestScope.currentweek}">selected="selected"</c:if> >${date.value}</option>
                             </c:forEach>

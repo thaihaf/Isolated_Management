@@ -16,7 +16,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="../assets/css/base.css"/>
-        <link rel="stylesheet" href="../assets/css/base/sidebar.css"/>
+        <link rel="stylesheet" href="../assets/css/base/sidebar2.css"/>
     </head>
     <body>
         <c:set var="role" value="${sessionScope.account.role}"/>
@@ -28,28 +28,56 @@
                       >
                   <c:choose>
                       <c:when test="${role.id eq 1}">
-                          <dl>
-                              <dt>System Admin</dt>
-                              <dd><a href="../admin/users" class="selected">Account Lists</a></dd>
-                              <dd><a href="../admin/rooms" class="selected">Room Lists</a></dd>
-                              <dd><a href="../admin/areas" class="selected">Area Lists</a></dd>
+                          <!-- comment -->
+                          <dt class="first">System Admin</dt>
+                          <a class="sidebar_item select" href="../admin/users">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Account Lists</div>
+                          </a>
+                          <a class="sidebar_item" href="../admin/rooms">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Room Lists</div>
+                          </a>
+                          <a class="sidebar_item" href="../admin/areas">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Area Lists</div>
+                          </a>
 
-                              <dt>Manager</dt>
-                              <dd><a href="../admin/foodlist">Food List</a></dd>
-                              <dd><a href="url">Medical List</a></dd>
+                          <!-- comment -->
+                          <dt>Food Manager</dt>
+                          <a class="sidebar_item" href="../admin/foodlist">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Food List</div>
+                          </a>
 
-                              <dt>Request & Notification Manager</dt>
-                              <dd><a href="notif_create">Create Notification</a></dd>
-                              
-                              <dt>Exercise Management</dt>
-                              <dd><a href="create_exercise">Create new Exercise</a></dd>
-                              <dd><a href="exercise_list">Exercise list</a></dd>
+                          <!-- comment -->
+                          <dt>Request & Notification Manager</dt>
+                          <a class="sidebar_item" href="notif_create">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Create Notification</div>
+                          </a>
 
-                              <dt>Schedule Management</dt>
-                              <dd><a href="sched_create">Create Schedule</a></dd>
-                              <dd><a href="sched_list">Schedule list</a></dd>
-                          </dl>
-                          <br />
+                          <!-- comment -->
+                          <dt>Exercise Management</dt>
+                          <a class="sidebar_item" href="create_exercise">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Create new Exercise</div>
+                          </a>
+                          <a class="sidebar_item" href="exercise_list">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Exercise list</div>
+                          </a>
+
+                          <!-- comment -->
+                          <dt>Schedule Management</dt>
+                          <a class="sidebar_item" href="sched_create">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Create Schedule</div>
+                          </a>
+                          <a class="sidebar_item" href="sched_list">
+                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <div>Schedule list</div>
+                          </a>
                       </c:when>   
 
                       <c:otherwise>

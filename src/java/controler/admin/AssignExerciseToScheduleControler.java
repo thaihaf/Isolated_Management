@@ -7,19 +7,18 @@ package controler.admin;
 import dao.ExerciseDBContext;
 import dao.ScheduleDBContext;
 import dao.ScheduleExerciseDBContext;
-import dao.ScheduleTimeDBContext;
 import entity.Exercise;
 import entity.Schedule;
 import entity.Schedule_Exercise;
-import entity.Schedule_Time;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import utils.ArrayListUtils;
 
 /**
  *
@@ -87,6 +86,10 @@ public class AssignExerciseToScheduleControler extends HttpServlet {
             throws ServletException, IOException {
         int schedID = Integer.parseInt(request.getParameter("schedule"));
         String[] exercises = request.getParameterValues("ex[]");
+        int[] exParse = new int[exercises.length];
+        for (int i = 0; i < exParse.length; i++) {
+            exParse[i] = Integer.parseInt(exercises[i]);
+        }
         Schedule_Exercise se = new Schedule_Exercise();
         Schedule schedule = new Schedule();
         schedule.setId(schedID);
@@ -99,11 +102,29 @@ public class AssignExerciseToScheduleControler extends HttpServlet {
         }
         String message;
         ScheduleExerciseDBContext seDB = new ScheduleExerciseDBContext();
-        if (!seDB.validate(se)) {
-            seDB.insert(se);
+        Schedule_Exercise initial = seDB.getExerciseById(schedID);
+        ArrayList<Integer> list1 = new ArrayList<>();
+        for (int num : exParse) {
+            list1.add(num);
+        }
+        ArrayList list2 = new ArrayList<>();
+        for (Exercise exercise : initial.getExercise()) {
+            list2.add(exercise.getId());
+        }
+        ArrayListUtils alu = new ArrayListUtils();
+        ArrayList<Integer> diff = alu.different(list1, list2);
+        ArrayList<Exercise> ex = new ArrayList<>();
+        for (Object object : diff) {
+            Exercise e = new Exercise();
+            e.setId((int) object);
+            ex.add(e);
+        }
+        se.setExercise(ex);
+        int count = seDB.insertReturnRow(se);
+        if (count > 0) {
             message = "Add successfully.";
         } else {
-            message = "Error in system.";
+            message = "No row added.";
         }
         PrintWriter out = response.getWriter();
         out.print(message);

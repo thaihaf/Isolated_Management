@@ -178,7 +178,6 @@
                                                                                                  </div>
                                                                                              </div>
                                                                                          </c:when>
-
                                                                                          <c:when test = "${level == 1}">
                                                                                              <div class="des_show" >
                                                                                                  <button type="button" class="btn btn-secondary">Mức độ nhẹ</button>

@@ -22,6 +22,27 @@ import java.util.logging.Logger;
  * @author Mountain
  */
 public class AreaDBContext extends DBContext<Area> {
+    @Override
+    public ArrayList<Area> list() {
+        ArrayList<Area> areas = new ArrayList<>();
+        try {
+            String sql = "SELECT [ID]\n"
+                    + "      ,[Name]\n"
+                    + "  FROM [Area]";
+            PreparedStatement stm = connection.prepareCall(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Area a = new Area();
+                a.setId(rs.getInt("ID"));
+                a.setName(rs.getNString("Name"));
+                areas.add(a);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AreaDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return areas;
+    }
 
     public ArrayList<Area> listAreaActiveWithRoom(String areaId, String roomId) {
         ArrayList<Area> areas = new ArrayList<>();
@@ -43,8 +64,7 @@ public class AreaDBContext extends DBContext<Area> {
                     + "FROM [Area]\n"
                     + "INNER JOIN [Room] ON [Area].[ID] = [Room].[Area_ID]\n"
                     + "INNER JOIN [AreaType] ON [AreaType].[ID] = [Area].[AreaType]\n"
-                    + "where Area.ID != 5\n"
-                    + "and Room.Available = 1\n"
+                    + "where Room.Available = 1\n"
                     + "and Room.NumOfBed > Room.NumOfUse\n";
 
             if (areaId != null) {
@@ -119,28 +139,6 @@ public class AreaDBContext extends DBContext<Area> {
                 a.setRooms(rooms);
                 areas.add(a);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(AreaDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return areas;
-    }
-
-    @Override
-    public ArrayList<Area> list() {
-        ArrayList<Area> areas = new ArrayList<>();
-        try {
-            String sql = "SELECT [ID]\n"
-                    + "      ,[Name]\n"
-                    + "  FROM [Area]";
-            PreparedStatement stm = connection.prepareCall(sql);
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                Area a = new Area();
-                a.setId(rs.getInt("ID"));
-                a.setName(rs.getNString("Name"));
-                areas.add(a);
-            }
-
         } catch (SQLException ex) {
             Logger.getLogger(AreaDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }

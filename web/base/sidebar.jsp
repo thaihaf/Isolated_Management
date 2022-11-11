@@ -16,7 +16,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="../assets/css/base.css"/>
-        <link rel="stylesheet" href="../assets/css/base/sidebar2.css"/>
+        <link rel="stylesheet" href="../assets/css/base/sidebar3.css"/>
     </head>
     <body>
         <c:set var="role" value="${sessionScope.account.role}"/>
@@ -148,7 +148,7 @@
                           </c:otherwise>
                       </c:choose>
              </div>
-             <a class="sidebar_item" href="../logout">
+             <a class="sidebar_item nb" href="../logout">
                  <div class="sidebar_btnLogout">
                      <img class="sidebar_btnLogout_img" src="../assets/icons/logout.png" alt="alt"/>
                  </div>
@@ -156,6 +156,6 @@
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <<script type="text/javascript" src="../assets/js/base/sidebar.js"></script>
+        <<script type="text/javascript" src="../assets/js/base/sidebar2.js"></script>
     </body>
 </html>

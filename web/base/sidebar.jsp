@@ -30,22 +30,22 @@
                       <c:when test="${role.id eq 1}">
                           <!-- comment -->
                           <dt class="first">System Admin</dt>
-                          <a class="sidebar_item select" href="../admin/users">
+                          <a class="sidebar_item select" href="users">
                               <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
                               <div>Account Lists</div>
                           </a>
-                          <a class="sidebar_item" href="../admin/rooms">
+                          <a class="sidebar_item" href="rooms">
                               <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
                               <div>Room Lists</div>
                           </a>
-                          <a class="sidebar_item" href="../admin/areas">
+                          <a class="sidebar_item" href="areas">
                               <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
                               <div>Area Lists</div>
                           </a>
 
                           <!-- comment -->
                           <dt>Food Manager</dt>
-                          <a class="sidebar_item" href="../admin/foodlist">
+                          <a class="sidebar_item" href="foodlist">
                               <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
                               <div>Food List</div>
                           </a>

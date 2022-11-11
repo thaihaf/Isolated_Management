@@ -17,10 +17,10 @@
             function addArea() {
                 count++;
                 var container = document.getElementById('room_container');
-                var content = "<div id=\"room_container_" + count + "\">";
-                content += "Room name: <input type=\"text\" name=\"room_name_" + count + "\" required/><br/>";
-                content += "Room total beds: <input type=\"number\" name=\"room_beds_" + count + "\" min=\"0\" value=\"0\"/><br/>";
-                content += "Doctor manage: <select name=\"doctor_" + count + "\">";
+                var content = "<div style=\"min-width : 200px \" id=\"room_container_" + count + "\">";
+                content += "Room name: <input type=\"text\" class=\"item_input\" name=\"room_name_" + count + "\" required/><br/>";
+                content += "Room total beds: <input type=\"number\" class=\"item_input\" name=\"room_beds_" + count + "\" min=\"0\" value=\"0\"/><br/>";
+                content += "Doctor manage: <select class=\"selection item_input\" name=\"doctor_" + count + "\">";
                 content += "<option value=\"-1\">None</option>";
                 content += "<c:forEach items='${requestScope.medical}' var='d'>"
                 content += "<c:if test='${d.account.role.id eq 2}'>";
@@ -28,7 +28,7 @@
                 content += "</c:if>";
                 content += "</c:forEach>";
                 content += "</select><br/>"
-                content += "Nurse manage: <select name=\"nurse_" + count + "\">";
+                content += "Nurse manage: <select class=\"selection item_input\" name=\"nurse_" + count + "\">";
                 content += "<option value=\"-1\">None</option>";
                 content += "<c:forEach items='${requestScope.medical}' var='d'>";
                 content += "<c:if test='${d.account.role.id eq 3}'>";
@@ -36,7 +36,7 @@
                 content += "</c:if>";
                 content += "</c:forEach>";
                 content += "</select><br/>";
-                content += "<input type=\"button\" value=\"Remove\" onclick=\"removeArea(" + count + ")\"/>";
+                content += "<input type=\"button\" class=\"btn btn-danger mt-2 btn-add\" value=\"Remove\" onclick=\"removeArea(" + count + ")\"/>";
                 content += "<input type=\"hidden\" name=\"index\" value=\"" + count + "\"/>";
                 content += "</div>";
                 container.innerHTML += content;
@@ -47,25 +47,78 @@
                 container.removeChild(item);
             }
             </script>
+
+            <link rel="stylesheet" href="../assets/css/admin/notif_create2.css"/>
+            <link rel="stylesheet" href="../assets/css/base.css"/>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+            <link rel="stylesheet" href="../assets/css/base/homeNew.css"/>
         </head>
         <body>
         <jsp:include page="/base/sidebar.jsp" />
         <jsp:include page="/base/header.jsp" />
         <div class="wrapper wrapperAdmin">
-            <div class="container">
-                <form action="add_area" method="POST">
-                    Area name: <input type="text" name="name" required/><br/>
-                    Address: <input type="text" name="address" required/><br/>
-                    Area type: <select name="areatype">
-                        <c:forEach items="${requestScope.areatype}" var="a">
-                            <option value="${a.id}">${a.type}</option>
-                        </c:forEach>
-                    </select><br/>
-                    Status: <input type="radio" name="status" value="true" checked/>Active <input type="radio" name="status" value="false"/>Inactive<br/>
-                    <input type="button" value="Add room to area" onclick="addArea()"/>
-                    <div id="room_container">
+            <div class="container-fluid">
+                <div class="top1">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="../base/home.jsp">Home</a></li>
+                            <li class="breadcrumb-item"><a href="areas">Area List</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Create Area</li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <div class="top2 d-flex justify-content-between">
+                    <h1>Create Area</h1>
+                </div>
+
+                <form action="add_area" method="POST" class="d-flex align-items-center justify-content-center">
+                    <div class="updateInfo_actions d-block" style="resize:none; width:50%;" >
+                        <div class="updateInfo_group">
+                            <div class="updateInfo_item left">
+                                <div class="item_title">Name</div>
+                                <input type="text" class="item_input" name="name" required/>
+                            </div>
+                            <div class="updateInfo_item right">
+                                <div class="item_title">Area Type</div>
+                                <select name="areatype" class="selection item_input">
+                                    <c:forEach items="${requestScope.areatype}" var="a">
+                                        <option value="${a.id}">${a.type}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="updateInfo_group">
+                            <div class="updateInfo_item left">
+                                <div class="item_title">Address</div>
+                                <input type="text" class="item_input" name="address" required/>
+                            </div>
+                            <div class="updateInfo_item right">
+                                <div class="item_title">Status</div>
+                                <div class="d-flex align-items-center">
+                                    <input type="radio" class="mr-2" name="status" value="true" checked/>Active 
+                                    <input type="radio" class="ml-5 mr-2" name="status" value="false"/>Inactive
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div id="room_container" class="updateInfo_group" style="overflow-x: auto">
+                        </div>
+
+                        <div class="updateInfo_group">
+                            <div class="updateInfo_item left">
+                                <input type="submit" class="btn btn-success btn-add" value="Submit"/>
+
+                            </div>
+                            <div class="updateInfo_item right">
+                                <input type="button" value="New Room" class="btn btn-primary btn-add" onclick="addArea()"/>
+                            </div>
+                        </div>
                     </div>
-                    <input type="submit" value="Add"/>
+
+
                 </form>
             </div>
             <jsp:include page="/base/footer.jsp" />  

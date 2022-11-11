@@ -31,40 +31,40 @@
                           <!-- comment -->
                           <dt class="first">System Admin</dt>
                           <a class="sidebar_item select" href="users">
-                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <img class="sidebar_item_img" src="../assets/img/users.png" alt="alt"/>
                               <div>Account Lists</div>
                           </a>
                           <a class="sidebar_item" href="rooms">
-                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <img class="sidebar_item_img" src="../assets/img/room.png" alt="alt"/>
                               <div>Room Lists</div>
                           </a>
                           <a class="sidebar_item" href="areas">
-                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <img class="sidebar_item_img" src="../assets/img/map.png" alt="alt"/>
                               <div>Area Lists</div>
                           </a>
 
                           <!-- comment -->
                           <dt>Food Manager</dt>
                           <a class="sidebar_item" href="foodlist">
-                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <img class="sidebar_item_img" src="../assets/img/foods.png" alt="alt"/>
                               <div>Food List</div>
                           </a>
 
                           <!-- comment -->
                           <dt>Request & Notification Manager</dt>
                           <a class="sidebar_item" href="notif_create">
-                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <img class="sidebar_item_img" src="../assets/img/noti.png" alt="alt"/>
                               <div>Create Notification</div>
                           </a>
 
                           <!-- comment -->
                           <dt>Exercise Management</dt>
                           <a class="sidebar_item" href="create_exercise">
-                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <img class="sidebar_item_img" src="../assets/img/exs.png" alt="alt"/>
                               <div>Create new Exercise</div>
                           </a>
                           <a class="sidebar_item" href="exercise_list">
-                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <img class="sidebar_item_img" src="../assets/img/exercise.png" alt="alt"/>
                               <div>Exercise list</div>
                           </a>
 
@@ -72,11 +72,11 @@
                           <!-- comment -->
                           <dt>Schedule Management</dt>
                           <a class="sidebar_item" href="sched_create">
-                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <img class="sidebar_item_img" src="../assets/img/sches.png" alt="alt"/>
                               <div>Create Schedule</div>
                           </a>
                           <a class="sidebar_item" href="sched_list">
-                              <img class="sidebar_item_img" src="../assets/icons/patientIcon.png" alt="alt"/>
+                              <img class="sidebar_item_img" src="../assets/img/sche.png" alt="alt"/>
                               <div>Schedule list</div>
                           </a>
                       </c:when>   

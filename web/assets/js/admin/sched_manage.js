@@ -17,7 +17,7 @@ function refresh() {
 }
 
 function get() {
-    $('.button').click(function (event) {
+    $('#submitForm').click(function (event) {
         event.preventDefault();
         $.ajax({
             url: "sched_list",

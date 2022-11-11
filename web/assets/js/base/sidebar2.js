@@ -5,13 +5,14 @@
 let sidebar = $(".sidebar_item");
 
 sidebar.click(function () {
-    sidebar.removeClass("active");
-    this.addClass("active");
+    sidebar.removeClass("select");
+    this.addClass("select");
 });
 
-function contactConfirm(){
+function contactConfirm() {
     var result = confirm('Are you sure you want to make an emergency contact?');
-    if(result){
+    if (result) {
         window.location.href = 'emergency';
     }
 }
+

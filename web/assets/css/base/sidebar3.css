@@ -67,19 +67,28 @@ body.hideSidebar .sidebar{
     flex-direction: column;
     align-items: center;
     gap : 0.5rem;
-}
 
-.sidebar_list a{
+
+
+    padding: 1rem 0;
+    border: 2px darkcyan solid;
+    border-radius: 2rem;
+}
+.sidebar_item.nb{
+    border: none;
+}
+.sidebar_list a.sidebar_item{
     text-decoration: none;
     color: var(--white-color);
     text-align: center;
     margin-bottom: 2rem;
-    background: darkcyan;
-    border-radius: 2rem;
-    padding: 1rem 0;
 }
-.sidebar_list a.select {
-    border: 2px solid;
+.sidebar_item.select {
+    background: darkcyan;
+    border: 2px solid white;
+}
+.sidebar_item:hover {
+    border: 2px solid white;
 }
 .sidebar_item_img{
     width: 3.5rem

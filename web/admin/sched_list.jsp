@@ -33,17 +33,17 @@
                     </nav>
                 </div>
 
-                <form class="top2 d-flex justify-content-between mb-5"  id="view">
-                    <h1>Schedule List</h1>
-                    <div class="schedule-column w-">
-                        <label for="selectPerson" class="schedule-title">Account:</label>
+                <form class="top2 d-flex mb-5 align-items-center"  id="view">
+                    <h1 class="mr-auto">Schedule Lists</h1>
+                    <div class="schedule-column mr-2">
+                        <label for="selectPerson" class="schedule-title">Account</label>
                         <select id="selectPerson" class="schedule__form-control" name="account">
                             <c:forEach items="${requestScope.account}" var="a">
                                 <option value="${a.account.userName}">${a.fullName}</option>
                             </c:forEach>
                         </select>
                     </div>
-                    <div class="schedule-column">
+                    <div class="schedule-column mr-2">
                         <label for="year" class="schedule-title">Year</label>
                         <select name="year" id="year" class="schedule__form-control">
                             <c:forEach items="${requestScope.year}" var="year">
@@ -51,15 +51,15 @@
                             </c:forEach>
                         </select>
                     </div>
-                    <div class="schedule-column">
+                    <div class="schedule-column mr-2">
                         <label for="year" class="schedule-title">Week</label>
-                        <select style="width:415px;" name="week" id="week" class="schedule__form-control">
+                        <select name="week" id="year" class="schedule__form-control">
                             <c:forEach items="${requestScope.date}" var="date">
                                 <option value="${date.key}" <c:if test="${date.key eq requestScope.currentweek}">selected="selected"</c:if> >${date.value}</option>
                             </c:forEach>
                         </select>
                     </div>
-                    <button id="submitForm" type="button" class="btn btn-primary btn-add ml-auto">View</button>
+                    <button id="submitForm" type="button" class="btn btn-primary btn-add ml-5">View</button>
                 </form>
 
                 <div class="table table-hover" style="width:100%;"></div>

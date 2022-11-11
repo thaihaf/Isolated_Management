@@ -11,6 +11,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link href="../assets/css/admin/exercise_create.css" rel="stylesheet" type="text/css"/>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
         <meta name="referrer" content="no-referrer">
 
         <link rel="stylesheet" href="../assets/css/admin/notif_create2.css"/>

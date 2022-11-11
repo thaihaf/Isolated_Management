@@ -256,6 +256,18 @@
         <servlet-name>AssignExerciseToScheduleControler</servlet-name>
         <servlet-class>controler.admin.AssignExerciseToScheduleControler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ExerciseScheduleControler</servlet-name>
+        <servlet-class>controler.ExerciseScheduleControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetExerciseListControler</servlet-name>
+        <servlet-class>controler.GetExerciseListControler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetExerciseDetailControler</servlet-name>
+        <servlet-class>controler.GetExerciseDetailControler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePassController</servlet-name>
         <url-pattern>/base/changepass</url-pattern>
@@ -507,6 +519,18 @@
     <servlet-mapping>
         <servlet-name>AssignExerciseToScheduleControler</servlet-name>
         <url-pattern>/admin/assign_exercise</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExerciseScheduleControler</servlet-name>
+        <url-pattern>/base/exercise_sched</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetExerciseListControler</servlet-name>
+        <url-pattern>/get_exercise</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetExerciseDetailControler</servlet-name>
+        <url-pattern>/base/exercise</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>login</welcome-file>
